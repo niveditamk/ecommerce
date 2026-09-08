@@ -155,7 +155,16 @@ function applyIncremental() {
   migrateEnterpriseOperations(done);
   collapseRoles(done);
   syncCatalogue(done);
-  seedEnterpriseOperations(done);
+  /* seedEnterpriseOperations() used to run here. It writes operational
+     rows — alerts, recommendations, purchase orders — that carry foreign
+     keys onto products, and products are created by seed(), which runs
+     after migrate(). On a database that already held a catalogue the
+     keys resolved and nobody noticed; on a genuinely empty one the very
+     first alert failed with FOREIGN KEY constraint failed and the
+     process exited 1 before it could listen.
+
+     It is seed data, not a schema change, so it now runs from init()
+     once seed() has put the rows it points at in place. */
   syncPermissions(done);
 
   if (done.length) console.log(`[aurelis] migrated: ${done.join(', ')}`);
@@ -832,7 +841,10 @@ export function seed() {
     });
   });
 
-  return { seeded: true, staff: SEED_STAFF.length, products: PRODUCTS.length };
+  /* staffToSeed, not SEED_STAFF: with demo mode off the three published
+     accounts are never created, and reporting four told the operator of
+     a fresh deploy that three logins existed which do not. */
+  return { seeded: true, staff: staffToSeed.length, products: PRODUCTS.length };
 }
 
 /* Staff accounts created on first boot.
@@ -945,6 +957,19 @@ export function init() {
   migrate();
   migrateMl();
   const result = seed();
+
+  /* After seed(), so the products these rows reference exist. Guarded
+     because a first boot that dies here leaves a half-built database
+     that the next boot inherits — and an empty operations dashboard is
+     a far smaller problem than a shop that will not start. */
+  try {
+    const opsDone = [];
+    seedEnterpriseOperations(opsDone);
+    if (opsDone.length) console.log(`[aurelis] operations seeded: ${opsDone.join(', ')}`);
+  } catch (err) {
+    console.warn('[aurelis] operational seed skipped:', err.message);
+  }
+
   reconcileDemoStaff();
   /* Only announce a generated password when the account was actually
      created with it. On a second boot seed() is a no-op, and printing
