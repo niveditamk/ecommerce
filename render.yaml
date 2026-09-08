@@ -60,6 +60,12 @@ services:
 
       # Signs storefront session cookies/ids. Unset means the server
       # generates one per boot, which logs everyone out on restart.
+      # Comma-separated origins allowed to call this API. Needed only
+      # when the frontend is hosted somewhere else (a Vercel URL, say).
+      # Unset means same-origin only in production.
+      - key: ALLOWED_ORIGINS
+        sync: false
+
       - key: SESSION_SECRET
         sync: false
 

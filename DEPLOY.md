@@ -166,3 +166,48 @@ PostgreSQL. It is not a workspace, so `npm ci` at the root does not install
 it and Render never builds it. Run it locally with `npm run dev`, which
 starts embedded PostgreSQL, Medusa and Aurelis in order. To point a deployed
 Aurelis at a Medusa instance, set `MEDUSA_URL` and its credentials.
+
+---
+
+## Splitting the frontend onto Vercel
+
+The API cannot run on Vercel — it writes a SQLite file, keeps sessions in
+memory and runs a reservation sweeper on an interval, none of which survive a
+serverless function. The **frontend** can, with the API hosted elsewhere.
+
+Verified working: the built client served from its own origin, talking to the
+API on another, issued a session, loaded 197 product cards, rendered a category
+page and added to the bag with no CORS block and no page error.
+
+### On Vercel
+
+- **Root Directory:** `client`
+- Build command, output directory and the SPA rewrite come from
+  `client/vercel.json`; you should not need to set them by hand.
+- **Environment variable:** `VITE_API_URL=https://<your-api-host>`
+
+`VITE_API_URL` is read at **build** time, not run time — Vite compiles it into
+the bundle. Changing it means redeploying, not just editing a variable.
+
+### On the API host
+
+Set `ALLOWED_ORIGINS` to the Vercel URL, comma-separated if there is more than
+one:
+
+```
+ALLOWED_ORIGINS=https://aurelis.vercel.app,https://aurelis-git-main-you.vercel.app
+```
+
+Preview deployments each get their own hostname, so add them or accept that
+previews cannot reach the API.
+
+CORS used to reflect whatever `Origin` it was sent, which was survivable while
+the client shipped from the same process and is not once it does not. Unset,
+development stays permissive and production refuses every origin it was not
+told about.
+
+### What this costs
+
+Two hosts, two deploys, and a cross-origin hop on every request instead of a
+same-origin one. The single-service Render deployment above avoids all three.
+Prefer it unless you specifically want Vercel's CDN in front of the storefront.

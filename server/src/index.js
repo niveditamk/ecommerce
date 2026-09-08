@@ -54,9 +54,30 @@ const jsonParser = express.json({ limit: '256kb' });
 app.use((req, res, next) => (req.path === ML_INGEST_PATH ? next() : jsonParser(req, res, next)));
 app.use(
   cors({
-    origin: true,
+    /* `origin: true` reflected whatever Origin was sent, so any site on
+       the internet could call this API. That was tolerable while the
+       client was served from this same process; putting the frontend on
+       its own host makes the API genuinely cross-origin and the setting
+       genuinely wrong.
+
+       Set ALLOWED_ORIGINS to a comma-separated list of the hosts that
+       may call it — the Vercel URL, plus any preview domains. Left
+       unset, development stays permissive so nothing local breaks, and
+       production refuses everything it was not told about. */
+    origin(origin, cb) {
+      const allowed = String(process.env.ALLOWED_ORIGINS || '')
+        .split(',').map((s) => s.trim()).filter(Boolean);
+
+      /* Same-origin requests and curl send no Origin header at all. */
+      if (!origin) return cb(null, true);
+      if (allowed.includes(origin)) return cb(null, true);
+      if (!allowed.length && process.env.NODE_ENV !== 'production') return cb(null, true);
+      return cb(null, false);
+    },
     credentials: true,
-    exposedHeaders: ['x-aurelis-session']
+    /* The client reads the session id the server issues from this header,
+       so it has to survive the cross-origin response. */
+    exposedHeaders: ['x-aurelis-session', 'x-request-id']
   })
 );
 
