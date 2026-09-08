@@ -26,7 +26,14 @@ const PALETTES = ['noir', 'obsidian', 'platinum', 'violet', 'sapphire', 'gold', 
 
 export default function ProductEditor() {
   const { id } = useParams();
-  const isNew = id === 'new';
+  /* App.jsx registers "products/new" as a literal route, so on the create
+     screen useParams() has no id at all — it is never the string "new".
+     Testing only for that string left isNew false, so the editor fetched
+     /api/admin/products/undefined, got a 404 and rendered "Product not
+     found" where the blank form should have been. Add product has been
+     unreachable. Accept either shape, so it survives whichever way the
+     route is declared. */
+  const isNew = !id || id === 'new';
   const navigate = useNavigate();
   const { can } = useAdmin();
 
