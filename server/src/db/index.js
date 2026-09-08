@@ -881,14 +881,29 @@ if (DEMO_MODE && IS_PRODUCTION) {
    once to the log — never a literal. The fallback here had become the
    string 'Aurelis!Owner2026', which put a working owner password in
    the repository for every install that set no variable. */
-const generatedSuperPassword = process.env.SUPER_ADMIN_PASSWORD
+/* Hosting dashboards render the value box as a textarea, so a stray
+   newline rides along with a pasted secret more often than not. Stored
+   untrimmed, that password can never be typed again: the hash covers a
+   character the sign-in form cannot produce, and the operator is locked
+   out of their own shop with "Those details do not match an account"
+   and nothing in the log to explain it.
+
+   The email is lowercased as well as trimmed, because the sign-in route
+   normalises what it is given and an address seeded as "Me@Example.com"
+   would never match the "me@example.com" it looks up. */
+const SUPER_EMAIL = String(process.env.SUPER_ADMIN_EMAIL || 'owner@aurelis.test').trim().toLowerCase();
+const SUPER_PASSWORD = process.env.SUPER_ADMIN_PASSWORD
+  ? String(process.env.SUPER_ADMIN_PASSWORD).trim()
+  : null;
+
+const generatedSuperPassword = SUPER_PASSWORD
   ? null
   : randomBytes(18).toString('base64url');
 
 export const SEED_STAFF = [
   {
-    email: process.env.SUPER_ADMIN_EMAIL || 'owner@aurelis.test',
-    password: process.env.SUPER_ADMIN_PASSWORD || generatedSuperPassword,
+    email: SUPER_EMAIL,
+    password: SUPER_PASSWORD || generatedSuperPassword,
     first: 'Hélène', last: 'Marchand', role: 'admin',
     /* Not a demo account. Its password is either the operator's own or
        one generated at boot; either way it is a live credential and must
@@ -921,7 +936,7 @@ export function announceGeneratedCredentials() {
    an existing one previously did nothing — an operator who lost the
    owner password had no way back in short of deleting the file. */
 function reconcileOwner() {
-  const configured = process.env.SUPER_ADMIN_PASSWORD;
+  const configured = SUPER_PASSWORD;
   if (!configured) return false;
   const email = SEED_STAFF[0].email;
   const row = db.prepare('SELECT id, password_hash, salt FROM staff WHERE email = ?').get(email);
