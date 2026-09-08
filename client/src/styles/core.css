@@ -1,0 +1,787 @@
+/* =============================================================
+   AURELIS MAISON — CORE DESIGN SYSTEM
+   Editorial Luxury Commerce Architecture
+   Quiet confidence. Impeccable typography. Generous whitespace.
+   ============================================================= */
+
+:root {
+  /* referenced by views/admin but previously undefined */
+  --spacing-20:20px;
+  --text-heading:20px;
+  /* ---- Palette ---- */
+  --color-obsidian: #141312;
+  --color-obsidian-ink: #141312;
+  --color-obsidian-light: #22201e;
+  --color-paper: #faf8f5;
+  --color-paper-light: #ffffff;
+  --color-bone: #f3efea;
+  --color-stone: #ebe6df;
+  --color-sand: #dfd9ce;
+
+  /* ---- Text: Ink at descending presence ---- */
+  --pearl: #141312;
+  --pearl-2: rgba(20, 19, 18, 0.86);
+  --pearl-3: rgba(20, 19, 18, 0.64);
+  --pearl-4: rgba(20, 19, 18, 0.44);
+  --pearl-5: rgba(20, 19, 18, 0.18);
+
+  /* ---- Surfaces ---- */
+  --ink-950: #ffffff;
+  --ink-900: #faf8f5;
+  --ink-850: #f3efea;
+  --ink-800: #ebe6df;
+
+  /* ---- Refined Atelier Gold / Bronze Accent ---- */
+  --color-gold-accent: #9e7d46;
+  /* Measured: white on the old #9e7d46 was 3.84:1 — every primary
+     button in the product failed WCAG 1.4.3. Darkened the minimum that
+     clears 4.5:1 (now 4.90:1) rather than abandoning the warm accent. */
+  --gold: #8a6c3a;
+  --gold-hi: #b89758;
+  --gold-2: #755b31;   /* hover, 6.37:1 with white */
+  /* Gold as TEXT needs a different value from gold as a FILL: the fill
+     only has to sit behind white (4.90:1), while text has to clear
+     4.5:1 against bone, which --gold does not (4.28:1). */
+  --gold-text: #755b31;
+  --gold-3: #c5a880;
+  --gold-ink: #141312;
+
+  /* ---- Status (deep, desaturated, high contrast) ---- */
+  --success: #1f6b4a;
+  --warning: #945600;
+  --error: #992222;
+  --info: #23547d;
+  --jade: var(--success);
+  --plum: #4a2838;
+  --rose: #8a4855;
+  --alert: var(--error);
+
+  /* ---- Hairlines & Borders ---- */
+  --line: rgba(20, 19, 18, 0.10);
+  --line-2: rgba(20, 19, 18, 0.05);
+  --line-gold: rgba(158, 125, 70, 0.30);
+  --line-dark: rgba(20, 19, 18, 0.22);
+  /* A hairline is right for a divider and wrong for the edge of a
+     control: 0.22 measures 1.61:1, and WCAG 1.4.11 wants 3.0 for
+     anything that identifies a component. Inputs and outline buttons
+     use this instead; decorative rules keep the hairline. */
+  --line-control: rgba(20, 19, 18, 0.46);
+  --glass-1: rgba(250, 248, 245, 0.85);
+  --glass-2: rgba(255, 255, 255, 0.94);
+  --glass-3: rgba(243, 239, 234, 0.95);
+  --blur: 16px;
+  --blur-lg: 28px;
+
+  /* ---- Geometry ---- */
+  --r-xs: 2px;
+  --r-sm: 3px;
+  --r-md: 4px;
+  --r-lg: 6px;
+  --r-xl: 8px;
+  --r-2xl: 12px;
+  --r-pill: 9999px;
+
+  /* ---- Subtle Shadows ---- */
+  --sh-1: 0 1px 3px rgba(20, 19, 18, 0.04);
+  --sh-2: 0 4px 16px rgba(20, 19, 18, 0.06);
+  --sh-3: 0 12px 36px rgba(20, 19, 18, 0.08);
+  --sh-drawer: -8px 0 32px rgba(20, 19, 18, 0.12);
+  --sh-gold: 0 0 24px rgba(158, 125, 70, 0.18);
+
+  /* ---- Typography ---- */
+  --font-serif: 'Cormorant Garamond', Garamond, 'Didot', 'Bodoni MT', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --sans: var(--font-sans);
+  --serif: var(--font-serif);
+  --mono: var(--font-mono);
+
+  /* Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.12em;
+
+  --text-body-sm: 13px;
+  --leading-body-sm: 1.6;
+
+  --text-body: 15px;
+  --leading-body: 1.75;
+
+  --text-body-lg: 17px;
+  --leading-body-lg: 1.6;
+
+  --text-h4: 18px;
+  --leading-h4: 1.35;
+
+  --text-h3: clamp(20px, 1.8vw, 24px);
+  --leading-h3: 1.25;
+
+  --text-h2: clamp(26px, 2.6vw, 36px);
+  --leading-h2: 1.18;
+
+  --text-h1: clamp(34px, 3.8vw, 48px);
+  --leading-h1: 1.12;
+
+  --text-display: clamp(42px, 5.2vw, 68px);
+  --leading-display: 1.06;
+
+  /* ---- Spacing Scale ---- */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-90: 90px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+
+  /* ---- Layout Metrics ---- */
+  --nav-h: 72px;
+  --announce-h: 36px;
+  --maxw: 1440px;
+  --gut: clamp(20px, 3.5vw, 56px);
+
+  /* ---- Curves & Transitions ---- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --glide: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.18s var(--ease);
+  --transition-normal: 0.3s var(--ease);
+  --transition-slow: 0.55s var(--glide);
+}
+
+/* ============ RESET & BASE ============ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  background-color: var(--color-paper);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--pearl);
+  background: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+/* ============ TYPOGRAPHY UTILITIES ============ */
+.display {
+  font-family: var(--serif);
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--pearl);
+}
+
+.h1 {
+  font-family: var(--serif);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--pearl);
+}
+
+.h2 {
+  font-family: var(--serif);
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--pearl);
+}
+
+.h3 {
+  font-family: var(--serif);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.h4 {
+  font-family: var(--sans);
+  font-size: var(--text-h4);
+  line-height: var(--leading-h4);
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+.lede {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  color: var(--pearl-2);
+}
+
+.muted {
+  color: var(--pearl-3);
+}
+
+.tiny {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: var(--text-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold-text);
+}
+
+.eyebrow--plain {
+  color: var(--pearl-3);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.gold {
+  color: var(--gold-text);
+}
+
+/* ============ LAYOUT CONTAINERS ============ */
+.shell {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+.section {
+  padding-block: clamp(56px, 7vw, 110px);
+}
+
+.section--tight {
+  padding-block: clamp(32px, 4vw, 64px);
+}
+
+.section--loose {
+  padding-block: clamp(80px, 10vw, 160px);
+}
+
+.center {
+  display: flex;
+  align-items: center;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: var(--spacing-32) 0;
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  border: 1px solid var(--color-obsidian);
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: #2a2725;
+  border-color: #2a2725;
+  color: var(--color-paper-light);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* btn--quiet is used on the three checkout back-links and the
+   deployment banner. It was never defined, so those rendered as an
+   unstyled .btn — same size, no border, no hover. */
+.btn--outline, .btn--ghost, .btn--quiet {
+  background: transparent;
+  color: var(--color-obsidian);
+  border: 1px solid var(--line-control);
+}
+
+.btn--outline:hover, .btn--ghost:hover, .btn--quiet:hover {
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  border-color: var(--color-obsidian);
+}
+
+/* Removing an address and deleting a product both used .btn--danger,
+   which did not exist — so the two destructive controls in the app
+   looked exactly like the safe ones next to them. */
+.btn--danger {
+  background: transparent;
+  color: var(--error);
+  border: 1px solid rgba(153, 34, 34, 0.42);
+}
+
+.btn--danger:hover {
+  background: var(--error);
+  color: var(--color-paper);
+  border-color: var(--error);
+}
+
+.btn--gold {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #ffffff;
+}
+
+.btn--gold:hover {
+  background: var(--gold-2);
+  border-color: var(--gold-2);
+  color: #ffffff;
+}
+
+.btn--glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  color: var(--pearl);
+}
+
+.btn--glass:hover {
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  border-color: var(--color-obsidian);
+}
+
+.btn--sm {
+  padding: 8px 18px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.btn--lg {
+  padding: 16px 36px;
+  font-size: 14px;
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.btn__sheen {
+  display: none;
+}
+
+/* ============ FORM INPUTS ============ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-18);
+}
+
+.field label {
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+  font-weight: 500;
+}
+
+.input, input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="number"], input[type="search"], select, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--pearl);
+  background: var(--color-paper-light);
+  border: 1px solid var(--line-control);
+  border-radius: var(--r-xs);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input:focus, input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Checkbox & Radio */
+.check-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--pearl-2);
+}
+
+.check-label input {
+  margin-top: 3px;
+  accent-color: var(--gold);
+}
+
+/* ============ BADGES & CHIPS ============ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 3px 8px;
+  background: var(--color-bone);
+  color: var(--pearl-2);
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line);
+}
+
+/* Used on eight pages — a badge that recedes: same shape, no fill,
+   no border weight. It was never defined, so all eight rendered as the
+   full-contrast default and competed with the content beside them. */
+.badge--quiet {
+  background: transparent;
+  color: var(--pearl-3, var(--pearl-2));
+  border-color: var(--line);
+  font-weight: 500;
+  opacity: 0.86;
+}
+
+.badge--gold {
+  background: rgba(158, 125, 70, 0.1);
+  color: var(--gold-2);
+  border-color: rgba(158, 125, 70, 0.25);
+}
+
+.badge--alert, .badge--rare {
+  background: rgba(153, 34, 34, 0.08);
+  color: var(--error);
+  border-color: rgba(153, 34, 34, 0.2);
+}
+
+.badge--jade, .badge--new {
+  background: rgba(31, 107, 74, 0.08);
+  color: var(--success);
+  border-color: rgba(31, 107, 74, 0.2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  color: var(--pearl-2);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.chip:hover, .chip.is-active {
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  border-color: var(--color-obsidian);
+}
+
+/* ============ VITRINE GLASS SURFACES ============ */
+.glass {
+  background: var(--color-paper-light);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+
+.glass--soft {
+  background: var(--color-bone);
+  border: 1px solid var(--line-2);
+}
+
+.glass--deep {
+  background: var(--color-paper-light);
+  border: 1px solid var(--line-dark);
+  box-shadow: var(--sh-2);
+}
+
+.glass--gold {
+  background: rgba(158, 125, 70, 0.06);
+  border: 1px solid var(--line-gold);
+}
+
+/* ============ DRAWERS & SCRIM ============ */
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 19, 18, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.scrim.is-on {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(480px, 100vw);
+  background: var(--color-paper);
+  z-index: 950;
+  box-shadow: var(--sh-drawer);
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--line);
+}
+
+.drawer.is-open {
+  transform: translateX(0);
+}
+
+.drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-24) var(--spacing-32);
+  border-bottom: 1px solid var(--line);
+  background: var(--color-paper-light);
+}
+
+.drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-24) var(--spacing-32);
+}
+
+.drawer__foot {
+  padding: var(--spacing-24) var(--spacing-32);
+  border-top: 1px solid var(--line);
+  background: var(--color-paper-light);
+}
+
+/* Icon button */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--pearl-2);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.icon-btn:hover {
+  color: var(--pearl);
+  background: var(--color-bone);
+}
+
+/* ============ TOAST NOTIFICATIONS ============ */
+.toast-stack {
+  position: fixed;
+  bottom: var(--spacing-24);
+  right: var(--spacing-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: 12px 20px;
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  font-size: 13px;
+  border-radius: var(--r-xs);
+  box-shadow: var(--sh-3);
+  cursor: pointer;
+  animation: toastIn 0.3s var(--ease) forwards;
+}
+
+.toast__icon {
+  color: var(--gold-3);
+  display: flex;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ SKIP LINK & ACCESSIBILITY ============ */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--spacing-24);
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  padding: 8px 16px;
+  z-index: 9999;
+  font-size: 13px;
+}
+
+.skip-link:focus {
+  top: var(--spacing-12);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reveal transition */
+.rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--glide), transform 0.7s var(--glide);
+}
+
+.rv.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rv-1 { transition-delay: 0.1s; }
+.rv-2 { transition-delay: 0.2s; }
+.rv-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .rv {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Hide on mobile/desktop utilities */
+@media (max-width: 768px) {
+  .hide-sm { display: none !important; }
+}
+
+@media (min-width: 769px) {
+  .hide-lg { display: none !important; }
+}

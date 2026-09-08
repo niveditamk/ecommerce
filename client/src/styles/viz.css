@@ -1,0 +1,251 @@
+/* =============================================================
+   ADMIN DATA VISUALISATION
+
+   Roles, not raw hex, so light and dark swap in one place.
+
+   --viz-series-1 is the only hue any plot uses: every chart here
+   is a single series, so identity is carried by the chart's own
+   title rather than by colour. It validated PASS on the lightness
+   band, the chroma floor, CVD separation and 3:1 contrast against
+   the admin surface.
+
+   The four status steps are a reserved set and are never reused as
+   a series colour. Two of them sit under 3:1 on a light ground by
+   design — the mitigation is that every band ships its name and
+   its count as text, which is why StockHealth renders a key rather
+   than a bare bar.
+   ============================================================= */
+.viz-root,
+.command-center,
+.analytics-hub {
+  --viz-surface: #F6F5F1;
+  --viz-ink: #121315;
+  --viz-ink-2: rgba(18, 19, 21, 0.66);
+  --viz-grid: rgba(18, 19, 21, 0.10);
+
+  --viz-series-1: #2a78d6;
+
+  --viz-good: #0ca30c;
+  --viz-warning: #fab219;
+  --viz-serious: #ec835a;
+  --viz-critical: #d03b3b;
+}
+
+/* The OS setting. Guarded so an explicit light stamp still wins. */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root,
+  :root:where(:not([data-theme="light"])) .command-center,
+  :root:where(:not([data-theme="light"])) .analytics-hub {
+    --viz-surface: #1a1a19;
+    --viz-ink: #ffffff;
+    --viz-ink-2: #c3c2b7;
+    --viz-grid: rgba(255, 255, 255, 0.14);
+    /* Stepped for the dark ground, not flipped. */
+    --viz-series-1: #3987e5;
+  }
+}
+
+/* The viewer's own toggle, which must win in both directions. */
+:root[data-theme="dark"] .viz-root,
+:root[data-theme="dark"] .command-center,
+:root[data-theme="dark"] .analytics-hub {
+  --viz-surface: #1a1a19;
+  --viz-ink: #ffffff;
+  --viz-ink-2: #c3c2b7;
+  --viz-grid: rgba(255, 255, 255, 0.14);
+  --viz-series-1: #3987e5;
+}
+
+/* ---------- figure shell ---------- */
+.viz {
+  margin: 0;
+  padding: var(--spacing-20, 20px);
+  background: var(--color-paper-light, #fff);
+  border: 1px solid var(--line, rgba(18, 19, 21, 0.14));
+  border-radius: var(--r-xs, 2px);
+}
+
+.viz__head { margin-bottom: var(--spacing-16, 16px); }
+
+.viz__title {
+  margin: 0;
+  font-family: var(--font-sans, inherit);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--viz-ink);
+}
+
+.viz__caption {
+  margin: 4px 0 0;
+  font-size: 0.76rem;
+  color: var(--viz-ink-2);
+}
+
+.viz__empty {
+  margin: 0;
+  padding: var(--spacing-24, 24px) 0;
+  font-size: 0.82rem;
+  color: var(--viz-ink-2);
+  text-align: center;
+}
+
+/* ---------- time series ---------- */
+.viz__plot { position: relative; }
+.viz__plot svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* Grid and axes recede; the data is the only thing with weight. */
+.viz__grid { stroke: var(--viz-grid); stroke-width: 1; }
+.viz__axis {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  fill: var(--viz-ink-2);
+}
+.viz__crosshair {
+  stroke: var(--viz-ink-2);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.viz__tip {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 10px;
+  background: var(--viz-ink);
+  color: var(--viz-surface);
+  border-radius: var(--r-xs, 2px);
+  font-size: 0.72rem;
+  line-height: 1.3;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+}
+.viz__tip b { font-size: 0.82rem; }
+.viz__tip span { opacity: 0.72; font-family: var(--font-mono, monospace); font-size: 0.66rem; }
+
+/* ---------- ranked bars ---------- */
+.viz__bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+.viz__bar {
+  display: grid;
+  grid-template-columns: minmax(76px, 22%) 1fr auto;
+  align-items: center;
+  gap: 12px;
+  transition: opacity 0.15s ease;
+}
+.viz__bar.is-hover { opacity: 1; }
+.viz__bars:hover .viz__bar:not(.is-hover) { opacity: 0.55; }
+
+.viz__bar-label {
+  font-size: 0.78rem;
+  color: var(--viz-ink);
+  text-transform: capitalize;
+  overflow-wrap: anywhere;
+}
+
+.viz__bar-track {
+  height: 10px;
+  background: var(--viz-grid);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* 4px rounded end anchored to the baseline: the bar grows from the
+   axis, so only the far end is rounded. */
+.viz__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.viz__bar-value {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--viz-ink);
+  text-align: right;
+}
+
+/* ---------- status stack ---------- */
+.viz__stack {
+  display: flex;
+  height: 14px;
+  border-radius: 2px;
+  overflow: hidden;
+  /* the 2px surface gap between adjacent fills */
+  gap: 2px;
+  background: var(--viz-grid);
+}
+.viz__stack-seg { display: block; min-width: 3px; }
+
+.viz__key {
+  list-style: none;
+  margin: var(--spacing-16, 16px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.viz__key li {
+  display: grid;
+  grid-template-columns: 10px minmax(70px, auto) 1fr auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+}
+.viz__swatch { width: 10px; height: 10px; border-radius: 2px; }
+.viz__key-label { color: var(--viz-ink); font-weight: 500; }
+.viz__key-hint { color: var(--viz-ink-2); font-size: 0.72rem; }
+.viz__key-value {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-variant-numeric: tabular-nums;
+  color: var(--viz-ink);
+}
+
+/* ---------- stat tiles ---------- */
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--spacing-16, 16px) var(--spacing-20, 20px);
+  background: var(--color-paper-light, #fff);
+  border: 1px solid var(--line, rgba(18, 19, 21, 0.14));
+  border-radius: var(--r-xs, 2px);
+}
+.viz-stat__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--viz-ink-2);
+}
+.viz-stat__value {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--viz-ink);
+  line-height: 1.1;
+}
+.viz-stat__sub { font-size: 0.72rem; color: var(--viz-ink-2); }
+
+/* ---------- grid ---------- */
+.viz-grid {
+  display: grid;
+  gap: var(--spacing-16, 16px);
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+.viz-grid--wide {
+  display: grid;
+  gap: var(--spacing-16, 16px);
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+}
+
+.viz-table { margin-top: var(--spacing-16, 16px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .viz__bar-fill { transition: none; }
+}

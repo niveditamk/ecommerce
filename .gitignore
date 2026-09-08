@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.data/
+*.log
+.DS_Store
+.env
+.env.*
+.vite/
+.venv/
+.pgdata/
+*.output
+
+# compiled Python bytecode from ml-service
+__pycache__/
+*.pyc
+
+# Claude Code agent tooling, not application code
+.agents/
+skills-lock.json
+.claude/

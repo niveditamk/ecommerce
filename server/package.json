@@ -1,0 +1,24 @@
+{
+  "name": "@aurelis/server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch --env-file-if-exists=.env src/index.js",
+    "start": "node --env-file-if-exists=.env src/index.js",
+    "ml": "node scripts/ml.mjs",
+    "ml:status": "node scripts/ml.mjs status",
+    "ml:seed": "node scripts/ml.mjs seed",
+    "ml:purge": "node scripts/ml.mjs purge",
+    "ml:train": "node scripts/ml.mjs train"
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

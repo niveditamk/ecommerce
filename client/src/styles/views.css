@@ -1,0 +1,3794 @@
+/* =============================================================
+   AURELIS MAISON — VIEWS & LAYOUTS
+   Editorial Luxury Commerce Stylesheet
+   Impeccable vitrines, balanced grids, generous whitespace.
+   ============================================================= */
+
+/* ============ 1. HEADER & ANNOUNCEMENT BAR ============ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 800;
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.site-header.is-stuck {
+  background: rgba(250, 248, 245, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(20, 19, 18, 0.04);
+}
+
+.announce {
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  height: var(--announce-h);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.announce__track {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-48);
+  white-space: nowrap;
+  animation: marquee 45s linear infinite;
+  padding-left: var(--spacing-48);
+}
+
+.announce__track:hover {
+  animation-play-state: paused;
+}
+
+.announce span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  color: rgba(250, 248, 245, 0.85);
+}
+
+.announce b {
+  color: var(--gold-3);
+  font-weight: 600;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: var(--nav-h);
+  padding-inline: var(--gut);
+  max-width: var(--maxw);
+  margin-inline: auto;
+}
+
+.nav__left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-24);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-24);
+}
+
+.nav__link {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pearl-2);
+  padding: 8px 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav__link:hover, .nav__link.is-active {
+  color: var(--pearl);
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-obsidian);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-fast);
+}
+
+.nav__link:hover::after, .nav__link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4px var(--spacing-16);
+}
+
+.brand__mark {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--color-obsidian);
+  line-height: 1;
+}
+
+.brand__sub {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-20);
+}
+
+.icon-btn__count {
+  font-family: var(--mono);
+  font-size: 11px;
+  margin-left: 4px;
+  font-weight: 500;
+}
+
+/* Burger Button */
+.burger {
+  display: none;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.burger i {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--pearl);
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.burger i::before, .burger i::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 1.5px;
+  background: var(--pearl);
+  left: 0;
+  transition: all var(--transition-fast);
+}
+
+.burger i::before { top: -6px; }
+.burger i::after { bottom: -6px; }
+
+@media (max-width: 900px) {
+  .burger { display: flex; }
+  .nav__links { display: none; }
+}
+
+/* ============ MEGA MENU ============ */
+.mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-paper-light);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--sh-3);
+  padding: var(--spacing-48) var(--gut);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--transition-normal), transform var(--transition-normal), visibility var(--transition-normal);
+  z-index: 790;
+}
+
+.mega.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mega__grid {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 1.2fr;
+  gap: var(--spacing-48);
+}
+
+.mega__col h5 {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--pearl);
+  margin-bottom: var(--spacing-16);
+  padding-bottom: var(--spacing-8);
+  border-bottom: 1px solid var(--line);
+}
+
+.mega__col a {
+  display: block;
+  font-size: 13px;
+  color: var(--pearl-3);
+  padding: 6px 0;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.mega__col a:hover {
+  color: var(--color-obsidian);
+  transform: translateX(3px);
+}
+
+.mega__col a.gold {
+  color: var(--gold-text);
+  font-weight: 500;
+  margin-top: var(--spacing-12);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mega__promo {
+  background: var(--color-bone);
+  padding: var(--spacing-24);
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line);
+}
+
+/* ============ 2. PRODUCT ART & MEDIA ============ */
+.art {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- address book ----
+   .addr__acts held three bare <button> elements with no rule anywhere,
+   so Edit / Make default / Remove rendered as operating-system buttons
+   inside a glass card. .addr--add is the tile that opens the form. */
+.addr__acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.addr__acts button {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0.35rem 0;
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pearl-2);
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.addr__acts button:hover {
+  color: var(--color-obsidian);
+  border-bottom-color: var(--color-obsidian);
+}
+
+/* Last action on a card with more than one address is Remove. */
+.addr__acts button:last-child:not(:first-child):hover {
+  color: var(--error);
+  border-bottom-color: var(--error);
+}
+
+.addr--add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  text-align: center;
+  min-height: 15rem;
+  cursor: pointer;
+  border-style: dashed;
+  color: var(--pearl-2);
+  transition: color 0.3s ease, transform 0.3s var(--glide);
+}
+
+.addr--add:hover,
+.addr--add:focus-visible {
+  color: var(--color-obsidian);
+  transform: translateY(-2px);
+}
+
+.art--tall { aspect-ratio: 3 / 4; }
+.art--wide { aspect-ratio: 16 / 10; }
+.art--43 { aspect-ratio: 4 / 3; }
+.art--square { aspect-ratio: 1 / 1; }
+
+.art__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.65s var(--glide), opacity 0.4s ease;
+}
+
+.art__svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.art__svg svg {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  transition: transform 0.65s var(--glide);
+}
+
+.art__glow { display: none; }
+
+.ico-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.stars-wrap {
+  display: inline-flex;
+  align-items: center;
+}
+
+.stars-wrap .stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--gold-text);
+}
+
+/* ============ 3. PRODUCT CARD & PRODUCT GRID ============ */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  transition: transform var(--transition-fast);
+}
+
+.card__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xs);
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+}
+
+.card:hover .art__img {
+  transform: scale(1.04);
+}
+
+.card:hover .art__svg svg {
+  transform: scale(1.05);
+}
+
+.card__body {
+  padding-top: var(--spacing-16);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.card__flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-4);
+}
+
+.card__cat {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  font-weight: 600;
+}
+
+.card__name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--pearl);
+  transition: color var(--transition-fast);
+}
+
+.card__name:hover {
+  color: var(--gold-2);
+}
+
+.card__meta {
+  font-size: 12px;
+  color: var(--pearl-3);
+  line-height: 1.45;
+  margin-top: 2px;
+}
+
+.card__foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-8);
+  padding-top: var(--spacing-8);
+  border-top: 1px solid var(--line-2);
+}
+
+.card__price {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+.card__price s {
+  color: var(--pearl-3);
+  margin-right: var(--spacing-6);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.card__stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--pearl-3);
+  font-family: var(--mono);
+}
+
+.card__quick {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-12);
+}
+
+.card__wish {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+  transition: color var(--transition-fast);
+  padding: 6px 0;
+}
+
+.card__wish:hover, .card__wish.is-on {
+  color: var(--gold-text);
+}
+
+/* Grids */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 28px);
+}
+
+.card-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .card-grid, .card-grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .card-grid, .card-grid--3, .card-grid--2 { grid-template-columns: 1fr; }
+}
+
+/* ============ 4. HOMEPAGE ============ */
+/* Hero Section */
+.hero {
+  position: relative;
+  padding-block: clamp(48px, 6vw, 96px);
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1.35fr;
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;
+}
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__title {
+  margin-top: var(--spacing-16);
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.hero__lede {
+  margin-top: var(--spacing-24);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  color: var(--pearl-2);
+  max-width: 46ch;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  margin-top: var(--spacing-36);
+  flex-wrap: wrap;
+}
+
+.hero__media {
+  position: relative;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  box-shadow: var(--sh-2);
+  border: 1px solid var(--line);
+}
+
+.hero__media .art {
+  aspect-ratio: 4 / 3;
+}
+
+.hero__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-20) var(--spacing-24);
+  background: linear-gradient(to top,
+    rgba(20, 19, 18, 0.94) 0%,
+    rgba(20, 19, 18, 0.86) 45%,
+    rgba(20, 19, 18, 0.55) 75%,
+    transparent 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.hero__caption-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.hero__caption-sub {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-36);
+  }
+}
+
+/* Trust Bar */
+.trust-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-24);
+  padding: var(--spacing-32);
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+}
+
+.trust-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-16);
+}
+
+.trust-cell__icon {
+  color: var(--gold-text);
+  display: flex;
+  margin-top: 2px;
+}
+
+.trust-cell b {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pearl);
+  margin-bottom: 4px;
+}
+
+.trust-cell span {
+  font-size: 12px;
+  color: var(--pearl-3);
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .trust-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .trust-bar { grid-template-columns: 1fr; gap: var(--spacing-20); }
+}
+
+/* Section Header */
+.section-head {
+  margin-bottom: clamp(36px, 4.5vw, 64px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-24);
+  flex-wrap: wrap;
+}
+
+.section-head__left {
+  max-width: 64ch;
+}
+
+.section-head__title {
+  margin-top: var(--spacing-8);
+  font-family: var(--serif);
+  font-size: var(--text-h2);
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.section-head__body {
+  margin-top: var(--spacing-12);
+  font-size: 15px;
+  color: var(--pearl-3);
+  line-height: 1.65;
+}
+
+/* Collection Showcase (01, 02, 03, 04) */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.showcase-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.showcase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-2);
+}
+
+.showcase-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-stone);
+}
+
+.showcase-card__body {
+  padding: var(--spacing-32);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.showcase-card__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--gold-text);
+  font-weight: 600;
+}
+
+.showcase-card__title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--pearl);
+  margin-top: var(--spacing-6);
+}
+
+.showcase-card__blurb {
+  font-size: 14px;
+  color: var(--pearl-3);
+  line-height: 1.6;
+  margin-top: var(--spacing-8);
+  margin-bottom: var(--spacing-20);
+}
+
+@media (max-width: 768px) {
+  .showcase-grid { grid-template-columns: 1fr; }
+}
+
+/* Editorial Story / Craftsmanship */
+.story-split {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.story-split__media {
+  position: relative;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  box-shadow: var(--sh-2);
+  border: 1px solid var(--line);
+  background: var(--color-paper);
+}
+
+.story-split__media .art {
+  aspect-ratio: 4 / 5;
+}
+
+/* 3D Interactive Card & Lighting */
+.atelier-interactive-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: pointer;
+  transition: box-shadow 0.4s var(--ease);
+}
+.atelier-interactive-card:hover {
+  box-shadow: 0 24px 60px rgba(74, 50, 22, 0.14), 0 0 0 1px var(--line-gold);
+}
+
+.atelier-card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: soft-light;
+}
+
+.atelier-art-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* Floating Gold Dust Particles */
+.atelier-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+.atelier-speck {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 10%, var(--gold-2) 60%, transparent 100%);
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px var(--gold));
+  animation: speck-drift linear infinite;
+}
+.speck-1 { width: 4px; height: 4px; left: 24%; top: 40%; animation-duration: 9s; animation-delay: 0s; }
+.speck-2 { width: 3px; height: 3px; left: 72%; top: 32%; animation-duration: 11s; animation-delay: 2.5s; }
+.speck-3 { width: 5px; height: 5px; left: 45%; top: 68%; animation-duration: 8s; animation-delay: 1.2s; }
+.speck-4 { width: 2.5px; height: 2.5px; left: 30%; top: 58%; animation-duration: 13s; animation-delay: 4s; }
+.speck-5 { width: 3.5px; height: 3.5px; left: 65%; top: 62%; animation-duration: 10s; animation-delay: 3s; }
+
+@keyframes speck-drift {
+  0% {
+    transform: translateY(20px) scale(0.6);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-25px) scale(1.1);
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-70px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* Celestial Astrolabe SVG Animations */
+.art-atelier {
+  transform-origin: 200px 200px;
+}
+
+/* 1. Continuous Radial Sunburst Drift */
+.art-atelier__rays {
+  transform-origin: 200px 200px;
+  animation: atelier-rays-spin 80s linear infinite;
+  transition: animation-duration 0.6s ease;
+}
+.atelier-interactive-card:hover .art-atelier__rays {
+  animation-duration: 40s;
+}
+@keyframes atelier-rays-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 2. Counter-Rotating Astrolabe Ring */
+.art-atelier__ring-outer {
+  transform-origin: 200px 200px;
+  animation: atelier-ring-counter 110s linear infinite;
+}
+@keyframes atelier-ring-counter {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* 3. Breathing Inner Coordinate Ring */
+.art-atelier__ring-inner {
+  animation: atelier-ring-pulse 5.5s ease-in-out infinite;
+}
+@keyframes atelier-ring-pulse {
+  0%, 100% { opacity: 0.28; stroke-width: 1.2px; }
+  50% { opacity: 0.5; stroke-width: 1.6px; }
+}
+
+/* 4. Levitation of the Golden Medallion Orb */
+.art-atelier__orb-group {
+  transform-origin: 200px 200px;
+  animation: atelier-orb-float 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+@keyframes atelier-orb-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+/* 5. Antiphase Shadow Breathing */
+.art-atelier__shadow {
+  transform-origin: 200px 342px;
+  animation: atelier-shadow-breathe 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.art-atelier__shadow-core {
+  transform-origin: 200px 340px;
+  animation: atelier-shadow-breathe 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes atelier-shadow-breathe {
+  0%, 100% {
+    transform: scale(1, 1);
+    opacity: 0.13;
+  }
+  50% {
+    transform: scale(0.88, 0.82);
+    opacity: 0.07;
+  }
+}
+
+/* 6. Glowing Golden Core Pulse */
+.art-atelier__core {
+  transform-origin: 200px 200px;
+  animation: atelier-core-radiance 4s ease-in-out infinite;
+}
+@keyframes atelier-core-radiance {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(212, 163, 89, 0.85));
+  }
+}
+
+/* Artisan Hallmark Stamp Animation */
+.story-split__stamp {
+  position: absolute;
+  top: var(--spacing-24);
+  right: var(--spacing-24);
+  background: var(--color-paper-light);
+  border: 1px solid var(--line-gold);
+  padding: 10px 16px;
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gold-text);
+  line-height: 1.35;
+  z-index: 6;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.atelier-interactive-card:hover .story-split__stamp {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(166, 127, 66, 0.16);
+}
+.stamp-sheen {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 65%
+  );
+  transform: translateX(-150%) rotate(25deg);
+  animation: stamp-glint 7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes stamp-glint {
+  0%, 75% {
+    transform: translateX(-150%) rotate(25deg);
+    opacity: 0;
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(150%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+/* Quote Line & Content Micro-Interactions */
+.story-split__quote {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.3;
+  font-style: italic;
+  color: var(--pearl);
+  margin-block: var(--spacing-24);
+  padding-left: var(--spacing-24);
+  position: relative;
+  border-left: 2px solid var(--gold);
+  transition: color 0.3s var(--ease);
+}
+.story-split__quote::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--gold) 0%, #fff 50%, var(--gold) 100%);
+  background-size: 100% 250%;
+  animation: quote-line-shimmer 5s ease-in-out infinite;
+}
+@keyframes quote-line-shimmer {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.story-split__sign {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.story-split__sign::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--line-gold);
+}
+
+.story-split .btn--ghost {
+  transition: transform 0.25s var(--ease), color 0.25s var(--ease);
+}
+.story-split .btn--ghost:hover {
+  transform: translateX(6px);
+  color: var(--gold-text);
+}
+
+.story-split .btn--outline {
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.story-split .btn--outline:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(212, 163, 89, 0.2);
+}
+
+@media (max-width: 900px) {
+  .story-split { grid-template-columns: 1fr; gap: var(--spacing-36); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-atelier__rays,
+  .art-atelier__ring-outer,
+  .art-atelier__ring-inner,
+  .art-atelier__orb-group,
+  .art-atelier__shadow,
+  .art-atelier__shadow-core,
+  .art-atelier__core,
+  .atelier-speck,
+  .stamp-sheen,
+  .story-split__quote::before {
+    animation: none !important;
+  }
+}
+
+/* Marquee band */
+.band {
+  background: var(--color-stone);
+  border-block: 1px solid var(--line);
+  padding-block: var(--spacing-16);
+  overflow: hidden;
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: var(--pearl-2);
+}
+
+.band__track {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-36);
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+}
+
+.band i {
+  color: var(--gold-text);
+  font-style: normal;
+  margin-left: var(--spacing-36);
+}
+
+/* Journal / Stories Grid */
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.journal-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.journal-card__media {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border-radius: var(--r-xs);
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+}
+
+.journal-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-16);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+.journal-card__title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--pearl);
+  line-height: 1.35;
+  margin-top: var(--spacing-8);
+  transition: color var(--transition-fast);
+}
+
+.journal-card:hover .journal-card__title {
+  color: var(--gold-2);
+}
+
+.journal-card__excerpt {
+  font-size: 14px;
+  color: var(--pearl-3);
+  line-height: 1.6;
+  margin-top: var(--spacing-8);
+}
+
+@media (max-width: 900px) {
+  .journal-grid { grid-template-columns: 1fr; gap: var(--spacing-32); }
+}
+
+/* Newsletter Box */
+.newsletter-box {
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px);
+  border-radius: var(--r-xs);
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.newsletter-box__title {
+  font-family: var(--serif);
+  font-size: var(--text-h2);
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.newsletter-box__lede {
+  font-size: 15px;
+  color: var(--pearl-3);
+  margin-top: var(--spacing-12);
+  margin-bottom: var(--spacing-32);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: var(--spacing-8);
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+@media (max-width: 540px) {
+  .newsletter-form { flex-direction: column; }
+}
+
+/* ============ 5. PRODUCT DETAIL PAGE (PDP) ============ */
+.pdp-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+  padding-block: var(--spacing-36) var(--spacing-80);
+}
+
+/* Gallery */
+.pdp-gallery {
+  position: relative;
+}
+
+.pdp-gallery__main {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+}
+
+.pdp-gallery__thumbs {
+  display: flex;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-16);
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.pdp-gallery__thumb {
+  width: 80px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all var(--transition-fast);
+  flex: 0 0 auto;
+}
+
+.pdp-gallery__thumb:hover, .pdp-gallery__thumb.is-active {
+  opacity: 1;
+  border-color: var(--color-obsidian);
+}
+
+/* Info Panel */
+.pdp-info {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--spacing-36));
+}
+
+.pdp-cat {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  font-weight: 600;
+}
+
+.pdp-title {
+  font-family: var(--serif);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  font-weight: 400;
+  color: var(--pearl);
+  margin-top: var(--spacing-8);
+}
+
+.pdp-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-16);
+  margin-top: var(--spacing-16);
+}
+
+.pdp-price {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+.pdp-installment {
+  font-size: 13px;
+  color: var(--pearl-3);
+  margin-top: 4px;
+}
+
+/* Real-time Inventory Status */
+.pdp-stock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--r-xs);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  margin-top: var(--spacing-16);
+}
+
+.pdp-stock-badge--available {
+  background: rgba(31, 107, 74, 0.08);
+  color: var(--success);
+  border: 1px solid rgba(31, 107, 74, 0.2);
+}
+
+.pdp-stock-badge--low {
+  background: rgba(148, 86, 0, 0.08);
+  color: var(--warning);
+  border: 1px solid rgba(148, 86, 0, 0.2);
+}
+
+.pdp-stock-badge--out {
+  background: rgba(153, 34, 34, 0.08);
+  color: var(--error);
+  border: 1px solid rgba(153, 34, 34, 0.2);
+}
+
+.pdp-stock-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pdp-blurb {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--pearl-2);
+  margin-top: var(--spacing-20);
+}
+
+/* Variant & Size Swatches */
+.pdp-swatches {
+  margin-top: var(--spacing-24);
+}
+
+.pdp-swatches__label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+  margin-bottom: var(--spacing-8);
+}
+
+.pdp-swatches__row {
+  display: flex;
+  gap: var(--spacing-8);
+  flex-wrap: wrap;
+}
+
+.pdp-color-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pdp-color-pill.is-active, .pdp-color-pill:hover {
+  border-color: var(--color-obsidian);
+  background: var(--color-paper-light);
+}
+
+.pdp-color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.pdp-size-btn {
+  min-width: 44px;
+  height: 38px;
+  padding: 0 12px;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  font-family: var(--mono);
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pdp-size-btn.is-active, .pdp-size-btn:hover {
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  border-color: var(--color-obsidian);
+}
+
+/* Actions Row */
+.pdp-actions {
+  display: flex;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-32);
+}
+
+/* Pincode Estimator */
+.pincode-box {
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: var(--spacing-16);
+  margin-top: var(--spacing-24);
+}
+
+.pincode-box__row {
+  display: flex;
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-8);
+}
+
+.pincode-box__result {
+  margin-top: var(--spacing-12);
+  font-size: 13px;
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Accordion */
+.accordion {
+  border-top: 1px solid var(--line);
+  margin-top: var(--spacing-32);
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.accordion__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: var(--spacing-18);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pearl);
+  cursor: pointer;
+}
+
+.accordion__body {
+  padding-bottom: var(--spacing-20);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--pearl-2);
+}
+
+.accordion__body ul {
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.accordion__body li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--line-2);
+  padding-bottom: 4px;
+}
+
+.accordion__body li b {
+  font-weight: 500;
+  color: var(--pearl-3);
+}
+
+.accordion__body li span {
+  font-family: var(--mono);
+}
+
+@media (max-width: 900px) {
+  .pdp-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-36);
+  }
+  .pdp-info {
+    position: static;
+  }
+}
+
+/* ============ 6. REVIEWS & RATINGS ============ */
+.reviews-section {
+  padding-top: var(--spacing-64);
+  border-top: 1px solid var(--line);
+  margin-top: var(--spacing-64);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  margin-top: var(--spacing-36);
+}
+
+.review-summary {
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: var(--spacing-24);
+  text-align: center;
+}
+
+.review-summary__big {
+  font-family: var(--serif);
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--pearl);
+  line-height: 1;
+}
+
+.review-bars {
+  margin-top: var(--spacing-20);
+  display: grid;
+  gap: var(--spacing-6);
+}
+
+.review-bar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--pearl-3);
+}
+
+.review-bar-track {
+  flex: 1;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.review-bar-fill {
+  height: 100%;
+  background: var(--gold);
+}
+
+.review-item {
+  padding-bottom: var(--spacing-24);
+  border-bottom: 1px solid var(--line-2);
+  margin-bottom: var(--spacing-24);
+}
+
+.review-item__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-6);
+}
+
+.review-item__title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--pearl);
+  margin-top: var(--spacing-6);
+}
+
+.review-item__body {
+  font-size: 14px;
+  color: var(--pearl-2);
+  line-height: 1.65;
+  margin-top: var(--spacing-6);
+}
+
+@media (max-width: 800px) {
+  .reviews-grid { grid-template-columns: 1fr; }
+}
+
+/* ============ 7. CATEGORY & COLLECTION LISTING ============ */
+.page-head {
+  padding-block: var(--spacing-36) var(--spacing-48);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--spacing-36);
+}
+
+.page-head__title {
+  font-family: var(--serif);
+  font-size: var(--text-h1);
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.page-head__desc {
+  font-size: 16px;
+  color: var(--pearl-3);
+  max-width: 60ch;
+  margin-top: var(--spacing-12);
+  line-height: 1.65;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16) 0;
+  margin-bottom: var(--spacing-32);
+  border-bottom: 1px solid var(--line-2);
+  flex-wrap: wrap;
+}
+
+.filter-bar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex-wrap: wrap;
+}
+
+.filter-tags {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-12);
+}
+
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--pearl-2);
+}
+
+.filter-tag button {
+  color: var(--pearl-3);
+}
+
+.filter-tag button:hover {
+  color: var(--pearl);
+}
+
+/* ============ 8. MINI CART DRAWER & CART PAGE ============ */
+.drawer--cart .mc-progress {
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  padding: var(--spacing-16);
+  border-radius: var(--r-xs);
+  margin-bottom: var(--spacing-20);
+}
+
+.mc-progress__bar {
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: var(--spacing-8);
+}
+
+.mc-progress__fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width var(--transition-normal);
+}
+
+.mc-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: var(--spacing-16);
+  padding-block: var(--spacing-16);
+  border-bottom: 1px solid var(--line-2);
+}
+
+.mc-item__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+}
+
+.mc-item__name {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+.mc-item__meta {
+  font-size: 12px;
+  color: var(--pearl-3);
+  margin-top: 2px;
+}
+
+.mc-item__ctrl {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  margin-top: var(--spacing-8);
+}
+
+.mc-remove {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pearl-3);
+  transition: color var(--transition-fast);
+}
+
+.mc-remove:hover {
+  color: var(--error);
+}
+
+.mc-item__price {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+/* Quantity Control */
+.qty-ctrl {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-xs);
+  background: var(--color-paper-light);
+  overflow: hidden;
+}
+
+.qty-ctrl button {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--pearl);
+  transition: background-color var(--transition-fast);
+}
+
+.qty-ctrl button:hover {
+  background: var(--color-bone);
+}
+
+.qty-ctrl span {
+  width: 28px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Data List (DL) */
+.dl {
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.dl__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--pearl-2);
+}
+
+.dl__row dd {
+  font-family: var(--mono);
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+.dl__row--total {
+  padding-top: var(--spacing-12);
+  border-top: 1px solid var(--line);
+  margin-top: var(--spacing-6);
+  font-size: 16px;
+}
+
+.dl__row--total dd {
+  font-size: 20px;
+}
+
+/* ============ 9. SEARCH LAYER OVERLAY ============ */
+.search-layer {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 19, 18, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 920;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  display: flex;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 80px) var(--gut);
+  overflow-y: auto;
+}
+
+.search-layer.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-layer__inner {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16) var(--spacing-24);
+  background: var(--color-paper-light);
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line-dark);
+  box-shadow: var(--sh-3);
+}
+
+.search-box input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 18px;
+  font-family: var(--sans);
+  color: var(--pearl);
+  outline: none;
+}
+
+.search-sug {
+  background: var(--color-paper-light);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: var(--spacing-24);
+  box-shadow: var(--sh-2);
+}
+
+.search-sug h5 {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+  margin-bottom: var(--spacing-12);
+  font-weight: 600;
+}
+
+.search-sug__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
+}
+
+.search-sug__prod {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  padding: var(--spacing-12);
+  border-radius: var(--r-xs);
+  transition: background-color var(--transition-fast);
+}
+
+.search-sug__prod:hover {
+  background: var(--color-bone);
+}
+
+.search-sug__prod .thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  background: var(--color-bone);
+  flex: 0 0 auto;
+}
+
+/* ============ 10. CHECKOUT & ACCOUNT STYLES ============ */
+.checkout-shell {
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-block: var(--spacing-36) var(--spacing-80);
+}
+
+.checkout-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 40px);
+  margin-bottom: var(--spacing-48);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+.checkout-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkout-step.is-active {
+  color: var(--color-obsidian);
+  font-weight: 600;
+}
+
+.checkout-step.is-done {
+  color: var(--gold-text);
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .checkout-grid { grid-template-columns: 1fr; }
+}
+
+/* Order timeline tracking */
+.order-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-8);
+  margin-block: var(--spacing-32);
+  position: relative;
+}
+
+.timeline-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--line);
+  border: 2px solid var(--color-paper-light);
+  margin-bottom: var(--spacing-8);
+  z-index: 2;
+}
+
+.timeline-node.is-done .timeline-dot {
+  background: var(--gold);
+}
+
+.timeline-node.is-current .timeline-dot {
+  background: var(--color-obsidian);
+  box-shadow: 0 0 0 3px rgba(20, 19, 18, 0.15);
+}
+
+.timeline-title {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+  font-weight: 500;
+}
+
+.timeline-node.is-current .timeline-title {
+  color: var(--color-obsidian);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .order-timeline { grid-template-columns: 1fr; gap: var(--spacing-16); }
+  .timeline-node { flex-direction: row; text-align: left; gap: var(--spacing-12); }
+}
+
+/* ============ 11. FOOTER ============ */
+.site-footer {
+  background: var(--color-bone);
+  border-top: 1px solid var(--line);
+  padding-block: clamp(56px, 8vw, 96px) var(--spacing-36);
+  color: var(--pearl-2);
+  margin-top: clamp(64px, 8vw, 120px);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr) 1.2fr;
+  gap: clamp(32px, 4vw, 56px);
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+.footer-brand__mark {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--pearl);
+}
+
+.footer-brand__sub {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.footer-brand__desc {
+  font-size: 13px;
+  color: var(--pearl-3);
+  line-height: 1.65;
+  margin-top: var(--spacing-12);
+  max-width: 32ch;
+}
+
+.footer-col h5 {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--pearl);
+  margin-bottom: var(--spacing-16);
+}
+
+.footer-col ul {
+  display: grid;
+  gap: var(--spacing-8);
+}
+
+.footer-col a {
+  font-size: 13px;
+  color: var(--pearl-3);
+  transition: color var(--transition-fast);
+}
+
+.footer-col a:hover {
+  color: var(--pearl);
+}
+
+.footer-bottom {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+  margin-top: var(--spacing-64);
+  padding-top: var(--spacing-24);
+  border-top: 1px solid var(--line-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--pearl-3);
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ 12. CHECKOUT OPTIONS & TABS ============ */
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16) var(--spacing-20);
+  background: var(--color-paper-light);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.opt:hover {
+  border-color: var(--line-dark);
+}
+
+.opt.is-on {
+  border-color: var(--gold);
+  background: rgba(158, 125, 70, 0.04);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.opt input {
+  margin-top: 3px;
+  accent-color: var(--gold);
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--spacing-24);
+  gap: var(--spacing-24);
+}
+
+.tabs button {
+  padding-bottom: var(--spacing-12);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.tabs button.is-on {
+  color: var(--pearl);
+  font-weight: 600;
+}
+
+.tabs button.is-on::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-obsidian);
+}
+
+/* ============ 13. BOUTIQUES & STORES ============ */
+.boutique-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-32);
+}
+
+.boutique-card {
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.boutique-card__media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-stone);
+}
+
+.boutique-card__body {
+  padding: var(--spacing-24);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+/* ============ 14. LE CERCLE MEMBERSHIP ============ */
+.member-card {
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: var(--spacing-32);
+}
+
+.keycard {
+  background: linear-gradient(135deg, #22201e 0%, #141312 100%);
+  color: #faf8f5;
+  padding: var(--spacing-32);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  border: 1px solid rgba(158, 125, 70, 0.4);
+}
+
+.keycard__chip {
+  width: 36px;
+  height: 26px;
+  background: linear-gradient(135deg, #d8bc85 0%, #9e7d46 100%);
+  border-radius: var(--r-xs);
+  display: block;
+}
+
+.keycard__no {
+  font-family: var(--mono);
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  color: var(--gold-3);
+}
+
+/* Confirmation screen */
+.confirm {
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: var(--spacing-48) var(--spacing-32);
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+}
+
+.confirm__seal {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-obsidian);
+  color: var(--gold-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-20);
+}
+
+.confirm__no {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: 8px 16px;
+  background: var(--color-paper-light);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--r-xs);
+  margin-block: var(--spacing-24);
+}
+
+.confirm__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-16);
+  text-align: left;
+  margin-top: var(--spacing-32);
+}
+
+
+
+/* =============================================================
+   RESTORED CLASSES
+   These selectors were used across the JSX but defined in no
+   stylesheet that main.jsx loads — some had lived only in
+   neobrutal.css, which is not imported, and the rest were never
+   written at all. An undefined class is silent: the markup
+   renders, the rule does nothing, and the element simply has no
+   layout. That is why every .panel and .auth card sat with its
+   content flat against its own edge.
+   ============================================================= */
+
+/* ---- panel-fields ---- */
+/* ============ 15. PANEL SHELL & FIELD PARTS ============ */
+
+/* The card shell: forty-six instances across thirteen pages — account,
+   checkout, legal, returns, boutiques, shipping, auth. Every one of them
+   is a <Glass>, and core/maximalism .glass* paint only ground, border
+   and shadow, so the internal padding has to come from here; with the
+   rule missing, every panel in the application rendered as content
+   sitting flush on the surface with no inset at all. (Under the shipped
+   stack there is not even a border to sit against: maximalism loads last
+   and its .glass declares `border: 1px solid var(--mx-border)` where
+   --mx-border is itself a full shorthand, so that declaration is invalid
+   and dropped. That is a separate bug in maximalism.css; it only makes
+   this padding matter more.) Same 2px corner as .confirm above, one step
+   tighter in the padding because a panel carries a working form rather
+   than a single closing statement. */
+.panel {
+  padding: var(--spacing-32);
+  border-radius: var(--r-xs);
+}
+
+/* The panel's masthead: an eyebrow-and-title block, and opposite it a
+   badge or a link when the page has one. Aligned to the top rather than
+   the baseline — the left side is two lines and the right is one, so a
+   shared baseline would hang the badge off the eyebrow; flex-start also
+   keeps the default `stretch` from inflating a one-line badge to the
+   full height of the head. The rule beneath is what separates the head
+   from the form under it.
+   overflow-wrap is load-bearing, not decoration: a flex item's default
+   min-width:auto floors it at min-content, and Addresses puts a
+   user-entered address label in this h2 at up to 24px serif — wider than
+   the 240px a panel has on a 320px screen. html and body are both
+   overflow-x: clip, so that would be silently cut off rather than
+   scrolled. `anywhere` (not break-word) lowers min-content too, which is
+   what actually releases the floor. */
+.panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
+  margin-bottom: var(--spacing-24);
+  padding-bottom: var(--spacing-18);
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+
+/* Two fields on one line — first and family name, city and region,
+   expiry and security code. Always exactly two children, in all
+   twenty-one instances. auto-fit rather than a fixed pair so the
+   collapse follows the width the panel actually has rather than the
+   viewport's: these same forms sit in a full-width checkout panel and in
+   an admin-panel two levels inside the admin content column. Below
+   roughly 420px of available space (200 + 18 + 200) the pair stacks by
+   itself. min() clamps the track floor to the container: without it the
+   200px minimum is absolute and the grid overflows anything narrower,
+   which the narrowest real container — 236px inside .admin-panel on a
+   320px screen — clears by only 36px.
+   Only the column gap is set here. The row carries no vertical margin of
+   its own because .field already ends in --spacing-18, and a grid
+   container contains its children's margins rather than collapsing them
+   through, so a paired row and a lone field sit the same 18px above
+   whatever follows. */
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  column-gap: var(--spacing-18);
+}
+
+/* The label of a field, and the same mark used on its own as a micro
+   heading over a group of controls — uppercase at caption size is the
+   house register for both. display:block is required by the second use:
+   every standalone span is followed by a block sibling. No margin —
+   inside .field the flex gap sets the distance to the input, and the
+   standalone headings set their own; core.css:217 already zeroes the
+   h1-h6 margins these land on. --pearl-3 composited and measured against
+   every ground it meets: 5.53:1 on --mx-paper, 5.57:1 on white, 5.42:1
+   on --color-paper (the admin and ML ground), 5.32:1 on --mx-marble,
+   5.29:1 on --mx-bone. Floor 5.29:1, against the 4.5:1 that 11px text
+   has to hold. */
+.field__label {
+  display: block;
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--pearl-3);
+}
+
+/* Guidance under a control, and under a group of them. These are whole
+   sentences, not labels, so they stay in sentence case at body-small
+   rather than borrowing the uppercase caption above them — which is also
+   why they are not .tiny, whose uppercase every prose use in the
+   application has had to undo inline. */
+.field__hint {
+  display: block;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  color: var(--pearl-3);
+}
+
+/* The validation message for a group — the accept-terms checkbox, the
+   channel list, an unpicked delivery method. Page-level, like the hint:
+   the per-field swap happens inside the Field primitive, which uses its
+   own .tiny spans and never these classes. Same size and leading as the
+   hint so the two page-level messages read on one scale; colour and
+   weight carry the difference, and --error holds 7.0:1 or better on
+   every ground these forms sit on. */
+.field__err {
+  display: block;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  font-weight: 500;
+  color: var(--error);
+}
+
+/* On a phone the panel keeps its rhythm but gives back its margins:
+   32px on both sides of a 375px screen leaves an input too narrow to
+   read its own placeholder. */
+@media (max-width: 600px) {
+  .panel {
+    padding: var(--spacing-24) var(--spacing-20);
+  }
+
+  .panel__head {
+    margin-bottom: var(--spacing-18);
+    padding-bottom: var(--spacing-16);
+  }
+}
+
+
+/* ---- auth ---- */
+/* ============ 15. SIGN IN & CREATE ACCOUNT ============ */
+
+/* The register card. Its two direct children — the case for an account
+   and the form itself — are grid siblings, not a stack, so the reasons
+   stay in view while the credentials are typed. The card is a
+   .glass--deep and brings its own ground, border and shadow with it, so
+   only the split and the internal rhythm belong here.
+
+   The zero floor on both tracks is doing real work: a grid item only
+   picks up an automatic minimum size when it spans a track whose *min*
+   sizing function is auto, so minmax(0, …) resolves min-width: auto to
+   0 on both halves and the nowrap .btn inside the panel can no longer
+   push the column wider than the card. */
+.auth {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+/* The persuasion half, set on bone so the form half reads as the
+   working surface. The two blocks inside it are pushed apart rather
+   than gapped, which keeps the Le Cercle note on the bottom edge
+   however long the benefit list runs. */
+.auth__aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(28px, 3.4vw, 48px);
+  background: var(--mx-bone);
+  border-right: 1px solid var(--line);
+}
+
+/* Each benefit is a check glyph beside a line of prose; the glyph must
+   not shrink or ride up when the prose wraps onto a second line. */
+.auth__aside ul {
+  display: grid;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-24);
+}
+
+.auth__aside li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(14, 14, 16, 0.78);
+}
+
+/* Icon renders <span class="ico-wrap"><svg></span>, so the flex item of
+   the li is the wrapper, not the svg — the shrink guard and the 3px of
+   optical drop have to sit on the wrapper or they address a box with no
+   flex parent. Colour is inherited down to the svg, which is drawn with
+   stroke="currentColor". */
+.auth__aside li .ico-wrap {
+  flex: none;
+  margin-top: 3px;
+  color: var(--mx-gold-text);
+}
+
+/* The form half, on the card's own ground. Same padding as the aside so
+   the tab strip and the eyebrow opposite it start on one line. */
+.auth__panel {
+  padding: clamp(28px, 3.4vw, 48px);
+}
+
+/* Four segments, the filled ones carrying .on. A rule rather than a
+   bar, because it belongs to the passphrase field above it: it is
+   pulled up into that field's own bottom margin and then carries the
+   gap down to the confirmation field. */
+.pw-meter {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: calc(var(--spacing-8) * -1) 0 var(--spacing-18);
+}
+
+.pw-meter i {
+  height: 2px;
+  background: var(--mx-line-dark);
+  transition: background-color var(--transition-fast);
+}
+
+/* The meter is aria-hidden, so the fill is the only thing that reports
+   strength and has to clear 3:1 as a graphical object. Bright --mx-gold
+   measured 1.38:1 against the unfilled segments — darker than the empty
+   track, and indistinguishable from it. The text-safe gold reads 3.52:1
+   against the track and 5.76:1 against the card. */
+.pw-meter i.on {
+  background: var(--mx-gold-text);
+}
+
+/* "or continue with" — a centred label with the hairline running
+   through it on both sides, so the row beneath reads as an alternative
+   to the primary button rather than a second, lesser one. */
+.or {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  margin: var(--spacing-24) 0;
+  font-size: var(--text-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+.or::before,
+.or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* Google and Passkey share the row exactly. .btn is inline-flex with
+   28px of inline padding and no wrapping, which is what pushed the pair
+   past the card edge; the tracks are floored at zero and the buttons
+   fill them instead of setting their own width. */
+.sso {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-12);
+}
+
+.sso .btn {
+  width: 100%;
+  min-width: 0;
+  padding-inline: var(--spacing-12);
+}
+
+/* The disc behind the tick in every confirmation and empty state. Sized
+   here so the callers that pass no dimensions get a consistent one; the
+   two that pass their own width and height override it inline. Kept
+   inline-flex for the two <div> callers, which are centred by the
+   text-align on their parent rather than by the margin: 0 auto they
+   pass; the two <span> callers are flex items of a .center row and are
+   blockified either way. */
+.empty__ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--line-gold);
+  background: rgba(201, 168, 106, 0.08);
+  color: var(--mx-gold-text);
+}
+
+/* Collapsed, the form comes first: on a phone the case for opening a
+   register should not be a screen of scrolling in front of the
+   passphrase box. The aside holds no focusable content, so the reorder
+   costs nothing in tab order. */
+@media (max-width: 900px) {
+  .auth {
+    grid-template-columns: 1fr;
+  }
+
+  .auth__panel {
+    order: -1;
+  }
+
+  .auth__aside {
+    border-right: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* Two uppercase labels and their glyphs stop fitting side by side once
+   the card is narrower than a small phone. */
+@media (max-width: 460px) {
+  .sso {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ---- account ---- */
+/* ============ 15. ACCOUNT REGISTER ============ */
+
+/* Every account page is <AccountNav> plus one content column. The rail is
+   a fixed measure; the content column takes minmax(0,1fr) so a wide card
+   or table inside it cannot push the grid past the shell. */
+.acct {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+/* The rail is seven short links against pages that run several screens, so
+   it follows the reader down once the sticky header has cleared. Sticky
+   only has room to travel because .acct aligns its items to start.
+   The offset has to clear the WHOLE sticky header, not just the nav row:
+   .site-header wraps .announce (--announce-h, 36px) above .nav (--nav-h,
+   72px) plus its own 1px rule — 109px in total. --nav-h alone parks the
+   rail 13px behind it. */
+@media (min-width: 901px) {
+  .acct > aside {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--announce-h) + var(--spacing-24));
+  }
+}
+
+/* Single column keeps minmax(0, …): a bare 1fr restores the automatic
+   minimum size and lets a wide descendant widen the track past the shell. */
+@media (max-width: 900px) {
+  .acct {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-32);
+  }
+}
+
+/* A quiet list link — icon, label, sometimes a status pushed to the right.
+   It serves the legal contents list and the nearby-boutique list, so it
+   takes no fill: only a hairline between consecutive links, which keeps a
+   rule from stranding above the button that follows the last one. */
+.acct__link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: 0.7rem 0;
+  font-size: 14px;
+  color: var(--pearl-2);
+  transition: color var(--transition-fast);
+}
+
+.acct__link + .acct__link {
+  border-top: 1px solid var(--line);
+}
+
+.acct__link .ico-wrap {
+  color: var(--gold-text);
+}
+
+.acct__link:hover,
+.acct__link:focus-visible {
+  color: var(--color-obsidian);
+}
+
+/* The address book and the card wallet share one grid, and the dashed
+   .addr--add tile is always the last cell — the track has to be wide
+   enough to carry its centred icon and two lines of type. */
+.addr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-24);
+}
+
+@media (max-width: 520px) {
+  .addr-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The tile itself. .addr--add is this same box with dashed edges and
+   centred content, and it is declared earlier in this sheet, so this rule
+   deliberately sets no alignment, gap, colour or border — only the padding
+   and column flow both tiles need. */
+.addr {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-24);
+  border-radius: var(--r-xs);
+  min-width: 0;
+}
+
+/* <address> is italic by UA default, which reads as an aside rather than a
+   destination. It also grows, so .addr__acts settles on a common baseline
+   across a row of addresses of unequal length. */
+.addr address {
+  flex: 1;
+  margin-top: 0.55rem;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--pearl-2);
+}
+
+/* A stored card drawn as a card: the chip, the mono digits and the footer
+   row of the Cercle .keycard, but frosted rather than obsidian — the brand
+   label inside it is set in dark ink by the markup, so the face has to stay
+   pale for that text to be legible. */
+.cardface {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  min-height: 150px;
+  max-width: 300px;
+  padding: var(--spacing-20);
+  border-radius: var(--r-sm);
+}
+
+/* maximalism.css loads last and paints every .glass with --mx-paper-light.
+   Its border does NOT land: `border: 1px solid var(--mx-border)` expands to
+   `1px solid 1.5px solid rgba(14,14,16,.9)`, invalid at computed-value time,
+   so .glass computes border-style: none. The compound selector is what lets
+   the face keep its own marble ground and gold border regardless of how that
+   is later repaired. Note the box-shadow is NOT overridden here: maximalism's
+   --sh-1 carries a `0 0 0 1px rgba(201,168,106,.18)` ring, so the finished
+   edge is that ring plus this border, not a single hairline. */
+.glass.cardface {
+  background: linear-gradient(135deg, var(--mx-paper) 0%, var(--mx-marble) 55%, var(--mx-bone) 100%);
+  border: 1px solid var(--line-gold);
+}
+
+/* Masked digits. Ink, not gold: .keycard__no can afford gold because it
+   sits on obsidian, and this one does not. */
+.cardface__no {
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  color: var(--pearl);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Holder and expiry, pinned to the foot of the face. Layout only — the ink
+   belongs to whatever ground the row is printed on, and it is set below for
+   the one ground it actually appears on. */
+.keycard__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--spacing-16);
+  margin-top: auto;
+}
+
+.cardface .keycard__row span {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+.cardface .keycard__row b {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--pearl);
+}
+
+/* Four figures standing above the wallet. The cadence is .trust-bar's, but
+   NOT its breakpoint: .trust-bar spans the whole shell while this row loses
+   the 260px rail and the .acct gap, so four tracks stop fitting a lakh-scale
+   money() figure roughly 150px sooner. Halve at 1180px, not 1024px. */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-16);
+  margin-bottom: var(--spacing-24);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: var(--spacing-20);
+  border-radius: var(--r-xs);
+  min-width: 0;
+}
+
+/* The figure is the reason the tile exists, so it is set in the serif at
+   display weight; the label recedes to a micro-caption under it. */
+.stat b {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--pearl);
+}
+
+.stat span {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+@media (max-width: 1180px) {
+  .stat-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .stat-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Initials standing in for a portrait. The profile header sets its own size
+   inline, so this fixes only the shape and the ink — obsidian under paper,
+   matching the smaller circle the account rail already draws. */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-obsidian);
+  color: var(--color-paper);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* A preference: label and explanation on the left, control on the right.
+   The control is a .chip toggle on three rows and a .badge on the fourth,
+   so every type rule here is scoped to the label block rather than to the
+   row, which would otherwise overrule the badge sitting beside it. */
+.pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-24);
+  padding: var(--spacing-16) 0;
+}
+
+.pref-row + .pref-row {
+  border-top: 1px solid var(--line);
+}
+
+.pref-row > div {
+  display: grid;
+  gap: 2px;
+  max-width: 52ch;
+}
+
+.pref-row > div b {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+.pref-row > div span {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--pearl-3);
+}
+
+@media (max-width: 560px) {
+  .pref-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-12);
+  }
+}
+
+
+/* ---- checkout ---- */
+/* ============ 15. CHECKOUT SPLIT, OPTION ROWS & REVIEW ============ */
+
+/* The two-column spine of every checkout step, plus Returns, Shipping
+   info and Store detail: work on the left, the order summary or policy
+   column on the right. Ratio and gap deliberately echo .checkout-grid
+   above so the two layouts do not read as different systems. The
+   minmax(0,...) tracks matter: the option rows below print joined
+   address strings that would otherwise force the grid wider than the
+   shell it sits in. All seven consumers pass exactly two children. */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 64px);
+  align-items: start;
+}
+
+/* Collapses at the same width as .checkout-grid. align-items:start
+   above is what stops the summary aside stretching to the height of the
+   form column and trailing an empty bone panel beneath itself —
+   OrderSummary paints its own bone background inline, so a stretched
+   aside is visible, not merely tall. */
+@media (max-width: 860px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The text column of an .opt row. .opt is already a flex row with the
+   icon first (the radio is .sr-only and absolutely positioned, so it
+   takes no slot), so this claims the remaining width and pushes the
+   price or badge to the far end; min-width:0 lets a long address wrap
+   rather than widen the row. */
+.opt__body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+/* The name of the method, card or address. These are spans, so with no
+   explicit block they ran straight into .opt__meta — "Credit or Debit
+   CardVisa, Mastercard, American Express" on a single line. Sans rather
+   than serif: this is a control label, not a product name. It sometimes
+   carries an inline .badge, which is why it stays block, not flex. */
+.opt__title {
+  display: block;
+  font-family: var(--sans);
+  font-size: var(--text-body);
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+/* The supporting line — eta, note, card expiry, the rest of an address.
+   A row can carry two of these (address, then telephone), so the stack
+   is left to .opt__body's gap rather than a margin here. --pearl-3
+   measures 5.57:1 on white, 5.53:1 on paper, 5.32:1 on marble and
+   5.29:1 on bone. Payment's instalment line adds .gold over this, which
+   wins on source order (maximalism loads last) and resolves to
+   --mx-gold-text: 5.76:1 on the .opt pane, 5.52:1 on .opt.is-on. */
+.opt__meta {
+  display: block;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  color: var(--pearl-3);
+}
+
+/* Delivery price at the far end of the row. .opt aligns its children to
+   flex-start, so the small padding settles the figure onto the title's
+   optical line instead of leaving it floating above it. */
+.opt__price {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding-top: 2px;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-body-sm);
+  line-height: 1.35;
+  color: var(--pearl);
+  white-space: nowrap;
+}
+
+/* A line of the receipt on the confirmation screen: thumbnail, name and
+   variant, price. Hairline between rows only — a rule above the first
+   would double with the heading already sitting over the list. */
+.co-sum__item {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding-block: var(--spacing-12);
+  text-align: left;
+}
+
+.co-sum__item + .co-sum__item {
+  border-top: 1px solid var(--line-2);
+}
+
+/* The receipt thumbnail carries the quantity as a nested <b>, which
+   without positioning falls beneath the artwork as a stray numeral.
+   display:grid rather than block is load-bearing: ProductArt renders a
+   <figure class="art">, and views.css gives .art aspect-ratio:3/4 with
+   no height. Under display:block that figure computes to 56x74.67 and
+   overflow:hidden shears the bottom quarter off every piece — the
+   82%-scaled SVG artwork is visibly truncated, and photos crop
+   top-biased instead of centred. As a grid container with one in-flow
+   child, stretch gives the figure a definite 56x56 and its own
+   aspect-ratio no longer applies. The absolutely positioned <b> is out
+   of flow, so it is not a second grid item. */
+.co-sum__item .thumb {
+  position: relative;
+  display: grid;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--r-xs);
+  background: var(--color-stone);
+}
+
+.co-sum__item .thumb b {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  min-width: 18px;
+  padding-inline: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  color: var(--color-paper);
+  background: var(--color-obsidian);
+  border-radius: var(--r-pill);
+}
+
+/* One confirmable section of the review step — contact, delivery,
+   payment, items. It is a bare .glass surface with no .panel to pad it,
+   so the padding belongs here. Four stack in the left column and space
+   themselves off each other rather than off the container. */
+.co-review-block {
+  padding: var(--spacing-24) var(--spacing-30);
+  border-radius: var(--r-xs);
+}
+
+.co-review-block + .co-review-block {
+  margin-top: var(--spacing-16);
+}
+
+/* Section label and its "Change" escape hatch, divided from the values
+   below by a hairline. Baseline alignment keeps the 11px label and the
+   link on one line rather than centred against each other. */
+.co-review-block__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  padding-bottom: var(--spacing-12);
+  margin-bottom: var(--spacing-16);
+  border-bottom: 1px solid var(--line-2);
+}
+
+/* The quiet uppercase micro-label, matching .eyebrow--plain and
+   .timeline-title: the label recedes so the value under it leads. */
+.co-review-block__head h5 {
+  font-family: var(--sans);
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+/* "Change" is the only route back to an earlier step from here, so it
+   has to read as a link — .link is declared in no loaded sheet, so
+   without this it is plain text. --gold-text measures 6.37:1 on white
+   and 5.56:1 on bone; the underline arrives on hover so four of them do
+   not stripe the column. */
+.co-review-block__head .link {
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gold-text);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+
+.co-review-block__head .link:hover,
+.co-review-block__head .link:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+/* A bag line inside the items block. The markup sets its own
+   grid-template-columns inline, so the display mode has to be declared
+   here or that inline value is inert and the line collapses to a stack. */
+.cart-line {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--spacing-16);
+  padding-block: var(--spacing-12);
+}
+
+/* Review.jsx sets gridTemplateColumns inline as 84px 1fr auto, which
+   beats the minmax(0,...) above and leaves the middle track sitting on
+   its min-content floor — a long unbroken product name would then push
+   the row past the card. min-width is a different property, so the
+   inline template cannot defeat it, and it constrains the track from
+   the item side instead. */
+.cart-line > * {
+  min-width: 0;
+}
+
+.cart-line + .cart-line {
+  border-top: 1px solid var(--line-2);
+}
+
+/* The line's thumbnail. Square and clipped so pieces with differently
+   shaped artwork still form one clean left edge down the list.
+   display:grid for the same reason as .co-sum__item .thumb — it gives
+   the 3/4 .art figure inside a definite 84x84 box instead of letting it
+   run to 112px tall and lose its bottom quarter to overflow:hidden. */
+.cart-line__media {
+  display: grid;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--r-xs);
+  background: var(--color-stone);
+}
+
+/* The three "where next" cards under the confirmation and returns
+   screens. auto-fit so the row reflows to two and then one without a
+   breakpoint. min() on the floor: .shell's gutter is clamp(20px,...),
+   so below a ~300px viewport a hard 260px track is wider than its
+   container and scrolls the page sideways. */
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--spacing-24);
+}
+
+/* Each card sits inside a Reveal wrapper, which stretches to the row
+   height; height:100% passes that down so a row of cards shares one
+   baseline for its buttons however long the copy runs. */
+.help-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  padding: var(--spacing-30) var(--spacing-24);
+  border-radius: var(--r-xs);
+}
+
+/* Gold as an icon, not as text — Icon renders <span class="ico-wrap">
+   as a direct child, so this matches. 6.37:1 here. */
+.help-card > .ico-wrap {
+  color: var(--gold-text);
+}
+
+.help-card h3 {
+  font-family: var(--serif);
+  font-size: var(--text-heading);
+  line-height: 1.3;
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+/* The body takes up the slack so the button is pinned to the foot of
+   the card rather than floating under a short paragraph. */
+.help-card p {
+  flex: 1 1 auto;
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  color: var(--pearl-3);
+}
+
+.help-card .btn {
+  margin-top: var(--spacing-4);
+}
+
+
+/* ---- content ---- */
+/* ============ 15. CONTENT PAGES — LEGAL, RETURNS, SHIPPING, STORES ============ */
+
+/* Terms & Privacy is a reading page with a companion index, not a card grid.
+   The index leads in the source so it is reached first by keyboard and by a
+   screen reader; the column order below matches that. */
+.legal {
+  display: grid;
+  grid-template-columns: minmax(190px, 250px) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+
+/* The index has to stay beside the clause you are reading, so it sticks below
+   the sticky header and scrolls internally once the list outgrows the viewport.
+   The offset counts the announcement bar as well as the nav: .announce is a
+   child of .site-header, and .site-header is position: sticky / top: 0, so the
+   bar never scrolls away and the chrome is a constant --announce-h + --nav-h =
+   108px. Legal.jsx's own scrollMarginTop of 140px assumes the same figure. */
+.legal__toc {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--announce-h) + var(--spacing-24));
+  max-height: calc(100vh - var(--nav-h) - var(--announce-h) - var(--spacing-48));
+  overflow-y: auto;
+  padding: var(--spacing-24);
+  border-radius: var(--r-xs);
+}
+
+/* Excluding .acct__link keeps the concierge link below the rule reading as a
+   link rather than as one more clause. */
+.legal__toc > a:not(.acct__link) {
+  display: block;
+  padding: 7px 0 7px var(--spacing-12);
+  border-left: 1px solid var(--line);
+  font-size: var(--text-body-sm);
+  line-height: 1.45;
+  color: var(--pearl-3);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.legal__toc > a:not(.acct__link):hover {
+  color: var(--pearl);
+  border-left-color: var(--pearl-4);
+}
+
+/* The observer sets .is-on as each clause passes; the gold edge is the only
+   ornament, so the marker reads without shouting. The :not() is carried over
+   from the hover rule deliberately: without it this selector is (0,2,1) while
+   the :hover above is (0,3,1), so pointing at the clause you are reading would
+   wipe its own marker off. Matched specificity, declared later, wins in both
+   states. */
+.legal__toc > a:not(.acct__link).is-on {
+  color: var(--pearl);
+  border-left-color: var(--mx-gold);
+  font-weight: 500;
+}
+
+/* A reading column, not a layout column: the measure is capped near 68
+   characters and the rhythm is set once here. Note that .prose has a single
+   call site today (Legal.jsx) and its children are only <p>: the clause bodies
+   are a string[] passed through dx(), which React escapes, so the element rules
+   from .prose h2 down cannot match until that content carries real markup.
+   They are kept as the primitive's contract, not because they fire today. */
+.prose {
+  max-width: 68ch;
+  font-size: var(--text-body);
+  line-height: 1.85;
+  color: var(--pearl-2);
+}
+
+.prose > * + * {
+  margin-top: var(--spacing-16);
+}
+
+.prose h2 {
+  font-family: var(--serif);
+  font-size: var(--text-h2);
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.prose h3 {
+  font-family: var(--serif);
+  font-size: var(--text-h3);
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.prose h4 {
+  font-family: var(--sans);
+  font-size: var(--text-h4);
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+/* A new heading starts a new thought — it needs more air above it than the
+   paragraph rhythm gives. */
+.prose > * + h2,
+.prose > * + h3,
+.prose > * + h4 {
+  margin-top: var(--spacing-32);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--spacing-24);
+}
+
+/* The base reset strips list markers globally, so an ordered list has to ask
+   for its numbers back, and an unordered one draws the em dash used elsewhere
+   in the house rather than a bullet. */
+.prose ol {
+  list-style: decimal outside;
+}
+
+.prose ol li::marker {
+  color: var(--pearl-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.prose li + li {
+  margin-top: var(--spacing-8);
+}
+
+.prose ul > li {
+  position: relative;
+}
+
+.prose ul > li::before {
+  content: "—";
+  position: absolute;
+  left: -1.15em;
+  color: var(--pearl-3);
+}
+
+.prose a {
+  color: var(--mx-gold-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.prose strong,
+.prose b {
+  color: var(--pearl);
+  font-weight: 500;
+}
+
+.prose blockquote {
+  padding-left: var(--spacing-18);
+  border-left: 1px solid var(--line-gold);
+  font-family: var(--serif);
+  font-size: var(--text-body-lg);
+  color: var(--pearl-2);
+}
+
+/* The returns progress. The vertical rule is drawn per step rather than on the
+   container, so it always stops at the last dot whatever the copy length. */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-24);
+}
+
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: var(--spacing-16);
+  align-items: start;
+  padding-bottom: var(--spacing-24);
+}
+
+.tl-item:last-child {
+  padding-bottom: 0;
+}
+
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 30px;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.tl-item:last-child::before {
+  display: none;
+}
+
+/* The marker sits on the rule, so it carries its own ground to break the line
+   cleanly — the panel under it is .glass, which resolves to --mx-paper-light
+   (#ffffff), the same value as --color-paper-light. Tabular numerals keep the
+   four steps optically aligned. */
+.tl-item__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-paper-light);
+  border: 1px solid var(--line-gold);
+  color: var(--mx-gold-text);
+  font-family: var(--mono);
+  font-size: var(--text-body-sm);
+  font-variant-numeric: tabular-nums;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-item h4 {
+  font-family: var(--sans);
+  font-size: var(--text-h4);
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--pearl);
+}
+
+.tl-item p {
+  margin-top: var(--spacing-6);
+  max-width: 48ch;
+  font-size: var(--text-body-sm);
+  line-height: 1.7;
+  color: var(--pearl-3);
+}
+
+/* Shipping methods, boutique services and signup promises all render this same
+   card, and the count differs per page, so the track sizes itself. min() stops
+   a 260px track outgrowing a narrow phone. */
+.values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: clamp(16px, 2.2vw, 28px);
+}
+
+.values > * {
+  min-width: 0;
+}
+
+/* Reveal wraps each card on two of the three pages, so the card takes the full
+   height of whatever cell it lands in rather than the height of its own copy.
+   min-height evens out short entries; pages with one-line copy set it to 0. */
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  height: 100%;
+  min-height: 260px;
+  padding: var(--spacing-32) var(--spacing-24);
+  border-radius: var(--r-xs);
+}
+
+.value h3 {
+  font-family: var(--serif);
+  font-size: var(--text-h3);
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.value p {
+  font-size: var(--text-body-sm);
+  line-height: 1.7;
+  color: var(--pearl-3);
+}
+
+/* The heading and the copy want the whole column, but the ETA badge at the foot
+   of the shipping cards is an inline-flex pill: left to the column's default
+   stretch it is blown into a full-width bordered bar. */
+.value > .badge {
+  align-self: flex-start;
+}
+
+/* Gold as a fill and a hairline, never as the glyph — the icon stroke takes the
+   text-safe gold so it stays legible on paper, marble and bone alike. No
+   margin-top here: all three call sites already pass an inline marginTop of 0,
+   which no stylesheet declaration can outrank. */
+.value__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-gold);
+  background: rgba(201, 168, 106, 0.08);
+  color: var(--mx-gold-text);
+}
+
+/* The reassurance list under a panel — what is in the box, what the policy
+   covers. The rule above divides it from the panel copy. Returns and Shipping
+   lead a panel with the list and zero all three inline; StoreDetail keeps the
+   rule, because there the list follows an address block. */
+.pdp__assure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-24);
+  padding-top: var(--spacing-20);
+  border-top: 1px solid var(--line);
+}
+
+.pdp__assure li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  font-size: var(--text-body-sm);
+  line-height: 1.6;
+  color: var(--pearl-2);
+}
+
+.pdp__assure .ico-wrap {
+  margin-top: 2px;
+  color: var(--mx-gold-text);
+}
+
+/* The shared empty state — an empty bag, a page that failed to render. Layout
+   only: it centres a stack of heading, explanation and a way out, and leaves
+   the .empty__ring medallion to the auth cluster that owns it. The gap sets the
+   rhythm for ErrorBoundary; MiniCart still carries inline margins on its own
+   children that add to it, and those belong in the JSX, not here. */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-16);
+  padding-block: clamp(48px, 8vw, 96px);
+  text-align: center;
+  color: var(--pearl-2);
+}
+
+.empty p {
+  max-width: 46ch;
+}
+
+/* Three related routes offered at the foot of returns and of the order
+   confirmation. The markup is identical on both, so one definition serves
+   both and the checkout cluster should not repeat it. */
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: clamp(16px, 2.4vw, 32px);
+}
+
+.help-grid > * {
+  min-width: 0;
+}
+
+.help-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  height: 100%;
+  padding: var(--spacing-32) var(--spacing-24);
+  border-radius: var(--r-xs);
+}
+
+.help-card > .ico-wrap {
+  margin-bottom: var(--spacing-4);
+  color: var(--mx-gold-text);
+}
+
+.help-card h3 {
+  font-family: var(--serif);
+  font-size: var(--text-h3);
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--pearl);
+}
+
+.help-card p {
+  font-size: var(--text-body-sm);
+  line-height: 1.7;
+  color: var(--pearl-3);
+}
+
+/* The call to action holds the foot of the card, so three cards of unequal
+   copy still line their buttons up. */
+.help-card .btn {
+  margin-top: auto;
+}
+
+/* Below the two-column threshold the index stops floating and simply precedes
+   the clauses it points at. */
+@media (max-width: 960px) {
+  .legal {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .legal__toc {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 600px) {
+  .values,
+  .help-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .value {
+    min-height: 0;
+  }
+
+  .tl-item {
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: var(--spacing-12);
+  }
+
+  .tl-item__dot {
+    width: 26px;
+    height: 26px;
+  }
+
+  .tl-item::before {
+    left: 13px;
+    top: 26px;
+  }
+}
+
+
+/* ---- admin (shared link styles) ---- */
+/* ============ INLINE TEXT LINKS ============
+   Used on both sides of the application — mid-sentence in the checkout
+   and legal copy, and as the quiet action in an admin table cell — and
+   set on <a> and <button> alike, so it takes its colour from whatever
+   it sits in and leans on the underline for the affordance. Colour
+   alone would not separate it from the ink around it (WCAG 1.4.1).
+   core.css:194 a{text-decoration:none} is (0,0,1) and core.css:204
+   button{background:none;border:0;padding:0} strips the button chrome,
+   so the compound reads identically on either tag. */
+.link,
+.link-gold{
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+  transition:text-decoration-color var(--transition-fast);
+}
+
+/* At rest the rule is a hairline under the word, not a second stroke
+   of ink competing with it; hover brings it up to the text's own
+   colour, which is the whole of the state change. */
+.link{text-decoration-color:var(--line-control)}
+.link:hover{text-decoration-color:currentColor}
+
+/* .tiny is redeclared in maximalism.css, which loads last, so its grey
+   won the colour on the six "link tiny" micro-actions and left them
+   reading as captions rather than things to press. The compound takes
+   the ink back; the 11px uppercase voice stays. (0,2,0) beats both
+   core.css:275 .tiny and maximalism.css:130 .tiny at (0,1,0) on
+   specificity, so load order does not matter here. */
+.link.tiny{color:inherit}
+
+/* The same link at the weight the consent and legal lines want. The
+   colour must come from --mx-gold-text and never --mx-gold: the bright
+   gold measures about 2.2:1 on paper, marble, bone and white alike —
+   it is a fill, not a text colour. This one, recomputed: 5.67:1 on
+   --mx-paper, 5.10:1 on --mx-marble, 5.03:1 on --mx-bone, 5.76:1 on
+   white. The fallback is core's equivalent (6.26:1 on paper), for when
+   maximalism.css is pulled out via the revert note in main.jsx. */
+.link-gold{
+  color:var(--mx-gold-text,var(--gold-text));
+  text-decoration-color:var(--line-gold);
+}
+.link-gold:hover{text-decoration-color:currentColor}
+
+/* Neither sheet sets a focus ring for links, and the underline alone
+   cannot show focus when it is already there at rest. currentColor
+   gives the gold ring 5.67:1, well past the 3:1 non-text minimum. */
+.link:focus-visible,
+.link-gold:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+
+
+/* ---- footer-misc ---- */
+/* ============ 15. FOOTER COLOPHON, PAYMENT MARKS & BREADCRUMBS ============ */
+
+/* The colophon is the 1.5fr cell of .footer-grid, and the only footer cell
+   whose children stack rather than list: a wordmark link, a paragraph and a
+   badge row. Each of those already carries its own top margin, so this sets
+   direction and alignment only — a gap here would double spacing that is
+   already stated. align-items is load-bearing, not decoration: .brand
+   (views.css:123) carries text-align: center, so without flex-start the
+   wordmark would centre itself across the full-width masthead below.
+   The trailing gutter keeps the 32ch paragraph off the Collections column
+   at the narrow end of the five-column grid. */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-inline-end: clamp(0px, 2vw, var(--spacing-32));
+}
+
+/* Below 1024px .footer-grid drops to two columns (views.css:1838). Letting
+   the colophon run the full width makes it a masthead above the directory
+   instead of a column competing with Collections for half the width.
+   Still correct at ≤600px, where the grid is 1fr and 1 / -1 is column 1. */
+@media (max-width: 1024px) {
+  .footer-brand {
+    grid-column: 1 / -1;
+    padding-inline-end: 0;
+  }
+}
+
+/* Standfirst in the Gazette column, between the h5 and the Join button.
+   Sized to the link text in the columns either side and led like the
+   colophon paragraph so the two read as one voice. p is margin-reset in
+   core.css:217, so the space before the button has to be stated here. */
+.footer-col__note {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--pearl-3);
+  max-width: 30ch;
+  margin-bottom: var(--spacing-16);
+}
+
+/* One class, two jobs in .footer-bottom: the payment marks (spans, which
+   also carry .tiny) and the three legal links (anchors, which do not).
+
+   Scoped to .footer-bottom for specificity, not for tidiness. maximalism.css
+   is imported last (main.jsx:13) and restates .tiny at line 130 with the same
+   (0,1,0) weight as a bare .footer-pay — so a bare rule would be overridden on
+   the six spans and apply only to the three anchors, splitting the row in two.
+   (0,2,0) here outranks .tiny outright, in both directions, whatever .tiny
+   later becomes. All four .footer-pay usages are inside .footer-bottom
+   (Footer.jsx:120-128), so nothing is left behind by the narrower selector.
+
+   nowrap is the reason the rule exists at all — "APPLE PAY" and
+   "UPI / NETBANKING" must break between marks, never inside one, when the
+   row wraps. */
+.footer-bottom .footer-pay {
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Only the marks get the plate; a bordered box around Privacy, Cookies and
+   Terms would read as three buttons. Colour stays where it is — this is the
+   frame, not the ink. The short end padding cancels the trailing letter-space
+   that 0.12em tracking leaves after the final glyph, which would otherwise
+   sit the text visibly left of centre inside the border. */
+.footer-bottom span.footer-pay {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  padding-inline-end: calc(10px - 0.12em);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+}
+
+/* The legal links take the same hover as the directory links above them,
+   so the whole footer answers the pointer the same way. Focus is stated
+   alongside it because there is no global focus style in any loaded sheet
+   (only input:focus and .skip-link:focus), so a hover-only rule would leave
+   keyboard users with nothing but the UA ring. The outline colour is --pearl
+   on the footer's bone ground: 15.6:1, clear of the 3:1 in 1.4.11. */
+.footer-bottom a.footer-pay {
+  transition: color var(--transition-fast);
+}
+
+.footer-bottom a.footer-pay:hover,
+.footer-bottom a.footer-pay:focus-visible {
+  color: var(--pearl);
+}
+
+.footer-bottom a.footer-pay:focus-visible {
+  outline: 1px solid var(--pearl);
+  outline-offset: 3px;
+}
+
+/* Breadcrumbs. primitives.jsx:240 sets the trail's colour, gap, size,
+   tracking and padding inline on the nav, and inline wins over this file, so
+   what belongs here is only what an inline style on the nav cannot express:
+   a four-crumb trail on a phone has to fall to a second line rather than
+   push the page sideways. */
+.crumbs {
+  flex-wrap: wrap;
+}
+
+/* The last crumb is the current page. Its colour is NOT inline — it is a
+   bare <span class="gold"> (primitives.jsx:241) taking --mx-gold-text from
+   maximalism.css:143, 5.63:1 on the page ground. Only the preceding crumb
+   LINKS carry inline colour. Weight is still the right addition here: it
+   gives the current page a second signal for anyone who cannot use colour,
+   without restating a colour that already passes. */
+.crumbs > .gold {
+  font-weight: 600;
+}
+
+/* An underline rather than a colour shift: the crumb links carry their
+   colour inline (primitives.jsx:244), so no hover colour declared here could
+   ever win. Focus gets the same underline on top of the UA ring. */
+.crumbs a:hover,
+.crumbs a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* .glass--lift — raised, and nothing else. The other modifiers each restate
+   the surface (soft recesses it, deep darkens its edge, gold washes it), so
+   this one deliberately sets neither ground nor border and stays additive
+   under <Glass variant="glass--gold glass--lift">. The shadow relists
+   var(--sh-1) so the base surface's own shadow — including maximalism's faint
+   gold ring — survives under the deeper drop, and degrades to core's flatter
+   pair if maximalism is ever removed.
+
+   Compounded with .glass because maximalism.css:385 restates
+   .glass { box-shadow: var(--sh-1) } at (0,1,0) after this file — a bare
+   .glass--lift would lose its shadow to it. (0,2,0) also clears
+   .glass--deep's box-shadow at maximalism.css:396.
+
+   No position/z-index: every card in every group carries .glass--lift
+   (ShippingInfo, Returns, Confirmation, Signup, StoreDetail), so a shared
+   z-index:1 resolves by DOM order exactly as z-index:auto would, while
+   creating a stacking context that would trap any absolutely-positioned
+   child added later. No hover transform either: all five are static content
+   cards, never links or buttons, and motion on something that does not
+   respond to a click is a false affordance. If lift ever lands on an
+   interactive card, add the hover there rather than here. */
+.glass.glass--lift {
+  box-shadow: var(--sh-1), var(--sh-2);
+}

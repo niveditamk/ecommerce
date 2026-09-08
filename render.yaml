@@ -1,0 +1,82 @@
+# =============================================================
+# Render blueprint — free tier, no card required.
+#
+# One web service runs the Express API and serves the built
+# client from the same origin, so there is no CORS setup and no
+# second deployment to keep in step.
+#
+# Two things to know about the free plan:
+#   • the service sleeps after ~15 minutes idle, so the first
+#     request after a quiet spell takes 30-50s to wake
+#   • THE FILESYSTEM IS EPHEMERAL. Orders, customers, the audit
+#     log and every stock adjustment are destroyed on each deploy,
+#     crash and wake-from-sleep. The database re-seeds itself, so
+#     the demo always looks populated — which is exactly why the
+#     loss is easy to miss. The storefront shows a banner saying
+#     so. Do not put real customers on this plan.
+# =============================================================
+services:
+  - type: web
+    name: aurelis
+    runtime: node
+    plan: free
+    region: singapore          # closest to an INR storefront's audience
+    branch: main
+
+    # `npm install` with NODE_ENV=production omits devDependencies,
+    # and vite is a devDependency — the build died with "'vite' is
+    # not recognized" before anything ran. --include=dev is what
+    # makes this deploy at all. `ci` also gives reproducible installs
+    # from the committed lockfile.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # node:sqlite stayed behind --experimental-sqlite until 22.13.
+      # On 22.5 the static import in server/src/db/index.js throws
+      # ERR_UNKNOWN_BUILTIN_MODULE and the process exits 1. 24 LTS is
+      # the version this was actually developed and tested against.
+      - key: NODE_VERSION
+        value: 24.16.0
+      - key: NODE_ENV
+        value: production
+
+      # Demo staff logins.
+      #
+      # DEMO_MODE must be set deliberately in the dashboard — it is
+      # sync:false rather than a committed literal, because with it on
+      # the app seeds staff accounts whose passwords are in the repo
+      # and publishes them at /api/admin/demo-accounts. The server
+      # refuses to boot with DEMO_MODE on under NODE_ENV=production.
+      - key: DEMO_MODE
+        sync: false
+      - key: SUPER_ADMIN_EMAIL
+        sync: false
+      # Leave unset and the server generates a random password at boot
+      # and prints it once to the log. It never falls back to a literal.
+      - key: SUPER_ADMIN_PASSWORD
+        sync: false
+
+      # Signs storefront session cookies/ids. Unset means the server
+      # generates one per boot, which logs everyone out on restart.
+      - key: SESSION_SECRET
+        sync: false
+
+      # Stripe test mode. Checkout is SIMULATED until these are set —
+      # no payment is taken and the UI says so.
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+
+      # Optional integrations. Absent means the feature reports itself
+      # unavailable rather than erroring.
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: MEDUSA_URL
+        sync: false
+      - key: MEDUSA_EMAIL
+        sync: false
+      - key: MEDUSA_PASSWORD
+        sync: false

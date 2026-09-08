@@ -1,0 +1,940 @@
+{
+  "aur-101": {
+    "src": "/products/aur-101.jpg",
+    "alt": "Mycenaean Gold signet ring with elaborate religious scene. National Archaeological Museum, Athens",
+    "licence": "CC0",
+    "author": "Groselopez",
+    "source": "https://commons.wikimedia.org/wiki/File%3AMycenaean%20Gold%20signet%20ring%20with%20elaborate%20religious%20scene.%20National%20Archaeological%20Museum%2C%20Athens.jpg"
+  },
+  "aur-102": {
+    "src": "/products/aur-102.jpg",
+    "alt": "Necklace (51368828006)",
+    "licence": "CC BY 2.0",
+    "author": "Auckland Museum Collections from Auckland, Aotearoa New Zealand",
+    "source": "https://commons.wikimedia.org/wiki/File%3ANecklace%20(51368828006).jpg"
+  },
+  "aur-103": {
+    "src": "/products/aur-103.jpg",
+    "alt": "Art Smith \"modern cuff\" bracelet on model",
+    "licence": "CC BY 3.0",
+    "author": "Brooklyn Museum, Peter Basch",
+    "source": "https://commons.wikimedia.org/wiki/File%3AArt%20Smith%20%22modern%20cuff%22%20bracelet%20on%20model.jpg"
+  },
+  "aur-104": {
+    "src": "/products/aur-104.jpg",
+    "alt": "Traditional Wedding Ring",
+    "licence": "CC0",
+    "author": "A Minty Penguin",
+    "source": "https://commons.wikimedia.org/wiki/File%3ATraditional%20Wedding%20Ring.jpg"
+  },
+  "aur-303": {
+    "src": "/products/aur-303.jpg",
+    "alt": "Alex Siros with the Simes antique perfume bottle collection",
+    "licence": "CC BY-SA 4.0",
+    "author": "DrNinio",
+    "source": "https://commons.wikimedia.org/wiki/File%3AAlex%20Siros%20with%20the%20Simes%20antique%20perfume%20bottle%20collection.jpg"
+  },
+  "aur-201": {
+    "src": "/products/aur-201.jpg",
+    "alt": "Junghans Mega",
+    "licence": "CC BY-SA 3.0",
+    "author": "J. Lunau",
+    "source": "https://commons.wikimedia.org/wiki/File%3AJunghans%20Mega.jpg"
+  },
+  "aur-203": {
+    "src": "/products/aur-203.jpg",
+    "alt": "Rolex Daytona Cosmograph",
+    "licence": "CC BY-SA 3.0",
+    "author": "WALLI1912 at German Wikipedia",
+    "source": "https://commons.wikimedia.org/wiki/File%3ARolex%20Daytona%20Cosmograph.jpg"
+  },
+  "aur-503": {
+    "src": "/products/aur-503.jpg",
+    "alt": "Aansteker (onderdeel). Zilveren tafelaansteker met los deksel",
+    "licence": "CC BY-SA 3.0",
+    "author": "Tropenmuseum",
+    "source": "https://commons.wikimedia.org/wiki/File:COLLECTIE_TROPENMUSEUM_Zilveren_tafelaansteker_met_los_deksel_TMnr_6300-11a.jpg"
+  },
+  "aur-601": {
+    "src": "/products/aur-601.jpg",
+    "alt": "Dresser scarf, Delhi, India, early 20th century, cotton, silk, flat silver wire, gold thread, beetle carapace, sequins - Textile Museum of Canada - DSC01026",
+    "licence": "CC0",
+    "author": "Daderot",
+    "source": "https://commons.wikimedia.org/wiki/File%3ADresser%20scarf%2C%20Delhi%2C%20India%2C%20early%2020th%20century%2C%20cotton%2C%20silk%2C%20flat%20silver%20wire%2C%20gold%20thread%2C%20beetle%20carapace%2C%20sequins%20-%20Textile%20Museum%20of%20Canada%20-%20DSC01026.JPG"
+  },
+  "aur-301": {
+    "src": "/products/aur-301.jpg",
+    "alt": "Roman glassware in British Museum",
+    "licence": "CC BY 2.0",
+    "author": "Ricardo Tulio Gandelman from Rio de Janeiro, Brazil",
+    "source": "https://commons.wikimedia.org/wiki/File%3ARoman%20glassware%20in%20British%20Museum.jpg"
+  },
+  "aur-302": {
+    "src": "/products/aur-302.jpg",
+    "alt": "Louis Comfort Tiffany - Perfume Bottle - 1966.379 - Cleveland Museum of Art",
+    "licence": "CC0",
+    "author": "Louis Comfort Tiffany",
+    "source": "https://commons.wikimedia.org/wiki/File%3ALouis%20Comfort%20Tiffany%20-%20Perfume%20Bottle%20-%201966.379%20-%20Cleveland%20Museum%20of%20Art.tif"
+  },
+  "aur-401": {
+    "src": "/products/aur-401.jpg",
+    "alt": "1935-45 Prada handbag, tooled and gilded leather 03",
+    "licence": "CC0",
+    "author": "Photographer for the Rhode Island School of Design - Museum of Art",
+    "source": "https://commons.wikimedia.org/wiki/File%3A1935-45%20Prada%20handbag%2C%20tooled%20and%20gilded%20leather%2003.jpg"
+  },
+  "aur-403": {
+    "src": "/products/aur-403.jpg",
+    "alt": "Wallet (AM 1969.3-5)",
+    "licence": "CC BY 4.0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Wallet_(AM_1969.3-5).jpg"
+  },
+  "aur-501": {
+    "src": "/products/aur-501.jpg",
+    "alt": "No. 30 Wine Decanter With Stopper, 1835 (CH 18732031)",
+    "licence": "Public domain",
+    "author": "Made by J. & L. Lobmeyr GmbH",
+    "source": "https://commons.wikimedia.org/wiki/File:No._30_Wine_Decanter_With_Stopper,_1835_(CH_18732031).jpg"
+  },
+  "aur-502": {
+    "src": "/products/aur-502.jpg",
+    "alt": "MOOD @02 BLACK WHITE CALA SALADA (1)",
+    "licence": "CC BY-SA 4.0",
+    "author": "Katharina.kaminski",
+    "source": "https://commons.wikimedia.org/wiki/File:MOOD_@02_BLACK_WHITE_CALA_SALADA_(1).jpg"
+  },
+  "aur-702": {
+    "src": "/products/aur-702.jpg",
+    "alt": "Turn pin spectacles, tortoiseshell frames, silver arms, hall Wellcome L0057637",
+    "licence": "CC BY 4.0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Turn_pin_spectacles,_tortoiseshell_frames,_silver_arms,_hall_Wellcome_L0057637.jpg"
+  },
+  "aur-304": {
+    "src": "/products/aur-304.jpg",
+    "alt": "2006-02-25 candle-flame with colour-shift B",
+    "licence": "CC BY-SA 3.0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:2006-02-25_candle-flame_with_colour-shift_B.jpg"
+  },
+  "aur-402": {
+    "src": "/products/aur-402.jpg",
+    "alt": "Wriggle House - Full-Grain Genuine leather Holdall Travel Bag",
+    "licence": "CC BY-SA 4.0",
+    "author": "Wrigglehouse",
+    "source": "https://commons.wikimedia.org/wiki/File:Wriggle_House_-_Full-Grain_Genuine_leather_Holdall_Travel_Bag.jpg"
+  },
+  "aur-602": {
+    "src": "/products/aur-602.jpg",
+    "alt": "Pashmina-schals orig",
+    "licence": "Public domain",
+    "author": "Bettenburg at German Wikipedia",
+    "source": "https://commons.wikimedia.org/wiki/File:Pashmina-schals_orig.jpg"
+  },
+  "aur-701": {
+    "src": "/products/aur-701.jpg",
+    "alt": "2008-07-27 Sunglasses",
+    "licence": "CC BY-SA 4.0",
+    "author": "Ildar Sagdejev (Specious)",
+    "source": "https://commons.wikimedia.org/wiki/File:2008-07-27_Sunglasses.jpg"
+  },
+  "aur-305": {
+    "src": "/products/parfums-01.jpg",
+    "alt": "A Roman candlestick perfume bottle in free-blown glass, a small bulbous body under a long tubular neck",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108459.jpg"
+  },
+  "aur-306": {
+    "src": "/products/parfums-02.jpg",
+    "alt": "A Roman candlestick perfume bottle, its narrow neck rising from a rounded reservoir",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108464.jpg"
+  },
+  "aur-307": {
+    "src": "/products/parfums-03.jpg",
+    "alt": "A Roman free-blown glass bottle with a broad shoulder and a folded rim",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP120970.jpg"
+  },
+  "aur-308": {
+    "src": "/products/parfums-04.jpg",
+    "alt": "A small Roman perfume bottle in thin free-blown glass",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108471.jpg"
+  },
+  "aur-309": {
+    "src": "/products/parfums-05.jpg",
+    "alt": "A Roman glass bottle with straight tapering sides and a folded lip",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108531.jpg"
+  },
+  "aur-310": {
+    "src": "/products/parfums-06.jpg",
+    "alt": "A small Roman perfume bottle, free-blown in glass and standing on a flat base",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108547.jpg"
+  },
+  "aur-311": {
+    "src": "/products/parfums-07.jpg",
+    "alt": "A Roman glass perfume bottle with a short neck and a rounded body",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108890.jpg"
+  },
+  "aur-312": {
+    "src": "/products/parfums-08.jpg",
+    "alt": "A plain Roman free-blown glass bottle, photographed upright against a neutral ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108891.jpg"
+  },
+  "aur-313": {
+    "src": "/products/parfums-09.jpg",
+    "alt": "A small Roman perfume bottle in free-blown glass, narrow at the neck",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP108895.jpg"
+  },
+  "aur-314": {
+    "src": "/products/parfums-10.jpg",
+    "alt": "A Roman glass perfume bottle with a squat body and a flared mouth",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP155824.jpg"
+  },
+  "aur-315": {
+    "src": "/products/parfums-11.jpg",
+    "alt": "A thin-walled Roman perfume bottle in free-blown glass",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP155835.jpg"
+  },
+  "aur-316": {
+    "src": "/products/parfums-12.jpg",
+    "alt": "A small Roman glass perfume bottle with a tapering neck",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP155837.jpg"
+  },
+  "aur-317": {
+    "src": "/products/parfums-13.jpg",
+    "alt": "A Roman free-blown glass perfume bottle, shown upright and unmounted",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP121448.jpg"
+  },
+  "aur-318": {
+    "src": "/products/parfums-14.jpg",
+    "alt": "A Roman candlestick perfume bottle, the neck several times the height of its body",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP220242.jpg"
+  },
+  "aur-319": {
+    "src": "/products/parfums-15.jpg",
+    "alt": "A Roman glass perfume bottle with a rounded base and a plain rim",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP220123.jpg"
+  },
+  "aur-320": {
+    "src": "/products/parfums-16.jpg",
+    "alt": "A small Roman perfume bottle in free-blown glass, photographed against a plain ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP121429.jpg"
+  },
+  "aur-321": {
+    "src": "/products/parfums-17.jpg",
+    "alt": "A Roman perfume bottle in thick free-blown glass, plain and undecorated",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Glass_perfume_bottle_MET_DP222349.jpg"
+  },
+  "aur-404": {
+    "src": "/products/leather-01.jpg",
+    "alt": "A Finnish hunting bag of dark hide with a long flap, lined in seal and diver-bird skin, shown in the National Museum of Finland",
+    "licence": "CC0",
+    "author": "Daderot",
+    "source": "https://commons.wikimedia.org/wiki/File:Hunting_bag,_lined_with_seal_and_diver_skin_-_National_Museum_of_Finland_-_DSC04278.JPG"
+  },
+  "aur-405": {
+    "src": "/products/leather-02.jpg",
+    "alt": "An English leather doctor's bag of about 1900 with a double metal clasp, photographed with its stethoscopes and syringes",
+    "licence": "CC BY 4.0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Leather_doctor%27s_bag_with_contents,_English,_1890-1930._The_Wellcome_L0058359.jpg"
+  },
+  "aur-406": {
+    "src": "/products/leather-03.jpg",
+    "alt": "The interior of an English leather doctor's bag opened out, with medical instruments including stethoscopes and syringes laid beside it",
+    "licence": "CC BY 4.0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Leather_doctor%27s_bag_with_contents,_English,_1890-1930._The_Wellcome_L0058360.jpg"
+  },
+  "aur-407": {
+    "src": "/products/leather-04.jpg",
+    "alt": "A North American storage bag of pale untreated leather, folded flat like an envelope, at the Museum of Ethnography in Stockholm",
+    "licence": "CC0",
+    "author": "Daderot",
+    "source": "https://commons.wikimedia.org/wiki/File:Storage_bag,_North_American,_untreated_leather_-_Etnografiska_museet_-_Stockholm,_Sweden_-_DSC01219.JPG"
+  },
+  "aur-408": {
+    "src": "/products/leather-05.jpg",
+    "alt": "An oval leather shot bag of about 1840 fitted with a brass charger and a shoulder strap",
+    "licence": "Public domain",
+    "author": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Oval_Leather_Shot_Bag_Reputedly_Used_by_Relatives_of_Frank_J._Pollak.jpg"
+  },
+  "aur-409": {
+    "src": "/products/leather-06.jpg",
+    "alt": "A rectangular Native American leather bag densely beaded in coloured glass seed beads",
+    "licence": "Public domain",
+    "author": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Native_American_rectangular_beaded_leather_bag.jpg"
+  },
+  "aur-410": {
+    "src": "/products/leather-07.jpg",
+    "alt": "A collection of loose leather offcuts from a clogmaker's workshop, gathered during the First World War",
+    "licence": "CC BY 4.0",
+    "author": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Leather_pieces_(AM_2004.125.7-2).jpg"
+  },
+  "aur-411": {
+    "src": "/products/leather-08.jpg",
+    "alt": "A medium dark brown leather Gladstone bag with a double metal clasp and a single handle",
+    "licence": "CC BY-SA 3.0",
+    "author": "Museum Rotterdam",
+    "source": "https://commons.wikimedia.org/wiki/File:%E2%80%98Gladstone_bag%E2%80%99_ofwel_valies_van_bruin_leer_met_dubbele_sluiting_en_%C3%A9%C3%A9n_hengsel,_objectnr_69810.JPG"
+  },
+  "aur-412": {
+    "src": "/products/leather-09.jpg",
+    "alt": "A brown leather Gladstone valise with a straight metal bar across the top and hinged fittings at both sides",
+    "licence": "CC BY-SA 3.0",
+    "author": "Museum Rotterdam",
+    "source": "https://commons.wikimedia.org/wiki/File:%E2%80%98Gladstone_bag%E2%80%99_ofwel_valies_van_bruin_leer_met_rechte_beugel_aan_de_bovenzijde,_scharnierend_metaal_aan_de_zijden,_objectnr_69811.JPG"
+  },
+  "aur-413": {
+    "src": "/products/leather-10.jpg",
+    "alt": "A black leather Gladstone bag with a striped grain pressed into the hide, a metal frame clasp and a brown cotton lining",
+    "licence": "CC BY-SA 3.0",
+    "author": "Museum Rotterdam",
+    "source": "https://commons.wikimedia.org/wiki/File:%E2%80%98Gladstone_bag%E2%80%99_ofwel_valies_van_zwart_leer_met_metalen_beugelsuiting_gevoerd_met_bruine_katoen,_een_handvat,_streepprint_in_het_leer,_objectnr_69812.JPG"
+  },
+  "aur-414": {
+    "src": "/products/leather-11.jpg",
+    "alt": "A large brown leather Gladstone valise with a reptile-grained surface, two handles and a brown leather lining",
+    "licence": "CC BY-SA 3.0",
+    "author": "Museum Rotterdam",
+    "source": "https://commons.wikimedia.org/wiki/File:%E2%80%98Gladstone_bag%E2%80%99_of_valies_van_bruin_leer_met_reptielenprint,_twee_handvatten,_gevoerd_met_bruin_leer,_objectnr_69814.JPG"
+  },
+  "aur-415": {
+    "src": "/products/leather-12.jpg",
+    "alt": "A Japanese koban-format colour woodblock print, third in a set of four, showing a leather drawstring bag as the autumn plate",
+    "licence": "Public domain",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Sh%C5%AB-_kawa-gata_ky%C5%8Dtai_%E7%A7%8B-_%E9%9D%A9%E5%BD%A2%E8%8C%8E%E8%A2%8B_(Autumn-_Leather_Phallus_Bag)_(BM_2012,3051.3).jpg"
+  },
+  "aur-416": {
+    "src": "/products/leather-13.jpg",
+    "alt": "A Tang dynasty white porcelain flask modelled on a flat leather travelling bag, in the Xi'an City Museum",
+    "licence": "CC0",
+    "author": "Gary Todd from Xinzheng, China",
+    "source": "https://commons.wikimedia.org/wiki/File:Tang_White_Porcelain_Leather_Bag-shaped_Flask_(9923882635).jpg"
+  },
+  "aur-417": {
+    "src": "/products/leather-14.jpg",
+    "alt": "A Qing dynasty leather saddle bag with tooled decoration, in the horse and harness gallery of the Inner Mongolia Museum",
+    "licence": "CC0",
+    "author": "Gary Todd from Xinzheng, China",
+    "source": "https://commons.wikimedia.org/wiki/File:Qing_Leather_Saddle_Bag_(19163661404).jpg"
+  },
+  "aur-418": {
+    "src": "/products/leather-15.jpg",
+    "alt": "A rectangular red snakeskin shoulder bag with a plain leather flap and strap, and four metal triangles forming a diamond badge on the flap",
+    "licence": "CC BY 2.0",
+    "author": "Auckland Museum Collections from Auckland, Aotearoa New Zealand",
+    "source": "https://commons.wikimedia.org/wiki/File:Bag_(48708824426).jpg"
+  },
+  "aur-419": {
+    "src": "/products/leather-16.jpg",
+    "alt": "National Cowboy Western Heritage Museum ( Oklahoma City ). Lakota bag ( ca. 1910 ), made of tanned leather, glass beads, tin cones and dyed horse hair. CatNo. 1983.06.11 a.",
+    "licence": "CC BY-SA 3.0",
+    "author": "Wolfgang Sauber",
+    "source": "https://commons.wikimedia.org/wiki/File:NCWHM_-_Lakota_Bag.jpg"
+  },
+  "aur-420": {
+    "src": "/products/leather-17.jpg",
+    "alt": "A Tang dynasty white glazed porcelain pot made in the shape of a leather bag, with a moulded seam ridge and top loop, in the Henan Museum",
+    "licence": "CC BY-SA 4.0",
+    "author": "Windmemories",
+    "source": "https://commons.wikimedia.org/wiki/File:20260520_White_Glazed_Porcelain_Pot_in_the_Shape_of_Leather_Bag.jpg"
+  },
+  "aur-504": {
+    "src": "/products/objets-01.jpg",
+    "alt": "A silver table clock flanked by two cast figures of Imperial Guard lancers",
+    "licence": "CC BY-SA 3.0",
+    "author": "Ad Meskens",
+    "source": "https://commons.wikimedia.org/wiki/File:Russian_imperial_clock.JPG"
+  },
+  "aur-505": {
+    "src": "/products/objets-02.jpg",
+    "alt": "A gilt table clock built as a miniature Renaissance tower, with columns and a stepped spire",
+    "licence": "Public domain",
+    "author": "Gustave Baugrand",
+    "source": "https://commons.wikimedia.org/wiki/File:Gustave_Baugrand_-_Table_Clock_-_Walters_58230.jpg"
+  },
+  "aur-507": {
+    "src": "/products/objets-04.jpg",
+    "alt": "A photograph by Eugene Atget of the courtyard doorway at the Austrian Embassy, 57 Rue de Varenne, Paris",
+    "licence": "Public domain",
+    "author": "Eugène Atget",
+    "source": "https://commons.wikimedia.org/wiki/File:Eug%C3%A8ne_Atget,_The_Austrian_Embassy,_57_Rue_de_Varenne_-_Getty_Museum.jpg"
+  },
+  "aur-508": {
+    "src": "/products/objets-05.jpg",
+    "alt": "A fragment of a late medieval silver-gilt pilgrim badge, one corner surviving from a rectangular plaque",
+    "licence": "CC BY-SA 2.0",
+    "author": "The Portable Antiquities Scheme, Emma Traherne, 2013-06-04 10:23:58",
+    "source": "https://commons.wikimedia.org/wiki/File:Medieval_silver-gilt_badge_(FindID_465098).jpg"
+  },
+  "aur-509": {
+    "src": "/products/objets-06.jpg",
+    "alt": "A silver-plated desk organiser of three wells, each face stamped with a St Louis landmark in relief",
+    "licence": "Public domain",
+    "author": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Silver-Plated_Desk_Organizer_With_Raised_Images_of_Union_Station,_the_Cascade_Gardens,_and_Eads_Bridge.jpg"
+  },
+  "aur-510": {
+    "src": "/products/objets-07.jpg",
+    "alt": "A veneered wooden dressing case with mother-of-pearl inlay, open to a red velvet interior of silver-topped jars",
+    "licence": "CC BY 4.0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Case,_dressing_(AM_70871).jpg"
+  },
+  "aur-511": {
+    "src": "/products/objets-08.jpg",
+    "alt": "Two women seated side by side at their desks in a bright office",
+    "licence": "CC BY 4.0",
+    "author": "Collins, Tudor Washington, 1898-1970, photographer",
+    "source": "https://commons.wikimedia.org/wiki/File:Portrait_of_two_women_seated_in_front_of_tables_or_desks_(AM_75164-1).jpg"
+  },
+  "aur-512": {
+    "src": "/products/objets-09.jpg",
+    "alt": "Two women at work behind desks, files and papers spread in front of them",
+    "licence": "CC BY 4.0",
+    "author": "Collins, Tudor Washington, 1898-1970, photographer",
+    "source": "https://commons.wikimedia.org/wiki/File:Portrait_of_two_women_seated_in_front_of_tables_or_desks_(AM_75164-2).jpg"
+  },
+  "aur-513": {
+    "src": "/products/objets-10.jpg",
+    "alt": "Two women seated at adjoining desks, one writing, in a panelled room",
+    "licence": "CC BY 4.0",
+    "author": "Collins, Tudor Washington, 1898-1970, photographer",
+    "source": "https://commons.wikimedia.org/wiki/File:Portrait_of_two_women_seated_in_front_of_tables_or_desks_(AM_75166-1).jpg"
+  },
+  "aur-514": {
+    "src": "/products/objets-11.jpg",
+    "alt": "Two women posed at their desks, an inkstand and papers between them",
+    "licence": "CC BY 4.0",
+    "author": "Collins, Tudor Washington, 1898-1970, photographer",
+    "source": "https://commons.wikimedia.org/wiki/File:Portrait_of_two_women_seated_in_front_of_tables_or_desks_(AM_75166-2).jpg"
+  },
+  "aur-515": {
+    "src": "/products/objets-12.jpg",
+    "alt": "Spice box circular metal (tin) container with side catch and handle on top of lid; small cylindrical grater fits into central area from which segments radiate; green felt on base",
+    "licence": "CC BY 4.0",
+    "author": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Box,_spice_(AM_1964.95-1).jpg"
+  },
+  "aur-516": {
+    "src": "/products/objets-13.jpg",
+    "alt": "American; Blotter; Metal",
+    "licence": "CC0",
+    "author": "Louis Comfort Tiffany / Tiffany Studios",
+    "source": "https://commons.wikimedia.org/wiki/File:Blotter_MET_203701.jpg"
+  },
+  "aur-518": {
+    "src": "/products/objets-15.jpg",
+    "alt": "\"table desk, locality- New Zealand. Wood with metal corners\" (col.card) contents- .1- writing desk .2-.6 - seals .8-.10 - writing implements .11- eraser .12- seashell .13- wooden box",
+    "licence": "CC BY 4.0",
+    "author": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Desk,_portable_(AM_70877-1).jpg"
+  },
+  "aur-519": {
+    "src": "/products/objets-16.jpg",
+    "alt": "Commemorative inkstand, about 1850, Elkington Co. V A Museum no. 481 A-1901 Techniques - Gilt and silvered bronze, with glass lining Place - Birmingham, England Dimensions - Height 8 cm, Diameter 23.4",
+    "licence": "CC BY-SA 3.0",
+    "author": "VAwebteam at English Wikipedia",
+    "source": "https://commons.wikimedia.org/wiki/File:Elkingtonvanda.jpg"
+  },
+  "aur-520": {
+    "src": "/products/objets-17.jpg",
+    "alt": "A woman seated at a desk before bay windows in a domestic room, a wristwatch on her arm",
+    "licence": "CC BY 4.0",
+    "author": "Collins, Tudor Washington, 1898-1970, photographer",
+    "source": "https://commons.wikimedia.org/wiki/File:Woman_sitting_at_a_desk_(AM_79406-1).jpg"
+  },
+  "aur-603": {
+    "src": "/products/silk-01.jpg",
+    "alt": "A Delhi dresser scarf embroidered with flat silver wire, gold thread, sequins and iridescent beetle-wing cases",
+    "licence": "CC0",
+    "author": "Daderot",
+    "source": "https://commons.wikimedia.org/wiki/File:Dresser_scarf,_Delhi,_India,_early_20th_century,_cotton,_silk,_flat_silver_wire,_gold_thread,_beetle_carapace,_sequins_-_Textile_Museum_of_Canada_-_DSC01026.JPG"
+  },
+  "aur-604": {
+    "src": "/products/silk-02.jpg",
+    "alt": "An Iberian woven silk cover, wide and square, with a banded figured ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Cover_or_scarf_MET_23099.jpg"
+  },
+  "aur-605": {
+    "src": "/products/silk-03.jpg",
+    "alt": "A Spanish scarf of black silk bobbin lace worked in a continuous floral ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Silk_bobbin_lace_scarf_MET_DP5452_09.68.402.jpg"
+  },
+  "aur-606": {
+    "src": "/products/silk-04.jpg",
+    "alt": "An Austrian scarf embroidered in white thread on a pale silk ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_183874.jpg"
+  },
+  "aur-607": {
+    "src": "/products/silk-05.jpg",
+    "alt": "A plain woven silk scarf with a fine, open gauze ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_DP17836.jpg"
+  },
+  "aur-608": {
+    "src": "/products/silk-06.jpg",
+    "alt": "An embroidered silk scarf with floral sprays worked across the ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_wb-43.15.jpeg"
+  },
+  "aur-609": {
+    "src": "/products/silk-07.jpg",
+    "alt": "A finely needle-embroidered shawl covered in dense worked sprays",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_130029.jpg"
+  },
+  "aur-610": {
+    "src": "/products/silk-08.jpg",
+    "alt": "A large embroidered silk shawl worked in coloured floss on a plain ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_wb-43.15b.jpeg"
+  },
+  "aur-611": {
+    "src": "/products/silk-09.jpg",
+    "alt": "An embroidered scarf covered with dense multicoloured floral motifs",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_wb-43.15c.jpeg"
+  },
+  "aur-612": {
+    "src": "/products/silk-10.jpg",
+    "alt": "An embroidered silk scarf with a wide worked border framing a plain centre",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_wb-43.15d.jpeg"
+  },
+  "aur-613": {
+    "src": "/products/silk-11.jpg",
+    "alt": "A large embroidered panel worked in bold rosettes across a pale ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_wb-43.15g.jpeg"
+  },
+  "aur-614": {
+    "src": "/products/silk-12.jpg",
+    "alt": "An embroidered scarf worked in long floating silk stitches on a linen ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_wb-43.15e.jpeg"
+  },
+  "aur-615": {
+    "src": "/products/silk-13.jpg",
+    "alt": "An embroidered scarf with a repeating dark motif running along its borders",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Scarf_MET_wb-43.15f.jpeg"
+  },
+  "aur-616": {
+    "src": "/products/silk-14.jpg",
+    "alt": "A fragment of an embroidered scarf or cover, worked in wool on a plain ground",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Fragment_of_Scarf_or_Cover_MET_wb-45.102d.jpeg"
+  },
+  "aur-617": {
+    "src": "/products/silk-15.jpg",
+    "alt": "A fragment of embroidered cloth with the figure left plain and the field filled",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Fragment_of_Scarf_or_Cover_MET_wb-45.102b.jpeg"
+  },
+  "aur-618": {
+    "src": "/products/silk-16.jpg",
+    "alt": "A fragment of embroidered silk worked in raised knots across a small field",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Fragment_of_Scarf_or_Cover_MET_wb-45.102g.jpeg"
+  },
+  "aur-619": {
+    "src": "/products/silk-17.jpg",
+    "alt": "A fragment of fine white embroidered cloth with cut openwork panels",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Fragment_of_Scarf_or_Cover_MET_135028.jpg"
+  },
+  "aur-703": {
+    "src": "/products/eyewear-01.jpg",
+    "alt": "A hand-coloured Georgian etching of Bottom seated in an armchair, spectacles pushed up on the brow of his donkey head, a paper in one hand and a charcoal holder in the other.",
+    "licence": "Public domain",
+    "author": "Print made by: Isaac Cruikshank Published by: S W Fores",
+    "source": "https://commons.wikimedia.org/wiki/File:Bless_the_bottom,_bless_thee-thou_art_translated_-_Shakespere_(BM_1868,0808.6329).jpg"
+  },
+  "aur-704": {
+    "src": "/products/eyewear-02.jpg",
+    "alt": "The opening leaf of a handwritten letter dated Pittsfield, Sunday afternoon, 26 August 1838.",
+    "licence": "Public domain",
+    "author": "Fanny (Appleton) Longfellow (1817-1861)",
+    "source": "https://commons.wikimedia.org/wiki/File:Frances_(Appleton)_Longfellow_to_Isaac_Appleton_Jewett,_26_August_1838_(11bda9ab-ad4c-4ceb-bbb4-06f9f575340b).jpg"
+  },
+  "aur-705": {
+    "src": "/products/eyewear-03.jpg",
+    "alt": "A page of an 1838 manuscript letter, its iron-gall ink browned against the laid paper.",
+    "licence": "Public domain",
+    "author": "Fanny (Appleton) Longfellow (1817-1861)",
+    "source": "https://commons.wikimedia.org/wiki/File:Frances_(Appleton)_Longfellow_to_Isaac_Appleton_Jewett,_26_August_1838_(3372f1a6-3b51-4d96-a286-91fcde0bd7bc).jpg"
+  },
+  "aur-706": {
+    "src": "/products/eyewear-04.jpg",
+    "alt": "A leaf of an 1838 handwritten letter, the laid paper showing its chain lines and mill watermark.",
+    "licence": "Public domain",
+    "author": "Fanny (Appleton) Longfellow (1817-1861)",
+    "source": "https://commons.wikimedia.org/wiki/File:Frances_(Appleton)_Longfellow_to_Isaac_Appleton_Jewett,_26_August_1838_(5a303285-0192-4ec2-b04e-925b55b6c4e9).jpg"
+  },
+  "aur-707": {
+    "src": "/products/eyewear-05.jpg",
+    "alt": "The closing leaf of an 1838 manuscript letter written in a fine sloping hand.",
+    "licence": "Public domain",
+    "author": "Fanny (Appleton) Longfellow (1817-1861)",
+    "source": "https://commons.wikimedia.org/wiki/File:Frances_(Appleton)_Longfellow_to_Isaac_Appleton_Jewett,_26_August_1838_(b08f43bf-9072-41e4-9c60-c5e369bc977e).jpg"
+  },
+  "aur-708": {
+    "src": "/products/eyewear-06.jpg",
+    "alt": "Constance Mayer's neoclassical painting Le Flambeau de Venus, lit from a single raised torch.",
+    "licence": "Public domain",
+    "author": "Constance Mayer",
+    "source": "https://commons.wikimedia.org/wiki/File:Flambeau_de_Venus_-_Constance_Mayer.jpg"
+  },
+  "aur-709": {
+    "src": "/products/eyewear-07.jpg",
+    "alt": "Le Brocanteur, a Wattier lithograph after Hortense Haudebourt-Lescot, showing an antique dealer examining a canvas.",
+    "licence": "Public domain",
+    "author": "After Hortense Haudebourt-Lescot",
+    "source": "https://commons.wikimedia.org/wiki/File:Le_Brocanteur_(litho_by_Wattier_after_Hortense_Haudebourt-Lescot).jpg"
+  },
+  "aur-710": {
+    "src": "/products/eyewear-08.jpg",
+    "alt": "A leaf of a handwritten letter sent from Woolwich on 24 June 1841.",
+    "licence": "Public domain",
+    "author": "Fanny (Appleton) Longfellow (1817-1861)",
+    "source": "https://commons.wikimedia.org/wiki/File:Frances_(Appleton)_Longfellow_to_Thomas_Gold_Appleton,_24_June_1841_(b39dd731-8457-4564-8db4-f823f8713fec).jpg"
+  },
+  "aur-712": {
+    "src": "/products/eyewear-10.jpg",
+    "alt": "A carved lid from the Musee des Antiquites de Rouen showing a Roman chariot race.",
+    "licence": "Public domain",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Collections_du_Mus%C3%A9e_des_Antiquit%C3%A9s_de_Rouen._Couvercle-Course_de_chars_-_btv1b10950638s.jpg"
+  },
+  "aur-714": {
+    "src": "/products/eyewear-12.jpg",
+    "alt": "A bottle of Brouilly Beaujolais, made from the Gamay grape, standing on a table.",
+    "licence": "CC BY 2.0",
+    "author": "Rob Ireton",
+    "source": "https://commons.wikimedia.org/wiki/File:Brouilly_Jadot_Beaujolais_wine-to_be_cropped.jpg"
+  },
+  "aur-717": {
+    "src": "/products/eyewear-15.jpg",
+    "alt": "A vintage-toned photograph of an Antarctic landscape under flat polar light.",
+    "licence": "CC BY 2.0",
+    "author": "Christopher Michel",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Antarctica_(14855398414).jpg"
+  },
+  "aur-105": {
+    "src": "/products/jewellery-01.jpg",
+    "alt": "An Egyptian gold finger ring with a broad, plain band",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Gold_finger_ring_MET_sf74514051.jpg"
+  },
+  "aur-106": {
+    "src": "/products/jewellery-02.jpg",
+    "alt": "A Cypriot gold ring set with a domed cabochon",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Gold_ring_MET_DP142768.jpg"
+  },
+  "aur-107": {
+    "src": "/products/jewellery-03.jpg",
+    "alt": "A Greek gold ring set with a flat garnet ring stone",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Gold_ring_with_garnet_ring_stone_MET_DP135928.jpg"
+  },
+  "aur-108": {
+    "src": "/products/jewellery-04.jpg",
+    "alt": "A Roman carnelian intaglio oval mounted in an eighteenth-century gold ring",
+    "licence": "CC0",
+    "author": "Creator:Gnaios",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnelian_oval_set_in_a_17th%E2%80%9318th_century_gold_ring_MET_DP155537.jpg"
+  },
+  "aur-109": {
+    "src": "/products/jewellery-05.jpg",
+    "alt": "A Roman carnelian oval set in a plain gold hoop",
+    "licence": "CC0",
+    "author": "Creator:Gnaios",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnelian_oval_set_in_a_17th%E2%80%9318th_century_gold_ring_MET_DP111330.jpg"
+  },
+  "aur-110": {
+    "src": "/products/jewellery-06.jpg",
+    "alt": "A deeply cut Roman carnelian intaglio in a gold ring",
+    "licence": "CC0",
+    "author": "Creator:Gnaios",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnelian_oval_set_in_a_17th%E2%80%9318th_century_gold_ring_MET_DP142591.jpg"
+  },
+  "aur-111": {
+    "src": "/products/jewellery-07.jpg",
+    "alt": "A Cypriot gold ring with two raised horizontal ribs",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Gold_ring_with_two_horizontal_ribs_MET_DP135924.jpg"
+  },
+  "aur-112": {
+    "src": "/products/jewellery-08.jpg",
+    "alt": "A Phoenician silver swivel ring with an agate scarab in a gold setting",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Silver_swivel_ring_with_agate_scarab_in_gold_setting_MET_DP136015.jpg"
+  },
+  "aur-113": {
+    "src": "/products/jewellery-09.jpg",
+    "alt": "A Greek gold filigree ring set with a plain carnelian scaraboid",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Gold_ring_with_plain_carnelian_scaraboid_MET_DP135914.jpg"
+  },
+  "aur-114": {
+    "src": "/products/jewellery-10.jpg",
+    "alt": "A small Greek gold ring set with a carnelian ring stone",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Gold_ring_with_carnelian_ring_stone_MET_DP135918.jpg"
+  },
+  "aur-115": {
+    "src": "/products/jewellery-11.jpg",
+    "alt": "A plain Greek gold ring of even round section",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Gold_ring_MET_DP109248.jpg"
+  },
+  "aur-116": {
+    "src": "/products/jewellery-12.jpg",
+    "alt": "A Roman nicolo ring stone, blue-grey over black, set in a gold ring",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Nicolo_ring_stone_set_in_a_gold_ring_MET_DP141820.jpg"
+  },
+  "aur-117": {
+    "src": "/products/jewellery-13.jpg",
+    "alt": "A Roman nicolo intaglio set in a heavy gold signet ring",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Nicolo_ring_stone_set_in_a_gold_ring_MET_DP145706.jpg"
+  },
+  "aur-118": {
+    "src": "/products/jewellery-14.jpg",
+    "alt": "A small Roman nicolo ring stone in a narrow gold bezel",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Nicolo_ring_stone_set_in_a_gold_ring_MET_DP141821.jpg"
+  },
+  "aur-119": {
+    "src": "/products/jewellery-15.jpg",
+    "alt": "A Roman nicolo signet ring shown from the front and the side",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Nicolo_ring_stone_set_in_a_gold_ring_MET_DP141820_DP141821.jpg"
+  },
+  "aur-120": {
+    "src": "/products/jewellery-16.jpg",
+    "alt": "A Greek carnelian ring stone in a gold collar, set into a silver ring",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnelian_ring_stone_with_gold_band_set_in_a_silver_ring_MET_DP142796.jpg"
+  },
+  "aur-121": {
+    "src": "/products/jewellery-17.jpg",
+    "alt": "A gold-collared carnelian on a silver ring, seen from two angles",
+    "licence": "CC0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnelian_ring_stone_with_gold_band_set_in_a_silver_ring_MET_DP142796_DP142797.jpg"
+  },
+  "aur-204": {
+    "src": "/products/horology-01.jpg",
+    "alt": "Close-up of the alloy balance wheel and hairspring in a seventeen-jewel manual-wind movement",
+    "licence": "Public domain",
+    "author": "Chris Burks Chetvorno",
+    "source": "https://commons.wikimedia.org/wiki/File:Benrus_Watch_Balance_Wheel.JPG"
+  },
+  "aur-205": {
+    "src": "/products/horology-02.jpg",
+    "alt": "The exposed movement of an English pocket watch, its balance cock and plate engraved by hand",
+    "licence": "CC BY-SA 3.0",
+    "author": "Sharoncom",
+    "source": "https://commons.wikimedia.org/wiki/File:Movement_of_a_Pocket_Watch_by_E_D_Johnson.jpg"
+  },
+  "aur-206": {
+    "src": "/products/horology-03.jpg",
+    "alt": "A gilt chronograph movement seen from the back, with thirty-minute and twelve-hour counters",
+    "licence": "CC BY-SA 2.0",
+    "author": "Shane Lin",
+    "source": "https://commons.wikimedia.org/wiki/File:Omega_Cal._1861_Chronograph_Movement.jpg"
+  },
+  "aur-207": {
+    "src": "/products/horology-04.jpg",
+    "alt": "A gold-filled railroad-grade pocket watch shown open, with its twenty-one jewel movement visible",
+    "licence": "CC BY-SA 2.0",
+    "author": "Joe Haupt from USA",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Illinois_Watch_Company,_Springfield_Illinois,_Gold-Filled_Pocket_Watch,_Bunn_Special,_21_Jewels,_B%26B_Royal_20-Year_Case,_A._Lincoln_Grade_Movement_(9174547388).jpg"
+  },
+  "aur-209": {
+    "src": "/products/horology-06.jpg",
+    "alt": "An open-face pocket watch whose fifteen-jewel movement hinges out through the front of the case",
+    "licence": "CC BY-SA 2.0",
+    "author": "Joe Haupt from USA",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Elgin_Open_Face_Pocket_Watch,_15_Jewels,_Size_18s,_Movement_Swings_Out_From_The_Front_Of_The_Case,_218_Grade,_Pendant_Wind_%26_Set,_Circa_1903_(14276713134).jpg"
+  },
+  "aur-210": {
+    "src": "/products/horology-07.jpg",
+    "alt": "A pocket watch movement rehoused in a later open-face case, its crown sitting at the three position",
+    "licence": "CC BY-SA 2.0",
+    "author": "Joe Haupt from USA",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Elgin_National_Watch_Company_Open_Face_(Sidewinder)_Pocket_Watch,_Size_18s,_11_Jewels,_Grade_10,_Pendant_Wind,_Lever_Set,_Recased_Movement_(Originally_A_Hunter_Case),_Circa_1884_(14096431019).jpg"
+  },
+  "aur-211": {
+    "src": "/products/horology-08.jpg",
+    "alt": "A fifteen-jewel open-face pocket watch with its movement swung out of the case for inspection",
+    "licence": "CC BY-SA 2.0",
+    "author": "Joe Haupt from USA",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Elgin_Open_Face_Pocket_Watch,_15_Jewels,_Size_18s,_Movement_Swings_Out_From_The_Case,_218_Grade,_Pendant_Wind_%26_Set,_Circa_1903_(14091735387).jpg"
+  },
+  "aur-212": {
+    "src": "/products/horology-09.jpg",
+    "alt": "An open-face sidewinder pocket watch, the winding crown set at three rather than twelve",
+    "licence": "CC BY-SA 2.0",
+    "author": "Joe Haupt from USA",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Elgin_National_Watch_Company_Open_Face_(Sidewinder)_Pocket_Watch,_Size_18s,_11_Jewels,_Grade_10,_Pendant_Wind,_Lever_Set,_Recased_Movement_(Originally_A_Hunter_Case),_Circa_1884_(14283951755).jpg"
+  },
+  "aur-213": {
+    "src": "/products/horology-10.jpg",
+    "alt": "An engraved catalogue illustration of a thin-model pocket watch with a nickel movement",
+    "licence": "Public domain",
+    "author": "Anonymous illustrator",
+    "source": "https://commons.wikimedia.org/wiki/File:New_Haven_Thin_Model_Pocket_Watch,_Nickel_Movement.png"
+  },
+  "aur-214": {
+    "src": "/products/horology-11.jpg",
+    "alt": "A brass and steel pocket watch movement held in a two-part nickelled display case",
+    "licence": "CC BY 4.0",
+    "author": "Waltham Watch Company",
+    "source": "https://commons.wikimedia.org/wiki/File:Pocket_watch_movement_(AM_2004.51.45-1).jpg"
+  },
+  "aur-215": {
+    "src": "/products/horology-12.jpg",
+    "alt": "A pocket watch movement displayed in an openable metal case marked with the maker name",
+    "licence": "CC BY 4.0",
+    "author": "Waltham Watch Company",
+    "source": "https://commons.wikimedia.org/wiki/File:Pocket_watch_movement_(AM_2004.51.45-2).jpg"
+  },
+  "aur-216": {
+    "src": "/products/horology-13.jpg",
+    "alt": "A bare pocket watch movement of brass and steel, cased for display rather than for wear",
+    "licence": "CC BY 4.0",
+    "author": "Waltham Watch Company",
+    "source": "https://commons.wikimedia.org/wiki/File:Pocket_watch_movement_(AM_2004.51.45-3).jpg"
+  },
+  "aur-217": {
+    "src": "/products/horology-14.jpg",
+    "alt": "A two-part metal display case opened to show the pocket watch movement held inside it",
+    "licence": "CC BY 4.0",
+    "author": "Waltham Watch Company",
+    "source": "https://commons.wikimedia.org/wiki/File:Pocket_watch_movement_(AM_2004.51.45-4).jpg"
+  },
+  "aur-218": {
+    "src": "/products/horology-15.jpg",
+    "alt": "An eighteenth-century French fusee pocket watch movement with its chain and pierced cock",
+    "licence": "CC BY-SA 4.0",
+    "author": "KeepHumble",
+    "source": "https://commons.wikimedia.org/wiki/File:Signed_Pocket_Watch_Movement_by_Le_Roi_%26_Fils.jpg"
+  },
+  "aur-219": {
+    "src": "/products/horology-16.jpg",
+    "alt": "The iron frame and large brass wheels of a church tower clock movement",
+    "licence": "CC BY-SA 4.0",
+    "author": "Dietmar Rabich",
+    "source": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Heilig-Kreuz-Kirche,_Uhrwerk_--_2019_--_3056.jpg"
+  },
+  "aur-220": {
+    "src": "/products/horology-17.jpg",
+    "alt": "The striking train of a tower clock, its rack, snail cam and gong exposed on the iron frame",
+    "licence": "CC BY-SA 4.0",
+    "author": "Dietmar Rabich",
+    "source": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Heilig-Kreuz-Kirche,_Uhrwerk_--_2019_--_3061.jpg"
+  },
+  "aur-208": {
+    "src": "/products/horology-05.jpg",
+    "alt": "Close-up of a minute repeating pocket watch movement showing placement of the gong and hammers, manufactured by the Gallet family in 1905",
+    "licence": "Public domain",
+    "author": "Time Maven at English Wikipedia",
+    "source": "https://commons.wikimedia.org/wiki/File:Gallet_minute_repeater.jpg"
+  },
+  "aur-711": {
+    "src": "/products/eyewear-09.jpg",
+    "alt": "Spectacles, silver framed, and case belonged to donor's great grandmother",
+    "licence": "CC BY 4.0",
+    "author": "Unknown",
+    "source": "https://commons.wikimedia.org/wiki/File:Spectacles_(AM_1939.248-1).jpg"
+  },
+  "aur-713": {
+    "src": "/products/eyewear-11.jpg",
+    "alt": "Civil War era spectacles from the Powhatan H. Clarke collection, used 1863-1864. Note with spectacles, \"My father wore these spectacles during our Civil War, when better could not be procured -- in 18",
+    "licence": "Public domain",
+    "author": "Unknown authorUnknown author",
+    "source": "https://commons.wikimedia.org/wiki/File:Civil_War_Spectacles_of_Powhatan_H._Clarke.jpg"
+  },
+  "aur-718": {
+    "src": "/products/eyewear-16.jpg",
+    "alt": "American; Eyeglasses; Metal",
+    "licence": "CC0",
+    "author": "Creator:Hood and Tobey",
+    "source": "https://commons.wikimedia.org/wiki/File:Eyeglasses_MET_240735.jpg"
+  }
+}

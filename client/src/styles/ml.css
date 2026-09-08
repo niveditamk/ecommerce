@@ -1,0 +1,323 @@
+/* =============================================================
+   ML OPERATIONS CONSOLE
+   Same ink-on-paper system as the rest of the admin: no shadows,
+   no radii, hairline rules. The one device particular to this
+   console is the evidence block — a ruled aside that sits under
+   every figure and says where the figure came from.
+   ============================================================= */
+
+.ml { display: flex; flex-direction: column; gap: var(--spacing-30); }
+
+/* ---- masthead ---- */
+.ml__masthead {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--spacing-24); flex-wrap: wrap;
+  padding-bottom: var(--spacing-18);
+  border-bottom: 1px solid var(--color-obsidian-ink);
+}
+.ml__eyebrow {
+  display: block; font-size: var(--text-caption); letter-spacing: .18em;
+  text-transform: uppercase; color: var(--pearl-3);
+}
+.ml__title {
+  display: block; font-size: 22px; letter-spacing: .02em; color: var(--color-obsidian-ink);
+}
+.ml__creed {
+  font-size: var(--text-caption); color: var(--pearl-3); max-width: 46ch; text-align: right;
+}
+
+/* ---- console nav ---- */
+.ml__nav {
+  display: flex; flex-wrap: wrap; gap: var(--spacing-24);
+  border-bottom: 1px solid var(--line-2); padding-bottom: var(--spacing-12);
+  margin-top: calc(var(--spacing-30) * -1 + var(--spacing-12));
+}
+.ml__navlink {
+  font-size: var(--text-caption); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--pearl-3); padding-bottom: 6px; border-bottom: 1px solid transparent;
+}
+.ml__navlink:hover { color: var(--color-obsidian-ink); }
+.ml__navlink.is-on {
+  color: var(--color-obsidian-ink); border-bottom-color: var(--color-obsidian-ink);
+}
+
+.ml-head__note { text-transform: none; letter-spacing: .02em; margin-top: 4px; max-width: 72ch; }
+
+/* ---- the readiness gate ---- */
+.ml-gate {
+  display: grid; grid-template-columns: minmax(0, 200px) 1fr; gap: var(--spacing-30);
+  align-items: start; padding: var(--spacing-24) 0;
+  border-top: 1px solid var(--color-obsidian-ink);
+  border-bottom: 1px solid var(--line-2);
+}
+.ml-gate__figure { display: flex; flex-direction: column; gap: 2px; }
+.ml-gate__count {
+  font-family: var(--mono); font-size: 54px; line-height: 1;
+  color: var(--color-obsidian-ink); font-variant-numeric: tabular-nums;
+}
+.ml-gate__of {
+  font-size: var(--text-caption); letter-spacing: .06em; text-transform: uppercase; color: var(--pearl-3);
+}
+.ml-gate__body { display: flex; flex-direction: column; gap: var(--spacing-6); }
+.ml-gate__note { text-transform: none; letter-spacing: .01em; max-width: 78ch; }
+
+/* ---- panels ---- */
+.ml-panel {
+  display: flex; flex-direction: column; gap: var(--spacing-12);
+  padding-top: var(--spacing-18); border-top: 1px solid var(--line-2);
+}
+.ml-panel--flat { border-top: none; padding-top: 0; }
+.ml-panel__head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--spacing-18); flex-wrap: wrap;
+}
+.ml-panel__split {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-30);
+}
+.ml-panel__note {
+  text-transform: none; letter-spacing: .01em; color: var(--pearl-3); max-width: 80ch;
+}
+
+/* ---- confidence ----
+   Deliberately not a traffic light: the states are about how much
+   evidence there is, not about good and bad. */
+.ml-conf { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-caption); }
+.ml-conf__dot {
+  width: 7px; height: 7px; flex: none; border: 1px solid var(--color-obsidian-ink);
+}
+.ml-conf--high .ml-conf__dot { background: var(--color-obsidian-ink); }
+.ml-conf--medium .ml-conf__dot {
+  background: linear-gradient(to right, var(--color-obsidian-ink) 50%, transparent 50%);
+}
+.ml-conf--low .ml-conf__dot { background: transparent; }
+.ml-conf--insufficient .ml-conf__dot,
+.ml-conf--unknown .ml-conf__dot { border-style: dashed; background: transparent; }
+.ml-conf__label { letter-spacing: .04em; text-transform: uppercase; color: var(--color-obsidian-ink); }
+.ml-conf__note { color: var(--pearl-3); text-transform: none; letter-spacing: .01em; }
+
+/* ---- evidence: the signature device ---- */
+/* --color-eucalyptus-mist was declared in no stylesheet, so the border-left
+   declaration was dropped and the console's "signature device" marked its
+   evidence blocks with nothing. --success is the existing token for a
+   grounded, measured statement. */
+.ml-evidence {
+  border-left: 2px solid var(--success);
+  padding-left: var(--spacing-12); margin-top: var(--spacing-6);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.ml-evidence ul { display: flex; flex-direction: column; gap: 3px; }
+.ml-evidence li {
+  font-size: var(--text-caption); color: var(--pearl-2); line-height: 1.55; max-width: 84ch;
+}
+/* Decorative dash, not content — the lighter token is right here. */
+.ml-evidence li::before { content: "— "; color: var(--pearl-4); }
+
+/* ---- risk ---- */
+.ml-risk {
+  font-size: var(--text-caption); letter-spacing: .08em; text-transform: uppercase;
+  padding: 2px 6px; border: 1px solid currentColor; white-space: nowrap;
+}
+.ml-risk--out { color: var(--error); }
+.ml-risk--high { color: var(--error); border-style: solid; }
+.ml-risk--medium { color: var(--warning); }
+.ml-risk--unknown { color: var(--pearl-3); border-style: dashed; }
+.ml-risk--low { color: var(--success); }
+
+/* ---- daily series ---- */
+.ml-series { display: flex; flex-direction: column; gap: 6px; }
+.ml-series svg { width: 100%; display: block; }
+.ml-series__axis { stroke: var(--line-2); stroke-width: 1; }
+.ml-series__line { fill: none; stroke: var(--color-obsidian-ink); stroke-width: 1; }
+.ml-series__censored { stroke: var(--error); stroke-width: 2; }
+.ml-series__key {
+  display: inline-block; width: 2px; height: 8px; background: var(--error); vertical-align: -1px;
+}
+
+/* ---- metrics ---- */
+.ml-metrics { display: flex; flex-direction: column; gap: var(--spacing-6); }
+.ml-metrics__row {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px var(--spacing-12);
+  padding-bottom: var(--spacing-6); border-bottom: 1px solid var(--line-2);
+}
+.ml-metrics__row dt { font-size: var(--text-caption); color: var(--color-obsidian-ink); }
+.ml-metrics__row dd { font-variant-numeric: tabular-nums; text-align: right; }
+.ml-metrics__row p { grid-column: 1 / -1; color: var(--pearl-3); text-transform: none; letter-spacing: .01em; }
+
+/* ---- cards ---- */
+.ml-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--line-2); }
+.ml-card {
+  background: var(--color-paper); padding: var(--spacing-18);
+  display: flex; flex-direction: column; gap: var(--spacing-6);
+}
+.ml-card__figure { font-family: var(--mono); font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.ml-card__note { text-transform: none; letter-spacing: .01em; color: var(--pearl-3); }
+
+/* ---- tallies, mixes, feeds ---- */
+.ml-tally { display: flex; flex-direction: column; gap: 4px; }
+.ml-tally li { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-12); }
+.ml-tally--wide { flex-direction: row; flex-wrap: wrap; gap: var(--spacing-18); }
+.ml-tally--wide li { gap: 6px; }
+
+.ml-mix { display: flex; flex-direction: column; gap: 3px; font-size: var(--text-caption); }
+.ml-mix .mono { color: var(--color-obsidian-ink); }
+
+.ml-feed { display: flex; flex-direction: column; gap: 5px; }
+.ml-feed li { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.ml-runs { display: flex; flex-direction: column; gap: 1px; background: var(--line-2); }
+.ml-runs li {
+  background: var(--color-paper); padding: var(--spacing-6) 0;
+  display: flex; align-items: baseline; gap: var(--spacing-12); flex-wrap: wrap;
+}
+.ml-runs__when { margin-left: auto; color: var(--pearl-3); }
+
+.ml-run, .ml-dec {
+  font-size: var(--text-caption); letter-spacing: .08em; text-transform: uppercase;
+  padding: 1px 5px; border: 1px solid currentColor; white-space: nowrap;
+}
+.ml-run--succeeded { color: var(--success); }
+.ml-run--skipped { color: var(--warning); }
+.ml-run--failed { color: var(--error); }
+.ml-run--running { color: var(--info); }
+.ml-dec--approved { color: var(--success); }
+.ml-dec--modified { color: var(--warning); }
+.ml-dec--rejected { color: var(--error); }
+
+/* ---- registry ---- */
+.ml-models { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1px; background: var(--line-2); }
+.ml-model {
+  background: var(--color-paper); padding: var(--spacing-18);
+  display: flex; flex-direction: column; gap: var(--spacing-6);
+}
+.ml-model__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--spacing-12); flex-wrap: wrap;
+}
+.ml-model__head .mono { flex: none; }
+.ml-model__target { text-transform: none; letter-spacing: .01em; color: var(--pearl-2); }
+.ml-model__facts { display: flex; flex-wrap: wrap; gap: var(--spacing-18); }
+.ml-model__facts > div { display: flex; flex-direction: column; gap: 1px; }
+.ml-model__facts dt {
+  font-size: var(--text-caption); letter-spacing: .06em; text-transform: uppercase; color: var(--pearl-3);
+}
+.ml-model__facts dd { font-size: 13px; color: var(--color-obsidian-ink); }
+.ml-model__facts--stack { flex-direction: column; gap: var(--spacing-6); }
+.ml-model__state { text-transform: none; letter-spacing: .01em; color: var(--pearl-3); }
+
+.ml-serving {
+  margin-left: 6px; font-family: var(--sans); font-size: var(--text-caption);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--success);
+}
+.tbl tr.is-active > td { background: var(--color-bone); }
+
+.ml-algos { display: flex; flex-direction: column; gap: 3px; }
+.ml-algos li { display: flex; justify-content: space-between; gap: var(--spacing-18); font-size: 13px; }
+
+/* ---- forecast explorer ---- */
+.ml-picker select { min-width: 240px; }
+
+.ml-forecast {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-30);
+  padding: var(--spacing-24) 0; border-top: 1px solid var(--color-obsidian-ink);
+  border-bottom: 1px solid var(--line-2);
+}
+.ml-forecast__figure { display: flex; flex-direction: column; gap: 4px; }
+.ml-forecast__units {
+  font-size: 54px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--color-obsidian-ink);
+}
+.ml-forecast__horizons { display: flex; flex-direction: column; gap: var(--spacing-6); }
+
+.ml-horizons { display: flex; gap: 1px; background: var(--line-2); width: fit-content; }
+.ml-horizons__btn {
+  background: var(--color-paper); padding: 5px 11px;
+  font-family: var(--mono); font-size: var(--text-caption); color: var(--pearl-3);
+}
+.ml-horizons__btn:hover { color: var(--color-obsidian-ink); }
+.ml-horizons__btn.is-on { background: var(--color-obsidian-ink); color: var(--color-paper); }
+
+.ml-horizontable td { padding: 4px 0; }
+.ml-horizontable tr.is-active td { color: var(--color-obsidian-ink); }
+
+/* ---- boards ---- */
+.ml-tabs { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line-2); width: fit-content; }
+.ml-tabs__btn {
+  background: var(--color-paper); padding: 7px 14px;
+  font-size: var(--text-caption); letter-spacing: .06em; text-transform: uppercase; color: var(--pearl-3);
+}
+.ml-tabs__btn:hover { color: var(--color-obsidian-ink); }
+.ml-tabs__btn.is-on { background: var(--color-obsidian-ink); color: var(--color-paper); }
+
+.ml-boardhead {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: var(--spacing-24); flex-wrap: wrap; padding-bottom: var(--spacing-12);
+  border-bottom: 1px solid var(--line-2);
+}
+.ml-boardhead p { text-transform: none; letter-spacing: .01em; max-width: 74ch; }
+.ml-lead select { min-width: 150px; }
+
+.ml-proposals { display: flex; flex-direction: column; gap: 1px; background: var(--line-2); }
+.ml-proposal {
+  background: var(--color-paper); padding: var(--spacing-18) 0;
+  display: flex; flex-direction: column; gap: var(--spacing-12);
+}
+.ml-proposal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--spacing-18); }
+.ml-proposal__qty { text-align: right; }
+.ml-proposal__qty p { font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums; }
+.ml-proposal__facts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-18); }
+
+.ml-sku { display: block; color: var(--pearl-3); }
+.ml-reason { text-transform: none; letter-spacing: .01em; max-width: 46ch; }
+
+.ml-seg {
+  font-size: var(--text-caption); letter-spacing: .06em; text-transform: uppercase;
+  padding: 1px 5px; border: 1px solid var(--line-2); color: var(--pearl-2);
+}
+.ml-seg--champion { color: var(--color-obsidian-ink); border-color: var(--color-obsidian-ink); }
+.ml-seg--lapsed { color: var(--pearl-3); border-style: dashed; }
+
+/* ---- decision ---- */
+.ml-decision { display: flex; flex-direction: column; gap: var(--spacing-6); }
+.ml-decision__actions { display: flex; flex-wrap: wrap; gap: var(--spacing-12); align-items: center; }
+.ml-decision__form {
+  display: flex; flex-wrap: wrap; gap: var(--spacing-12); align-items: flex-end;
+  padding: var(--spacing-12); background: var(--color-bone);
+}
+.ml-decision__form .field { flex: 1 1 220px; }
+.ml-decided { color: var(--success); }
+
+/* ---- training data ---- */
+.ml-synthetic { text-transform: none; letter-spacing: .01em; line-height: 1.6; }
+
+.ml-provenance { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--line-2); }
+.ml-prov {
+  background: var(--color-paper); padding: var(--spacing-18);
+  display: flex; flex-direction: column; gap: 2px; opacity: .55;
+}
+.ml-prov.is-on { opacity: 1; }
+.ml-prov--synthetic { border-top: 2px solid var(--warning); }
+.ml-prov__count { font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+
+.ml-datacontrols {
+  display: flex; flex-wrap: wrap; gap: var(--spacing-24); align-items: flex-end;
+  padding: var(--spacing-18); background: var(--color-bone);
+}
+.ml-datacontrols__actions { display: flex; flex-wrap: wrap; gap: var(--spacing-12); align-items: center; }
+.ml-confirm { display: flex; flex-wrap: wrap; gap: var(--spacing-12); align-items: center; }
+.ml-confirm .tiny { text-transform: none; letter-spacing: .01em; }
+
+.ml-ready {
+  font-size: var(--text-caption); letter-spacing: .08em; text-transform: uppercase; color: var(--success);
+}
+
+/* ---- narrow ---- */
+@media (max-width: 720px) {
+  .ml__masthead { flex-direction: column; align-items: flex-start; gap: var(--spacing-6); }
+  .ml__creed { text-align: left; }
+  .ml-gate { grid-template-columns: 1fr; gap: var(--spacing-12); }
+  .ml-gate__count { font-size: 42px; }
+  .ml-forecast__units { font-size: 42px; }
+  .ml-boardhead { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ml__navlink, .ml-tabs__btn, .ml-horizons__btn { transition: color .18s ease, background .18s ease; }
+}

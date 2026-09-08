@@ -1,0 +1,1252 @@
+/* =============================================================
+   AURELIS // RETRO-FUTURISTIC DIGITAL COMMERCE TERMINAL
+   A futuristic shopping terminal designed in an alternate version of the 1980s.
+   Warm off-white chassis, deep charcoal ink, industrial electric green accents,
+   monospaced technical metadata, barcode motifs, and tactile hardware controls.
+   ============================================================= */
+
+/* The font request that stood here duplicated index.html's — the same two
+   families, fetched twice — and a CSS @import is render-blocking and only
+   starts after this sheet has itself downloaded, so it delayed first paint
+   for nothing. It also omitted the display serif entirely. All four faces
+   are requested once, in the document head, where the preconnect is. */
+
+:root {
+  /* ---- Ground & Machine Chassis ---- */
+  --color-paper: #F6F5F1;
+  --color-paper-light: #FFFFFF;
+  --color-bone: #ECE9E1;
+  --color-stone: #E1DDD4;
+  --color-sand: #D5D0C5;
+
+  --color-terminal-screen: #0F1113;
+  --color-obsidian: #121315;
+  --color-obsidian-ink: #121315;
+  --color-obsidian-light: #1E2024;
+
+  /* ---- Ink & Presence ---- */
+  --pearl: #121315;
+  --pearl-2: rgba(18, 19, 21, 0.88);
+  --pearl-3: rgba(18, 19, 21, 0.65);
+  /* 0.44 composites to rgb(151,151,152): 2.92:1 on paper and on white,
+     well under the 4.5:1 body-text floor. It is not decorative — it sets
+     .barcode-meta on 27 nodes and, worse, the struck-through prices. 0.60
+     measures 4.73:1 on --color-paper and 4.89:1 on white while staying
+     visibly the quietest tier in the ramp. */
+  --pearl-4: rgba(18, 19, 21, 0.60);
+  --pearl-5: rgba(18, 19, 21, 0.14);
+
+  /* ---- Surfaces ---- */
+  --ink-950: #FFFFFF;
+  --ink-900: #F6F5F1;
+  --ink-850: #ECE9E1;
+  --ink-800: #E1DDD4;
+
+  /* ---- Accent: brass ----
+     #00D664 measured at 100% saturation (hue 148, L 42%). Two problems, one
+     measurable and one about the goods. Measurable: a fully saturated accent
+     is what the design guidance rules out above 80%, and its dark variant
+     sat at 2.79:1 behind "IN STOCK". About the goods: this house sells 18k
+     gold, brass instruments and pit-tanned hide, and an electric green
+     borrowed from a CRT relates to none of it — the variables were still
+     named --gold underneath, which is the tell.
+
+     Brass keeps the precision-instrument register the layout is built on and
+     belongs to the objects. Measured on --color-paper #F6F5F1: the text tone
+     5.24:1, the fill 3.31:1 for non-text use with near-black label text on it
+     at 6.21:1. The names below stay so the 1,195 lines built on them keep
+     working; only the values move. */
+  --color-terminal-green: #B08D3F;
+  --color-terminal-green-hover: #C9A86A;
+  --color-terminal-green-text: #7D6224;
+  --color-terminal-green-dim: rgba(176, 141, 63, 0.14);
+  --color-terminal-green-glow: 0 0 16px rgba(176, 141, 63, 0.30);
+
+  --gold: var(--color-terminal-green);
+  --gold-hi: var(--color-terminal-green-hover);
+  --gold-2: #8A6C2A;
+  --gold-text: var(--color-terminal-green-text);
+  --gold-3: #B08D3F;
+  --gold-ink: #0C0D0E;
+  --color-gold-accent: var(--color-terminal-green);
+
+  /* ---- Status (High-Precision Terminal Alerts) ---- */
+  --success: #04713C;
+  --warning: #C76B00;
+  /* #D32F2F measured 4.42:1 behind "[ ONLY N LEFT ]" on its own tinted
+     ground — just under. This clears it at 5.02:1. */
+  --error: #C02626;
+  --info: #006699;
+  --jade: #04713C;
+  --alert: #D32F2F;
+
+  /* ---- Technical Hairlines & Borders ---- */
+  --line: rgba(18, 19, 21, 0.14);
+  --line-2: rgba(18, 19, 21, 0.08);
+  --line-dark: rgba(18, 19, 21, 0.28);
+  --line-control: rgba(18, 19, 21, 0.48);
+  --line-green: rgba(176, 141, 63, 0.45);
+  --line-gold: rgba(176, 141, 63, 0.40);
+
+  /* ---- Geometry (Sharp, Industrial, Minimal Radius) ---- */
+  --r-xs: 1px;
+  --r-sm: 2px;
+  --r-md: 3px;
+  --r-lg: 4px;
+  --r-xl: 6px;
+  --r-2xl: 8px;
+  --r-pill: 999px;
+
+  /* ---- Typography (Grotesk + Technical Monospace) ---- */
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* --font-grotesk was referenced by three rules in this sheet and by
+     seven components — Home, Product, Cart, MiniCart, SearchLayer,
+     checkout and Confirmation — and declared in no stylesheet at all.
+     Every one of those font-family declarations was being dropped, so
+     the hero heading and the cart inherited whatever was above them
+     rather than the face the markup asked for. */
+  --font-grotesk: var(--font-sans);
+
+  /* index.html downloads Fraunces and Cormorant Garamond, and this
+     sheet loads last and pointed both serif roles at Space Grotesk —
+     so two families were fetched on every page load and used by
+     nothing. The serif roles now name the serif that is actually
+     delivered. --font-display stays grotesk: the terminal hero is
+     deliberately set in it. */
+  --font-serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+
+  /* Referenced by this sheet and declared nowhere; the hairline it
+     names is the same one --line already describes. */
+  --color-ink-border: var(--line);
+
+  /* The restored-class CSS in views.css was written against
+     maximalism.css, which has since been deleted. Five of its tokens
+     survived in those rules and now resolve to nothing, which silently
+     drops each declaration — the exact failure that cost .glass its
+     background. Mapped onto this sheet's own palette so the rules
+     land, in the surface order they assume: paper is the ground,
+     marble sits above it, bone is the recessed step. */
+  --mx-paper: var(--color-paper);
+  --mx-marble: #F1EFEA;
+  --mx-bone: var(--color-bone);
+  --mx-border: var(--line);
+  --mx-line-dark: var(--line-strong, rgba(18, 19, 21, 0.28));
+  --mx-gold-text: var(--color-terminal-green-text);
+
+  --sans: var(--font-sans);
+  --serif: var(--font-sans);
+  --mono: var(--font-mono);
+
+  /* ---- Shadows & Lighting ---- */
+  --sh-1: 0 1px 3px rgba(18, 19, 21, 0.06), 0 0 0 1px rgba(18, 19, 21, 0.05);
+  --sh-2: 0 4px 14px rgba(18, 19, 21, 0.08), 0 0 0 1px rgba(18, 19, 21, 0.08);
+  --sh-3: 0 12px 32px rgba(18, 19, 21, 0.12), 0 0 0 1px rgba(18, 19, 21, 0.10);
+  --sh-drawer: -6px 0 28px rgba(18, 19, 21, 0.16);
+  --sh-gold: 0 0 20px rgba(176, 141, 63, 0.28);
+  --sh-green: 0 0 16px rgba(176, 141, 63, 0.35);
+
+  /* ---- Terminal Specifics ---- */
+  --terminal-grid-size: 28px;
+}
+
+/* =============================================================
+   BODY & SUBTLE RETRO-FUTURISTIC GRID
+   ============================================================= */
+body {
+  background-color: var(--color-paper);
+  background-image: 
+    radial-gradient(rgba(18, 19, 21, 0.07) 1px, transparent 1px);
+  background-size: var(--terminal-grid-size) var(--terminal-grid-size);
+  background-attachment: fixed;
+  color: var(--pearl);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================================
+   TYPOGRAPHY CONTRAST (PRODUCT / PRICE / METADATA / STATUS)
+   ============================================================= */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--pearl);
+}
+
+.hero__title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  line-height: 1.02;
+}
+
+.eyebrow,
+.tagline,
+.card__cat,
+.field__label,
+.terminal-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+.eyebrow--green,
+.terminal-status-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-terminal-green-text);
+}
+
+/* Prices are always strict monospace numbers */
+.price,
+.card__price,
+.drawer__total-val,
+.spec-value-price {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--pearl);
+}
+
+/* =============================================================
+   TACTILE HARDWARE BUTTONS
+   ============================================================= */
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--r-sm);
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.15s ease,
+              box-shadow 0.15s ease,
+              border-color 0.15s ease;
+  position: relative;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn--primary,
+.btn--gold {
+  background: var(--color-terminal-green);
+  color: #0B0D0E !important;
+  border: 1px solid #8A6C2A;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.btn--primary:hover,
+.btn--gold:hover {
+  background: var(--color-terminal-green-hover);
+  box-shadow: 0 2px 8px rgba(176, 141, 63, 0.40);
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--pearl);
+  border: 1px solid var(--line-control);
+}
+
+.btn--outline:hover {
+  background: var(--pearl);
+  color: var(--color-paper) !important;
+  border-color: var(--pearl);
+  transform: translateY(-1px);
+}
+
+.btn--dark {
+  background: var(--color-obsidian);
+  color: #FFFFFF !important;
+  border: 1px solid var(--color-obsidian);
+}
+
+.btn--dark:hover {
+  background: #000000;
+  border-color: #000000;
+  transform: translateY(-1px);
+}
+
+/* =============================================================
+   TERMINAL BADGES & STATUS TAGS
+   ============================================================= */
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line);
+  background: var(--color-paper-light);
+  color: var(--pearl-2);
+}
+
+/* These grounds were a 14% tint, so the badge took the colour of
+   whatever sat behind it. On the hero's dark caption bar that composited
+   to rgb(40,36,27) and the dark brass label fell to 2.68:1. An opaque
+   ground makes the badge carry its own contrast wherever it is placed:
+   5.02:1 on light sections and on dark ones alike. */
+.badge--green,
+.badge--jade,
+.badge--gold {
+  background: #F2EAD8;
+  border-color: rgba(125, 98, 36, 0.32);
+  color: #6E561F;
+}
+
+.badge--alert {
+  background: rgba(211, 47, 47, 0.08);
+  border-color: rgba(211, 47, 47, 0.35);
+  color: var(--error);
+}
+
+.badge--terminal {
+  background: var(--color-obsidian);
+  color: var(--color-terminal-green);
+  border-color: var(--color-terminal-green);
+}
+
+/* =============================================================
+   BARCODE MOTIF COMPONENT
+   ============================================================= */
+.barcode-motif {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+  opacity: 0.75;
+}
+
+.barcode-bar {
+  background-color: var(--pearl);
+  height: 100%;
+}
+
+.barcode-meta {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--pearl-4);
+}
+
+/* =============================================================
+   RETRO-FUTURISTIC PRODUCT CARD
+   ============================================================= */
+.card {
+  background: var(--color-paper-light);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-dark);
+  box-shadow: 0 8px 24px rgba(18, 19, 21, 0.08);
+}
+
+.card__top-index {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--pearl-3);
+  letter-spacing: 0.05em;
+}
+
+.card__media {
+  background: var(--color-bone);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: 14px;
+}
+
+.card__name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--pearl);
+  margin-top: 2px;
+  margin-bottom: 4px;
+  text-decoration: none;
+  line-height: 1.25;
+}
+
+.card__name:hover {
+  color: var(--color-terminal-green-text);
+}
+
+.card__meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--pearl-3);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-2);
+}
+
+.card__price {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pearl);
+}
+
+.card__price s {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--pearl-4);
+  margin-right: 6px;
+}
+
+.card__quick {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* =============================================================
+   TERMINAL NAVIGATION (CONTROL PANEL)
+   ============================================================= */
+.site-header {
+  background: rgba(246, 245, 241, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.announce {
+  background: var(--color-obsidian);
+  color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.announce b {
+  color: var(--color-terminal-green);
+  font-weight: 600;
+}
+
+.nav__link {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pearl-2);
+}
+
+.nav__link.is-active,
+.nav__link:hover {
+  color: var(--color-terminal-green-text);
+}
+
+.nav__link.is-active::after {
+  background: var(--color-terminal-green);
+}
+
+.brand__mark {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 1.25rem;
+}
+
+.brand__sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pearl-3);
+}
+
+/* =============================================================
+   TERMINAL SEARCH LAYER (CATALOGUE QUERY DATABASE)
+   ============================================================= */
+.search-layer {
+  background: rgba(18, 19, 21, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.search-layer__inner {
+  background: var(--color-paper);
+  border: 1px solid var(--line-dark);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  border-radius: var(--r-sm);
+}
+
+.search-box {
+  background: var(--color-paper-light);
+  border-bottom: 1px solid var(--line);
+}
+
+.search-box input {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: var(--pearl);
+}
+
+.search-box input::placeholder {
+  color: var(--pearl-4);
+  font-style: normal;
+}
+
+.search-terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--color-obsidian);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.search-terminal-header .status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-terminal-green);
+  box-shadow: 0 0 6px var(--color-terminal-green);
+  margin-right: 8px;
+}
+
+/* =============================================================
+   TRANSACTION CONSOLE (CART & CHECKOUT)
+   ============================================================= */
+.drawer--cart {
+  background: var(--color-paper);
+  border-left: 1px solid var(--line-dark);
+}
+
+.drawer__head {
+  border-bottom: 1px solid var(--line);
+  background: var(--color-paper-light);
+}
+
+.console-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 6px 0;
+  color: var(--pearl-2);
+}
+
+.console-dots {
+  flex-grow: 1;
+  border-bottom: 1px dotted var(--pearl-4);
+  margin: 0 10px;
+  position: relative;
+  top: -4px;
+}
+
+.console-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding-top: 14px;
+  margin-top: 8px;
+  border-top: 1px solid var(--line-dark);
+  color: var(--pearl);
+}
+
+/* =============================================================
+   TECHNICAL BLUEPRINT SCHEMATIC ENGINE (Option A Fallback)
+   ============================================================= */
+.blueprint-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #ECEAE4;
+  background-image: 
+    linear-gradient(rgba(18, 19, 21, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 19, 21, 0.06) 1px, transparent 1px);
+  background-size: 14px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.blueprint-corners {
+  position: absolute;
+  inset: 6px;
+  pointer-events: none;
+  border: 1px solid rgba(18, 19, 21, 0.12);
+}
+
+.blueprint-corners::before {
+  content: ' ';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--color-terminal-green-text);
+  border-left: 2px solid var(--color-terminal-green-text);
+}
+
+.blueprint-corners::after {
+  content: ' ';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid var(--color-terminal-green-text);
+  border-right: 2px solid var(--color-terminal-green-text);
+}
+
+.blueprint-svg-wrap {
+  position: relative;
+  width: 78%;
+  height: 78%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blueprint-svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--pearl);
+  stroke-width: 1.4;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.blueprint-meta {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--pearl-3);
+  border-top: 1px solid rgba(18, 19, 21, 0.08);
+  padding-top: 4px;
+}
+
+.blueprint-tag {
+  color: var(--color-terminal-green-text);
+  font-weight: 700;
+}
+
+/* =============================================================
+   HOMEPAGE TERMINAL ARCHITECTURE
+   ============================================================= */
+.hero--terminal {
+  position: relative;
+  background-color: var(--color-paper);
+  background-image: 
+    linear-gradient(rgba(18, 19, 21, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 19, 21, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  border-bottom: 1px solid var(--line-dark);
+  padding-block: clamp(32px, 5vw, 64px);
+}
+
+.terminal-telemetry-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
+  padding: 8px 16px;
+  background: var(--color-paper-light);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--pearl-3);
+}
+
+.telemetry-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-chassis {
+  position: relative;
+  background: #EAE8E2;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-sm);
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.hero-chassis__bracket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.hero-chassis__bracket--tl {
+  top: 4px;
+  left: 4px;
+  border-top: 2px solid var(--color-terminal-green-text);
+  border-left: 2px solid var(--color-terminal-green-text);
+}
+
+.hero-chassis__bracket--tr {
+  top: 4px;
+  right: 4px;
+  border-top: 2px solid var(--color-terminal-green-text);
+  border-right: 2px solid var(--color-terminal-green-text);
+}
+
+.hero-chassis__bracket--bl {
+  bottom: 4px;
+  left: 4px;
+  border-bottom: 2px solid var(--color-terminal-green-text);
+  border-left: 2px solid var(--color-terminal-green-text);
+}
+
+.hero-chassis__bracket--br {
+  bottom: 4px;
+  right: 4px;
+  border-bottom: 2px solid var(--color-terminal-green-text);
+  border-right: 2px solid var(--color-terminal-green-text);
+}
+
+.hero-chassis__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-paper-light);
+  border: 1px solid var(--line);
+}
+
+.hero-terminal-caption {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--color-obsidian);
+  color: #FFFFFF;
+  border-radius: var(--r-xs);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+}
+
+.hero-terminal-caption__title {
+  font-family: var(--font-grotesk);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+}
+
+.hero-terminal-caption__sub {
+  font-size: 0.68rem;
+  color: var(--color-terminal-green);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-terminal-caption__price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-terminal-green);
+}
+
+/* Protocol Grid (Trust Standards) */
+.protocol-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .protocol-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .protocol-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.protocol-card {
+  background: var(--color-paper-light);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.protocol-card:hover {
+  border-color: var(--line-dark);
+  transform: translateY(-2px);
+}
+
+.protocol-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--color-terminal-green-text);
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+
+.protocol-card__title {
+  font-family: var(--font-grotesk);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--pearl);
+}
+
+.protocol-card__body {
+  font-size: 0.8rem;
+  color: var(--pearl-3);
+  line-height: 1.45;
+}
+
+/* Discipline Showcase Grid */
+.discipline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .discipline-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.discipline-card {
+  background: var(--color-paper);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.discipline-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.discipline-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: var(--color-paper-light);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--pearl-3);
+  letter-spacing: 0.06em;
+}
+
+.discipline-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #ECEAE4;
+  border-bottom: 1px solid var(--line);
+}
+
+.discipline-card__body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+.discipline-card__title {
+  font-family: var(--font-grotesk);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--pearl);
+  margin-top: 4px;
+}
+
+.discipline-card__desc {
+  font-size: 0.85rem;
+  color: var(--pearl-2);
+  line-height: 1.5;
+}
+
+/* Dispatch Newsletter Terminal */
+.dispatch-terminal {
+  background: var(--color-obsidian);
+  color: #FFFFFF;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-sm);
+  padding: clamp(24px, 4vw, 48px);
+  position: relative;
+  overflow: hidden;
+}
+
+.dispatch-terminal::before {
+  content: ' ';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+
+.dispatch-terminal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--color-terminal-green);
+  margin-bottom: 12px;
+}
+
+.dispatch-terminal__title {
+  font-family: var(--font-grotesk);
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  max-width: 26ch;
+}
+
+.dispatch-terminal__lede {
+  font-family: var(--font-grotesk);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 52ch;
+  line-height: 1.6;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.dispatch-form {
+  display: flex;
+  gap: 10px;
+  max-width: 520px;
+}
+
+@media (max-width: 540px) {
+  .dispatch-form {
+    flex-direction: column;
+  }
+}
+
+.dispatch-input {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-xs);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 10px 14px;
+}
+
+.dispatch-input:focus {
+  outline: none;
+  border-color: var(--color-terminal-green);
+  box-shadow: 0 0 0 2px rgba(176, 141, 63, 0.25);
+}
+
+/* =============================================================
+   PDP SPECIMEN DOSSIER & TECHNICAL SPEC TABLE
+   ============================================================= */
+.pdp-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin-top: 12px;
+}
+
+.pdp-spec-table tr {
+  border-bottom: 1px solid var(--line);
+}
+
+.pdp-spec-table td {
+  padding: 8px 6px;
+}
+
+.pdp-spec-table td:first-child {
+  color: var(--pearl-3);
+  font-weight: 600;
+  width: 38%;
+  text-transform: uppercase;
+}
+
+.pdp-spec-table td:last-child {
+  color: var(--pearl);
+  font-weight: 500;
+}
+
+/* =============================================================
+   TERMINAL TRANSACTION & CONSOLE PANELS
+   ============================================================= */
+.glass,
+.glass--pane,
+.glass--soft,
+.glass--deep,
+.glass--gold,
+.panel {
+  background: var(--color-paper-light) !important;
+  border: 1px solid var(--color-ink-border) !important;
+  border-radius: var(--r-sm) !important;
+  box-shadow: var(--sh-1) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.panel {
+  padding: 24px;
+}
+
+.panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Hardware Tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--line-control);
+  margin-bottom: 20px;
+}
+
+.tabs button,
+.tabs [role="tab"] {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 10px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--pearl-3);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tabs button:hover,
+.tabs [role="tab"]:hover {
+  color: var(--pearl);
+}
+
+.tabs button.is-on,
+.tabs [role="tab"][aria-selected="true"] {
+  color: var(--pearl);
+  border-bottom-color: var(--pearl);
+}
+
+/* Hardware Radio Option Cards */
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line-control);
+  border-radius: var(--r-sm);
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.opt:hover {
+  border-color: var(--pearl-2);
+}
+
+.opt.is-on {
+  border-color: var(--pearl);
+  background: var(--color-paper);
+  box-shadow: inset 2px 0 0 var(--color-terminal-green);
+}
+
+.opt__title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--pearl);
+}
+
+.opt__meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--pearl-3);
+  margin-top: 3px;
+}
+
+.opt__price {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--pearl);
+  margin-left: auto;
+}
+
+/* Form Fields & Precision Inputs */
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pearl-2);
+  margin-bottom: 6px;
+}
+
+.field .input,
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
+.field input[type="tel"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--pearl);
+  background: #FFFFFF;
+  border: 1px solid var(--line-control);
+  border-radius: var(--r-sm);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field .input:focus,
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-terminal-green);
+  box-shadow: 0 0 0 1px var(--color-terminal-green);
+}
+
+.check-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--pearl);
+  font-family: var(--font-sans);
+}
+
+.check-label input[type="checkbox"],
+.check-label input[type="radio"] {
+  accent-color: var(--color-terminal-green);
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+/* =============================================================
+   ACCESSIBILITY & REDUCED MOTION
+   ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,24 @@
+# =============================================================
+# Aurelis ML service — Python 3.14
+#
+# Pinned exactly, not to a range. A forecast is compared against
+# the JavaScript baselines on the same leaderboard, so a floating
+# minor version that changes a default in scikit-learn would show
+# up as "Python got better this week" rather than as what it is.
+#
+# Deliberately absent: pandas and statsmodels. numpy handles the
+# arrays and scikit-learn handles the models; pandas would add
+# roughly 100MB to an install that is already the reason this
+# service cannot sit on a small always-on instance. Do not import
+# either — they are not here and will not be added.
+#
+# The virtual environment already exists at .venv/. Recreate it
+# only from scratch:
+#   python -m venv .venv
+#   .venv/Scripts/python.exe -m pip install -r requirements.txt
+# =============================================================
+
+numpy==2.5.2
+scipy==1.18.1
+scikit-learn==1.9.0
+flask==3.1.3

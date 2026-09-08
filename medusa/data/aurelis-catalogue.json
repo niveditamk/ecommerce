@@ -1,0 +1,1108 @@
+{
+  "categories": [
+    {
+      "slug": "jewellery",
+      "name": "Fine Jewellery",
+      "description": "Hand-set stones in recycled 18k gold. Every piece bench-made in our Geneva atelier.",
+      "sub": [
+        "Rings",
+        "Necklaces",
+        "Cuffs &amp; Bangles"
+      ]
+    },
+    {
+      "slug": "horology",
+      "name": "Horology",
+      "description": "Mechanical calibres finished by hand, regulated in five positions over sixty days.",
+      "sub": [
+        "Automatic",
+        "Hand-Wound",
+        "Complications"
+      ]
+    },
+    {
+      "slug": "parfums",
+      "name": "Parfums Rares",
+      "description": "Extrait concentrations from Grasse, aged in oak for a minimum of eleven months.",
+      "sub": [
+        "Extrait de Parfum",
+        "Eau de Parfum",
+        "Discovery Sets"
+      ]
+    },
+    {
+      "slug": "leather",
+      "name": "Leather Atelier",
+      "description": "Full-grain hides, vegetable tanned for nine months, stitched by a single artisan.",
+      "sub": [
+        "Handbags",
+        "Travel",
+        "Small Leather Goods"
+      ]
+    },
+    {
+      "slug": "objets",
+      "name": "Objets &amp; Home",
+      "description": "Crystal, cire and lacquer for the interior. Made in numbered runs, never repeated.",
+      "sub": [
+        "Crystal",
+        "Candles",
+        "Desk"
+      ]
+    },
+    {
+      "slug": "silk",
+      "name": "Silk &amp; Cashmere",
+      "description": "Twill silk printed in forty-two screens; cashmere spun from Alashan winter fleece.",
+      "sub": [
+        "Scarves",
+        "Stoles"
+      ]
+    },
+    {
+      "slug": "eyewear",
+      "name": "Eyewear",
+      "description": "Italian acetate milled over eight weeks, paired with mineral glass lenses.",
+      "sub": [
+        "Sun",
+        "Titanium"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "handle": "aur-101",
+      "title": "Solstice Signet",
+      "category": "jewellery",
+      "subcategory": "Rings",
+      "price": 402500,
+      "compareAt": null,
+      "description": "A flat-shouldered signet carrying a single step-cut stone, cut to hold the low winter light.",
+      "story": "The Solstice began as a commission for an astronomer in Uppsala who wanted a ring that read the season. Our setter Marceline spent four months on the bezel geometry alone, angling the table by 2.4 degrees so the stone gathers light from below rather than above. It is the only ring in the house that must be set before it is polished.",
+      "material": "18k recycled yellow gold, 1.10ct step-cut citrine",
+      "care": "Wipe with the enclosed chamois. Remove before bathing. Complimentary re-polish annually.",
+      "edition": "Numbered to 120",
+      "year": 2024,
+      "sizes": [
+        "46",
+        "48",
+        "50",
+        "52",
+        "54",
+        "56",
+        "58"
+      ],
+      "colours": [
+        "Yellow Gold",
+        "White Gold",
+        "Blackened"
+      ],
+      "details": [
+        {
+          "k": "Metal",
+          "v": "18k recycled yellow gold, 12.4g"
+        },
+        {
+          "k": "Stone",
+          "v": "Step-cut citrine, 1.10ct, Zambian"
+        },
+        {
+          "k": "Setting",
+          "v": "Hand-cut bezel, closed back"
+        },
+        {
+          "k": "Band",
+          "v": "3.2mm, comfort profile"
+        },
+        {
+          "k": "Hallmark",
+          "v": "Geneva assay, maison punch"
+        }
+      ],
+      "tags": [
+        "gold",
+        "signet",
+        "citrine",
+        "ring"
+      ],
+      "badges": [
+        "Atelier"
+      ],
+      "stock": 4,
+      "reorderPoint": 5,
+      "image": "/products/aur-101.jpg"
+    },
+    {
+      "handle": "aur-102",
+      "title": "Nocturne Pendant",
+      "category": "jewellery",
+      "subcategory": "Necklaces",
+      "price": 273000,
+      "compareAt": null,
+      "description": "A graduated bead chain descending to a tapered tanzanite drop.",
+      "story": "Each of the forty-three beads is drawn to a different diameter, so the chain gathers weight as it falls. It sits differently on every neck, which is the point.",
+      "material": "18k white gold, 0.84ct tanzanite, 42cm graduated chain",
+      "care": "Store flat in the pouch provided. Avoid ultrasonic cleaning.",
+      "edition": "Numbered to 200",
+      "year": 2023,
+      "sizes": [],
+      "colours": [
+        "Tanzanite",
+        "Aquamarine"
+      ],
+      "details": [
+        {
+          "k": "Metal",
+          "v": "18k white gold, rhodium-free"
+        },
+        {
+          "k": "Stone",
+          "v": "Tanzanite, 0.84ct, D-block"
+        },
+        {
+          "k": "Length",
+          "v": "42cm, adjustable to 45cm"
+        },
+        {
+          "k": "Clasp",
+          "v": "Hidden box with double catch"
+        }
+      ],
+      "tags": [
+        "pendant",
+        "necklace",
+        "tanzanite"
+      ],
+      "badges": [
+        "New"
+      ],
+      "stock": 9,
+      "reorderPoint": 5,
+      "image": "/products/aur-102.jpg"
+    },
+    {
+      "handle": "aur-103",
+      "title": "Meridian Cuff",
+      "category": "jewellery",
+      "subcategory": "Cuffs &amp; Bangles",
+      "price": 531000,
+      "compareAt": null,
+      "description": "One continuous forged band, opened at the wrist and finished with rock-crystal terminals.",
+      "story": "Forged from a single billet over eleven days. The maker leaves the last hammer marks unpolished on the inner face &mdash; a signature the wearer alone sees.",
+      "material": "Solid platinum 950, hand-forged",
+      "care": "Platinum develops a patina by design. Re-finishing on request.",
+      "edition": "Numbered to 80",
+      "year": 2022,
+      "sizes": [
+        "Small",
+        "Medium",
+        "Large"
+      ],
+      "colours": [],
+      "details": [
+        {
+          "k": "Metal",
+          "v": "Platinum 950, 84g"
+        },
+        {
+          "k": "Terminals",
+          "v": "Rock crystal, hand-domed"
+        },
+        {
+          "k": "Width",
+          "v": "30mm tapering to 22mm"
+        },
+        {
+          "k": "Fit",
+          "v": "Adjustable +/- 6mm"
+        }
+      ],
+      "tags": [
+        "cuff",
+        "platinum",
+        "bangle"
+      ],
+      "badges": [
+        "Rare"
+      ],
+      "stock": 3,
+      "reorderPoint": 5,
+      "image": "/products/aur-103.jpg"
+    },
+    {
+      "handle": "aur-104",
+      "title": "Ember Band",
+      "category": "jewellery",
+      "subcategory": "Rings",
+      "price": 178500,
+      "compareAt": null,
+      "description": "An unadorned band with a soft brushed face and a mirror-polished inner wall.",
+      "story": "The simplest object we make and the hardest to finish. The transition between brushed and polished is done freehand, which is why two bands are never quite identical.",
+      "material": "18k rose gold, brushed finish",
+      "care": "Rose gold warms with wear. Re-brush annually if preferred.",
+      "edition": "Open series",
+      "year": 2025,
+      "sizes": [
+        "46",
+        "48",
+        "50",
+        "52",
+        "54",
+        "56",
+        "58",
+        "60"
+      ],
+      "colours": [
+        "Rose Gold",
+        "Yellow Gold"
+      ],
+      "details": [
+        {
+          "k": "Metal",
+          "v": "18k rose gold, 6.8g"
+        },
+        {
+          "k": "Width",
+          "v": "4.0mm"
+        },
+        {
+          "k": "Finish",
+          "v": "Brushed exterior, polished interior"
+        }
+      ],
+      "tags": [
+        "band",
+        "ring",
+        "rose gold"
+      ],
+      "badges": [],
+      "stock": 24,
+      "reorderPoint": 8,
+      "image": "/products/aur-104.jpg"
+    },
+    {
+      "handle": "aur-201",
+      "title": "Calibre 09 Reserve",
+      "category": "horology",
+      "subcategory": "Hand-Wound",
+      "price": 1568500,
+      "compareAt": null,
+      "description": "A hand-wound calibre with a ninety-six hour reserve and a dial finished in grand feu enamel.",
+      "story": "Nine months of the build is waiting. The enamel dial is fired seven times, and roughly one in three survives the kiln. The movement is regulated across sixty days in five positions before a case is even selected for it.",
+      "material": "39mm platinum case, in-house calibre AU-09, 96h reserve",
+      "care": "Wind fully each morning. Service interval seven years.",
+      "edition": "Numbered to 60 per year",
+      "year": 2024,
+      "sizes": [],
+      "colours": [
+        "Enamel White",
+        "Midnight",
+        "Verdigris"
+      ],
+      "details": [
+        {
+          "k": "Case",
+          "v": "39mm platinum 950, 9.8mm thick"
+        },
+        {
+          "k": "Movement",
+          "v": "AU-09 hand-wound, 21,600 vph"
+        },
+        {
+          "k": "Reserve",
+          "v": "96 hours, twin barrel"
+        },
+        {
+          "k": "Dial",
+          "v": "Grand feu enamel, fired seven times"
+        },
+        {
+          "k": "Water",
+          "v": "30m, screwed caseback"
+        },
+        {
+          "k": "Strap",
+          "v": "Alligator, hand-stitched, pin buckle"
+        }
+      ],
+      "tags": [
+        "watch",
+        "platinum",
+        "enamel",
+        "hand-wound"
+      ],
+      "badges": [
+        "Atelier",
+        "Rare"
+      ],
+      "stock": 2,
+      "reorderPoint": 5,
+      "image": "/products/aur-201.jpg"
+    },
+    {
+      "handle": "aur-202",
+      "title": "Perpetuel Automatic",
+      "category": "horology",
+      "subcategory": "Automatic",
+      "price": 1029000,
+      "compareAt": null,
+      "description": "A micro-rotor automatic kept deliberately thin, with a sector dial in warm silver.",
+      "story": "The micro-rotor lets the case sit at 8.4mm &mdash; thin enough to disappear under a cuff, which is the whole argument for it.",
+      "material": "38mm 18k gold case, micro-rotor automatic",
+      "care": "Wear regularly or store on a winder at 650 tpd.",
+      "edition": "Open series",
+      "year": 2023,
+      "sizes": [],
+      "colours": [
+        "Yellow Gold",
+        "Steel"
+      ],
+      "details": [
+        {
+          "k": "Case",
+          "v": "38mm 18k yellow gold, 8.4mm"
+        },
+        {
+          "k": "Movement",
+          "v": "AU-14 micro-rotor, 60h"
+        },
+        {
+          "k": "Dial",
+          "v": "Sector, galvanic silver"
+        },
+        {
+          "k": "Water",
+          "v": "50m"
+        }
+      ],
+      "tags": [
+        "watch",
+        "automatic",
+        "gold"
+      ],
+      "badges": [
+        "New"
+      ],
+      "stock": 5,
+      "reorderPoint": 5,
+      "image": "/products/aur-202.jpg"
+    },
+    {
+      "handle": "aur-203",
+      "title": "Nuit Chronograph",
+      "category": "horology",
+      "subcategory": "Complications",
+      "price": 2033500,
+      "compareAt": null,
+      "description": "A column-wheel chronograph in blackened grade-5 titanium with a smoked sapphire dial.",
+      "story": "Built for a client who flies at night. The dial is smoked sapphire so the movement reads as a shadow behind the hands rather than a display.",
+      "material": "41mm blackened titanium, column-wheel chronograph",
+      "care": "DLC is hard but not immune. Avoid abrasives.",
+      "edition": "Numbered to 40",
+      "year": 2022,
+      "sizes": [],
+      "colours": [],
+      "details": [
+        {
+          "k": "Case",
+          "v": "41mm grade-5 titanium, DLC"
+        },
+        {
+          "k": "Movement",
+          "v": "AU-21 column-wheel, 68h"
+        },
+        {
+          "k": "Dial",
+          "v": "Smoked sapphire, skeletonised"
+        },
+        {
+          "k": "Water",
+          "v": "100m"
+        }
+      ],
+      "tags": [
+        "watch",
+        "chronograph",
+        "titanium"
+      ],
+      "badges": [
+        "Rare"
+      ],
+      "stock": 0,
+      "reorderPoint": 5,
+      "image": "/products/aur-203.jpg"
+    },
+    {
+      "handle": "aur-301",
+      "title": "Fumee d&rsquo;Or Extrait",
+      "category": "parfums",
+      "subcategory": "Extrait de Parfum",
+      "price": 38000,
+      "compareAt": 44840,
+      "description": "Smoked labdanum, Somali frankincense and a long, resinous drydown.",
+      "story": "Composed by Elise Roux over three years and eleven submissions. The eleventh was accepted on the condition that nothing be removed &mdash; it is a dense perfume and meant to be.",
+      "material": "50ml extrait, 28% concentration",
+      "care": "Store away from light. Refills available in boutique.",
+      "edition": "House icon",
+      "year": 2021,
+      "sizes": [
+        "15ml",
+        "50ml",
+        "100ml"
+      ],
+      "colours": [
+        "Amber"
+      ],
+      "details": [
+        {
+          "k": "Concentration",
+          "v": "Extrait, 28%"
+        },
+        {
+          "k": "Top",
+          "v": "Pink pepper, bergamot"
+        },
+        {
+          "k": "Heart",
+          "v": "Labdanum, immortelle, saffron"
+        },
+        {
+          "k": "Base",
+          "v": "Frankincense, oud, benzoin"
+        },
+        {
+          "k": "Longevity",
+          "v": "10&ndash;14 hours"
+        },
+        {
+          "k": "Flacon",
+          "v": "Mouth-blown, refillable"
+        }
+      ],
+      "tags": [
+        "perfume",
+        "extrait",
+        "oud",
+        "incense"
+      ],
+      "badges": [
+        "Icon"
+      ],
+      "stock": 40,
+      "reorderPoint": 5,
+      "image": "/products/aur-301.jpg"
+    },
+    {
+      "handle": "aur-302",
+      "title": "Vetiver Blanc",
+      "category": "parfums",
+      "subcategory": "Eau de Parfum",
+      "price": 23500,
+      "compareAt": null,
+      "description": "Haitian vetiver washed clean with grapefruit peel and a chalk-dry iris.",
+      "story": "We wanted a vetiver with no sweetness at all. It took removing eleven ingredients rather than adding any.",
+      "material": "100ml eau de parfum, 18% concentration",
+      "care": "Store upright, away from heat.",
+      "edition": "Open series",
+      "year": 2024,
+      "sizes": [
+        "50ml",
+        "100ml"
+      ],
+      "colours": [],
+      "details": [
+        {
+          "k": "Concentration",
+          "v": "Eau de parfum, 18%"
+        },
+        {
+          "k": "Top",
+          "v": "Grapefruit peel, green mandarin"
+        },
+        {
+          "k": "Heart",
+          "v": "Haitian vetiver, iris butter"
+        },
+        {
+          "k": "Base",
+          "v": "Cedar, white musk"
+        },
+        {
+          "k": "Longevity",
+          "v": "7&ndash;9 hours"
+        }
+      ],
+      "tags": [
+        "perfume",
+        "vetiver",
+        "fresh"
+      ],
+      "badges": [
+        "New"
+      ],
+      "stock": 55,
+      "reorderPoint": 5,
+      "image": "/products/aur-302.jpg"
+    },
+    {
+      "handle": "aur-303",
+      "title": "Discovery Coffret No.1",
+      "category": "parfums",
+      "subcategory": "Discovery Sets",
+      "price": 16000,
+      "compareAt": null,
+      "description": "Six of the house in miniature, with a credit towards any full flacon.",
+      "story": "The coffret exists because perfume should be lived with for a week before it is bought.",
+      "material": "Six 9ml flacons in a lacquered case",
+      "care": "Keep the case closed between wearings.",
+      "edition": "Open series",
+      "year": 2025,
+      "sizes": [],
+      "colours": [],
+      "details": [
+        {
+          "k": "Contents",
+          "v": "Six 9ml flacons"
+        },
+        {
+          "k": "Credit",
+          "v": "₹16,000 towards any 50ml or 100ml"
+        },
+        {
+          "k": "Case",
+          "v": "Lacquered beech, magnetic"
+        }
+      ],
+      "tags": [
+        "perfume",
+        "set",
+        "gift",
+        "discovery"
+      ],
+      "badges": [],
+      "stock": 120,
+      "reorderPoint": 5,
+      "image": "/products/aur-303.jpg"
+    },
+    {
+      "handle": "aur-304",
+      "title": "Nuit de Sel",
+      "category": "parfums",
+      "subcategory": "Extrait de Parfum",
+      "price": 43000,
+      "compareAt": null,
+      "description": "Salt, ambergris and cold stone. Discontinued in 2020, reissued once.",
+      "story": "It was withdrawn when our ambergris source closed. A replacement was found in 2024 and matched over nineteen trials.",
+      "material": "50ml extrait, 30% concentration",
+      "care": "Store away from light.",
+      "edition": "Reissue, 500 flacons",
+      "year": 2020,
+      "sizes": [
+        "50ml"
+      ],
+      "colours": [],
+      "details": [
+        {
+          "k": "Concentration",
+          "v": "Extrait, 30%"
+        },
+        {
+          "k": "Top",
+          "v": "Sea salt, aldehydes"
+        },
+        {
+          "k": "Heart",
+          "v": "Ambergris, seaweed absolute"
+        },
+        {
+          "k": "Base",
+          "v": "Mineral musk, driftwood"
+        }
+      ],
+      "tags": [
+        "perfume",
+        "salt",
+        "ambergris"
+      ],
+      "badges": [
+        "Rare"
+      ],
+      "stock": 4,
+      "reorderPoint": 5,
+      "image": "/products/aur-304.jpg"
+    },
+    {
+      "handle": "aur-401",
+      "title": "Bastion Tote",
+      "category": "leather",
+      "subcategory": "Handbags",
+      "price": 327500,
+      "compareAt": null,
+      "description": "A structured tote saddle-stitched by one artisan, start to finish, in fourteen hours.",
+      "story": "Every Bastion carries the initials of its maker inside the gusset. The hide is tanned in pits over nine months in Tuscany &mdash; a process that costs us four times a chrome tannage and is the only reason the bag ages the way it does.",
+      "material": "Vegetable-tanned full-grain calf, brass furniture",
+      "care": "Condition twice yearly. Patina is expected and welcome.",
+      "edition": "Open series",
+      "year": 2023,
+      "sizes": [],
+      "colours": [
+        "Noir",
+        "Cognac",
+        "Bone"
+      ],
+      "details": [
+        {
+          "k": "Leather",
+          "v": "Full-grain calf, pit-tanned 9 months"
+        },
+        {
+          "k": "Stitch",
+          "v": "Saddle-stitched, 7 spi, linen thread"
+        },
+        {
+          "k": "Hardware",
+          "v": "Solid brass, hand-burnished"
+        },
+        {
+          "k": "Dimensions",
+          "v": "34 x 28 x 14cm"
+        },
+        {
+          "k": "Lining",
+          "v": "Goatskin, unlined base"
+        }
+      ],
+      "tags": [
+        "bag",
+        "tote",
+        "leather"
+      ],
+      "badges": [
+        "Atelier"
+      ],
+      "stock": 8,
+      "reorderPoint": 5,
+      "image": "/products/aur-401.jpg"
+    },
+    {
+      "handle": "aur-402",
+      "title": "Voyage Weekender",
+      "category": "leather",
+      "subcategory": "Travel",
+      "price": 464500,
+      "compareAt": null,
+      "description": "A three-day bag built on a bridle-leather frame that will outlive its first owner.",
+      "story": "Designed around a specific brief: everything for three nights, nothing checked.",
+      "material": "Bridle leather, solid brass, canvas lining",
+      "care": "Bridle leather blooms. Buff the wax back with a soft cloth.",
+      "edition": "Open series",
+      "year": 2022,
+      "sizes": [],
+      "colours": [
+        "Cognac",
+        "Noir"
+      ],
+      "details": [
+        {
+          "k": "Leather",
+          "v": "English bridle, 3.2mm"
+        },
+        {
+          "k": "Dimensions",
+          "v": "52 x 30 x 26cm"
+        },
+        {
+          "k": "Capacity",
+          "v": "41 litres"
+        },
+        {
+          "k": "Hardware",
+          "v": "Solid brass, lockable"
+        }
+      ],
+      "tags": [
+        "bag",
+        "travel",
+        "weekender"
+      ],
+      "badges": [],
+      "stock": 2,
+      "reorderPoint": 5,
+      "image": "/products/aur-402.jpg"
+    },
+    {
+      "handle": "aur-403",
+      "title": "Carte Cardholder",
+      "category": "leather",
+      "subcategory": "Small Leather Goods",
+      "price": 26500,
+      "compareAt": null,
+      "description": "Four pockets, one fold, no stitching visible from the outside.",
+      "story": "Skived to 0.6mm at the fold so it closes flat even when full.",
+      "material": "Alligator, hand-skived edges",
+      "care": "Keep dry. Exotic leathers mark permanently when wet.",
+      "edition": "Open series",
+      "year": 2025,
+      "sizes": [],
+      "colours": [
+        "Slate",
+        "Noir"
+      ],
+      "details": [
+        {
+          "k": "Leather",
+          "v": "Alligator, matte finish"
+        },
+        {
+          "k": "Pockets",
+          "v": "Four card, one note"
+        },
+        {
+          "k": "Dimensions",
+          "v": "10.4 x 7.6cm"
+        }
+      ],
+      "tags": [
+        "wallet",
+        "cardholder",
+        "alligator",
+        "gift"
+      ],
+      "badges": [],
+      "stock": 30,
+      "reorderPoint": 8,
+      "image": "/products/aur-403.jpg"
+    },
+    {
+      "handle": "aur-501",
+      "title": "Aequus Decanter",
+      "category": "objets",
+      "subcategory": "Crystal",
+      "price": 120000,
+      "compareAt": null,
+      "description": "A wide-shouldered decanter blown in one gather, with a ground-glass stopper.",
+      "story": "Blown by two makers working as a pair. The stopper is ground to its own decanter and will not fit another.",
+      "material": "Mouth-blown lead-free crystal, 1.4L",
+      "care": "Hand wash only. Dry inverted on a stand.",
+      "edition": "Open series",
+      "year": 2021,
+      "sizes": [],
+      "colours": [],
+      "details": [
+        {
+          "k": "Material",
+          "v": "Lead-free crystal, mouth-blown"
+        },
+        {
+          "k": "Capacity",
+          "v": "1.4 litres"
+        },
+        {
+          "k": "Height",
+          "v": "28cm"
+        },
+        {
+          "k": "Stopper",
+          "v": "Ground glass, matched"
+        }
+      ],
+      "tags": [
+        "decanter",
+        "crystal",
+        "home",
+        "gift"
+      ],
+      "badges": [],
+      "stock": 13,
+      "reorderPoint": 5,
+      "image": "/products/aur-501.jpg"
+    },
+    {
+      "handle": "aur-502",
+      "title": "Cire No.7 &mdash; Fig &amp; Ash",
+      "category": "objets",
+      "subcategory": "Candles",
+      "price": 12000,
+      "compareAt": 14160,
+      "description": "Green fig, woodsmoke and a trace of cold hearth. Seventy hours.",
+      "story": "The vessel is designed to be kept &mdash; refills ship in a paper sleeve with no second container.",
+      "material": "380g coconut-soy wax, cotton wick, refillable vessel",
+      "care": "Trim the wick to 5mm before each burn.",
+      "edition": "House icon",
+      "year": 2024,
+      "sizes": [
+        "220g",
+        "380g",
+        "1.1kg"
+      ],
+      "colours": [],
+      "details": [
+        {
+          "k": "Wax",
+          "v": "Coconut-soy blend, 380g"
+        },
+        {
+          "k": "Burn",
+          "v": "70 hours"
+        },
+        {
+          "k": "Wick",
+          "v": "Braided cotton, lead-free"
+        },
+        {
+          "k": "Vessel",
+          "v": "Hand-finished glass, refillable"
+        }
+      ],
+      "tags": [
+        "candle",
+        "home",
+        "fig",
+        "gift"
+      ],
+      "badges": [
+        "Icon"
+      ],
+      "stock": 88,
+      "reorderPoint": 5,
+      "image": "/products/aur-502.jpg"
+    },
+    {
+      "handle": "aur-503",
+      "title": "Lumen Table Lamp",
+      "category": "objets",
+      "subcategory": "Desk",
+      "price": 189000,
+      "compareAt": null,
+      "description": "A bronze column carrying a hand-cut alabaster shade that glows rather than shines.",
+      "story": "Each alabaster shade is cut from a single block, so no two diffuse light identically.",
+      "material": "Patinated bronze, alabaster shade",
+      "care": "Dust with a dry brush. Do not wet alabaster.",
+      "edition": "Numbered to 150",
+      "year": 2023,
+      "sizes": [],
+      "colours": [],
+      "details": [
+        {
+          "k": "Body",
+          "v": "Patinated bronze, 4.2kg"
+        },
+        {
+          "k": "Shade",
+          "v": "Alabaster, hand-cut"
+        },
+        {
+          "k": "Height",
+          "v": "42cm"
+        },
+        {
+          "k": "Fitting",
+          "v": "E14, dimmable, 2700K"
+        }
+      ],
+      "tags": [
+        "lamp",
+        "bronze",
+        "alabaster",
+        "home"
+      ],
+      "badges": [
+        "Rare"
+      ],
+      "stock": 5,
+      "reorderPoint": 5,
+      "image": "/products/aur-503.jpg"
+    },
+    {
+      "handle": "aur-601",
+      "title": "Carre Astral",
+      "category": "silk",
+      "subcategory": "Scarves",
+      "price": 49000,
+      "compareAt": null,
+      "description": "A star chart of the northern sky in forty-two screens, hemmed by hand.",
+      "story": "Printed in Como on a mill that has run since 1872. Forty-two screens is near the practical limit; the forty-third was cut and abandoned.",
+      "material": "90cm twill silk, hand-rolled hem, 42 screens",
+      "care": "Dry clean only. Store rolled, never folded.",
+      "edition": "Open series",
+      "year": 2024,
+      "sizes": [],
+      "colours": [
+        "Rose Nuit",
+        "Bleu Astral",
+        "Vert Jade"
+      ],
+      "details": [
+        {
+          "k": "Fabric",
+          "v": "Twill silk, 16 momme"
+        },
+        {
+          "k": "Size",
+          "v": "90 x 90cm"
+        },
+        {
+          "k": "Print",
+          "v": "42 screens, Como"
+        },
+        {
+          "k": "Hem",
+          "v": "Hand-rolled, matched thread"
+        }
+      ],
+      "tags": [
+        "scarf",
+        "silk",
+        "carre",
+        "gift"
+      ],
+      "badges": [
+        "New"
+      ],
+      "stock": 25,
+      "reorderPoint": 5,
+      "image": "/products/aur-601.jpg"
+    },
+    {
+      "handle": "aur-602",
+      "title": "Alashan Stole",
+      "category": "silk",
+      "subcategory": "Stoles",
+      "price": 98000,
+      "compareAt": 115640,
+      "description": "Four-ply winter fleece, combed once a year, woven loose enough to breathe.",
+      "story": "The fibre is under 15.5 microns and comes from a single co-operative we have bought from since 1994.",
+      "material": "Grade-A Alashan cashmere, 4-ply, 200 x 70cm",
+      "care": "Hand wash cool with cashmere shampoo. Dry flat.",
+      "edition": "House icon",
+      "year": 2022,
+      "sizes": [],
+      "colours": [
+        "Ivoire",
+        "Fumee",
+        "Rose Pale"
+      ],
+      "details": [
+        {
+          "k": "Fibre",
+          "v": "Alashan cashmere, under 15.5 micron"
+        },
+        {
+          "k": "Ply",
+          "v": "4-ply, 380gsm"
+        },
+        {
+          "k": "Size",
+          "v": "200 x 70cm"
+        },
+        {
+          "k": "Finish",
+          "v": "Hand-fringed"
+        }
+      ],
+      "tags": [
+        "cashmere",
+        "stole",
+        "scarf"
+      ],
+      "badges": [
+        "Icon"
+      ],
+      "stock": 18,
+      "reorderPoint": 5,
+      "image": "/products/aur-602.jpg"
+    },
+    {
+      "handle": "aur-701",
+      "title": "Cassis Sun",
+      "category": "eyewear",
+      "subcategory": "Sun",
+      "price": 64500,
+      "compareAt": null,
+      "description": "A soft square in eight-week acetate with mineral glass and a titanium core wire.",
+      "story": "Acetate blocks are cured for eight weeks before milling; the shorter cure is why cheaper frames warp.",
+      "material": "Italian acetate, mineral glass lenses, titanium core",
+      "care": "Clean with the microfibre supplied. Never wipe dry.",
+      "edition": "Open series",
+      "year": 2025,
+      "sizes": [],
+      "colours": [
+        "Bleu Fume",
+        "Ecaille",
+        "Noir"
+      ],
+      "details": [
+        {
+          "k": "Frame",
+          "v": "Italian acetate, 8-week cure"
+        },
+        {
+          "k": "Lens",
+          "v": "Mineral glass, category 3"
+        },
+        {
+          "k": "Core",
+          "v": "Titanium wire, adjustable"
+        },
+        {
+          "k": "Width",
+          "v": "142mm, 51-21"
+        }
+      ],
+      "tags": [
+        "sunglasses",
+        "eyewear",
+        "acetate"
+      ],
+      "badges": [
+        "New"
+      ],
+      "stock": 22,
+      "reorderPoint": 5,
+      "image": "/products/aur-701.jpg"
+    },
+    {
+      "handle": "aur-702",
+      "title": "Filament Optical",
+      "category": "eyewear",
+      "subcategory": "Titanium",
+      "price": 78000,
+      "compareAt": null,
+      "description": "Eleven grams of beta-titanium. You forget you are wearing it within an hour.",
+      "story": "Built for a client who wears glasses eighteen hours a day. Weight was the only brief.",
+      "material": "Beta-titanium, 11g, rimless bridge",
+      "care": "Titanium is hypoallergenic and will not corrode.",
+      "edition": "Open series",
+      "year": 2023,
+      "sizes": [],
+      "colours": [],
+      "details": [
+        {
+          "k": "Frame",
+          "v": "Beta-titanium, 11g"
+        },
+        {
+          "k": "Lens",
+          "v": "Prescription, not included"
+        },
+        {
+          "k": "Hinge",
+          "v": "Screwless flex"
+        },
+        {
+          "k": "Width",
+          "v": "138mm, 49-20"
+        }
+      ],
+      "tags": [
+        "optical",
+        "eyewear",
+        "titanium"
+      ],
+      "badges": [],
+      "stock": 16,
+      "reorderPoint": 5,
+      "image": "/products/aur-702.jpg"
+    }
+  ]
+}
