@@ -203,6 +203,10 @@ export default function CommandCenter() {
             <span className="badge badge--emerald" style={{ marginTop: 4 }}>
               {health.status || 'Optimal'}
             </span>
+            {/* Same issue as kpi-card__meta above: no text-level separator
+                between these two elements, so the flattened text reads
+                "OptimalDiagnostics →" with nothing between them. */}
+            {' '}
             <Link to="/admin/analytics/health" className="kpi-card__link">Diagnostics &rarr;</Link>
           </div>
         </div>
@@ -468,6 +472,12 @@ function KpiCard({ item, linkTo, isWarning, isAlert }) {
         <span className={`kpi-card__trend kpi-card__trend--${item.trend}`}>
           {item.trend === 'up' ? '↑' : item.trend === 'down' ? '↓' : '→'} {Math.abs(item.pctChange)}%
         </span>
+        {/* The flex `gap` on .kpi-card__meta puts real pixels between these
+            two spans on screen, but gap is CSS-only — it inserts no actual
+            character. Selecting the text (or a screen reader reading it)
+            gets "0%vs ₹0" with no separator. This literal space fixes the
+            text content itself rather than relying on layout for it. */}
+        {' '}
         <span className="kpi-card__prev">vs {prevVal}</span>
       </div>
       {linkTo && (
