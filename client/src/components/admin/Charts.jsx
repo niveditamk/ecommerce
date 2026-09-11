@@ -55,10 +55,43 @@ export function TimeSeries({ points, valueKey, title, caption, format = 'number'
   const innerH = h - pad.t - pad.b;
 
   const values = points.map((p) => Number(p[valueKey]) || 0);
-  const max = Math.max(...values, 1);
+  const trueMax = Math.max(...values, 1);
+
+  /* A shop selling a few expensive pieces and many cheap ones does not
+     produce one lone spike — it produces a small CLUSTER of big days
+     that sit close to each other but far from the typical one. Measured
+     case: top four days ₹21.7L/18.8L/12.4L/12.2L (each within ~1.5x of
+     its neighbour — nothing looks like an isolated outlier there) while
+     the median trading day was ₹2.3L. Comparing the top value only to
+     the very next one down (the first version of this fix) never
+     triggered, because neither of those two ever looked disproportionate
+     to EACH OTHER — only to the bulk of the distribution, which a
+     pairwise comparison never looks at. Scaled to the true max, every
+     one of those 34 ordinary days still landed within a few pixels of
+     the baseline.
+
+     The fix compares the top value to the 90th percentile of trading
+     days instead of to its neighbour. A gap there means a genuine tail,
+     however many points are in it — one freak sale or a cluster of
+     them. Nothing is hidden: every clipped point keeps an open marker,
+     its own printed figure, and its true value in the tooltip and the
+     aria-label — only the Y position is bounded. */
+  const nonZero = values.filter((v) => v > 0).sort((a, b) => a - b);
+  const p90 = nonZero.length >= 5 ? nonZero[Math.min(nonZero.length - 1, Math.ceil(nonZero.length * 0.9) - 1)] : trueMax;
+  const candidateCap = p90 > 0 ? Math.ceil(p90 * 1.25) : trueMax;
+  /* At small integer magnitudes (an orders-per-day count of 1, 2, 3...)
+     the ratio test can flag an "outlier" whose rounded-up cap lands
+     right back on trueMax — Math.ceil(2 * 1.25) is 3, the same as the
+     max it was meant to shrink. That is not a distortion worth a
+     clipped marker and a note; it is just three small integers. So
+     the decision is made from the cap actually being lower than the
+     true max, not from the ratio alone. */
+  const isOutlier = p90 > 0 && trueMax > p90 * 1.3 && candidateCap < trueMax;
+  const max = isOutlier ? candidateCap : trueMax;
+
   /* A zero baseline, always: a truncated axis exaggerates every
      wobble into a trend. */
-  const y = (v) => pad.t + innerH - (v / max) * innerH;
+  const y = (v) => pad.t + innerH - (Math.min(v, max) / max) * innerH;
   const x = (i) => pad.l + (points.length === 1 ? innerW / 2 : (i / (points.length - 1)) * innerW);
 
   const line = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(values[i]).toFixed(1)}`).join(' ');
@@ -66,6 +99,7 @@ export function TimeSeries({ points, valueKey, title, caption, format = 'number'
 
   const fmt = format === 'currency' ? shortMoney : (n) => Number(n).toLocaleString('en-IN');
   const ticks = [0, 0.5, 1].map((f) => Math.round(max * f));
+  const clippedIdx = isOutlier ? values.map((v, i) => (v > max ? i : -1)).filter((i) => i >= 0) : [];
 
   const onMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -79,13 +113,19 @@ export function TimeSeries({ points, valueKey, title, caption, format = 'number'
       <figcaption className="viz__head">
         <h3 className="viz__title">{title}</h3>
         {caption && <p className="viz__caption">{caption}</p>}
+        {isOutlier && (
+          <p className="viz__caption viz__caption--note">
+            {clippedIdx.length === 1 ? 'One day' : `${clippedIdx.length} days`} — peak {fmt(trueMax)} —
+            {' '}sits off this scale; the line is capped there so the rest of the window stays readable.
+          </p>
+        )}
       </figcaption>
 
       <div className="viz__plot">
         <svg
           viewBox={`0 0 ${w} ${h}`}
           role="img"
-          aria-label={`${title}. ${points.length} days, peak ${fmt(max)}.`}
+          aria-label={`${title}. ${points.length} days, peak ${fmt(trueMax)}${isOutlier ? ' (off-scale, chart capped for readability)' : ''}.`}
           onMouseMove={onMove}
           onMouseLeave={() => setHover(null)}
           preserveAspectRatio="none"
@@ -107,6 +147,26 @@ export function TimeSeries({ points, valueKey, title, caption, format = 'number'
 
           <path d={area} fill={`url(#g-${clipId})`} />
           <path d={line} fill="none" stroke={HUE} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+
+          {/* The clipped point still has to say, permanently and not only
+              on hover, that it goes further than drawn — an open ring
+              rather than the solid fill every other point implicitly
+              has, plus its real figure printed right beside it. Hover
+              still works normally and shows the same number again. */}
+          {clippedIdx.map((i) => (
+            <g key={`clip-${i}`}>
+              <circle cx={x(i)} cy={y(max)} r="5" fill="var(--viz-surface)" stroke={HUE} strokeWidth="2" />
+              <text
+                className="viz__axis"
+                x={Math.min(Math.max(x(i), pad.l + 30), w - pad.r - 4)}
+                y={y(max) - 9}
+                textAnchor="middle"
+                fontWeight="600"
+              >
+                {fmt(values[i])}
+              </text>
+            </g>
+          ))}
 
           {hover !== null && (
             <g>

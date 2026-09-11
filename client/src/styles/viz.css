@@ -82,6 +82,22 @@
   color: var(--viz-ink-2);
 }
 
+/* The outlier-clipping notice on TimeSeries — states in text, not just
+   in the chart geometry, that one point runs off the visible scale.
+   --viz-warning measures 1.68:1 on this surface — nowhere near the
+   4.5:1 body-text floor, so it colours only the word "Note", the way
+   admin.css's .notice--warning colours only "Careful". The sentence
+   itself stays in --viz-ink. */
+.viz__caption--note {
+  color: var(--viz-ink);
+  font-weight: 500;
+}
+.viz__caption--note::before {
+  content: "Note — ";
+  color: var(--viz-warning);
+  font-weight: 700;
+}
+
 .viz__empty {
   margin: 0;
   padding: var(--spacing-24, 24px) 0;
