@@ -1,0 +1,16 @@
+- main [ref=e5]:
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: AURELIS
+      - generic [ref=e9]: Staff access
+    - heading "Sign in" [level=1] [ref=e10]
+    - paragraph [ref=e11]: This area is restricted to staff. Actions here are recorded.
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: Email
+        - textbox "Email" [ref=e15]:
+          - /placeholder: you@aurelis.test
+      - generic [ref=e16]:
+        - generic [ref=e17]: Password
+        - textbox "Password" [ref=e18]
+      - button "Sign in" [ref=e19] [cursor=pointer]

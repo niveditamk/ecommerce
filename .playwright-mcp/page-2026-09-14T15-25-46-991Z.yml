@@ -1,0 +1,174 @@
+- generic [ref=f8e3]:
+  - complementary "Admin navigation" [ref=f8e5]:
+    - generic [ref=f8e6]:
+      - generic [ref=f8e7]: AURELIS
+      - generic [ref=f8e8]: Executive · AI Admin
+    - navigation [ref=f8e9]:
+      - generic [ref=f8e10]:
+        - heading "Executive Command" [level=2] [ref=f8e11]
+        - link "Command Center" [ref=f8e12] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f8e13] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f8e14]:
+        - heading "Inventory & Vaults" [level=2] [ref=f8e15]
+        - link "Inventory Management" [ref=f8e16] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f8e17] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f8e18] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f8e19]:
+        - heading "Intelligence & Reports" [level=2] [ref=f8e20]
+        - link "Sales & BI Analytics" [ref=f8e21] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f8e22] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f8e23]:
+        - heading "Catalog & Orders" [level=2] [ref=f8e24]
+        - link "Products" [ref=f8e25] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f8e26] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f8e27] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f8e28] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f8e29]:
+        - heading "System & Governance" [level=2] [ref=f8e30]
+        - link "Staff Management" [ref=f8e31] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f8e32] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f8e33] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f8e34] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f8e35] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f8e36]:
+      - generic [ref=f8e37]: Hélène Marchand
+      - generic [ref=f8e38]: Administrator
+      - button "Sign out" [ref=f8e39] [cursor=pointer]
+  - generic [ref=f8e40]:
+    - banner [ref=f8e41]:
+      - generic [ref=f8e43]:
+        - generic [ref=f8e44]: Facility Filter
+        - combobox "Filter by facility" [ref=f8e45] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f8e46]: Period Filter
+        - combobox "Filter by time period" [ref=f8e47] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f8e48]:
+        - link "2 Alerts" [ref=f8e49] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f8e52] [cursor=pointer]:
+          - /url: /
+    - main [ref=f8e53]:
+      - generic [ref=f8e54]:
+        - generic [ref=f8e55]:
+          - generic [ref=f8e56]:
+            - generic [ref=f8e57]: Procurement & Supply Chain
+            - heading "Supplier Analytics & Purchase Orders" [level=1] [ref=f8e58]
+            - paragraph [ref=f8e59]: Partner scorecards, lead time optimization, and automated receipt-to-inventory restocking.
+          - generic [ref=f8e60]:
+            - button "+ Create Purchase Order" [ref=f8e61] [cursor=pointer]
+            - button "↻ Refresh" [ref=f8e62] [cursor=pointer]
+        - generic [ref=f8e261]: "PO #3 received: Inventory balances automatically restocked and goods receipt generated!"
+        - generic [ref=f8e63]:
+          - generic [ref=f8e64]:
+            - generic [ref=f8e65]: Total Purchase Orders
+            - generic [ref=f8e66]: "3"
+          - generic [ref=f8e67]:
+            - generic [ref=f8e68]: Active / In-Flight
+            - generic [ref=f8e69]: "2"
+          - generic [ref=f8e70]:
+            - generic [ref=f8e71]: Total Procurement Value
+            - generic [ref=f8e72]: ₹12,77,000
+          - generic [ref=f8e73]:
+            - generic [ref=f8e74]: Certified Suppliers
+            - generic [ref=f8e75]: "4"
+          - generic [ref=f8e76]:
+            - generic [ref=f8e77]: Fulfilled Receipts
+            - generic [ref=f8e78]: "1"
+        - tablist [ref=f8e79]:
+          - tab "📋 Purchase Orders Board (3)" [selected] [ref=f8e80] [cursor=pointer]
+          - tab "🏆 Supplier Scorecards & Lead Times (4)" [ref=f8e81] [cursor=pointer]
+        - generic [ref=f8e82]:
+          - generic [ref=f8e83]:
+            - generic [ref=f8e84]:
+              - generic [ref=f8e85]: Status
+              - combobox "Status" [ref=f8e86]:
+                - option "All PO Statuses" [selected]
+                - option "Pending Approval"
+                - option "Approved"
+                - option "Sent to Supplier"
+                - option "Partially Received"
+                - option "Received (Restocked)"
+                - option "Cancelled"
+              - generic [ref=f8e87]: Supplier
+              - combobox "Supplier" [ref=f8e88]:
+                - option "All Suppliers" [selected]
+                - option "Valcambi SA"
+                - option "Dubois Dépraz Horlogerie"
+                - option "Tanneries Haas"
+                - option "Robertet Grasse"
+            - generic [ref=f8e89]: Auto-restock active · Receiving items automatically logs warehouse balance
+          - table [ref=f8e262]:
+            - rowgroup [ref=f8e263]:
+              - row [ref=f8e264]:
+                - columnheader "PO Number" [ref=f8e265]
+                - columnheader "Supplier" [ref=f8e266]
+                - columnheader "Destination" [ref=f8e267]
+                - columnheader "Units" [ref=f8e268]
+                - columnheader "Total Cost" [ref=f8e269]
+                - columnheader "Status" [ref=f8e270]
+                - columnheader "Order Date" [ref=f8e271]
+                - columnheader "Lifecycle Action" [ref=f8e272]
+            - rowgroup [ref=f8e273]:
+              - row [ref=f8e274]:
+                - cell "PO-2026-25768" [ref=f8e275]
+                - cell "Valcambi SA VALCAMBI" [ref=f8e277]:
+                  - generic [ref=f8e278]: Valcambi SA
+                  - text: VALCAMBI
+                - cell "GVA-ATELIER" [ref=f8e279]
+                - cell "25" [ref=f8e280]
+                - cell "₹7,000" [ref=f8e281]
+                - cell "Received" [ref=f8e282]
+                - cell "—" [ref=f8e284]
+                - cell "✓ Goods Restocked" [ref=f8e285]
+              - row [ref=f8e288]:
+                - cell "PO-2026-081 AI Recommended" [ref=f8e289]:
+                  - generic [ref=f8e290]: PO-2026-081
+                  - generic [ref=f8e291]: AI Recommended
+                - cell "Valcambi SA VALCAMBI" [ref=f8e292]:
+                  - generic [ref=f8e293]: Valcambi SA
+                  - text: VALCAMBI
+                - cell "GVA-ATELIER" [ref=f8e294]
+                - cell "18" [ref=f8e295]
+                - cell "₹8,50,000" [ref=f8e296]
+                - cell "Partially Received" [ref=f8e297]
+                - cell "—" [ref=f8e299]
+                - cell [ref=f8e300]:
+                  - button "✓ Receive Goods" [ref=f8e302] [cursor=pointer]
+              - row [ref=f8e303]:
+                - cell "PO-2026-084" [ref=f8e304]
+                - cell "Robertet Grasse ROBERTET" [ref=f8e306]:
+                  - generic [ref=f8e307]: Robertet Grasse
+                  - text: ROBERTET
+                - cell "ZRH-CENTRAL" [ref=f8e308]
+                - cell "25" [ref=f8e309]
+                - cell "₹4,20,000" [ref=f8e310]
+                - cell "Approved" [ref=f8e311]
+                - cell "—" [ref=f8e313]
+                - cell [ref=f8e314]:
+                  - button "Mark Sent to Supplier" [ref=f8e316] [cursor=pointer]
+  - button "Open AI assistant" [ref=f8e148] [cursor=pointer]: Ask AI

@@ -1,0 +1,178 @@
+- generic [ref=f47e3]:
+  - complementary "Admin navigation" [ref=f47e5]:
+    - generic [ref=f47e6]:
+      - generic [ref=f47e7]: AURELIS
+      - generic [ref=f47e8]: Executive · AI Admin
+    - navigation [ref=f47e9]:
+      - generic [ref=f47e10]:
+        - heading "Executive Command" [level=2] [ref=f47e11]
+        - link "Command Center" [ref=f47e12] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f47e13] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f47e14]:
+        - heading "Inventory & Vaults" [level=2] [ref=f47e15]
+        - link "Inventory Management" [ref=f47e16] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f47e17] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f47e18] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f47e19]:
+        - heading "Intelligence & Reports" [level=2] [ref=f47e20]
+        - link "Sales & BI Analytics" [ref=f47e21] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f47e22] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f47e23]:
+        - heading "Catalog & Orders" [level=2] [ref=f47e24]
+        - link "Products" [ref=f47e25] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f47e26] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f47e27] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f47e28] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f47e29]:
+        - heading "System & Governance" [level=2] [ref=f47e30]
+        - link "Staff Management" [ref=f47e31] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f47e32] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f47e33] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f47e34] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f47e35] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f47e36]:
+      - generic [ref=f47e37]: Hélène Marchand
+      - generic [ref=f47e38]: Administrator
+      - button "Sign out" [ref=f47e39] [cursor=pointer]
+  - generic [ref=f47e40]:
+    - banner [ref=f47e41]:
+      - generic [ref=f47e43]:
+        - generic [ref=f47e44]: Facility Filter
+        - combobox "Filter by facility" [ref=f47e45] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f47e46]: Period Filter
+        - combobox "Filter by time period" [ref=f47e47] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f47e48]:
+        - link "5 Alerts" [ref=f47e49] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f47e52] [cursor=pointer]:
+          - /url: /
+    - main [ref=f47e53]:
+      - generic [ref=f47e55]:
+        - generic [ref=f47e56]: Sales
+        - heading "Customers" [level=1] [ref=f47e57]
+        - paragraph [ref=f47e58]: 9 registered
+      - table [ref=f47e60]:
+        - rowgroup [ref=f47e61]:
+          - row [ref=f47e62]:
+            - columnheader "Customer" [ref=f47e63]
+            - columnheader "Email" [ref=f47e64]
+            - columnheader "Tier" [ref=f47e65]
+            - columnheader "Phone" [ref=f47e66]
+            - columnheader "Orders" [ref=f47e67]
+            - columnheader "Lifetime value" [ref=f47e68]
+            - columnheader [ref=f47e69]
+        - rowgroup [ref=f47e70]:
+          - row [ref=f47e163]:
+            - cell [ref=f47e72]:
+              - textbox "First name" [ref=f47e164]: Arjun
+              - textbox "Last name" [ref=f47e165]: Mehta
+            - cell [ref=f47e74]:
+              - textbox "Email" [ref=f47e166]: arjun.mehta@example.com
+            - cell [ref=f47e75]:
+              - combobox "Tier" [ref=f47e167]: Cercle
+            - cell [ref=f47e168]:
+              - textbox "Phone" [ref=f47e169]
+            - cell "10" [ref=f47e77]
+            - cell "₹56,04,549" [ref=f47e78]
+            - cell [ref=f47e170]:
+              - button "Save" [active] [ref=f47e171] [cursor=pointer]
+              - button "Cancel" [ref=f47e172] [cursor=pointer]
+          - row [ref=f47e81]:
+            - cell "Rohan Kapoor" [ref=f47e82]
+            - cell "rohan.kapoor@example.com" [ref=f47e84]
+            - cell "Cercle" [ref=f47e85]
+            - cell "—" [ref=f47e86]
+            - cell "10" [ref=f47e87]
+            - cell "₹39,91,595" [ref=f47e88]
+            - cell [ref=f47e89]:
+              - button "Edit" [ref=f47e90] [cursor=pointer]
+          - row [ref=f47e91]:
+            - cell "Alexandra Sorensen" [ref=f47e92]
+            - cell "a.sorensen@example.com" [ref=f47e94]
+            - cell "Cercle Or" [ref=f47e95]
+            - cell "—" [ref=f47e96]
+            - cell "3" [ref=f47e97]
+            - cell "₹23,67,490" [ref=f47e98]
+            - cell [ref=f47e99]:
+              - button "Edit" [ref=f47e100] [cursor=pointer]
+          - row [ref=f47e101]:
+            - cell "Ananya Rao" [ref=f47e102]
+            - cell "ananya.rao@example.com" [ref=f47e104]
+            - cell "Cercle" [ref=f47e105]
+            - cell "—" [ref=f47e106]
+            - cell "4" [ref=f47e107]
+            - cell "₹14,17,089" [ref=f47e108]
+            - cell [ref=f47e109]:
+              - button "Edit" [ref=f47e110] [cursor=pointer]
+          - row [ref=f47e111]:
+            - cell "Vikram Sharma" [ref=f47e112]
+            - cell "vikram.sharma@example.com" [ref=f47e114]
+            - cell "Cercle Or" [ref=f47e115]
+            - cell "—" [ref=f47e116]
+            - cell "7" [ref=f47e117]
+            - cell "₹13,83,072" [ref=f47e118]
+            - cell [ref=f47e119]:
+              - button "Edit" [ref=f47e120] [cursor=pointer]
+          - row [ref=f47e121]:
+            - cell "Karan Malhotra" [ref=f47e122]
+            - cell "karan.malhotra@example.com" [ref=f47e124]
+            - cell "Cercle Or" [ref=f47e125]
+            - cell "—" [ref=f47e126]
+            - cell "5" [ref=f47e127]
+            - cell "₹13,63,711" [ref=f47e128]
+            - cell [ref=f47e129]:
+              - button "Edit" [ref=f47e130] [cursor=pointer]
+          - row [ref=f47e131]:
+            - cell "Priya Nair" [ref=f47e132]
+            - cell "priya.nair@example.com" [ref=f47e134]
+            - cell "Cercle Or" [ref=f47e135]
+            - cell "—" [ref=f47e136]
+            - cell "4" [ref=f47e137]
+            - cell "₹4,05,100" [ref=f47e138]
+            - cell [ref=f47e139]:
+              - button "Edit" [ref=f47e140] [cursor=pointer]
+          - row [ref=f47e141]:
+            - cell "Meera Iyer" [ref=f47e142]
+            - cell "meera.iyer@example.com" [ref=f47e144]
+            - cell "Cercle" [ref=f47e145]
+            - cell "—" [ref=f47e146]
+            - cell "2" [ref=f47e147]
+            - cell "₹2,38,820" [ref=f47e148]
+            - cell [ref=f47e149]:
+              - button "Edit" [ref=f47e150] [cursor=pointer]
+          - row [ref=f47e151]:
+            - cell "Divya Krishnan" [ref=f47e152]
+            - cell "divya.krishnan@example.com" [ref=f47e154]
+            - cell "Cercle" [ref=f47e155]
+            - cell "—" [ref=f47e156]
+            - cell "0" [ref=f47e157]
+            - cell "₹0" [ref=f47e158]
+            - cell [ref=f47e159]:
+              - button "Edit" [ref=f47e160] [cursor=pointer]
+  - button "Open AI assistant" [ref=f47e162] [cursor=pointer]: Ask AI

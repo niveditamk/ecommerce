@@ -186,8 +186,8 @@ export function adjustStock({
   // Insert into immutable transaction log
   db.prepare(`
     INSERT INTO inventory_transactions
-      (product_id, type, qty, previous_qty, new_qty, reference_type, reference_id, reason, staff_id)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      (product_id, type, qty, previous_qty, new_qty, reference_type, reference_id, reason, staff_id, warehouse_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     productId,
     nDelta > 0 ? 'ADJUSTMENT_IN' : 'ADJUSTMENT_OUT',
@@ -197,7 +197,8 @@ export function adjustStock({
     reference ? 'MANUAL_REF' : 'ADJUSTMENT',
     reference || null,
     `${reason}: ${notes}`,
-    staff?.id || null
+    staff?.id || null,
+    warehouseId
   );
 
   // Insert legacy stock movement for backward compatibility
@@ -221,7 +222,7 @@ export function adjustStock({
 }
 
 export function listTransactions({
-  productId = '', type = '', page = 1, perPage = 25
+  productId = '', type = '', warehouse = '', page = 1, perPage = 25
 } = {}) {
   const where = [];
   const args = [];
@@ -234,19 +235,27 @@ export function listTransactions({
     where.push('t.type = ?');
     args.push(type);
   }
+  if (warehouse && warehouse !== 'all') {
+    where.push('w.code = ?');
+    args.push(warehouse);
+  }
 
   const clause = where.length ? `WHERE ${where.join(' AND ')}` : '';
-  const total = db.prepare(`SELECT COUNT(*) AS n FROM inventory_transactions t ${clause}`).get(...args).n;
+  const total = db.prepare(`
+    SELECT COUNT(*) AS n FROM inventory_transactions t LEFT JOIN warehouses w ON w.id = t.warehouse_id ${clause}
+  `).get(...args).n;
 
   const size = Math.min(100, Math.max(1, Number(perPage)));
   const offset = (Math.max(1, Number(page)) - 1) * size;
 
   const items = db.prepare(`
     SELECT t.*, p.name AS product_name, p.cat AS category,
-           s.first_name, s.last_name, s.email AS staff_email
+           s.first_name, s.last_name, s.email AS staff_email,
+           w.code AS warehouse_code
       FROM inventory_transactions t
       JOIN products p ON p.id = t.product_id
       LEFT JOIN staff s ON s.id = t.staff_id
+      LEFT JOIN warehouses w ON w.id = t.warehouse_id
       ${clause}
      ORDER BY t.created_at DESC
      LIMIT ? OFFSET ?
@@ -550,15 +559,16 @@ export function updatePurchaseOrderStatus({ poId, status, staff, ip }) {
         // Record immutable ledger entry
         db.prepare(`
           INSERT INTO inventory_transactions
-            (product_id, type, qty, previous_qty, new_qty, reference_type, reference_id, reason, staff_id)
-          VALUES (?, 'PURCHASE_RECEIPT', ?, ?, ?, 'PURCHASE_ORDER', ?, 'Goods received from PO', ?)
+            (product_id, type, qty, previous_qty, new_qty, reference_type, reference_id, reason, staff_id, warehouse_id)
+          VALUES (?, 'PURCHASE_RECEIPT', ?, ?, ?, 'PURCHASE_ORDER', ?, 'Goods received from PO', ?, ?)
         `).run(
           it.product_id,
           receiveQty,
           0,
           receiveQty,
           po.po_number,
-          staff?.id || null
+          staff?.id || null,
+          po.warehouse_id
         );
       }
     });
@@ -585,3 +595,150 @@ export function updatePurchaseOrderStatus({ poId, status, staff, ip }) {
   return { id: poId, poNumber: po.po_number, status };
 }
 
+
+/* =============================================================
+   CYCLE COUNTS — physical stocktake, warehouse-scoped
+   Expected quantity is snapshotted from warehouse_stock at
+   creation time; reconciliation reuses adjustStock() so a
+   count-driven correction gets the exact same warehouse sync,
+   ledger entry and audit trail as any other stock movement.
+   ============================================================= */
+export function createCycleCount({ warehouseId, scope = 'all', notes = '', staff }) {
+  const wh = db.prepare('SELECT * FROM warehouses WHERE id = ?').get(warehouseId);
+  if (!wh) throw new Error('Warehouse not found.');
+
+  const lowStockClause = scope === 'low_stock' ? 'AND ws.on_hand <= ws.reorder_point' : '';
+  const rows = db.prepare(`
+    SELECT ws.product_id, ws.on_hand
+      FROM warehouse_stock ws
+      JOIN products p ON p.id = ws.product_id
+     WHERE ws.warehouse_id = ? AND p.status = 'active' ${lowStockClause}
+     ORDER BY ws.product_id
+  `).all(warehouseId);
+  if (!rows.length) throw new Error('No products match that scope at this warehouse.');
+
+  const countNumber = `CC-${new Date().getFullYear()}-${String(Date.now()).slice(-5)}`;
+  const res = db.prepare(`
+    INSERT INTO cycle_counts (count_number, warehouse_id, status, scope, notes, created_by)
+    VALUES (?, ?, 'Open', ?, ?, ?)
+  `).run(countNumber, warehouseId, scope, notes || null, staff?.id || null);
+  const cycleCountId = res.lastInsertRowid;
+
+  const insItem = db.prepare(`
+    INSERT INTO cycle_count_items (cycle_count_id, product_id, expected_qty)
+    VALUES (?, ?, ?)
+  `);
+  rows.forEach((r) => insItem.run(cycleCountId, r.product_id, r.on_hand));
+
+  audit({
+    staff,
+    action: 'cycle_count_created',
+    entity: 'cycle_count',
+    entityId: String(cycleCountId),
+    summary: `Started cycle count ${countNumber} at ${wh.code} (${rows.length} SKUs, scope: ${scope})`
+  });
+
+  return { id: cycleCountId, countNumber, itemCount: rows.length, warehouseId, warehouseCode: wh.code };
+}
+
+export function listCycleCounts() {
+  return db.prepare(`
+    SELECT cc.*, w.code AS warehouse_code, w.name AS warehouse_name,
+      s1.first_name || ' ' || s1.last_name AS created_by_name,
+      (SELECT COUNT(*) FROM cycle_count_items WHERE cycle_count_id = cc.id) AS item_count,
+      (SELECT COUNT(*) FROM cycle_count_items WHERE cycle_count_id = cc.id AND counted_qty IS NOT NULL) AS counted_count,
+      (SELECT COUNT(*) FROM cycle_count_items WHERE cycle_count_id = cc.id AND counted_qty IS NOT NULL AND counted_qty != expected_qty) AS variance_count
+    FROM cycle_counts cc
+    JOIN warehouses w ON w.id = cc.warehouse_id
+    LEFT JOIN staff s1 ON s1.id = cc.created_by
+    ORDER BY cc.created_at DESC
+  `).all();
+}
+
+export function getCycleCount(id) {
+  const cc = db.prepare(`
+    SELECT cc.*, w.code AS warehouse_code, w.name AS warehouse_name
+      FROM cycle_counts cc JOIN warehouses w ON w.id = cc.warehouse_id
+     WHERE cc.id = ?
+  `).get(id);
+  if (!cc) return null;
+  const items = db.prepare(`
+    SELECT ci.*, p.name AS product_name, p.cat AS category
+      FROM cycle_count_items ci JOIN products p ON p.id = ci.product_id
+     WHERE ci.cycle_count_id = ? ORDER BY p.name
+  `).all(id);
+  return { ...cc, items };
+}
+
+export function recordCount({ cycleCountId, productId, countedQty, staff }) {
+  const cc = db.prepare('SELECT * FROM cycle_counts WHERE id = ?').get(cycleCountId);
+  if (!cc) throw new Error('Cycle count not found.');
+  if (cc.status !== 'Open') throw new Error('This cycle count is already closed.');
+  const item = db.prepare('SELECT * FROM cycle_count_items WHERE cycle_count_id = ? AND product_id = ?').get(cycleCountId, productId);
+  if (!item) throw new Error('That product is not part of this cycle count.');
+
+  const qty = Math.max(0, Math.round(Number(countedQty)));
+  db.prepare(`
+    UPDATE cycle_count_items SET counted_qty = ?, counted_by = ?, counted_at = datetime('now') WHERE id = ?
+  `).run(qty, staff?.id || null, item.id);
+
+  return { productId, expectedQty: item.expected_qty, countedQty: qty, variance: qty - item.expected_qty };
+}
+
+export function completeCycleCount({ cycleCountId, staff, ip }) {
+  const cc = db.prepare('SELECT * FROM cycle_counts WHERE id = ?').get(cycleCountId);
+  if (!cc) throw new Error('Cycle count not found.');
+  if (cc.status !== 'Open') throw new Error('This cycle count is already closed.');
+
+  const items = db.prepare('SELECT * FROM cycle_count_items WHERE cycle_count_id = ?').all(cycleCountId);
+  const uncounted = items.filter((i) => i.counted_qty === null);
+  if (uncounted.length) throw new Error(`${uncounted.length} item(s) still uncounted.`);
+
+  /* Reuse adjustStock() rather than re-deriving warehouse sync, ledger
+     and audit logic here — a count-driven correction should leave
+     exactly the same trail as any other stock movement. */
+  const adjustments = [];
+  items.forEach((it) => {
+    const delta = it.counted_qty - it.expected_qty;
+    if (delta === 0) return;
+    const result = adjustStock({
+      productId: it.product_id,
+      warehouseId: cc.warehouse_id,
+      delta,
+      reason: 'cycle_count',
+      notes: `Cycle count ${cc.count_number}: expected ${it.expected_qty}, counted ${it.counted_qty}`,
+      reference: cc.count_number,
+      staff,
+      ip
+    });
+    adjustments.push({ productId: it.product_id, ...result });
+  });
+
+  db.prepare(`
+    UPDATE cycle_counts SET status = 'Completed', completed_by = ?, completed_at = datetime('now') WHERE id = ?
+  `).run(staff?.id || null, cycleCountId);
+
+  audit({
+    staff,
+    action: 'cycle_count_completed',
+    entity: 'cycle_count',
+    entityId: String(cycleCountId),
+    summary: `Completed cycle count ${cc.count_number}: ${adjustments.length} adjustment(s) out of ${items.length} SKUs`,
+    after: { adjustments },
+    ip
+  });
+
+  return { id: cycleCountId, countNumber: cc.count_number, totalItems: items.length, adjustments };
+}
+
+export function cancelCycleCount({ cycleCountId, staff }) {
+  const cc = db.prepare('SELECT * FROM cycle_counts WHERE id = ?').get(cycleCountId);
+  if (!cc) throw new Error('Cycle count not found.');
+  if (cc.status !== 'Open') throw new Error('This cycle count is already closed.');
+  db.prepare("UPDATE cycle_counts SET status = 'Cancelled' WHERE id = ?").run(cycleCountId);
+  audit({
+    staff, action: 'cycle_count_cancelled', entity: 'cycle_count', entityId: String(cycleCountId),
+    summary: `Cancelled cycle count ${cc.count_number} with no stock changes`
+  });
+  return { id: cycleCountId };
+}

@@ -1,0 +1,113 @@
+- generic [ref=f71e3]:
+  - complementary "Admin navigation" [ref=f71e4]:
+    - generic [ref=f71e5]:
+      - generic [ref=f71e6]: AURELIS
+      - generic [ref=f71e7]: Executive · AI Admin
+    - navigation [ref=f71e8]:
+      - generic [ref=f71e9]:
+        - heading "Executive Command" [level=2] [ref=f71e10]
+        - link "Command Center" [ref=f71e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f71e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f71e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f71e14]
+        - link "Inventory Management" [ref=f71e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f71e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f71e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f71e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f71e19]
+        - link "Sales & BI Analytics" [ref=f71e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f71e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f71e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f71e23]
+        - link "Products" [ref=f71e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f71e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f71e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f71e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f71e28]:
+        - heading "System & Governance" [level=2] [ref=f71e29]
+        - link "Staff Management" [ref=f71e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f71e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f71e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f71e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f71e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f71e35]:
+      - generic [ref=f71e36]: Hélène Marchand
+      - generic [ref=f71e37]: Administrator
+      - button "Sign out" [ref=f71e38] [cursor=pointer]
+  - generic [ref=f71e39]:
+    - banner [ref=f71e40]:
+      - generic [ref=f71e42]:
+        - generic [ref=f71e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f71e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f71e45]: Period Filter
+        - combobox "Filter by time period" [ref=f71e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f71e47]:
+        - link "4 Alerts" [ref=f71e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f71e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f71e52]:
+      - generic [ref=f71e53]:
+        - generic [ref=f71e55]:
+          - generic [ref=f71e56]: Artificial Intelligence Engine
+          - heading "AI Intelligence & Forecasting" [level=1] [ref=f71e57]
+          - paragraph [ref=f71e58]: Predictive demand, autonomous anomaly detection, and decision-support workflows.
+        - tablist [ref=f71e59]:
+          - tab "AI Alert Center" [ref=f71e60] [cursor=pointer]
+          - tab "Demand Forecasting" [ref=f71e61] [cursor=pointer]
+          - tab "Stockout Risk Matrix" [ref=f71e62] [cursor=pointer]
+          - tab "Smart Replenishment" [ref=f71e63] [cursor=pointer]
+          - tab "Overstock & Dead Stock" [ref=f71e64] [cursor=pointer]
+          - tab "What-If Simulator" [selected] [ref=f71e65] [cursor=pointer]
+          - tab "AI Evaluation & Learning" [ref=f71e66] [cursor=pointer]
+        - generic [ref=f71e69]:
+          - heading "Interactive “What-If?” Parameter Simulator" [level=3] [ref=f71e70]
+          - paragraph [ref=f71e71]: Adjust external market variables to stress-test your supply chain and liquidity requirements.
+          - generic [ref=f71e72]:
+            - generic [ref=f71e73]:
+              - generic [ref=f71e74]:
+                - text: "Expected Demand Shift:"
+                - strong [ref=f71e75]: +20%
+              - slider [ref=f71e76] [cursor=pointer]: "20"
+            - generic [ref=f71e77]:
+              - generic [ref=f71e78]:
+                - text: "Supplier Lead Time Drift:"
+                - strong [ref=f71e79]: +4 Days
+              - slider [ref=f71e80] [cursor=pointer]: "4"
+            - generic [ref=f71e81]:
+              - generic [ref=f71e82]:
+                - text: "Safety Stock Multiplier:"
+                - strong [ref=f71e83]: 1.2x
+              - slider [ref=f71e84] [cursor=pointer]: "1.2"
+            - generic [ref=f71e85]:
+              - generic [ref=f71e86]:
+                - text: "Promotional Campaign Uplift:"
+                - strong [ref=f71e87]: 10% Off
+              - slider [ref=f71e88] [cursor=pointer]: "10"
+  - button "Open AI assistant" [ref=f71e90] [cursor=pointer]: Ask AI

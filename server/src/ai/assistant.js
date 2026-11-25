@@ -51,10 +51,30 @@ export async function gatherContext() {
       FROM orders WHERE status != 'Cancelled' AND channel != 'synthetic'
   `).get();
 
-  const stock = db.prepare(`
-    SELECT id, name, stock, reserved, low_stock_at
-      FROM products WHERE status = 'active' ORDER BY stock ASC LIMIT 12
+  /* The full catalogue, not a curated slice — so a question about any
+     one of the 140 SKUs (not just the dozen lowest on stock) can still
+     be answered from real figures instead of "I don't have that." */
+  const catalog = db.prepare(`
+    SELECT id, name, cat, price, stock, reserved, low_stock_at, status
+      FROM products ORDER BY cat, name
   `).all();
+
+  /* Summed here, not left for the model to add up across 140 rows.
+     Measured: asked to total one category itself, a free model cited
+     every individual SKU figure correctly but summed them to 46 units
+     against a real total of 116 — right facts, wrong arithmetic. A
+     precomputed total removes that failure mode for the question an
+     operator is most likely to ask. */
+  const categoryTotals = db.prepare(`
+    SELECT cat AS category, COUNT(*) AS skus, COALESCE(SUM(stock),0) AS totalStock,
+           COALESCE(SUM(price * stock),0) AS totalValue
+      FROM products WHERE status = 'active' GROUP BY cat ORDER BY cat
+  `).all();
+  const overallTotals = db.prepare(`
+    SELECT COUNT(*) AS skus, COALESCE(SUM(stock),0) AS totalStock,
+           COALESCE(SUM(price * stock),0) AS totalValue
+      FROM products WHERE status = 'active'
+  `).get();
 
   const risk = riskBoard();
   const reorder = reorderPlan();
@@ -80,9 +100,19 @@ export async function gatherContext() {
       revenue: inr(totals.revenue),
       topSellers: realSales.map((r) => ({ product: dx(r.name), units: r.units, revenue: inr(r.revenue) }))
     },
-    stockPosition: stock.map((s) => ({
-      product: dx(s.name), onHand: s.stock, reserved: s.reserved, reorderPoint: s.low_stock_at
+    catalog: catalog.map((p) => ({
+      sku: p.id, product: dx(p.name), category: p.cat, price: p.price,
+      onHand: p.stock, reserved: p.reserved, reorderPoint: p.low_stock_at, status: p.status
     })),
+    /* Pre-summed totals — use these for "how much stock/value in
+       category X / overall" instead of adding up the catalogue rows,
+       which is where a free model's arithmetic tends to go wrong. */
+    stockTotals: {
+      overall: { skus: overallTotals.skus, totalStock: overallTotals.totalStock, totalValue: inr(overallTotals.totalValue) },
+      byCategory: categoryTotals.map((c) => ({
+        category: c.category, skus: c.skus, totalStock: c.totalStock, totalValue: inr(c.totalValue)
+      }))
+    },
     stockOutRisk: {
       counts: risk.counts,
       leadTimeDays: risk.leadTime,
@@ -128,13 +158,16 @@ const SYSTEM = [
   '   demonstration rather than real trading. Never let a synthetic figure pass as real trade.',
   '4. You advise. You never instruct someone to buy stock or change a price as though the decision',
   '   were made. Recommendations are for a human to accept or reject.',
+  '5. For a total stock quantity or inventory value — one category or the whole catalogue — use the',
+  '   figure already computed in stockTotals. Do not add up the catalogue rows yourself; that is exactly',
+  '   the kind of arithmetic a small model gets wrong even when every individual figure is read correctly.',
   '',
   'STYLE: British English. Currency in rupees, as written in the data. Direct and specific — no',
   'preamble, no "great question", no bullet-point padding. Two or three short paragraphs at most,',
   'or a short list where a list genuinely helps. Lead with the answer.'
 ].join('\n');
 
-export async function askAssistant(question, { signal } = {}) {
+export async function askAssistant(question, { signal, history = [] } = {}) {
   if (!isConfigured()) {
     return {
       ok: false,
@@ -149,14 +182,28 @@ export async function askAssistant(question, { signal } = {}) {
 
   const context = await gatherContext();
 
+  /* Turns from earlier in this chat, for continuity on a follow-up like
+     "and the second one?" — not new data, so it sits before the DATA
+     block and is labelled as such rather than left for the model to
+     mistake for figures it can cite. */
+  const prior = Array.isArray(history) ? history.slice(-6) : [];
+  const transcript = prior.length
+    ? [
+        'PRIOR CONVERSATION (for continuity only — not data; never cite a number from here):',
+        ...prior.map((t) => `${t.role === 'assistant' ? 'You' : 'Staff'}: ${String(t.content || '').slice(0, 500)}`),
+        ''
+      ].join('\n')
+    : '';
+
   const user = [
+    transcript,
     'DATA (everything you are permitted to reason from):',
     '```json',
     JSON.stringify(context, null, 1),
     '```',
     '',
     `QUESTION: ${q}`
-  ].join('\n');
+  ].filter(Boolean).join('\n');
 
   try {
     const { text, model, attempts } = await complete({ system: SYSTEM, user, signal });

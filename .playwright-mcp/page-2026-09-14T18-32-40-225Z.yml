@@ -1,0 +1,106 @@
+- generic [ref=f76e3]:
+  - complementary "Admin navigation" [ref=f76e4]:
+    - generic [ref=f76e5]:
+      - generic [ref=f76e6]: AURELIS
+      - generic [ref=f76e7]: Executive · AI Admin
+    - navigation [ref=f76e8]:
+      - generic [ref=f76e9]:
+        - heading "Executive Command" [level=2] [ref=f76e10]
+        - link "Command Center" [ref=f76e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f76e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f76e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f76e14]
+        - link "Inventory Management" [ref=f76e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f76e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f76e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f76e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f76e19]
+        - link "Sales & BI Analytics" [ref=f76e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f76e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f76e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f76e23]
+        - link "Products" [ref=f76e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f76e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f76e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f76e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f76e28]:
+        - heading "System & Governance" [level=2] [ref=f76e29]
+        - link "Staff Management" [ref=f76e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f76e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f76e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f76e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f76e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f76e35]:
+      - generic [ref=f76e36]: Hélène Marchand
+      - generic [ref=f76e37]: Administrator
+      - button "Sign out" [ref=f76e38] [cursor=pointer]
+  - generic [ref=f76e39]:
+    - banner [ref=f76e40]:
+      - generic [ref=f76e42]:
+        - generic [ref=f76e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f76e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f76e45]: Period Filter
+        - combobox "Filter by time period" [ref=f76e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f76e47]:
+        - link "4 Alerts" [ref=f76e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f76e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f76e52]:
+      - generic [ref=f76e53]:
+        - generic [ref=f76e54]:
+          - generic [ref=f76e55]:
+            - generic [ref=f76e56]: Compliance & Regulatory Auditing
+            - heading "Financial Reports & Data Exports" [level=1] [ref=f76e57]
+            - paragraph [ref=f76e58]: Generate auditable financial ledgers, inventory valuations, and supplier metrics for export.
+          - generic [ref=f76e59]:
+            - button "↓ Export CSV Document" [disabled] [ref=f76e60]
+            - button "🖨️ Print / PDF" [disabled] [ref=f76e61]
+        - tablist [ref=f76e62]:
+          - tab "Generate Now" [selected] [ref=f76e63] [cursor=pointer]
+          - tab "🕐 Scheduled Reports (0 active)" [ref=f76e64] [cursor=pointer]
+        - generic [ref=f76e65]:
+          - generic [ref=f76e66]:
+            - generic [ref=f76e67]: "Report:"
+            - combobox "Report:" [ref=f76e68]:
+              - option "📦 Inventory Valuation & Stock Report" [selected]
+              - option "📈 Sales & Profitability Ledger"
+              - option "📜 Stock Movements & Audit Trail"
+              - option "🏆 Supplier Performance & Procurement"
+              - option "🔮 AI Demand Forecast & Stockout Plan"
+            - generic [ref=f76e69]: "Period:"
+            - combobox "Period:" [ref=f76e70]:
+              - option "Today"
+              - option "Last 7 Days"
+              - option "Last 30 Days" [selected]
+              - option "Last Quarter (90d)"
+              - option "Fiscal Year to Date"
+          - generic [ref=f76e71]: 0 records synthesized · Generated 12:02:40 AM
+        - generic [ref=f76e72]: Compiling report data table...
+  - button "Open AI assistant" [ref=f76e75] [cursor=pointer]: Ask AI

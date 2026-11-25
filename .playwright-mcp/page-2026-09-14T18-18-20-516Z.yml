@@ -1,0 +1,439 @@
+- generic [ref=f60e3]:
+  - complementary "Admin navigation" [ref=f60e5]:
+    - generic [ref=f60e6]:
+      - generic [ref=f60e7]: AURELIS
+      - generic [ref=f60e8]: Executive · AI Admin
+    - navigation [ref=f60e9]:
+      - generic [ref=f60e10]:
+        - heading "Executive Command" [level=2] [ref=f60e11]
+        - link "Command Center" [ref=f60e12] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f60e13] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f60e14]:
+        - heading "Inventory & Vaults" [level=2] [ref=f60e15]
+        - link "Inventory Management" [ref=f60e16] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f60e17] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f60e18] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f60e19]:
+        - heading "Intelligence & Reports" [level=2] [ref=f60e20]
+        - link "Sales & BI Analytics" [ref=f60e21] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f60e22] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f60e23]:
+        - heading "Catalog & Orders" [level=2] [ref=f60e24]
+        - link "Products" [ref=f60e25] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f60e26] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f60e27] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f60e28] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f60e29]:
+        - heading "System & Governance" [level=2] [ref=f60e30]
+        - link "Staff Management" [ref=f60e31] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f60e32] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f60e33] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f60e34] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f60e35] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f60e36]:
+      - generic [ref=f60e37]: Hélène Marchand
+      - generic [ref=f60e38]: Administrator
+      - button "Sign out" [ref=f60e39] [cursor=pointer]
+  - generic [ref=f60e40]:
+    - banner [ref=f60e41]:
+      - generic [ref=f60e43]:
+        - generic [ref=f60e44]: Facility Filter
+        - combobox "Filter by facility" [ref=f60e45] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f60e46]: Period Filter
+        - combobox "Filter by time period" [ref=f60e47] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f60e48]:
+        - link "5 Alerts" [ref=f60e49] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f60e52] [cursor=pointer]:
+          - /url: /
+    - main [ref=f60e53]:
+      - generic [ref=f60e54]:
+        - generic [ref=f60e55]:
+          - generic [ref=f60e56]:
+            - generic [ref=f60e57]: Executive Intelligence
+            - heading "Command Center" [level=1] [ref=f60e58]
+            - paragraph [ref=f60e59]: Autonomous decision-support architecture for global maison operations.
+          - generic [ref=f60e60]:
+            - button "↻ Live Refresh" [ref=f60e61] [cursor=pointer]
+            - link "Generate Executive Dossier" [ref=f60e62] [cursor=pointer]:
+              - /url: /admin/reports
+        - region "AI Executive Business Summary" [ref=f60e63]:
+          - generic [ref=f60e64]:
+            - generic [ref=f60e65]: ✦ AI Executive Synthesis · Live
+            - generic [ref=f60e66]:
+              - text: "System Confidence:"
+              - strong [ref=f60e67]: 94.8%
+              - text: · Model v2.4 Active
+          - heading "“Revenue grew +169.8% over the previous 30-day period, led by high-demand horology and fine jewellery collections.”" [level=2] [ref=f60e68]
+          - generic [ref=f60e69]:
+            - generic [ref=f60e70]:
+              - heading "What Changed?" [level=3] [ref=f60e71]
+              - list [ref=f60e72]:
+                - listitem [ref=f60e73]: Net sales reached ₹1,01,27,702 across 29 orders, averaging an AOV of ₹3,49,231.
+                - listitem [ref=f60e74]: Customer acquisition rose 100% with active collector engagement in private salons.
+                - listitem [ref=f60e75]: Inventory turnover increased to 4.2x annualized, while out-of-stock items dropped to 19 SKUs.
+            - generic [ref=f60e76]:
+              - heading "Why Did It Change?" [level=3] [ref=f60e77]
+              - list [ref=f60e78]:
+                - listitem [ref=f60e79]: Accelerated demand for limited-run Chronographe 1911 and Diamond Bezel editions during wedding and seasonal gala cycles.
+                - listitem [ref=f60e80]: Grasse parfum restock eliminated backorder delays experienced in preceding months.
+                - listitem [ref=f60e81]: Regional transfer to Place Vendôme captured 18% higher sell-through.
+            - generic [ref=f60e82]:
+              - heading "What Requires Attention?" [level=3] [ref=f60e83]
+              - list [ref=f60e84]:
+                - listitem [ref=f60e85]: 2 critical operational alerts active, including imminent stockout on Chronographe 1911 in Geneva Atelier.
+                - listitem [ref=f60e86]: Supplier Dubois Dépraz lead time drift (+3.8 days) poses fulfillment risk on upcoming calibre deliveries.
+                - listitem [ref=f60e87]: ₹18,50,000 capital tied up in slow-moving Barenia leather goods across regional vaults.
+            - generic [ref=f60e88]:
+              - heading "Recommended Action" [level=3] [ref=f60e89]
+              - list [ref=f60e90]:
+                - listitem [ref=f60e91]:
+                  - strong [ref=f60e92]: → Approve Purchase Order PO-2026-081 to Valcambi SA for 18k gold alloy ingots to sustain atelier bench runs.
+                - listitem [ref=f60e93]:
+                  - strong [ref=f60e94]: → Execute inter-warehouse transfer of 12 units of Extrait de Rose des Cendres from Zurich to Paris Vault.
+                - listitem [ref=f60e95]:
+                  - strong [ref=f60e96]: → Apply a 10% private client editorial privilege on the Barenia Weekend Bag to liberate ₹7,40,000 within 21 days.
+              - generic [ref=f60e97]:
+                - link "View Recommendations (3)" [ref=f60e98] [cursor=pointer]:
+                  - /url: /admin/ai?tab=reorder
+                - link "Triage Alerts (2)" [ref=f60e99] [cursor=pointer]:
+                  - /url: /admin/ai?tab=alerts
+        - region "Key Performance Indicators" [ref=f60e100]:
+          - generic [ref=f60e101]:
+            - generic [ref=f60e102]:
+              - generic [ref=f60e103]: Total Revenue (30d)
+              - generic [ref=f60e104]: ₹10,127,702
+              - generic [ref=f60e106]:
+                - generic [ref=f60e107]: ↑ 169.8%
+                - generic [ref=f60e108]: vs ₹3,754,314
+              - link "View details for Total Revenue (30d)" [ref=f60e109] [cursor=pointer]:
+                - /url: /admin/analytics
+                - text: Details →
+            - generic [ref=f60e110]:
+              - generic [ref=f60e111]: Today's Revenue
+              - generic [ref=f60e112]: ₹0
+              - generic [ref=f60e114]:
+                - generic [ref=f60e115]: → 0%
+                - generic [ref=f60e116]: vs ₹0
+              - link "View details for Today's Revenue" [ref=f60e117] [cursor=pointer]:
+                - /url: /admin/analytics
+                - text: Details →
+            - generic [ref=f60e118]:
+              - generic [ref=f60e119]: Total Orders (30d)
+              - generic [ref=f60e120]: "29"
+              - generic [ref=f60e122]:
+                - generic [ref=f60e123]: ↑ 190%
+                - generic [ref=f60e124]: vs 10
+              - link "View details for Total Orders (30d)" [ref=f60e125] [cursor=pointer]:
+                - /url: /admin/orders
+                - text: Details →
+            - generic [ref=f60e126]:
+              - generic [ref=f60e127]: Today's Orders
+              - generic [ref=f60e128]: "0"
+              - generic [ref=f60e130]:
+                - generic [ref=f60e131]: → 0%
+                - generic [ref=f60e132]: vs 0
+              - link "View details for Today's Orders" [ref=f60e133] [cursor=pointer]:
+                - /url: /admin/orders
+                - text: Details →
+            - generic [ref=f60e134]:
+              - generic [ref=f60e135]: Gross Profit (30d)
+              - generic [ref=f60e136]: ₹5,712,024
+              - generic [ref=f60e138]:
+                - generic [ref=f60e139]: ↑ 169.8%
+                - generic [ref=f60e140]: vs ₹2,117,433
+              - link "View details for Gross Profit (30d)" [ref=f60e141] [cursor=pointer]:
+                - /url: /admin/analytics
+                - text: Details →
+            - generic [ref=f60e142]:
+              - generic [ref=f60e143]: Inventory Value
+              - generic [ref=f60e144]: ₹200,430,000
+              - generic [ref=f60e146]:
+                - generic [ref=f60e147]: ↑ 4.2%
+                - generic [ref=f60e148]: vs ₹192,412,800
+              - link "View details for Inventory Value" [ref=f60e149] [cursor=pointer]:
+                - /url: /admin/inventory
+                - text: Details →
+            - generic [ref=f60e150]:
+              - generic [ref=f60e151]: Active Products
+              - generic [ref=f60e152]: "140"
+              - generic [ref=f60e154]:
+                - generic [ref=f60e155]: → 0%
+                - generic [ref=f60e156]: vs 140
+              - link "View details for Active Products" [ref=f60e157] [cursor=pointer]:
+                - /url: /admin/products
+                - text: Details →
+            - generic [ref=f60e158]:
+              - generic [ref=f60e159]: Total Customers
+              - generic [ref=f60e160]: "9"
+              - generic [ref=f60e162]:
+                - generic [ref=f60e163]: ↑ 100%
+                - generic [ref=f60e164]: vs 0
+              - link "View details for Total Customers" [ref=f60e165] [cursor=pointer]:
+                - /url: /admin/customers
+                - text: Details →
+            - generic [ref=f60e166]:
+              - generic [ref=f60e167]: Low Stock Items
+              - generic [ref=f60e168]: "44"
+              - generic [ref=f60e170]:
+                - generic [ref=f60e171]: ↑ 2.3%
+                - generic [ref=f60e172]: vs 43
+              - link "View details for Low Stock Items" [ref=f60e173] [cursor=pointer]:
+                - /url: /admin/ai?tab=stockout
+                - text: Details →
+            - generic [ref=f60e174]:
+              - generic [ref=f60e175]: Out-of-Stock Items
+              - generic [ref=f60e176]: "19"
+              - generic [ref=f60e178]:
+                - generic [ref=f60e179]: ↓ 5%
+                - generic [ref=f60e180]: vs 20
+              - link "View details for Out-of-Stock Items" [ref=f60e181] [cursor=pointer]:
+                - /url: /admin/ai?tab=stockout
+                - text: Details →
+            - generic [ref=f60e182]:
+              - generic [ref=f60e183]: Pending Orders
+              - generic [ref=f60e184]: "5"
+              - generic [ref=f60e186]:
+                - generic [ref=f60e187]: ↑ 66.7%
+                - generic [ref=f60e188]: vs 3
+              - link "View details for Pending Orders" [ref=f60e189] [cursor=pointer]:
+                - /url: /admin/orders
+                - text: Details →
+            - generic [ref=f60e190]:
+              - generic [ref=f60e191]: Pending Purchase Orders
+              - generic [ref=f60e192]: "1"
+              - generic [ref=f60e194]:
+                - generic [ref=f60e195]: → 0%
+                - generic [ref=f60e196]: vs 1
+              - link "View details for Pending Purchase Orders" [ref=f60e197] [cursor=pointer]:
+                - /url: /admin/purchase-orders
+                - text: Details →
+            - generic [ref=f60e198]:
+              - generic [ref=f60e199]: Returns (30d)
+              - generic [ref=f60e200]: "0"
+              - generic [ref=f60e202]:
+                - generic [ref=f60e203]: ↓ 100%
+                - generic [ref=f60e204]: vs 1
+              - link "View details for Returns (30d)" [ref=f60e205] [cursor=pointer]:
+                - /url: /admin/orders?status=Returned
+                - text: Details →
+            - generic [ref=f60e206]:
+              - generic [ref=f60e207]: Inventory Health
+              - generic [ref=f60e208]:
+                - generic [ref=f60e209]: "87"
+                - generic [ref=f60e210]: / 100
+              - generic [ref=f60e211]: Optimal
+              - link "Diagnostics →" [ref=f60e212] [cursor=pointer]:
+                - /url: /admin/analytics
+        - region "Trading over time" [ref=f60e213]:
+          - generic [ref=f60e214]:
+            - generic [ref=f60e215]:
+              - generic [ref=f60e216]: Trading
+              - heading "The last 30 days" [level=2] [ref=f60e217]
+            - group "Time range" [ref=f60e218]:
+              - button "7d" [ref=f60e219] [cursor=pointer]
+              - button "30d" [pressed] [ref=f60e220] [cursor=pointer]
+              - button "90d" [ref=f60e221] [cursor=pointer]
+          - generic [ref=f60e222]:
+            - generic [ref=f60e223]:
+              - generic [ref=f60e224]: Revenue
+              - generic [ref=f60e225]: ₹1,01,63,524
+              - generic [ref=f60e226]: across 30 orders
+            - generic [ref=f60e227]:
+              - generic [ref=f60e228]: Orders
+              - generic [ref=f60e229]: "30"
+              - generic [ref=f60e230]: on 25 trading days
+            - generic [ref=f60e231]:
+              - generic [ref=f60e232]: Average order
+              - generic [ref=f60e233]: ₹3,38,784
+            - generic [ref=f60e234]:
+              - generic [ref=f60e235]: In the catalogue
+              - generic [ref=f60e236]: "140"
+              - generic [ref=f60e237]: active pieces
+          - generic [ref=f60e238]:
+            - figure [ref=f60e239]:
+              - generic [ref=f60e240]:
+                - heading "Revenue per day" [level=3] [ref=f60e241]
+                - paragraph [ref=f60e242]: Real orders only. Synthetic history used to train the forecasting models is excluded.
+                - paragraph [ref=f60e243]: Note — 2 days — peak ₹21.7L — sits off this scale; the line is capped there so the rest of the window stays readable.
+              - img "Revenue per day. 30 days, peak ₹21.7L (off-scale, chart capped for readability)." [ref=f60e245]:
+                - generic [ref=f60e246]: ₹0
+                - generic [ref=f60e248]: ₹4.4L
+                - generic [ref=f60e250]: ₹8.8L
+                - generic [ref=f60e254]: ₹21.7L
+                - generic [ref=f60e257]: ₹12.4L
+                - generic [ref=f60e260]: 16/08
+                - generic [ref=f60e261]: 14/09
+            - figure [ref=f60e262]:
+              - generic [ref=f60e263]:
+                - heading "Orders per day" [level=3] [ref=f60e264]
+                - paragraph [ref=f60e265]: Same window, its own scale.
+              - img "Orders per day. 30 days, peak 3." [ref=f60e267]:
+                - generic [ref=f60e268]: "0"
+                - generic [ref=f60e270]: "2"
+                - generic [ref=f60e272]: "3"
+                - generic [ref=f60e276]: 16/08
+                - generic [ref=f60e277]: 14/09
+          - generic [ref=f60e278]:
+            - figure [ref=f60e279]:
+              - generic [ref=f60e280]:
+                - heading "Revenue by collection" [level=3] [ref=f60e281]
+                - paragraph [ref=f60e282]: Ranked, so length carries the value.
+              - list [ref=f60e283]:
+                - listitem [ref=f60e284]:
+                  - generic [ref=f60e285]: horology
+                  - generic [ref=f60e288]: ₹47,45,200
+                - listitem [ref=f60e289]:
+                  - generic [ref=f60e290]: jewellery
+                  - generic [ref=f60e293]: ₹9,41,500
+                - listitem [ref=f60e294]:
+                  - generic [ref=f60e295]: eyewear
+                  - generic [ref=f60e298]: ₹9,24,200
+                - listitem [ref=f60e299]:
+                  - generic [ref=f60e300]: parfums
+                  - generic [ref=f60e303]: ₹6,93,000
+                - listitem [ref=f60e304]:
+                  - generic [ref=f60e305]: objets
+                  - generic [ref=f60e308]: ₹5,41,800
+                - listitem [ref=f60e309]:
+                  - generic [ref=f60e310]: leather
+                  - generic [ref=f60e313]: ₹4,49,000
+                - listitem [ref=f60e314]:
+                  - generic [ref=f60e315]: silk
+                  - generic [ref=f60e318]: ₹2,42,100
+            - figure [ref=f60e319]:
+              - generic [ref=f60e320]:
+                - heading "Stock health" [level=3] [ref=f60e321]
+                - paragraph [ref=f60e322]: 140 active pieces
+              - img "Healthy 50, Low 38, Critical 33, Out of stock 19" [ref=f60e323]
+              - list [ref=f60e328]:
+                - listitem [ref=f60e329]:
+                  - generic [ref=f60e331]: Healthy
+                  - generic [ref=f60e332]: more than 10
+                  - generic [ref=f60e333]: "50"
+                - listitem [ref=f60e334]:
+                  - generic [ref=f60e336]: Low
+                  - generic [ref=f60e337]: 4 to 10
+                  - generic [ref=f60e338]: "38"
+                - listitem [ref=f60e339]:
+                  - generic [ref=f60e341]: Critical
+                  - generic [ref=f60e342]: 1 to 3
+                  - generic [ref=f60e343]: "33"
+                - listitem [ref=f60e344]:
+                  - generic [ref=f60e346]: Out of stock
+                  - generic [ref=f60e347]: none left
+                  - generic [ref=f60e348]: "19"
+          - generic [ref=f60e349]:
+            - figure [ref=f60e350]:
+              - generic [ref=f60e351]:
+                - heading "Best sellers by revenue" [level=3] [ref=f60e352]
+                - paragraph [ref=f60e353]: All time, real orders only.
+              - list [ref=f60e354]:
+                - listitem [ref=f60e355]:
+                  - generic [ref=f60e356]: Signal Grade 21
+                  - generic [ref=f60e359]: ₹27,55,200
+                - listitem [ref=f60e360]:
+                  - generic [ref=f60e361]: Calibre 09 Reserve
+                  - generic [ref=f60e364]: ₹15,68,500
+                - listitem [ref=f60e365]:
+                  - generic [ref=f60e366]: Sidewinder Onze
+                  - generic [ref=f60e369]: ₹10,75,800
+                - listitem [ref=f60e370]:
+                  - generic [ref=f60e371]: Bascule 18
+                  - generic [ref=f60e374]: ₹10,25,400
+                - listitem [ref=f60e375]:
+                  - generic [ref=f60e376]: Catalogue 1911
+                  - generic [ref=f60e379]: ₹8,68,200
+                - listitem [ref=f60e380]:
+                  - generic [ref=f60e381]: Brocanteur Optical
+                  - generic [ref=f60e384]: ₹5,14,400
+                - listitem [ref=f60e385]:
+                  - generic [ref=f60e386]: Amarna Band
+                  - generic [ref=f60e389]: ₹4,86,300
+                - listitem [ref=f60e390]:
+                  - generic [ref=f60e391]: Thera Carnelian
+                  - generic [ref=f60e394]: ₹4,63,400
+            - figure [ref=f60e395]:
+              - generic [ref=f60e396]:
+                - heading "Orders by status" [level=3] [ref=f60e397]
+                - paragraph [ref=f60e398]: Every order ever placed.
+              - list [ref=f60e399]:
+                - listitem [ref=f60e400]:
+                  - generic [ref=f60e401]: Delivered
+                  - generic [ref=f60e404]: "30"
+                - listitem [ref=f60e405]:
+                  - generic [ref=f60e406]: Shipped
+                  - generic [ref=f60e409]: "6"
+                - listitem [ref=f60e410]:
+                  - generic [ref=f60e411]: Cancelled
+                  - generic [ref=f60e414]: "3"
+                - listitem [ref=f60e415]:
+                  - generic [ref=f60e416]: Confirmed
+                  - generic [ref=f60e419]: "3"
+                - listitem [ref=f60e420]:
+                  - generic [ref=f60e421]: Processing
+                  - generic [ref=f60e424]: "2"
+                - listitem [ref=f60e425]:
+                  - generic [ref=f60e426]: In Transit
+                  - generic [ref=f60e429]: "1"
+          - button "Show the numbers" [ref=f60e431] [cursor=pointer]
+        - region "Core Business Questions" [ref=f60e432]:
+          - generic [ref=f60e433]:
+            - heading "The Five Core Operational Questions" [level=2] [ref=f60e434]
+            - paragraph [ref=f60e435]: Every metric leads directly to an accountable decision.
+          - tablist [ref=f60e436]:
+            - tab "01 How is the business performing?" [ref=f60e437] [cursor=pointer]:
+              - generic [ref=f60e438]: "01"
+              - generic [ref=f60e439]: How is the business performing?
+            - tab "02 What inventory problems exist right now?" [ref=f60e440] [cursor=pointer]:
+              - generic [ref=f60e441]: "02"
+              - generic [ref=f60e442]: What inventory problems exist right now?
+            - tab "03 What problems will happen next?" [ref=f60e443] [cursor=pointer]:
+              - generic [ref=f60e444]: "03"
+              - generic [ref=f60e445]: What problems will happen next?
+            - tab "04 What does AI recommend doing?" [selected] [ref=f60e446] [cursor=pointer]:
+              - generic [ref=f60e447]: "04"
+              - generic [ref=f60e448]: What does AI recommend doing?
+            - tab "05 Did recommended actions actually work?" [ref=f60e449] [cursor=pointer]:
+              - generic [ref=f60e450]: "05"
+              - generic [ref=f60e451]: Did recommended actions actually work?
+          - generic [ref=f60e454]:
+            - generic [ref=f60e455]:
+              - generic [ref=f60e456]: PO PROPOSAL
+              - heading "Replenish 37 Units of Bouteille de Treves" [level=4] [ref=f60e457]
+              - paragraph [ref=f60e458]: Estimated cost ₹16,05,060, from Valcambi SA (10-day lead time).
+              - link "Open Smart Replenishment →" [ref=f60e459] [cursor=pointer]:
+                - /url: /admin/ai?tab=reorder
+            - generic [ref=f60e460]:
+              - generic [ref=f60e461]: INTER-VAULT BALANCE
+              - heading "Compare stock across warehouses" [level=4] [ref=f60e462]
+              - paragraph [ref=f60e463]: No automated transfer recommendation exists yet — this opens the real per-warehouse stock levels and the transfer form so you can judge and act yourself.
+              - link "Open Warehouse Transfers →" [ref=f60e464] [cursor=pointer]:
+                - /url: /admin/warehouses
+  - button "Open AI assistant" [ref=f60e466] [cursor=pointer]: Ask AI

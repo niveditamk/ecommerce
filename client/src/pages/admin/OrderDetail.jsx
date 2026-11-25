@@ -11,6 +11,7 @@ import { useAsync } from '../../lib/useAsync';
 import adminApi from '../../lib/adminApi';
 import { useAdmin } from '../../context/AdminContext';
 import { money, formatShortDate, dx } from '../../lib/format';
+import NotesPanel from '../../components/admin/NotesPanel';
 
 const STAGES = ['Confirmed', 'Processing', 'Packed', 'Shipped', 'Delivered'];
 
@@ -21,8 +22,26 @@ export default function AdminOrderDetail() {
   const [flash, setFlash] = useState(null);
 
   const { data, loading, error, reload } = useAsync(() => adminApi.order(id), [id]);
+  const { data: staffData } = useAsync(() => adminApi.staff(), []);
 
   const setStatus = async (next) => {
+    if (next === 'Cancelled') {
+      const reason = window.prompt('Reason for cancelling this order? Required — this restocks the inventory and is written to the audit log.');
+      if (!reason || !reason.trim()) return;
+      setBusy(true);
+      try {
+        await adminApi.cancelOrder(id, reason.trim());
+        setFlash('Moved to Cancelled.');
+        reload();
+      } catch (err) {
+        setFlash(err.message);
+        reload();
+      } finally {
+        setBusy(false);
+        setTimeout(() => setFlash(null), 4000);
+      }
+      return;
+    }
     setBusy(true);
     try {
       await adminApi.updateOrder(id, { status: next });
@@ -42,9 +61,9 @@ export default function AdminOrderDetail() {
   if (!data?.order) return <div className="notice">That order could not be found.</div>;
 
   const { order, items = [], history = [] } = data;
-  const address = (() => {
-    try { return order.address ? JSON.parse(order.address) : null; } catch { return null; }
-  })();
+  const address = typeof order.address === 'string'
+    ? (() => { try { return JSON.parse(order.address); } catch { return null; } })()
+    : (order.address || null);
   const synthetic = order.channel === 'synthetic';
 
   return (
@@ -152,6 +171,8 @@ export default function AdminOrderDetail() {
               <div><dt>Tracking</dt><dd className="mono tiny">{order.tracking || '—'}</dd></div>
             </dl>
           </section>
+
+          <NotesPanel entity="order" entityId={id} staffDirectory={staffData?.items || []} />
         </div>
       </div>
     </>

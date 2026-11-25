@@ -1,20 +1,13 @@
 /* =============================================================
-   AURELIS // TERMINAL NAVIGATION & CONTROL PANEL
-   Futuristic shopping terminal interface from an alternate 1980s.
-   Telemetry status bar, indexed navigation modules, tactile states.
+   AURELIS MAISON // ARCHITECTURAL LUXURY HEADER
+   Minimalist haute navigation, editorial wordmark,
+   complimentary concierge shipping announcement, and bag drawer trigger.
    ============================================================= */
 import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Icon, ProductArt } from './primitives';
 import { useStore } from '../context/StoreContext';
 import { dx } from '../lib/format';
-
-const TELEMETRY_FEED = [
-  ['[ SYS.ONLINE ]', ' NODE 01 // GENEVA', ' — ALL COMMERCE CIRCUITS OPERATIONAL'],
-  ['[ PROTOCOL ]', ' SECURE ESCROW', ' — INSURED TRANSIT WORLDWIDE'],
-  ['[ ARCHIVE ]', ' NUMBERED RUNS', ' — MECHANICAL CALIBRES & FINE JEWELLERY'],
-  ['[ DISPATCH ]', ' REAL-TIME LEDGER', ' — COMPLIMENTARY COURIER FULFILLMENT']
-];
 
 export default function Header() {
   const { session, categories, openLayer } = useStore();
@@ -39,125 +32,101 @@ export default function Header() {
 
   const primary = useMemo(
     () => [
-      { label: 'Shop', to: '/categories', mega: true },
-      { label: 'Jewellery', to: '/category/jewellery' },
+      { label: 'Shop All', to: '/categories', mega: true },
+      { label: 'Fine Jewellery', to: '/category/jewellery' },
       { label: 'Horology', to: '/category/horology' },
-      { label: 'Parfums', to: '/category/parfums' },
-      { label: 'Leather', to: '/category/leather' },
-      { label: 'Boutiques', to: '/stores' }
+      { label: 'Haute Parfumerie', to: '/category/parfums' },
+      { label: 'Leather Goods', to: '/category/leather' },
+      { label: 'Ateliers', to: '/stores' }
     ],
     []
   );
 
   return (
     <header className={`site-header${stuck ? ' is-stuck' : ''}`} onMouseLeave={() => setMegaOpen(false)}>
-      {/* Telemetry / Announcement Bar */}
-      <div className="announce" role="region" aria-label="System Telemetry">
-        <div className="announce__track">
-          {[0, 1, 2].map((pass) =>
-            TELEMETRY_FEED.map(([tag, title, rest]) => (
-              <span key={`${pass}-${title}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ color: 'var(--color-terminal-green)', fontFamily: 'var(--font-mono)' }}>{tag}</span>
-                <b>{title}</b>
-                <span>{rest}</span>
-              </span>
-            ))
-          )}
-        </div>
+      {/* Luxury Concierge Announcement Bar */}
+      <div className="announce" role="region" aria-label="Maison Service Announcement">
+        <span>Complimentary White-Glove Insured Delivery Across India &middot; Geneva Atelier Craftsmanship &middot; 30-Day Returns</span>
       </div>
 
-      {/* Main Terminal Control Panel */}
-      <div className="nav" style={{ minHeight: '64px' }}>
+      {/* Main Luxury Navigation Bar */}
+      <div className="nav">
         <div className="nav__left">
-          <button className="burger" type="button" onClick={() => openLayer('nav')} aria-label="Open terminal navigation">
+          <button className="burger" type="button" onClick={() => openLayer('nav')} aria-label="Open navigation menu">
             <i />
           </button>
-          <nav className="nav__links" aria-label="Primary terminal navigation">
+          <nav className="nav__links" aria-label="Primary navigation">
             {primary.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) => `nav__link${isActive ? ' is-active' : ''}`}
                 onMouseEnter={() => setMegaOpen(!!item.mega)}
-                style={{ display: 'inline-flex', alignItems: 'center', padding: '6px 12px' }}
               >
-                {/* Each link used to carry an "01 //" index above its label.
-                    Navigation is not a sequence — nobody reaches Parfums by
-                    counting to four — so the number encoded nothing and cost
-                    the header a second line to show it. */}
-                <span style={{ fontWeight: 600 }}>{item.label}</span>
+                {item.label}
               </NavLink>
             ))}
           </nav>
         </div>
 
-        {/* Center Brand / Terminal Designation */}
-        <Link className="brand" to="/" aria-label="AURELIS Terminal">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ width: '6px', height: '6px', background: 'var(--color-terminal-green)', borderRadius: '1px', display: 'inline-block' }} />
-            <span className="brand__mark" style={{ letterSpacing: '0.12em' }}>AURELIS</span>
-          </div>
-          <span className="brand__sub" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem' }}>
-            SYS.NODE // 1980.2026
-          </span>
+        {/* Center Brand Identity */}
+        <Link className="brand" to="/" aria-label="AURELIS Maison Geneva">
+          <span className="brand__mark">AURELIS</span>
+          <span className="brand__sub">MAISON GENÈVE &middot; EST. 1911</span>
         </Link>
 
-        {/* Right Terminal Actions */}
-        <div className="nav__right">
+        {/* Right Luxury Actions */}
+        <div className="nav__actions">
           <button
-            className="nav__link"
+            className="btn--ghost"
             type="button"
             onClick={() => openLayer('search')}
-            aria-label="Search the catalogue"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            aria-label="Search collections"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem' }}
           >
-            <span style={{ color: 'var(--color-terminal-green-text)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>&gt;_</span>
+            <Icon name="search" size={18} />
             <span className="hide-sm">Search</span>
           </button>
 
           <Link
-            className="nav__link hide-sm"
+            className="btn--ghost hide-sm"
             to={user ? '/account/profile' : '/account/auth'}
-            aria-label="User terminal account"
-            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}
+            aria-label="Client Account"
+            style={{ fontSize: '0.82rem' }}
           >
-            {user ? `[ ${user.first || 'USER'} ]` : '[ AUTH ]'}
+            {user ? `${user.first || 'Account'}` : 'Sign In'}
           </Link>
 
-          <Link className="nav__link hide-sm" to="/wishlist" aria-label="Saved objects">
-            <span>SAVED</span>
+          <Link
+            className="btn--ghost hide-sm"
+            to="/wishlist"
+            aria-label="Saved pieces"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem' }}
+          >
+            <span>Wishlist</span>
             {wishCount > 0 && (
-              <span className="badge badge--terminal" style={{ marginLeft: 4, padding: '1px 5px', fontSize: '0.62rem' }}>
+              <span className="cart-count-pill" style={{ fontSize: '0.65rem' }}>
                 {wishCount}
               </span>
             )}
           </Link>
 
           <button
-            className="nav__link"
+            className="nav-cart-btn"
             type="button"
             onClick={() => openLayer('cart')}
-            aria-label={`Shopping bag, ${count} ${count === 1 ? 'object' : 'objects'}`}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            aria-label={`Shopping bag containing ${count} items`}
           >
-            <span>CART</span>
-            <span
-              className="badge"
-              style={{
-                background: count > 0 ? 'var(--color-terminal-green)' : 'var(--color-bone)',
-                color: count > 0 ? '#0B0D0E' : 'var(--pearl-3)',
-                fontWeight: 700,
-                padding: '2px 6px',
-                fontSize: '0.65rem'
-              }}
-            >
-              {String(count).padStart(2, '0')}
+            <Icon name="bag" size={17} />
+            <span className="hide-sm">Bag</span>
+            <span className="cart-count-pill">
+              {count}
             </span>
           </button>
         </div>
       </div>
 
-      {/* Mega Menu Dropdown */}
+      {/* Modern Luxury Mega Menu */}
       <MegaMenu open={megaOpen} categories={categories} onEnter={() => setMegaOpen(true)} />
     </header>
   );
@@ -182,8 +151,8 @@ function MegaMenu({ open, categories, onEnter }) {
                 {dx(s)}
               </Link>
             ))}
-            <Link className="gold" to={`/category/${c.slug}`}>
-              Explore collection &rarr;
+            <Link className="gold" to={`/category/${c.slug}`} style={{ marginTop: '8px', display: 'inline-block' }}>
+              Explore Collection &rarr;
             </Link>
           </div>
         ))}
@@ -197,19 +166,19 @@ function MegaMenu({ open, categories, onEnter }) {
               label={featured.name}
             />
           )}
-          <span className="eyebrow" style={{ marginTop: '12px' }}>Atelier Selection</span>
-          <div className="h4" style={{ marginTop: '4px', fontFamily: 'var(--serif)' }}>
+          <span className="eyebrow" style={{ marginTop: '14px' }}>Atelier Highlight</span>
+          <div className="h4" style={{ marginTop: '4px', fontFamily: 'var(--font-serif)' }}>
             {dx(featured?.name || 'Numbered Editions')}
           </div>
           <p className="tiny" style={{ marginTop: '4px', textTransform: 'none', color: 'var(--pearl-3)' }}>
-            Bench-made in Geneva. Numbered, hallmarked, and signed by its artisan.
+            Bench-made in our Geneva atelier. Hallmarked and individually certified.
           </p>
           <Link
-            className="btn btn--sm btn--outline"
-            style={{ marginTop: '14px' }}
+            className="btn btn--sm btn--primary"
+            style={{ marginTop: '16px' }}
             to={featured ? `/product/${featured.id}` : '/categories'}
           >
-            Discover piece
+            Discover Piece
           </Link>
         </div>
       </div>

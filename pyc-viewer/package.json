@@ -1,0 +1,56 @@
+{
+  "name": "pyc-viewer",
+  "displayName": "PYC Viewer — Python Bytecode Decompiler",
+  "description": "View .pyc files as reconstructed Python source code directly in VS Code. Uses pycrefine for decompilation with bytecode disassembly fallback.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "pycViewer.decompile",
+        "displayName": "PYC Viewer",
+        "selector": [
+          {
+            "filenamePattern": "*.pyc"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "configuration": {
+      "title": "PYC Viewer",
+      "properties": {
+        "pycViewer.pythonPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to the Python interpreter that has pycrefine installed. Leave empty to auto-detect."
+        },
+        "pycViewer.beautificationLevel": {
+          "type": "string",
+          "default": "core",
+          "enum": [
+            "none",
+            "core",
+            "aggressive"
+          ],
+          "description": "Level of code beautification applied by pycrefine."
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.0.0"
+  },
+  "scripts": {
+    "package": "vsce package --no-dependencies"
+  }
+}

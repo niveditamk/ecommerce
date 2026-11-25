@@ -1,0 +1,90 @@
+- generic [ref=f69e3]:
+  - complementary "Admin navigation" [ref=f69e4]:
+    - generic [ref=f69e5]:
+      - generic [ref=f69e6]: AURELIS
+      - generic [ref=f69e7]: Executive · AI Admin
+    - navigation [ref=f69e8]:
+      - generic [ref=f69e9]:
+        - heading "Executive Command" [level=2] [ref=f69e10]
+        - link "Command Center" [ref=f69e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f69e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f69e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f69e14]
+        - link "Inventory Management" [ref=f69e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f69e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f69e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f69e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f69e19]
+        - link "Sales & BI Analytics" [ref=f69e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f69e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f69e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f69e23]
+        - link "Products" [ref=f69e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f69e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f69e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f69e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f69e28]:
+        - heading "System & Governance" [level=2] [ref=f69e29]
+        - link "Staff Management" [ref=f69e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f69e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f69e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f69e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f69e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f69e35]:
+      - generic [ref=f69e36]: Hélène Marchand
+      - generic [ref=f69e37]: Administrator
+      - button "Sign out" [ref=f69e38] [cursor=pointer]
+  - generic [ref=f69e39]:
+    - banner [ref=f69e40]:
+      - generic [ref=f69e42]:
+        - generic [ref=f69e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f69e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f69e45]: Period Filter
+        - combobox "Filter by time period" [ref=f69e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f69e47]:
+        - link "4 Alerts" [ref=f69e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f69e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f69e52]:
+      - generic [ref=f69e53]:
+        - generic [ref=f69e55]:
+          - generic [ref=f69e56]: Artificial Intelligence Engine
+          - heading "AI Intelligence & Forecasting" [level=1] [ref=f69e57]
+          - paragraph [ref=f69e58]: Predictive demand, autonomous anomaly detection, and decision-support workflows.
+        - tablist [ref=f69e59]:
+          - tab "AI Alert Center" [ref=f69e60] [cursor=pointer]
+          - tab "Demand Forecasting" [ref=f69e61] [cursor=pointer]
+          - tab "Stockout Risk Matrix" [selected] [ref=f69e62] [cursor=pointer]
+          - tab "Smart Replenishment" [ref=f69e63] [cursor=pointer]
+          - tab "Overstock & Dead Stock" [ref=f69e64] [cursor=pointer]
+          - tab "What-If Simulator" [ref=f69e65] [cursor=pointer]
+          - tab "AI Evaluation & Learning" [ref=f69e66] [cursor=pointer]
+        - paragraph [ref=f69e70]: Predictive depletion dates calculated from 30-day Bayesian sales velocity and real-time reserved allocations.
+  - button "Open AI assistant" [ref=f69e74] [cursor=pointer]: Ask AI

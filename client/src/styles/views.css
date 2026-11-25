@@ -980,6 +980,16 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(166, 127, 66, 0.16);
 }
+/* The sheen (below) is a diagonal glint crossing the stamp; this is a
+   slow separate breathing glow on the seal itself, so the hallmark
+   reads as a living stamp rather than a static badge. */
+.atelier-stamp-animated {
+  animation: hallmark-glow 4s ease-in-out infinite;
+}
+@keyframes hallmark-glow {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 10px rgba(212, 163, 89, 0.45); }
+}
 .stamp-sheen {
   position: absolute;
   top: -50%;
@@ -1089,6 +1099,7 @@
   .art-atelier__core,
   .atelier-speck,
   .stamp-sheen,
+  .atelier-stamp-animated,
   .story-split__quote::before {
     animation: none !important;
   }
@@ -3791,4 +3802,62 @@
    interactive card, add the hover there rather than here. */
 .glass.glass--lift {
   box-shadow: var(--sh-1), var(--sh-2);
+}
+
+/* ============ SIGN UP ============ */
+.signup {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(20px, 3vw, 48px);
+  align-items: stretch;
+}
+.signup__art {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--spacing-16);
+  padding: var(--spacing-24);
+}
+.signup__art figcaption { display: flex; flex-direction: column; gap: 2px; }
+.signup__form { display: flex; flex-direction: column; }
+
+.faint { color: var(--pearl-3); font-weight: 400; }
+
+.filters__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 760px) {
+  .signup { grid-template-columns: 1fr; }
+  .signup__art { min-height: 220px; }
+}
+
+/* ============ STORE DETAIL ============ */
+.store-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+}
+.store-hero__media { margin: 0; min-height: 280px; display: flex; }
+
+.hours { display: flex; flex-direction: column; gap: 2px; margin-top: var(--spacing-12); }
+.hours__row {
+  display: flex; justify-content: space-between; gap: var(--spacing-12);
+  padding: 7px 0; font-size: 13px; color: var(--pearl-2); border-bottom: 1px solid var(--line-2);
+}
+.hours__row:last-child { border-bottom: 0; }
+.hours__row.is-today { color: var(--color-obsidian-ink); font-weight: 600; }
+
+.open-dot {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+}
+.open-dot .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pearl-3); }
+.open-dot.is-open { color: var(--success); }
+.open-dot.is-open .dot { background: var(--success); }
+.open-dot.is-shut { color: var(--pearl-3); }
+.open-dot.is-shut .dot { background: var(--pearl-3); }
+
+@media (max-width: 760px) {
+  .store-hero { grid-template-columns: 1fr; }
 }

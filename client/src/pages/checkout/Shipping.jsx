@@ -12,12 +12,11 @@ import { useAsync } from '../../lib/useAsync';
 import api from '../../lib/api';
 import { dx, money } from '../../lib/format';
 
-const COUNTRIES = ['United Kingdom', 'France', 'Switzerland', 'Italy', 'Germany', 'Spain',
-  'United States', 'Canada', 'Japan', 'Singapore', 'United Arab Emirates', 'Australia'];
+const COUNTRIES = ['India', 'United Kingdom', 'Switzerland', 'France', 'United States', 'Singapore', 'United Arab Emirates', 'Germany', 'Italy', 'Japan', 'Australia', 'Canada'];
 
 const BLANK = {
   label: 'Home', first: '', last: '', line1: '', line2: '',
-  city: '', region: '', post: '', country: 'United Kingdom', phone: '', isDefault: false
+  city: '', region: '', post: '', country: 'India', phone: '', isDefault: false
 };
 
 export default function CheckoutShipping() {
@@ -206,10 +205,10 @@ export default function CheckoutShipping() {
                     <Field label="Address line 2" name="line2" value={form.line2} onChange={set('line2')} placeholder="Apartment, floor, entrance" autoComplete="address-line2" />
                     <div className="field-row">
                       <Field label="City" name="city" value={form.city} onChange={set('city')} error={errors.city} required autoComplete="address-level2" />
-                      <Field label="Region or county" name="region" value={form.region} onChange={set('region')} autoComplete="address-level1" />
+                      <Field label="State / Province" name="region" value={form.region} onChange={set('region')} autoComplete="address-level1" placeholder="e.g. Maharashtra" />
                     </div>
                     <div className="field-row">
-                      <Field label="Postal code" name="post" value={form.post} onChange={set('post')} error={errors.post} required autoComplete="postal-code" />
+                      <Field label="PIN code / Postal code" name="post" value={form.post} onChange={set('post')} error={errors.post} required autoComplete="postal-code" placeholder="e.g. 400001" />
                       <Field label="Country" name="country" type="select" value={form.country} onChange={set('country')} options={COUNTRIES} required />
                     </div>
                     <div className="field-row">

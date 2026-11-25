@@ -1,0 +1,147 @@
+- generic [ref=f49e3]:
+  - complementary "Admin navigation" [ref=f49e4]:
+    - generic [ref=f49e5]:
+      - generic [ref=f49e6]: AURELIS
+      - generic [ref=f49e7]: Executive · AI Admin
+    - navigation [ref=f49e8]:
+      - generic [ref=f49e9]:
+        - heading "Executive Command" [level=2] [ref=f49e10]
+        - link "Command Center" [ref=f49e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f49e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f49e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f49e14]
+        - link "Inventory Management" [ref=f49e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f49e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f49e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f49e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f49e19]
+        - link "Sales & BI Analytics" [ref=f49e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f49e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f49e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f49e23]
+        - link "Products" [ref=f49e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f49e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f49e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f49e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f49e28]:
+        - heading "System & Governance" [level=2] [ref=f49e29]
+        - link "Staff Management" [ref=f49e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f49e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f49e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f49e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f49e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f49e35]:
+      - generic [ref=f49e36]: Hélène Marchand
+      - generic [ref=f49e37]: Administrator
+      - button "Sign out" [ref=f49e38] [cursor=pointer]
+  - generic [ref=f49e39]:
+    - banner [ref=f49e40]:
+      - generic [ref=f49e42]:
+        - generic [ref=f49e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f49e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f49e45]: Period Filter
+        - combobox "Filter by time period" [ref=f49e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f49e47]:
+        - link "5 Alerts" [ref=f49e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f49e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f49e52]:
+      - generic [ref=f49e62]:
+        - generic [ref=f49e63]:
+          - generic [ref=f49e64]: Access
+          - heading "Staff" [level=1] [ref=f49e65]
+          - paragraph [ref=f49e66]: 6 accounts
+        - button "New staff" [ref=f49e153] [cursor=pointer]
+      - generic [ref=f49e154]: Created test.account@aurelis.local.
+      - table [ref=f49e70]:
+        - rowgroup [ref=f49e71]:
+          - row [ref=f49e72]:
+            - columnheader "Name" [ref=f49e73]
+            - columnheader "Email" [ref=f49e74]
+            - columnheader "Role" [ref=f49e75]
+            - columnheader "Status" [ref=f49e76]
+            - columnheader "Last signed in" [ref=f49e77]
+            - columnheader [ref=f49e78]
+        - rowgroup [ref=f49e79]:
+          - row [ref=f49e80]:
+            - cell "Camille Fontaine" [ref=f49e81]
+            - cell "camille.fontaine@aurelis.local" [ref=f49e83]
+            - cell "Administrator" [ref=f49e84]
+            - cell "active" [ref=f49e85]
+            - cell "Never" [ref=f49e87]
+            - cell [ref=f49e88]:
+              - button "Edit" [ref=f49e89] [cursor=pointer]
+              - button "Disable" [ref=f49e90] [cursor=pointer]
+          - row [ref=f49e91]:
+            - cell "Daniel Osei" [ref=f49e92]
+            - cell "daniel.osei@aurelis.local" [ref=f49e94]
+            - cell "Administrator" [ref=f49e95]
+            - cell "active" [ref=f49e96]
+            - cell "Never" [ref=f49e98]
+            - cell [ref=f49e99]:
+              - button "Edit" [ref=f49e100] [cursor=pointer]
+              - button "Disable" [ref=f49e101] [cursor=pointer]
+          - row [ref=f49e102]:
+            - cell "Hélène Marchand (you)" [ref=f49e103]:
+              - generic [ref=f49e104]: Hélène Marchand
+              - text: (you)
+            - cell "admin@aurelis.local" [ref=f49e105]
+            - cell "Administrator" [ref=f49e106]
+            - cell "active" [ref=f49e107]
+            - cell "14 Sept 2026" [ref=f49e109]
+            - cell "—" [ref=f49e110]
+          - row [ref=f49e111]:
+            - cell "Marcus Whitfield" [ref=f49e112]
+            - cell "marcus.whitfield@aurelis.local" [ref=f49e114]
+            - cell "Administrator" [ref=f49e115]
+            - cell "active" [ref=f49e116]
+            - cell "Never" [ref=f49e118]
+            - cell [ref=f49e119]:
+              - button "Edit" [ref=f49e120] [cursor=pointer]
+              - button "Disable" [ref=f49e121] [cursor=pointer]
+          - row [ref=f49e122]:
+            - cell "Priya Devanathan" [ref=f49e123]
+            - cell "priya.devanathan@aurelis.local" [ref=f49e125]
+            - cell "Administrator" [ref=f49e126]
+            - cell "active" [ref=f49e127]
+            - cell "Never" [ref=f49e129]
+            - cell [ref=f49e130]:
+              - button "Edit" [ref=f49e131] [cursor=pointer]
+              - button "Disable" [ref=f49e132] [cursor=pointer]
+          - row [ref=f49e155]:
+            - cell "Test Account" [ref=f49e156]
+            - cell "test.account@aurelis.local" [ref=f49e158]
+            - cell "Administrator" [ref=f49e159]
+            - cell "active" [ref=f49e160]
+            - cell "Never" [ref=f49e162]
+            - cell [ref=f49e163]:
+              - button "Edit" [ref=f49e164] [cursor=pointer]
+              - button "Disable" [ref=f49e165] [cursor=pointer]
+  - button "Open AI assistant" [ref=f49e61] [cursor=pointer]: Ask AI

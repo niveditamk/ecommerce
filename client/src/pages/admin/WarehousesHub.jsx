@@ -75,7 +75,7 @@ export default function WarehousesHub() {
       const res = await fetch(`/api/admin/transfers${q}`, { headers });
       const data = await res.json();
       if (res.ok) {
-        setTransfers(data.items || []);
+        setTransfers(data.transfers || []);
       }
     } catch (err) {
       console.error('Failed to load transfers:', err);

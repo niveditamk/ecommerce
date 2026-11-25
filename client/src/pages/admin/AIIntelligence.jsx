@@ -54,7 +54,9 @@ export default function AIIntelligence({ defaultTab = 'alerts' }) {
       <div className="subnav-content" style={{ marginTop: 'var(--spacing-24)' }}>
         {activeTab === 'alerts' && <AlertsCenterPanel />}
         {activeTab === 'forecast' && <DemandForecastPanel />}
-        {activeTab === 'stockout' && <StockoutRiskPanel onSelectReorder={() => setTab('reorder')} />}
+        {activeTab === 'stockout' && (
+          <StockoutRiskPanel onSelectReorder={(sku) => setSearchParams({ tab: 'reorder', sku })} />
+        )}
         {activeTab === 'reorder' && <SmartReorderPanel />}
         {activeTab === 'overstock' && <OverstockDeadStockPanel />}
         {activeTab === 'simulator' && <ForecastSimulatorPanel />}
@@ -72,10 +74,17 @@ function AlertsCenterPanel() {
   const [severityFilter, setSeverityFilter] = useState('');
   const [loading, setLoading] = useState(true);
   const [toast, setToast] = useState(null);
+  const [toastError, setToastError] = useState(false);
   const token = readToken();
 
-  const loadAlerts = () => {
-    setLoading(true);
+  const say = (msg, isError = false) => {
+    setToast(msg);
+    setToastError(isError);
+    setTimeout(() => setToast(null), isError ? 5000 : 3000);
+  };
+
+  const loadAlerts = ({ silent = false } = {}) => {
+    if (!silent) setLoading(true);
     fetch(`/api/admin/ai/alerts${severityFilter ? `?severity=${severityFilter}` : ''}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -89,23 +98,30 @@ function AlertsCenterPanel() {
 
   useEffect(() => {
     loadAlerts();
+    /* A new critical alert should show up without the operator having to
+       refresh — silent so a background tick never flashes the spinner
+       over a list they might be mid-triage on. */
+    const interval = setInterval(() => loadAlerts({ silent: true }), 30000);
+    return () => clearInterval(interval);
   }, [severityFilter]);
 
-  const handleAction = (alertId, newStatus) => {
-    fetch(`/api/admin/ai/alerts/${alertId}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ status: newStatus })
-    })
-      .then((r) => r.json())
-      .then(() => {
-        setToast(`Alert #${alertId} marked ${newStatus}`);
-        setTimeout(() => setToast(null), 3000);
-        loadAlerts();
+  const handleAction = async (alertId, newStatus) => {
+    try {
+      const res = await fetch(`/api/admin/ai/alerts/${alertId}`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus })
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not update that alert.');
+      say(`Alert #${alertId} marked ${newStatus}`);
+      loadAlerts();
+    } catch (err) {
+      say(err.message, true);
+    }
   };
 
   return (
@@ -143,7 +159,7 @@ function AlertsCenterPanel() {
         </div>
       </div>
 
-      {toast && <div className="notice notice--success">{toast}</div>}
+      {toast && <div className={`notice ${toastError ? 'notice--error' : 'notice--success'}`}>{toast}</div>}
 
       {loading ? (
         <div className="admin-loading"><div className="admin-spinner" /></div>
@@ -374,7 +390,8 @@ function StockoutRiskPanel({ onSelectReorder }) {
   const [loading, setLoading] = useState(true);
   const token = readToken();
 
-  useEffect(() => {
+  const loadRisk = ({ silent = false } = {}) => {
+    if (!silent) setLoading(true);
     fetch('/api/admin/ai/stockout-risk', {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -382,7 +399,16 @@ function StockoutRiskPanel({ onSelectReorder }) {
       .then((res) => {
         setItems(res.items || []);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    loadRisk();
+    /* Stock position shifts with every order and every receipt, so a
+       cover figure that only updates on manual reload goes stale fast. */
+    const interval = setInterval(() => loadRisk({ silent: true }), 30000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -428,7 +454,12 @@ function StockoutRiskPanel({ onSelectReorder }) {
                   </td>
                   <td>{it.estimatedStockoutDate}</td>
                   <td>
-                    <span className={`badge badge--${it.riskLevel === 'CRITICAL' ? 'critical' : it.riskLevel === 'HIGH' ? 'warning' : 'emerald'}`}>
+                    <span className={`badge badge--${
+                      it.riskLevel === 'OUT_OF_STOCK' || it.riskLevel === 'CRITICAL' ? 'critical'
+                        : it.riskLevel === 'HIGH' ? 'warning'
+                        : it.riskLevel === 'MEDIUM' ? 'info'
+                        : 'emerald'
+                    }`}>
                       {it.riskLevel}
                     </span>
                   </td>
@@ -437,7 +468,7 @@ function StockoutRiskPanel({ onSelectReorder }) {
                       <button
                         type="button"
                         className="btn btn--sm btn--gold"
-                        onClick={onSelectReorder}
+                        onClick={() => onSelectReorder(it.id)}
                       >
                         Reorder {it.recommendedReorderQty} units &rarr;
                       </button>
@@ -459,10 +490,25 @@ function StockoutRiskPanel({ onSelectReorder }) {
    4. SMART REPLENISHMENT (ONE-CLICK PO CONVERSION)
    ============================================================= */
 function SmartReorderPanel() {
+  const [searchParams] = useSearchParams();
+  const highlightSku = searchParams.get('sku');
   const [reorders, setReorders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toast, setToast] = useState(null);
+  const [toastError, setToastError] = useState(false);
   const token = readToken();
+
+  useEffect(() => {
+    if (!highlightSku || loading) return;
+    const row = document.getElementById(`reorder-row-${highlightSku}`);
+    row?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [highlightSku, loading]);
+
+  const say = (msg, isError = false) => {
+    setToast(msg);
+    setToastError(isError);
+    setTimeout(() => setToast(null), isError ? 5000 : 4000);
+  };
 
   const loadReorders = () => {
     setLoading(true);
@@ -473,42 +519,45 @@ function SmartReorderPanel() {
       .then((res) => {
         setReorders(res.reorders || []);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   };
 
   useEffect(() => {
     loadReorders();
   }, []);
 
-  const handleApprovePO = (item) => {
-    fetch('/api/admin/ai/reorders/approve', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        supplierId: item.supplier?.id || 1,
-        warehouseId: 1, // Geneva Atelier
-        items: [{
-          productId: item.product.id,
-          qty: item.recommendedQty,
-          unitCost: Math.round(item.estimatedCost / item.recommendedQty)
-        }],
-        notes: `AI Smart Reorder: ${item.reasoning.join('; ')}`
-      })
-    })
-      .then((r) => r.json())
-      .then((res) => {
-        setToast(`Created Purchase Order ${res.po?.poNumber}! Stock incoming allocated.`);
-        setTimeout(() => setToast(null), 4000);
-        loadReorders();
+  const handleApprovePO = async (item) => {
+    try {
+      const res = await fetch('/api/admin/ai/reorders/approve', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          supplierId: item.supplier?.id || 1,
+          warehouseId: 1, // Geneva Atelier
+          items: [{
+            productId: item.product.id,
+            qty: item.recommendedQty,
+            unitCost: Math.round(item.estimatedCost / item.recommendedQty)
+          }],
+          notes: `AI Smart Reorder: ${item.reasoning.join('; ')}`
+        })
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not create that purchase order.');
+      say(`Created Purchase Order ${data.po?.poNumber}! Stock incoming allocated.`);
+      loadReorders();
+    } catch (err) {
+      say(err.message, true);
+    }
   };
 
   return (
     <div className="smart-reorder-panel">
-      {toast && <div className="notice notice--success">{toast}</div>}
+      {toast && <div className={`notice ${toastError ? 'notice--error' : 'notice--success'}`}>{toast}</div>}
 
       <div className="section-head" style={{ marginBottom: 16 }}>
         <p className="admin-subtext">
@@ -539,7 +588,11 @@ function SmartReorderPanel() {
             </thead>
             <tbody>
               {reorders.map((r, i) => (
-                <tr key={i}>
+                <tr
+                  key={i}
+                  id={`reorder-row-${r.product.id}`}
+                  style={r.product.id === highlightSku ? { outline: '2px solid var(--gold-2, #c9a227)', outlineOffset: -2 } : undefined}
+                >
                   <td>
                     <strong>{r.product.name}</strong>
                     <div className="tiny text-muted">{r.product.id}</div>
@@ -590,6 +643,7 @@ function SmartReorderPanel() {
 function OverstockDeadStockPanel() {
   const [data, setData] = useState({ overstock: [], deadStock: [] });
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const token = readToken();
 
   useEffect(() => {
@@ -600,13 +654,16 @@ function OverstockDeadStockPanel() {
       .then((res) => {
         setData(res);
         setLoading(false);
-      });
+      })
+      .catch(() => { setError('Could not load overstock and dead-stock diagnostics.'); setLoading(false); });
   }, []);
 
   return (
     <div className="overstock-deadstock-panel">
       {loading ? (
         <div className="admin-loading"><div className="admin-spinner" /></div>
+      ) : error ? (
+        <div className="notice notice--error">{error}</div>
       ) : (
         <div style={{ display: 'grid', gap: 30 }}>
           {/* Overstock Section */}
@@ -697,24 +754,32 @@ function ForecastSimulatorPanel() {
   const [safetyFactor, setSafetyFactor] = useState(1.2);
   const [promoDiscount, setPromoDiscount] = useState(10);
   const [result, setResult] = useState(null);
+  const [simError, setSimError] = useState(null);
   const token = readToken();
 
-  const runSimulation = () => {
-    fetch('/api/admin/ai/simulate', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        expectedDemandPct: demandPct,
-        leadTimeVarianceDays: leadVariance,
-        safetyStockFactor: safetyFactor,
-        promotionDiscountPct: promoDiscount
-      })
-    })
-      .then((r) => r.json())
-      .then((res) => setResult(res));
+  const runSimulation = async () => {
+    try {
+      const res = await fetch('/api/admin/ai/simulate', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          expectedDemandPct: demandPct,
+          leadTimeVarianceDays: leadVariance,
+          safetyStockFactor: safetyFactor,
+          promotionDiscountPct: promoDiscount
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not run the simulation.');
+      setResult(data);
+      setSimError(null);
+    } catch (err) {
+      setResult(null);
+      setSimError(err.message);
+    }
   };
 
   useEffect(() => {
@@ -778,6 +843,8 @@ function ForecastSimulatorPanel() {
           </div>
         </div>
       </div>
+
+      {simError && <div className="notice notice--error">{simError}</div>}
 
       {result && (
         <div className="simulation-outcomes">
@@ -844,6 +911,7 @@ function ForecastSimulatorPanel() {
 function AIPerformancePanel() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const token = readToken();
 
   useEffect(() => {
@@ -854,7 +922,8 @@ function AIPerformancePanel() {
       .then((res) => {
         setData(res);
         setLoading(false);
-      });
+      })
+      .catch(() => { setError('Could not load AI performance history.'); setLoading(false); });
   }, []);
 
   return (
@@ -867,6 +936,8 @@ function AIPerformancePanel() {
 
       {loading ? (
         <div className="admin-loading"><div className="admin-spinner" /></div>
+      ) : error ? (
+        <div className="notice notice--error">{error}</div>
       ) : data ? (
         <div>
           <div className="kpis-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', marginBottom: 20 }}>

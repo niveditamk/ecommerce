@@ -19,8 +19,52 @@ export default function AnalyticsHub() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Compare tab
+  const [compareMode, setCompareMode] = useState('periods'); // 'periods' | 'warehouses'
+  const today = new Date();
+  const iso = (d) => d.toISOString().slice(0, 10);
+  const [rangeAFrom, setRangeAFrom] = useState(iso(new Date(today.getTime() - 29 * 86400000)));
+  const [rangeATo, setRangeATo] = useState(iso(new Date(today.getTime() + 86400000)));
+  const [rangeBFrom, setRangeBFrom] = useState(iso(new Date(today.getTime() - 59 * 86400000)));
+  const [rangeBTo, setRangeBTo] = useState(iso(new Date(today.getTime() - 29 * 86400000)));
+  const [periodResult, setPeriodResult] = useState(null);
+  const [warehouseList, setWarehouseList] = useState([]);
+  const [warehouseAId, setWarehouseAId] = useState('');
+  const [warehouseBId, setWarehouseBId] = useState('');
+  const [compareLoading, setCompareLoading] = useState(false);
+  const [compareError, setCompareError] = useState('');
+
   const token = readToken();
   const headers = { Authorization: `Bearer ${token}` };
+
+  const runPeriodCompare = async () => {
+    setCompareLoading(true);
+    setCompareError('');
+    try {
+      const [a, b] = await Promise.all([
+        fetch(`/api/admin/analytics/period?from=${rangeAFrom}&to=${rangeATo}`, { headers }).then((r) => r.json()),
+        fetch(`/api/admin/analytics/period?from=${rangeBFrom}&to=${rangeBTo}`, { headers }).then((r) => r.json())
+      ]);
+      if (a.error || b.error) throw new Error(a.error || b.error);
+      setPeriodResult({ a, b });
+    } catch (err) {
+      setCompareError(err.message);
+    } finally {
+      setCompareLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab !== 'compare' || warehouseList.length) return;
+    fetch('/api/admin/warehouses', { headers })
+      .then((r) => r.json())
+      .then((res) => {
+        const list = res.warehouses || [];
+        setWarehouseList(list);
+        if (list.length >= 2) { setWarehouseAId(list[0].id); setWarehouseBId(list[1].id); }
+      })
+      .catch(() => {});
+  }, [activeTab]);
 
   const loadAllAnalytics = async () => {
     setLoading(true);
@@ -137,6 +181,15 @@ export default function AnalyticsHub() {
           onClick={() => setActiveTab('health')}
         >
           🩺 Inventory Health ({healthData?.overallScore || 84}/100)
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeTab === 'compare'}
+          className={`hub-tab-btn ${activeTab === 'compare' ? 'is-active' : ''}`}
+          onClick={() => setActiveTab('compare')}
+        >
+          ⚖️ Compare
         </button>
       </div>
 
@@ -563,6 +616,123 @@ export default function AnalyticsHub() {
               ))}
             </div>
           </div>
+        </section>
+      )}
+
+      {/* TAB: COMPARE */}
+      {activeTab === 'compare' && (
+        <section className="hub-section">
+          <div className="admin-filters-bar">
+            <div className="filter-pills">
+              <button type="button" className={`pill-btn${compareMode === 'periods' ? ' is-on' : ''}`} onClick={() => setCompareMode('periods')}>
+                Date Ranges
+              </button>
+              <button type="button" className={`pill-btn${compareMode === 'warehouses' ? ' is-on' : ''}`} onClick={() => setCompareMode('warehouses')}>
+                Warehouses
+              </button>
+            </div>
+          </div>
+
+          {compareError && <div className="notice notice--error">{compareError}</div>}
+
+          {compareMode === 'periods' ? (
+            <>
+              <div className="card-box" style={{ marginBottom: 16 }}>
+                <div className="form-row">
+                  <div className="field">
+                    <label>Range A</label>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <input type="date" className="input" value={rangeAFrom} onChange={(e) => setRangeAFrom(e.target.value)} />
+                      <input type="date" className="input" value={rangeATo} onChange={(e) => setRangeATo(e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label>Range B</label>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <input type="date" className="input" value={rangeBFrom} onChange={(e) => setRangeBFrom(e.target.value)} />
+                      <input type="date" className="input" value={rangeBTo} onChange={(e) => setRangeBTo(e.target.value)} />
+                    </div>
+                  </div>
+                </div>
+                <button type="button" className="btn btn--gold btn--sm" style={{ marginTop: 12 }} onClick={runPeriodCompare} disabled={compareLoading}>
+                  {compareLoading ? 'Comparing…' : 'Compare'}
+                </button>
+              </div>
+
+              {periodResult && (
+                <div className="tbl-wrap">
+                  <table className="tbl">
+                    <thead>
+                      <tr>
+                        <th>Metric</th>
+                        <th className="tr">Range A ({periodResult.a.from} – {periodResult.a.to})</th>
+                        <th className="tr">Range B ({periodResult.b.from} – {periodResult.b.to})</th>
+                        <th className="tr">Change</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ['Revenue', periodResult.a.revenue, periodResult.b.revenue, money],
+                        ['Orders', periodResult.a.orders, periodResult.b.orders, String],
+                        ['Avg Order Value', periodResult.a.avgOrderValue, periodResult.b.avgOrderValue, money],
+                        ['Units Sold', periodResult.a.unitsSold, periodResult.b.unitsSold, String],
+                        ['New Customers', periodResult.a.newCustomers, periodResult.b.newCustomers, String]
+                      ].map(([label, a, b, fmt]) => {
+                        const pct = b ? +(((a - b) / b) * 100).toFixed(1) : (a ? 100 : 0);
+                        return (
+                          <tr key={label}>
+                            <td className="font-semibold">{label}</td>
+                            <td className="tr mono">{fmt(a)}</td>
+                            <td className="tr mono">{fmt(b)}</td>
+                            <td className="tr mono font-semibold" style={{ color: pct >= 0 ? '#4caf50' : '#ff5252' }}>
+                              {pct >= 0 ? `+${pct}%` : `${pct}%`}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="form-row">
+              <div className="field">
+                <label htmlFor="cmp-wh-a">Warehouse A</label>
+                <select id="cmp-wh-a" className="input" value={warehouseAId} onChange={(e) => setWarehouseAId(e.target.value)}>
+                  {warehouseList.map((w) => <option key={w.id} value={w.id}>{w.code} — {w.name}</option>)}
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="cmp-wh-b">Warehouse B</label>
+                <select id="cmp-wh-b" className="input" value={warehouseBId} onChange={(e) => setWarehouseBId(e.target.value)}>
+                  {warehouseList.map((w) => <option key={w.id} value={w.id}>{w.code} — {w.name}</option>)}
+                </select>
+              </div>
+              {(() => {
+                const whA = warehouseList.find((w) => String(w.id) === String(warehouseAId));
+                const whB = warehouseList.find((w) => String(w.id) === String(warehouseBId));
+                if (!whA || !whB) return null;
+                return (
+                  <div className="tbl-wrap" style={{ flexBasis: '100%' }}>
+                    <table className="tbl">
+                      <thead>
+                        <tr><th>Metric</th><th className="tr">{whA.code}</th><th className="tr">{whB.code}</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td className="font-semibold">Inventory Value</td><td className="tr mono">{money(whA.inventory_value)}</td><td className="tr mono">{money(whB.inventory_value)}</td></tr>
+                        <tr><td className="font-semibold">Units On Hand</td><td className="tr mono">{whA.total_units}</td><td className="tr mono">{whB.total_units}</td></tr>
+                        <tr><td className="font-semibold">Active SKUs</td><td className="tr mono">{whA.active_skus}</td><td className="tr mono">{whB.active_skus}</td></tr>
+                        <tr><td className="font-semibold">Low Stock SKUs</td><td className="tr mono">{whA.low_stock_skus}</td><td className="tr mono">{whB.low_stock_skus}</td></tr>
+                        <tr><td className="font-semibold">Out of Stock SKUs</td><td className="tr mono">{whA.out_of_stock_skus}</td><td className="tr mono">{whB.out_of_stock_skus}</td></tr>
+                        <tr><td className="font-semibold">Capacity Utilization</td><td className="tr mono">{whA.utilization_pct}%</td><td className="tr mono">{whB.utilization_pct}%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              })()}
+            </div>
+          )}
         </section>
       )}
     </div>

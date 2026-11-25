@@ -639,6 +639,16 @@ textarea {
   transform: translateX(0);
 }
 
+/* Site navigation opens from the left — the conventional opposite
+   of the cart drawer, which keeps its inherited right-side default. */
+.drawer--nav {
+  left: 0;
+  right: auto;
+  border-left: 0;
+  border-right: 1px solid var(--line);
+  transform: translateX(-100%);
+}
+
 .drawer__head {
   display: flex;
   align-items: center;

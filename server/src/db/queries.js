@@ -40,9 +40,6 @@ export const allCategories = () =>
 export const categoryBySlug = (slug) =>
   hydrateCategory(db.prepare('SELECT * FROM categories WHERE slug = ?').get(slug));
 
-export const productsInCategory = (slug) =>
-  db.prepare(`SELECT * FROM products WHERE cat = ? AND ${LIVE} ORDER BY name ASC`).all(slug).map(hydrateProduct);
-
 export function relatedTo(product, n = 4) {
   const score = (p) =>
     (p.cat === product.cat ? 10 : 0) + p.tags.filter((t) => product.tags.includes(t)).length;

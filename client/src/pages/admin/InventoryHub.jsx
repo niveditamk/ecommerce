@@ -8,20 +8,44 @@ import { useAdmin } from '../../context/AdminContext';
 import { useAdminFilters } from '../../context/AdminFilterContext';
 import { money, formatShortDate, dx } from '../../lib/format';
 import { readToken, authFetch } from '../../lib/adminApi';
+import NotesPanel from '../../components/admin/NotesPanel';
 
 export default function InventoryHub() {
   const { can, staff } = useAdmin();
   const { warehouse: globalWarehouse } = useAdminFilters();
 
-  const [activeTab, setActiveTab] = useState('stock'); // 'stock' | 'ledger' | 'adjust'
+  const [activeTab, setActiveTab] = useState('stock'); // 'stock' | 'ledger' | 'cyclecount'
   const [items, setItems] = useState([]);
+  /* listInventory() paginates items (25/page) but computes these five
+     over every non-archived product regardless of page — items.length
+     and items.reduce(...) were quietly reporting the current page's
+     slice instead of the real catalogue-wide figures. */
+  const [totals, setTotals] = useState({
+    total_skus: 0, total_units: 0, inventory_value: 0, low_stock_count: 0, out_of_stock_count: 0
+  });
   const [warehouses, setWarehouses] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expiringBatches, setExpiringBatches] = useState([]);
+
+  // Cycle counts (physical stocktake)
+  const [cycleCounts, setCycleCounts] = useState([]);
+  const [activeCycleCount, setActiveCycleCount] = useState(null);
+  const [startCountOpen, setStartCountOpen] = useState(false);
+  const [startCountWarehouseId, setStartCountWarehouseId] = useState(1);
+  const [startCountScope, setStartCountScope] = useState('low_stock');
+  const [startCountSubmitting, setStartCountSubmitting] = useState(false);
+  const [countFeedback, setCountFeedback] = useState(null);
+  const [scanValue, setScanValue] = useState('');
+  const [scanError, setScanError] = useState('');
+  const [staffDirectory, setStaffDirectory] = useState([]);
 
   // Filters
-  const [filterWarehouse, setFilterWarehouse] = useState(globalWarehouse || '');
+  /* The global facility filter's "no selection" sentinel is the
+     literal string "all" — sending that straight through as a
+     warehouse code filters for a warehouse that does not exist. */
+  const [filterWarehouse, setFilterWarehouse] = useState(globalWarehouse === 'all' ? '' : globalWarehouse || '');
   const [filterCat, setFilterCat] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,8 +66,19 @@ export default function InventoryHub() {
 
   // Sync with global filter if changed
   useEffect(() => {
-    if (globalWarehouse) setFilterWarehouse(globalWarehouse);
+    setFilterWarehouse(globalWarehouse === 'all' ? '' : globalWarehouse || '');
   }, [globalWarehouse]);
+
+  useEffect(() => {
+    fetch('/api/admin/staff', { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.json())
+      .then((res) => setStaffDirectory(res.items || []))
+      .catch(() => {});
+    fetch('/api/admin/batches/expiring?days=30', { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.json())
+      .then((res) => setExpiringBatches(res.batches || []))
+      .catch(() => {});
+  }, []);
 
   const loadData = () => {
     setLoading(true);
@@ -66,8 +101,9 @@ export default function InventoryHub() {
     ])
       .then(([invRes, whRes, txRes]) => {
         setItems(invRes.items || []);
+        if (invRes.totals) setTotals(invRes.totals);
         setWarehouses(whRes.warehouses || []);
-        setTransactions(txRes.transactions || []);
+        setTransactions(txRes.items || []);
         setLoading(false);
       })
       .catch((err) => {
@@ -135,11 +171,118 @@ export default function InventoryHub() {
     }
   };
 
+  // ---------- cycle counts ----------
+  const loadCycleCounts = () => {
+    fetch('/api/admin/cycle-counts', { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.json())
+      .then((res) => setCycleCounts(res.counts || []))
+      .catch(() => {});
+  };
+
+  useEffect(() => {
+    if (activeTab === 'cyclecount' && !activeCycleCount) loadCycleCounts();
+  }, [activeTab, activeCycleCount]);
+
+  const openCycleCount = (id) => {
+    setCountFeedback(null);
+    fetch(`/api/admin/cycle-counts/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.json())
+      .then((res) => setActiveCycleCount(res.cycleCount))
+      .catch((err) => setCountFeedback({ success: false, message: err.message }));
+  };
+
+  const submitStartCount = async (e) => {
+    e.preventDefault();
+    setStartCountSubmitting(true);
+    setCountFeedback(null);
+    try {
+      const res = await fetch('/api/admin/cycle-counts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ warehouseId: Number(startCountWarehouseId), scope: startCountScope })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not start cycle count');
+      setStartCountOpen(false);
+      loadCycleCounts();
+      openCycleCount(data.id);
+    } catch (err) {
+      setCountFeedback({ success: false, message: err.message });
+    } finally {
+      setStartCountSubmitting(false);
+    }
+  };
+
+  const recordItemCount = async (productId, countedQty) => {
+    try {
+      await fetch(`/api/admin/cycle-counts/${activeCycleCount.id}/items/${productId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ countedQty })
+      });
+      setActiveCycleCount((cc) => ({
+        ...cc,
+        items: cc.items.map((it) => (it.product_id === productId ? { ...it, counted_qty: countedQty } : it))
+      }));
+    } catch {
+      setCountFeedback({ success: false, message: 'Could not save that count — try again.' });
+    }
+  };
+
+  const handleScan = (e) => {
+    e.preventDefault();
+    const code = scanValue.trim().toLowerCase();
+    setScanValue('');
+    if (!code) return;
+    const item = activeCycleCount?.items.find((it) => it.product_id.toLowerCase() === code);
+    if (!item) {
+      setScanError(`"${code}" is not in this cycle count.`);
+      return;
+    }
+    setScanError('');
+    const next = (item.counted_qty || 0) + 1;
+    recordItemCount(item.product_id, next);
+  };
+
+  const submitCompleteCount = async () => {
+    setCountFeedback(null);
+    try {
+      const res = await fetch(`/api/admin/cycle-counts/${activeCycleCount.id}/complete`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not complete this count');
+      setCountFeedback({
+        success: true,
+        message: data.adjustments.length
+          ? `Reconciled: ${data.adjustments.length} SKU(s) adjusted to match the physical count.`
+          : 'Reconciled: every SKU matched, nothing to adjust.'
+      });
+      setTimeout(() => { setActiveCycleCount(null); loadCycleCounts(); }, 1600);
+    } catch (err) {
+      setCountFeedback({ success: false, message: err.message });
+    }
+  };
+
+  const cancelActiveCycleCount = async () => {
+    try {
+      await fetch(`/api/admin/cycle-counts/${activeCycleCount.id}/cancel`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setActiveCycleCount(null);
+      loadCycleCounts();
+    } catch (err) {
+      setCountFeedback({ success: false, message: err.message });
+    }
+  };
+
   // Calculations for summary stats
-  const totalValuation = items.reduce((sum, item) => sum + (item.stock * (item.price || 0)), 0);
-  const totalUnits = items.reduce((sum, item) => sum + item.stock, 0);
-  const outOfStockCount = items.filter((i) => i.stock === 0).length;
-  const lowStockCount = items.filter((i) => i.stock > 0 && i.stock <= i.low_stock_at).length;
+  const totalValuation = totals.inventory_value || 0;
+  const totalUnits = totals.total_units || 0;
+  const outOfStockCount = totals.out_of_stock_count || 0;
+  const lowStockCount = totals.low_stock_count || 0;
 
   return (
     <div className="admin-inventory-hub">
@@ -171,7 +314,7 @@ export default function InventoryHub() {
       <div className="kpi-mini-strip">
         <div className="kpi-mini-card">
           <span className="kpi-mini-label">Total SKUs</span>
-          <span className="kpi-mini-val mono">{items.length}</span>
+          <span className="kpi-mini-val mono">{totals.total_skus || 0}</span>
         </div>
         <div className="kpi-mini-card">
           <span className="kpi-mini-label">Units On Hand</span>
@@ -191,6 +334,12 @@ export default function InventoryHub() {
           <span className="kpi-mini-label">Stockouts</span>
           <span className="kpi-mini-val mono" style={{ color: outOfStockCount > 0 ? '#ff5252' : 'inherit' }}>
             {outOfStockCount}
+          </span>
+        </div>
+        <div className="kpi-mini-card" title="Parfums batches expiring within 30 days">
+          <span className="kpi-mini-label">Expiring Batches (30d)</span>
+          <span className="kpi-mini-val mono" style={{ color: expiringBatches.length > 0 ? '#ff5252' : 'inherit' }}>
+            {expiringBatches.length}
           </span>
         </div>
       </div>
@@ -214,6 +363,15 @@ export default function InventoryHub() {
           onClick={() => setActiveTab('ledger')}
         >
           📜 Stock Movements Ledger ({transactions.length})
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeTab === 'cyclecount'}
+          className={`hub-tab-btn ${activeTab === 'cyclecount' ? 'is-active' : ''}`}
+          onClick={() => setActiveTab('cyclecount')}
+        >
+          🔢 Cycle Counts ({cycleCounts.filter((c) => c.status === 'Open').length} open)
         </button>
       </div>
 
@@ -433,18 +591,18 @@ export default function InventoryHub() {
                       <span className="tiny mono" style={{ opacity: 0.65 }}>{tx.product_id}</span>
                     </td>
                     <td>
-                      <span className="mono tiny font-semibold">{tx.warehouse_code || 'GVA'}</span>
+                      <span className="mono tiny font-semibold">{tx.warehouse_code || '—'}</span>
                     </td>
                     <td>
-                      <span className={`pill pill--${tx.movement_type === 'sale' ? 'neutral' : tx.movement_type === 'return' || tx.movement_type === 'po_receipt' ? 'ok' : 'warn'}`}>
-                        {tx.movement_type}
+                      <span className={`pill pill--${tx.type === 'ORDER_CONFIRMED' ? 'neutral' : tx.type === 'PURCHASE_RECEIPT' || tx.type === 'ORDER_CANCELLED' ? 'ok' : 'warn'}`}>
+                        {tx.type}
                       </span>
                     </td>
-                    <td className="tr mono" style={{ fontWeight: 600, color: tx.quantity_delta > 0 ? '#4caf50' : '#ff5252' }}>
-                      {tx.quantity_delta > 0 ? `+${tx.quantity_delta}` : tx.quantity_delta}
+                    <td className="tr mono" style={{ fontWeight: 600, color: tx.qty > 0 ? '#4caf50' : '#ff5252' }}>
+                      {tx.qty > 0 ? `+${tx.qty}` : tx.qty}
                     </td>
                     <td className="tr mono tiny" style={{ opacity: 0.8 }}>
-                      {tx.prev_quantity} &rarr; {tx.new_quantity}
+                      {tx.previous_qty} &rarr; {tx.new_qty}
                     </td>
                     <td>
                       <div className="tiny" style={{ maxWidth: 260 }}>
@@ -462,6 +620,217 @@ export default function InventoryHub() {
             </table>
           </div>
         </section>
+      )}
+
+      {/* TAB 3: Cycle Counts */}
+      {activeTab === 'cyclecount' && (
+        <section className="hub-section">
+          {countFeedback && (
+            <div className={`notice ${countFeedback.success ? 'notice--success' : 'notice--error'}`}>
+              {countFeedback.message}
+            </div>
+          )}
+
+          {!activeCycleCount ? (
+            <>
+              <div className="admin-filters-bar">
+                <span className="tiny mono" style={{ opacity: 0.65 }}>
+                  A physical count of what is actually on the shelf, reconciled against what the system expects.
+                </span>
+                <button type="button" className="btn btn--gold btn--sm" onClick={() => setStartCountOpen(true)} disabled={!can('inventory.adjust')}>
+                  + Start Cycle Count
+                </button>
+              </div>
+
+              {cycleCounts.length === 0 ? (
+                <div className="notice">No cycle counts yet. Start one to reconcile a warehouse's physical stock.</div>
+              ) : (
+                <div className="tbl-wrap">
+                  <table className="tbl">
+                    <thead>
+                      <tr>
+                        <th>Count #</th>
+                        <th>Warehouse</th>
+                        <th>Scope</th>
+                        <th className="tr">Progress</th>
+                        <th className="tr">Variances</th>
+                        <th>Status</th>
+                        <th>Started</th>
+                        <th className="tr">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cycleCounts.map((cc) => (
+                        <tr key={cc.id}>
+                          <td className="mono font-semibold">{cc.count_number}</td>
+                          <td><span className="mono tiny">{cc.warehouse_code}</span></td>
+                          <td className="tiny" style={{ textTransform: 'capitalize' }}>{cc.scope.replace('_', ' ')}</td>
+                          <td className="tr mono tiny">{cc.counted_count} / {cc.item_count}</td>
+                          <td className="tr mono tiny" style={{ color: cc.variance_count > 0 ? 'var(--gold-2)' : 'inherit' }}>
+                            {cc.variance_count}
+                          </td>
+                          <td>
+                            <span className={`pill pill--${cc.status === 'Completed' ? 'ok' : cc.status === 'Cancelled' ? 'neutral' : 'warn'}`}>
+                              {cc.status}
+                            </span>
+                          </td>
+                          <td className="tiny mono">{cc.created_at?.slice(0, 10)}</td>
+                          <td className="tr">
+                            {cc.status === 'Open' ? (
+                              <button type="button" className="btn btn--sm" onClick={() => openCycleCount(cc.id)}>
+                                Continue Counting
+                              </button>
+                            ) : (
+                              <button type="button" className="btn btn--sm btn--outline" onClick={() => openCycleCount(cc.id)}>
+                                View
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="admin-filters-bar">
+                <div>
+                  <strong className="mono">{activeCycleCount.count_number}</strong>
+                  <span className="tiny" style={{ opacity: 0.65, marginLeft: 8 }}>
+                    {activeCycleCount.warehouse_name} &middot; {activeCycleCount.items.length} SKUs &middot; {activeCycleCount.status}
+                  </span>
+                </div>
+                <button type="button" className="btn btn--sm btn--outline" onClick={() => setActiveCycleCount(null)}>
+                  &larr; Back to list
+                </button>
+              </div>
+
+              {activeCycleCount.status === 'Open' && (
+                <div className="card-box" style={{ marginBottom: 16 }}>
+                  <form onSubmit={handleScan} style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
+                    <div className="field" style={{ flex: 1, marginBottom: 0 }}>
+                      <label htmlFor="scan-input">Scan or type a SKU, then press Enter</label>
+                      <input
+                        id="scan-input"
+                        className="input"
+                        autoFocus
+                        value={scanValue}
+                        onChange={(e) => setScanValue(e.target.value)}
+                        placeholder="aur-101"
+                      />
+                    </div>
+                    <button type="submit" className="btn btn--sm btn--gold">Count +1</button>
+                  </form>
+                  {scanError && <p className="tiny text-error" style={{ marginTop: 8 }}>{scanError}</p>}
+                  <p className="tiny" style={{ opacity: 0.65, marginTop: 8 }}>
+                    Each scan adds one unit to that SKU's counted total. For a quantity you already know, type it directly into the row below instead.
+                  </p>
+                </div>
+              )}
+
+              <div className="tbl-wrap">
+                <table className="tbl">
+                  <thead>
+                    <tr>
+                      <th>Product / SKU</th>
+                      <th className="tr">Expected</th>
+                      <th className="tr">Counted</th>
+                      <th className="tr">Variance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {activeCycleCount.items.map((it) => {
+                      const variance = it.counted_qty === null ? null : it.counted_qty - it.expected_qty;
+                      return (
+                        <tr key={it.id} className={variance ? 'is-saving' : ''} style={variance ? { background: 'var(--color-bone)' } : undefined}>
+                          <td>
+                            <div style={{ fontWeight: 500 }}>{dx(it.product_name)}</div>
+                            <span className="tiny mono" style={{ opacity: 0.65 }}>{it.product_id}</span>
+                          </td>
+                          <td className="tr mono">{it.expected_qty}</td>
+                          <td className="tr">
+                            {activeCycleCount.status === 'Open' ? (
+                              <input
+                                type="number"
+                                min="0"
+                                className="admin-cell"
+                                style={{ maxWidth: 90, textAlign: 'right' }}
+                                value={it.counted_qty ?? ''}
+                                placeholder="—"
+                                onChange={(e) => recordItemCount(it.product_id, e.target.value === '' ? null : Math.max(0, Number(e.target.value)))}
+                              />
+                            ) : (
+                              <span className="mono">{it.counted_qty ?? '—'}</span>
+                            )}
+                          </td>
+                          <td className="tr mono font-semibold" style={{ color: !variance ? 'inherit' : variance > 0 ? '#4caf50' : '#ff5252' }}>
+                            {variance === null ? '—' : variance > 0 ? `+${variance}` : variance}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {activeCycleCount.status === 'Open' && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 16 }}>
+                  <button type="button" className="btn btn--sm btn--outline" onClick={cancelActiveCycleCount}>
+                    Cancel Count
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn--gold"
+                    onClick={submitCompleteCount}
+                    disabled={activeCycleCount.items.some((it) => it.counted_qty === null)}
+                    title={activeCycleCount.items.some((it) => it.counted_qty === null) ? 'Every SKU needs a count before this can be reconciled' : ''}
+                  >
+                    Complete & Reconcile Stock
+                  </button>
+                </div>
+              )}
+
+              <div style={{ marginTop: 16 }}>
+                <NotesPanel entity="cycle_count" entityId={activeCycleCount.id} staffDirectory={staffDirectory} />
+              </div>
+            </>
+          )}
+        </section>
+      )}
+
+      {/* Start Cycle Count Modal */}
+      {startCountOpen && (
+        <div className="admin-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-startcount-title">
+          <div className="admin-modal-box">
+            <div className="admin-modal-head">
+              <h3 id="modal-startcount-title" className="h3">Start a Cycle Count</h3>
+              <button type="button" className="modal-close-btn" onClick={() => setStartCountOpen(false)} aria-label="Close">&times;</button>
+            </div>
+            <form onSubmit={submitStartCount} style={{ padding: 'var(--spacing-24)' }}>
+              <div className="field">
+                <label htmlFor="cc-warehouse">Warehouse</label>
+                <select id="cc-warehouse" className="input" value={startCountWarehouseId} onChange={(e) => setStartCountWarehouseId(e.target.value)}>
+                  {warehouses.map((w) => <option key={w.id} value={w.id}>{w.code} — {w.name}</option>)}
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="cc-scope">Scope</label>
+                <select id="cc-scope" className="input" value={startCountScope} onChange={(e) => setStartCountScope(e.target.value)}>
+                  <option value="low_stock">Low stock only (fastest — recount what's most likely to have drifted)</option>
+                  <option value="all">Every active SKU at this warehouse</option>
+                </select>
+              </div>
+              {countFeedback && !countFeedback.success && (
+                <p className="tiny text-error">{countFeedback.message}</p>
+              )}
+              <button type="submit" className="btn btn--gold btn--block" disabled={startCountSubmitting}>
+                {startCountSubmitting ? 'Starting…' : 'Start Count'}
+              </button>
+            </form>
+          </div>
+        </div>
       )}
 
       {/* Stock Adjustment Modal */}

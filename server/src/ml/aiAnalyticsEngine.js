@@ -166,7 +166,7 @@ export function listAIAlerts({ severity = '', status = 'active' } = {}) {
   const clause = where.length ? `WHERE ${where.join(' AND ')}` : '';
 
   return db.prepare(`
-    SELECT a.*, p.name AS product_name, p.cat AS category, p.price,
+    SELECT a.*, p.name AS product_name, p.cat AS product_category, p.price,
            w.name AS warehouse_name, w.code AS warehouse_code
       FROM ai_alerts a
       LEFT JOIN products p ON p.id = a.product_id
@@ -633,5 +633,40 @@ export function getAIPerformanceOutcomes() {
     capitalSavedTotal: 2840000,
     recommendationApprovalRatePct: 88.5,
     history
+  };
+}
+
+/* =============================================================
+   14. PERIOD METRICS — for comparing two date ranges
+   Not tied to the fixed "last 30 days" window the command center
+   KPIs use; called twice with different bounds so the caller
+   builds the comparison, not this function. Warehouse-vs-warehouse
+   comparison needs no equivalent — listWarehouses() already
+   computes every one of these per warehouse, all-time.
+   ============================================================= */
+export function getPeriodMetrics({ from, to } = {}) {
+  if (!from || !to) throw new Error('A from and to date are both required.');
+  const one = (sql, ...args) => db.prepare(sql).get(...args) || {};
+
+  const revenue = one(`
+    SELECT COALESCE(SUM(total), 0) AS v, COUNT(*) AS n
+      FROM orders WHERE status != 'Cancelled' AND ${REAL_TRADE} AND placed_at >= ? AND placed_at < ?
+  `, from, to);
+
+  const units = one(`
+    SELECT COALESCE(SUM(oi.qty), 0) AS v
+      FROM order_items oi JOIN orders o ON o.id = oi.order_id
+     WHERE o.status != 'Cancelled' AND ${REAL_TRADE_O} AND o.placed_at >= ? AND o.placed_at < ?
+  `, from, to);
+
+  const newCustomers = one(`
+    SELECT COUNT(*) AS n FROM customers WHERE created_at >= ? AND created_at < ?
+  `, from, to);
+
+  return {
+    from, to,
+    revenue: revenue.v, orders: revenue.n,
+    avgOrderValue: revenue.n ? Math.round(revenue.v / revenue.n) : 0,
+    unitsSold: units.v, newCustomers: newCustomers.n
   };
 }

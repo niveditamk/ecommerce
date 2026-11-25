@@ -1,0 +1,444 @@
+- generic [ref=f22e3]:
+  - complementary "Admin navigation" [ref=f22e4]:
+    - generic [ref=f22e5]:
+      - generic [ref=f22e6]: AURELIS
+      - generic [ref=f22e7]: Executive · AI Admin
+    - navigation [ref=f22e8]:
+      - generic [ref=f22e9]:
+        - heading "Executive Command" [level=2] [ref=f22e10]
+        - link "Command Center" [ref=f22e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f22e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f22e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f22e14]
+        - link "Inventory Management" [ref=f22e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f22e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f22e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f22e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f22e19]
+        - link "Sales & BI Analytics" [ref=f22e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f22e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f22e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f22e23]
+        - link "Products" [ref=f22e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f22e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f22e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f22e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f22e28]:
+        - heading "System & Governance" [level=2] [ref=f22e29]
+        - link "Staff Management" [ref=f22e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f22e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f22e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f22e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f22e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f22e35]:
+      - generic [ref=f22e36]: Hélène Marchand
+      - generic [ref=f22e37]: Administrator
+      - button "Sign out" [ref=f22e38] [cursor=pointer]
+  - generic [ref=f22e39]:
+    - banner [ref=f22e40]:
+      - generic [ref=f22e42]:
+        - generic [ref=f22e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f22e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f22e45]: Period Filter
+        - combobox "Filter by time period" [ref=f22e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f22e47]:
+        - link "5 Alerts" [ref=f22e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f22e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f22e52]:
+      - generic [ref=f22e53]:
+        - generic [ref=f22e54]:
+          - generic [ref=f22e55]:
+            - generic [ref=f22e56]: Inventory Management System
+            - heading "Real-Time Inventory & Stock Operations" [level=1] [ref=f22e57]
+            - paragraph [ref=f22e58]: Multi-warehouse stock allocation, auditable transaction ledger, and inventory adjustments.
+          - generic [ref=f22e59]:
+            - button "+ Adjust Stock Balance" [ref=f22e60] [cursor=pointer]
+            - button "↻ Refresh" [ref=f22e61] [cursor=pointer]
+        - generic [ref=f22e62]:
+          - generic [ref=f22e63]:
+            - generic [ref=f22e64]: Total SKUs
+            - generic [ref=f22e65]: "25"
+          - generic [ref=f22e66]:
+            - generic [ref=f22e67]: Units On Hand
+            - generic [ref=f22e68]: NaN
+          - generic [ref=f22e69]:
+            - generic [ref=f22e70]: Inventory Valuation
+            - generic [ref=f22e71]: ₹0
+          - generic [ref=f22e72]:
+            - generic [ref=f22e73]: Low Stock Alerts
+            - generic [ref=f22e74]: "0"
+          - generic [ref=f22e75]:
+            - generic [ref=f22e76]: Stockouts
+            - generic [ref=f22e77]: "0"
+        - tablist [ref=f22e78]:
+          - tab "📦 Stock Levels & Warehouses (25)" [active] [selected] [ref=f22e97] [cursor=pointer]
+          - tab "📜 Stock Movements Ledger (0)" [ref=f22e80] [cursor=pointer]
+          - tab "🔢 Cycle Counts (0 open)" [ref=f22e760] [cursor=pointer]
+        - generic [ref=f22e808]:
+          - generic [ref=f22e809]:
+            - generic [ref=f22e810]:
+              - searchbox "Search SKU, Product Name..." [ref=f22e811]
+              - button "Search" [ref=f22e812] [cursor=pointer]
+            - generic [ref=f22e813]:
+              - generic [ref=f22e814]: Warehouse
+              - combobox "Warehouse" [ref=f22e815]:
+                - option "All Warehouses" [selected]
+                - option "GVA-ATELIER - Geneva Main Atelier & Vault"
+                - option "ZRH-CENTRAL - Zurich Central Fulfillment Hub"
+                - option "PAR-VAULT - Paris Place Vendôme Vault"
+                - option "NYC-VAULT - New York Madison Salon Vault"
+              - generic [ref=f22e816]: Category
+              - combobox "Category" [ref=f22e817]:
+                - option "All Collections" [selected]
+                - option "Fine Jewelry"
+                - option "Timepieces"
+                - option "Haute Parfumerie"
+                - option "Leather Goods"
+              - generic [ref=f22e818]: Stock Status
+              - combobox "Stock Status" [ref=f22e819]:
+                - option "All Stock States" [selected]
+                - option "Out of Stock (0)"
+                - option "Low Stock (≤ Reorder Pt)"
+                - option "Healthy Stock"
+                - option "Overstocked (> Safety)"
+          - table [ref=f22e821]:
+            - rowgroup [ref=f22e822]:
+              - row [ref=f22e823]:
+                - columnheader "Product / SKU" [ref=f22e824]
+                - columnheader "Collection" [ref=f22e825]
+                - columnheader "Total Stock" [ref=f22e826]
+                - columnheader "Warehouse Distribution" [ref=f22e827]
+                - columnheader "Safety Stock" [ref=f22e828]
+                - columnheader "Inventory Value" [ref=f22e829]
+                - columnheader "Status" [ref=f22e830]
+                - columnheader "Action" [ref=f22e831]
+            - rowgroup [ref=f22e832]:
+              - row [ref=f22e833]:
+                - cell "Aequus Decanter aur-501" [ref=f22e834]:
+                  - generic [ref=f22e835]: Aequus Decanter
+                  - text: aur-501
+                - cell "objets" [ref=f22e836]
+                - cell [ref=f22e837]
+                - cell "Unassigned" [ref=f22e838]
+                - cell "5" [ref=f22e841]
+                - cell "₹0" [ref=f22e842]
+                - cell "Healthy" [ref=f22e843]
+                - cell [ref=f22e845]:
+                  - button "Adjust" [ref=f22e846] [cursor=pointer]
+              - row [ref=f22e847]:
+                - cell "Alashan Stole aur-602" [ref=f22e848]:
+                  - generic [ref=f22e849]: Alashan Stole
+                  - text: aur-602
+                - cell "silk" [ref=f22e850]
+                - cell [ref=f22e851]
+                - cell "Unassigned" [ref=f22e852]
+                - cell "5" [ref=f22e855]
+                - cell "₹0" [ref=f22e856]
+                - cell "Healthy" [ref=f22e857]
+                - cell [ref=f22e859]:
+                  - button "Adjust" [ref=f22e860] [cursor=pointer]
+              - row [ref=f22e861]:
+                - cell "Aldgate Instrument Bag aur-406" [ref=f22e862]:
+                  - generic [ref=f22e863]: Aldgate Instrument Bag
+                  - text: aur-406
+                - cell "leather" [ref=f22e864]
+                - cell [ref=f22e865]
+                - cell "Unassigned" [ref=f22e866]
+                - cell "5" [ref=f22e869]
+                - cell "₹0" [ref=f22e870]
+                - cell "Healthy" [ref=f22e871]
+                - cell [ref=f22e873]:
+                  - button "Adjust" [ref=f22e874] [cursor=pointer]
+              - row [ref=f22e875]:
+                - cell "Amarna Band aur-105" [ref=f22e876]:
+                  - generic [ref=f22e877]: Amarna Band
+                  - text: aur-105
+                - cell "jewellery" [ref=f22e878]
+                - cell [ref=f22e879]
+                - cell "Unassigned" [ref=f22e880]
+                - cell "5" [ref=f22e883]
+                - cell "₹0" [ref=f22e884]
+                - cell "Healthy" [ref=f22e885]
+                - cell [ref=f22e887]:
+                  - button "Adjust" [ref=f22e888] [cursor=pointer]
+              - row [ref=f22e889]:
+                - cell "Amathus Swivel aur-112" [ref=f22e890]:
+                  - generic [ref=f22e891]: Amathus Swivel
+                  - text: aur-112
+                - cell "jewellery" [ref=f22e892]
+                - cell [ref=f22e893]
+                - cell "Unassigned" [ref=f22e894]
+                - cell "5" [ref=f22e897]
+                - cell "₹0" [ref=f22e898]
+                - cell "Healthy" [ref=f22e899]
+                - cell [ref=f22e901]:
+                  - button "Adjust" [ref=f22e902] [cursor=pointer]
+              - row [ref=f22e903]:
+                - cell "Antiquary's Carnelian aur-109" [ref=f22e904]:
+                  - generic [ref=f22e905]: Antiquary's Carnelian
+                  - text: aur-109
+                - cell "jewellery" [ref=f22e906]
+                - cell [ref=f22e907]
+                - cell "Unassigned" [ref=f22e908]
+                - cell "5" [ref=f22e911]
+                - cell "₹0" [ref=f22e912]
+                - cell "Healthy" [ref=f22e913]
+                - cell [ref=f22e915]:
+                  - button "Adjust" [ref=f22e916] [cursor=pointer]
+              - row [ref=f22e917]:
+                - cell "Appenzell Cutwork aur-619" [ref=f22e918]:
+                  - generic [ref=f22e919]: Appenzell Cutwork
+                  - text: aur-619
+                - cell "silk" [ref=f22e920]
+                - cell [ref=f22e921]
+                - cell "Unassigned" [ref=f22e922]
+                - cell "5" [ref=f22e925]
+                - cell "₹0" [ref=f22e926]
+                - cell "Healthy" [ref=f22e927]
+                - cell [ref=f22e929]:
+                  - button "Adjust" [ref=f22e930] [cursor=pointer]
+              - row [ref=f22e931]:
+                - cell "Aquileia Intaglio aur-108" [ref=f22e932]:
+                  - generic [ref=f22e933]: Aquileia Intaglio
+                  - text: aur-108
+                - cell "jewellery" [ref=f22e934]
+                - cell [ref=f22e935]
+                - cell "Unassigned" [ref=f22e936]
+                - cell "5" [ref=f22e939]
+                - cell "₹0" [ref=f22e940]
+                - cell "Healthy" [ref=f22e941]
+                - cell [ref=f22e943]:
+                  - button "Adjust" [ref=f22e944] [cursor=pointer]
+              - row [ref=f22e945]:
+                - cell "Argive Collar aur-120" [ref=f22e946]:
+                  - generic [ref=f22e947]: Argive Collar
+                  - text: aur-120
+                - cell "jewellery" [ref=f22e948]
+                - cell [ref=f22e949]
+                - cell "Unassigned" [ref=f22e950]
+                - cell "5" [ref=f22e953]
+                - cell "₹0" [ref=f22e954]
+                - cell "Healthy" [ref=f22e955]
+                - cell [ref=f22e957]:
+                  - button "Adjust" [ref=f22e958] [cursor=pointer]
+              - row [ref=f22e959]:
+                - cell "Ashfield Gladstone aur-411" [ref=f22e960]:
+                  - generic [ref=f22e961]: Ashfield Gladstone
+                  - text: aur-411
+                - cell "leather" [ref=f22e962]
+                - cell [ref=f22e963]
+                - cell "Unassigned" [ref=f22e964]
+                - cell "5" [ref=f22e967]
+                - cell "₹0" [ref=f22e968]
+                - cell "Healthy" [ref=f22e969]
+                - cell [ref=f22e971]:
+                  - button "Adjust" [ref=f22e972] [cursor=pointer]
+              - row [ref=f22e973]:
+                - cell "Attic Hoop aur-115" [ref=f22e974]:
+                  - generic [ref=f22e975]: Attic Hoop
+                  - text: aur-115
+                - cell "jewellery" [ref=f22e976]
+                - cell [ref=f22e977]
+                - cell "Unassigned" [ref=f22e978]
+                - cell "5" [ref=f22e981]
+                - cell "₹0" [ref=f22e982]
+                - cell "Healthy" [ref=f22e983]
+                - cell [ref=f22e985]:
+                  - button "Adjust" [ref=f22e986] [cursor=pointer]
+              - row [ref=f22e987]:
+                - cell "Aurige Case aur-712" [ref=f22e988]:
+                  - generic [ref=f22e989]: Aurige Case
+                  - text: aur-712
+                - cell "eyewear" [ref=f22e990]
+                - cell [ref=f22e991]
+                - cell "Unassigned" [ref=f22e992]
+                - cell "5" [ref=f22e995]
+                - cell "₹0" [ref=f22e996]
+                - cell "Healthy" [ref=f22e997]
+                - cell [ref=f22e999]:
+                  - button "Adjust" [ref=f22e1000] [cursor=pointer]
+              - row [ref=f22e1001]:
+                - cell "Balancier 17 aur-204" [ref=f22e1002]:
+                  - generic [ref=f22e1003]: Balancier 17
+                  - text: aur-204
+                - cell "horology" [ref=f22e1004]
+                - cell [ref=f22e1005]
+                - cell "Unassigned" [ref=f22e1006]
+                - cell "5" [ref=f22e1009]
+                - cell "₹0" [ref=f22e1010]
+                - cell "Healthy" [ref=f22e1011]
+                - cell [ref=f22e1013]:
+                  - button "Adjust" [ref=f22e1014] [cursor=pointer]
+              - row [ref=f22e1015]:
+                - cell "Bascule 18 aur-209" [ref=f22e1016]:
+                  - generic [ref=f22e1017]: Bascule 18
+                  - text: aur-209
+                - cell "horology" [ref=f22e1018]
+                - cell [ref=f22e1019]
+                - cell "Unassigned" [ref=f22e1020]
+                - cell "5" [ref=f22e1023]
+                - cell "₹0" [ref=f22e1024]
+                - cell "Healthy" [ref=f22e1025]
+                - cell [ref=f22e1027]:
+                  - button "Adjust" [ref=f22e1028] [cursor=pointer]
+              - row [ref=f22e1029]:
+                - cell "Bastion Tote aur-401" [ref=f22e1030]:
+                  - generic [ref=f22e1031]: Bastion Tote
+                  - text: aur-401
+                - cell "leather" [ref=f22e1032]
+                - cell [ref=f22e1033]
+                - cell "Unassigned" [ref=f22e1034]
+                - cell "5" [ref=f22e1037]
+                - cell "₹0" [ref=f22e1038]
+                - cell "Healthy" [ref=f22e1039]
+                - cell [ref=f22e1041]:
+                  - button "Adjust" [ref=f22e1042] [cursor=pointer]
+              - row [ref=f22e1043]:
+                - cell "Baume de Cyrene aur-310" [ref=f22e1044]:
+                  - generic [ref=f22e1045]: Baume de Cyrene
+                  - text: aur-310
+                - cell "parfums" [ref=f22e1046]
+                - cell [ref=f22e1047]
+                - cell "Unassigned" [ref=f22e1048]
+                - cell "5" [ref=f22e1051]
+                - cell "₹0" [ref=f22e1052]
+                - cell "Healthy" [ref=f22e1053]
+                - cell [ref=f22e1055]:
+                  - button "Adjust" [ref=f22e1056] [cursor=pointer]
+              - row [ref=f22e1057]:
+                - cell "Beffroi Table Clock aur-505" [ref=f22e1058]:
+                  - generic [ref=f22e1059]: Beffroi Table Clock
+                  - text: aur-505
+                - cell "objets" [ref=f22e1060]
+                - cell [ref=f22e1061]
+                - cell "Unassigned" [ref=f22e1062]
+                - cell "5" [ref=f22e1065]
+                - cell "₹0" [ref=f22e1066]
+                - cell "Healthy" [ref=f22e1067]
+                - cell [ref=f22e1069]:
+                  - button "Adjust" [ref=f22e1070] [cursor=pointer]
+              - row [ref=f22e1071]:
+                - cell "Bianhu Flask aur-416" [ref=f22e1072]:
+                  - generic [ref=f22e1073]: Bianhu Flask
+                  - text: aur-416
+                - cell "leather" [ref=f22e1074]
+                - cell [ref=f22e1075]
+                - cell "Unassigned" [ref=f22e1076]
+                - cell "5" [ref=f22e1079]
+                - cell "₹0" [ref=f22e1080]
+                - cell "Healthy" [ref=f22e1081]
+                - cell [ref=f22e1083]:
+                  - button "Adjust" [ref=f22e1084] [cursor=pointer]
+              - row [ref=f22e1085]:
+                - cell "Bicolore Ribbon Tins aur-515" [ref=f22e1086]:
+                  - generic [ref=f22e1087]: Bicolore Ribbon Tins
+                  - text: aur-515
+                - cell "objets" [ref=f22e1088]
+                - cell [ref=f22e1089]
+                - cell "Unassigned" [ref=f22e1090]
+                - cell "5" [ref=f22e1093]
+                - cell "₹0" [ref=f22e1094]
+                - cell "Healthy" [ref=f22e1095]
+                - cell [ref=f22e1097]:
+                  - button "Adjust" [ref=f22e1098] [cursor=pointer]
+              - row [ref=f22e1099]:
+                - cell "Blonda Almagro aur-605" [ref=f22e1100]:
+                  - generic [ref=f22e1101]: Blonda Almagro
+                  - text: aur-605
+                - cell "silk" [ref=f22e1102]
+                - cell [ref=f22e1103]
+                - cell "Unassigned" [ref=f22e1104]
+                - cell "5" [ref=f22e1107]
+                - cell "₹0" [ref=f22e1108]
+                - cell "Healthy" [ref=f22e1109]
+                - cell [ref=f22e1111]:
+                  - button "Adjust" [ref=f22e1112] [cursor=pointer]
+              - row [ref=f22e1113]:
+                - cell "Bouteille de Treves aur-307" [ref=f22e1114]:
+                  - generic [ref=f22e1115]: Bouteille de Treves
+                  - text: aur-307
+                - cell "parfums" [ref=f22e1116]
+                - cell [ref=f22e1117]
+                - cell "Unassigned" [ref=f22e1118]
+                - cell "5" [ref=f22e1121]
+                - cell "₹0" [ref=f22e1122]
+                - cell "Healthy" [ref=f22e1123]
+                - cell [ref=f22e1125]:
+                  - button "Adjust" [ref=f22e1126] [cursor=pointer]
+              - row [ref=f22e1127]:
+                - cell "Bracteate Page Marker aur-508" [ref=f22e1128]:
+                  - generic [ref=f22e1129]: Bracteate Page Marker
+                  - text: aur-508
+                - cell "objets" [ref=f22e1130]
+                - cell [ref=f22e1131]
+                - cell "Unassigned" [ref=f22e1132]
+                - cell "5" [ref=f22e1135]
+                - cell "₹0" [ref=f22e1136]
+                - cell "Healthy" [ref=f22e1137]
+                - cell [ref=f22e1139]:
+                  - button "Adjust" [ref=f22e1140] [cursor=pointer]
+              - row [ref=f22e1141]:
+                - cell "Brevet Anonyme aur-208" [ref=f22e1142]:
+                  - generic [ref=f22e1143]: Brevet Anonyme
+                  - text: aur-208
+                - cell "horology" [ref=f22e1144]
+                - cell [ref=f22e1145]
+                - cell "Unassigned" [ref=f22e1146]
+                - cell "5" [ref=f22e1149]
+                - cell "₹0" [ref=f22e1150]
+                - cell "Healthy" [ref=f22e1151]
+                - cell [ref=f22e1153]:
+                  - button "Adjust" [ref=f22e1154] [cursor=pointer]
+              - row [ref=f22e1155]:
+                - cell "Brocanteur Optical aur-709" [ref=f22e1156]:
+                  - generic [ref=f22e1157]: Brocanteur Optical
+                  - text: aur-709
+                - cell "eyewear" [ref=f22e1158]
+                - cell [ref=f22e1159]
+                - cell "Unassigned" [ref=f22e1160]
+                - cell "5" [ref=f22e1163]
+                - cell "₹0" [ref=f22e1164]
+                - cell "Healthy" [ref=f22e1165]
+                - cell [ref=f22e1167]:
+                  - button "Adjust" [ref=f22e1168] [cursor=pointer]
+              - row [ref=f22e1169]:
+                - cell "Brouilly Sun aur-714" [ref=f22e1170]:
+                  - generic [ref=f22e1171]: Brouilly Sun
+                  - text: aur-714
+                - cell "eyewear" [ref=f22e1172]
+                - cell [ref=f22e1173]
+                - cell "Unassigned" [ref=f22e1174]
+                - cell "5" [ref=f22e1177]
+                - cell "₹0" [ref=f22e1178]
+                - cell "Healthy" [ref=f22e1179]
+                - cell [ref=f22e1181]:
+                  - button "Adjust" [ref=f22e1182] [cursor=pointer]
+  - button "Open AI assistant" [ref=f22e96] [cursor=pointer]: Ask AI

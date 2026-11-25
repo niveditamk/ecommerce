@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { width:1560px; background:#fff; font-family:'Segoe UI', Arial, sans-serif; padding:30px; }
+  .title { font-size:26px; font-weight:700; color:#1a1a2e; text-align:center; margin-bottom:6px; }
+  .subtitle { font-size:14px; color:#555; text-align:center; margin-bottom:28px; }
+  .canvas { position:relative; width:1500px; height:1150px; }
+  .ent { position:absolute; width:220px; border:2px solid #3b5bdb; border-radius:8px; background:#f7f9ff; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .ent h5 { background:#3b5bdb; color:#fff; font-size:13px; padding:6px 10px; border-radius:6px 6px 0 0; }
+  .ent ul { list-style:none; padding:6px 10px; font-size:10.5px; color:#333; }
+  .ent li { padding:1px 0; }
+  .pk { font-weight:700; color:#1a1a2e; }
+  .fk { color:#8442d6; font-style:italic; }
+  svg { position:absolute; top:0; left:0; width:1500px; height:1150px; z-index:0; }
+  .ent { z-index:1; }
+</style></head>
+<body>
+  <div class="title">AURELIS &mdash; Entity-Relationship Diagram (Core Schema)</div>
+  <div class="subtitle">Simplified view of the principal tables and their relationships &mdash; SQLite, no ORM</div>
+  <div class="canvas">
+    <svg>
+      <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#888"/></marker></defs>
+      <!-- categories -> products -->
+      <line x1="140" y1="130" x2="290" y2="130" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- products -> order_items -->
+      <line x1="510" y1="160" x2="640" y2="230" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- customers -> orders -->
+      <line x1="140" y1="330" x2="290" y2="330" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- orders -> order_items -->
+      <line x1="510" y1="360" x2="640" y2="300" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- products -> warehouse_stock -->
+      <line x1="400" y1="180" x2="400" y2="460" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- warehouses -> warehouse_stock -->
+      <line x1="140" y1="500" x2="290" y2="500" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- products -> inventory_transactions -->
+      <line x1="510" y1="150" x2="900" y2="470" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- warehouses -> inventory_transactions -->
+      <line x1="220" y1="560" x2="900" y2="520" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- suppliers -> purchase_orders -->
+      <line x1="140" y1="700" x2="290" y2="680" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- purchase_orders -> po_items -->
+      <line x1="510" y1="680" x2="640" y2="680" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- purchase_orders -> inventory_transactions -->
+      <line x1="450" y1="620" x2="900" y2="550" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- staff -> roles -->
+      <line x1="1130" y1="160" x2="1290" y2="160" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- staff -> audit_logs -->
+      <line x1="1020" y1="200" x2="1020" y2="330" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- staff -> ai_feedback_outcomes -->
+      <line x1="1020" y1="460" x2="1200" y2="460" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- ml_versions -> ml_runs -->
+      <line x1="1310" y1="580" x2="1310" y2="700" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- ml_versions -> ml_predictions -->
+      <line x1="1200" y1="620" x2="1000" y2="700" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- warehouses -> cycle_counts -->
+      <line x1="180" y1="620" x2="180" y2="820" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- cycle_counts -> cycle_count_items -->
+      <line x1="290" y1="880" x2="420" y2="880" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- products -> product_batches -->
+      <line x1="400" y1="180" x2="180" y2="960" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- products -> ai_alerts -->
+      <line x1="510" y1="140" x2="1210" y2="330" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+    </svg>
+
+    <div class="ent" style="left:10px; top:80px;">
+      <h5>categories</h5>
+      <ul><li class="pk">slug (PK)</li><li>name, tag, blurb</li><li>shape, palette, sub</li></ul>
+    </div>
+    <div class="ent" style="left:290px; top:60px; width:220px;">
+      <h5>products</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">cat (FK &rarr; categories)</li><li>name, price, stock</li><li>status, low_stock_at</li></ul>
+    </div>
+    <div class="ent" style="left:10px; top:290px;">
+      <h5>customers</h5>
+      <ul><li class="pk">id (PK)</li><li>email, tier, phone</li><li>password_hash (never sent to client)</li></ul>
+    </div>
+    <div class="ent" style="left:290px; top:290px;">
+      <h5>orders</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">customer_id (FK)</li><li>status, stage, channel</li><li>total, address</li></ul>
+    </div>
+    <div class="ent" style="left:640px; top:230px;">
+      <h5>order_items</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">order_id, product_id (FK)</li><li>qty, unit_price</li></ul>
+    </div>
+    <div class="ent" style="left:10px; top:460px;">
+      <h5>warehouses</h5>
+      <ul><li class="pk">id (PK)</li><li>code, name, city</li></ul>
+    </div>
+    <div class="ent" style="left:290px; top:460px;">
+      <h5>warehouse_stock</h5>
+      <ul><li class="pk">(product_id, warehouse_id)</li><li>on_hand, reserved, available</li><li>incoming, safety_stock, reorder_point</li></ul>
+    </div>
+    <div class="ent" style="left:820px; top:420px; width:260px;">
+      <h5>inventory_transactions</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">product_id, warehouse_id (FK)</li><li>type, qty, previous_qty, new_qty</li><li>reason, reference</li></ul>
+    </div>
+    <div class="ent" style="left:10px; top:650px;">
+      <h5>suppliers</h5>
+      <ul><li class="pk">id (PK)</li><li>name, code, lead_time_days</li></ul>
+    </div>
+    <div class="ent" style="left:290px; top:630px;">
+      <h5>purchase_orders</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">supplier_id, warehouse_id (FK)</li><li>po_number, status, total_value</li></ul>
+    </div>
+    <div class="ent" style="left:640px; top:630px;">
+      <h5>po_items</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">po_id, product_id (FK)</li><li>qty, unit_cost</li></ul>
+    </div>
+    <div class="ent" style="left:10px; top:820px;">
+      <h5>cycle_counts</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">warehouse_id (FK)</li><li>count_number, scope, status</li></ul>
+    </div>
+    <div class="ent" style="left:290px; top:850px;">
+      <h5>cycle_count_items</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">cycle_count_id, product_id</li><li>expected_qty, counted_qty</li></ul>
+    </div>
+    <div class="ent" style="left:10px; top:990px;">
+      <h5>product_batches</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">product_id (FK, parfums only)</li><li>batch_number, qty, expiry_date</li></ul>
+    </div>
+
+    <div class="ent" style="left:900px; top:80px;">
+      <h5>staff</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">role_id (FK)</li><li>email, status</li></ul>
+    </div>
+    <div class="ent" style="left:1290px; top:80px;">
+      <h5>roles</h5>
+      <ul><li class="pk">id (PK)</li><li>key, name, rank</li></ul>
+    </div>
+    <div class="ent" style="left:900px; top:330px;">
+      <h5>audit_logs</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">actor, entity, entity_id</li><li>action, before_val, after_val</li></ul>
+    </div>
+    <div class="ent" style="left:1200px; top:400px; width:250px;">
+      <h5>ai_alerts</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">product_id, warehouse_id (FK)</li><li>category, severity, status</li></ul>
+    </div>
+    <div class="ent" style="left:1200px; top:420px; top:590px;">
+      <h5>ai_feedback_outcomes</h5>
+      <ul><li class="pk">id (PK)</li><li>model_key, decision, adjusted_to</li></ul>
+    </div>
+    <div class="ent" style="left:1200px; top:520px;">
+      <h5>ml_versions</h5>
+      <ul><li class="pk">id (PK)</li><li>model_key, version, is_active</li><li>algorithm, artifact, wape</li></ul>
+    </div>
+    <div class="ent" style="left:1200px; top:700px;">
+      <h5>ml_runs</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">model_key (FK)</li><li>status, trigger, winner</li></ul>
+    </div>
+    <div class="ent" style="left:900px; top:700px;">
+      <h5>ml_predictions</h5>
+      <ul><li class="pk">id (PK)</li><li class="fk">version_id (FK)</li><li>subject, horizon, value</li></ul>
+    </div>
+  </div>
+</body></html>

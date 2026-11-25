@@ -1,0 +1,195 @@
+- generic [ref=f55e3]:
+  - complementary "Admin navigation" [ref=f55e4]:
+    - generic [ref=f55e5]:
+      - generic [ref=f55e6]: AURELIS
+      - generic [ref=f55e7]: Executive · AI Admin
+    - navigation [ref=f55e8]:
+      - generic [ref=f55e9]:
+        - heading "Executive Command" [level=2] [ref=f55e10]
+        - link "Command Center" [ref=f55e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f55e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f55e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f55e14]
+        - link "Inventory Management" [ref=f55e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f55e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f55e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f55e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f55e19]
+        - link "Sales & BI Analytics" [ref=f55e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f55e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f55e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f55e23]
+        - link "Products" [ref=f55e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f55e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f55e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f55e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f55e28]:
+        - heading "System & Governance" [level=2] [ref=f55e29]
+        - link "Staff Management" [ref=f55e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f55e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f55e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f55e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f55e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f55e35]:
+      - generic [ref=f55e36]: Hélène Marchand
+      - generic [ref=f55e37]: Administrator
+      - button "Sign out" [ref=f55e38] [cursor=pointer]
+  - generic [ref=f55e39]:
+    - banner [ref=f55e40]:
+      - generic [ref=f55e42]:
+        - generic [ref=f55e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f55e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f55e45]: Period Filter
+        - combobox "Filter by time period" [ref=f55e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f55e47]:
+        - link "5 Alerts" [ref=f55e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f55e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f55e52]:
+      - generic [ref=f55e53]:
+        - generic [ref=f55e54]:
+          - generic [ref=f55e55]:
+            - generic [ref=f55e56]: Aurelis
+            - generic [ref=f55e57]: ML Operations
+          - paragraph [ref=f55e58]: Decision support. Every figure carries its evidence; nothing here changes stock on its own.
+        - navigation "ML console" [ref=f55e59]:
+          - link "Overview" [ref=f55e60] [cursor=pointer]:
+            - /url: /admin/ml
+          - link "Models" [ref=f55e61] [cursor=pointer]:
+            - /url: /admin/ml/models
+          - link "Forecasts" [ref=f55e62] [cursor=pointer]:
+            - /url: /admin/ml/forecast
+          - link "Recommendations" [ref=f55e63] [cursor=pointer]:
+            - /url: /admin/ml/recommendations
+          - link "Training data" [ref=f55e64] [cursor=pointer]:
+            - /url: /admin/ml/data
+        - generic [ref=f55e73]:
+          - generic [ref=f55e74]:
+            - generic [ref=f55e75]: Registry
+            - heading "Demand Forecast" [level=1] [ref=f55e76]
+            - paragraph [ref=f55e77]: Units sold per SKU per day
+          - button "Train a new version" [ref=f55e79] [cursor=pointer]
+        - generic [ref=f55e80]:
+          - generic [ref=f55e81]:
+            - heading "Serving now — version 1" [level=2] [ref=f55e82]
+            - generic [ref=f55e83]: moving_average
+          - generic [ref=f55e84]:
+            - generic [ref=f55e85]:
+              - generic [ref=f55e86]:
+                - term [ref=f55e87]: Error on the window total
+                - definition [ref=f55e88]: 3.96%
+                - paragraph [ref=f55e89]: What a purchase order depends on.
+              - generic [ref=f55e90]:
+                - term [ref=f55e91]: Day-level error (WAPE)
+                - definition [ref=f55e92]: 79.99%
+                - paragraph [ref=f55e93]: High is normal when a piece sells in ones and twos.
+              - generic [ref=f55e94]:
+                - term [ref=f55e95]: MAE
+                - definition [ref=f55e96]: "0.7959"
+                - paragraph [ref=f55e97]: Average units out, per day.
+              - generic [ref=f55e98]:
+                - term [ref=f55e99]: RMSE
+                - definition [ref=f55e100]: "1.1182"
+                - paragraph [ref=f55e101]: Same, but punishes the big misses.
+              - generic [ref=f55e102]:
+                - term [ref=f55e103]: sMAPE
+                - definition [ref=f55e104]: 122.19%
+                - paragraph [ref=f55e105]: Symmetric percentage error.
+            - generic [ref=f55e106]:
+              - generic [ref=f55e107]:
+                - generic [ref=f55e108]:
+                  - term [ref=f55e109]: Trained
+                  - definition [ref=f55e110]: 14 Sept 2026
+                - generic [ref=f55e111]:
+                  - term [ref=f55e112]: By
+                  - definition [ref=f55e113]: Hélène Marchand
+                - generic [ref=f55e114]:
+                  - term [ref=f55e115]: Rows
+                  - definition [ref=f55e116]: 71,297
+                - generic [ref=f55e117]:
+                  - term [ref=f55e118]: Window
+                  - definition [ref=f55e119]: 2025-03-23 → 2026-09-13
+                - generic [ref=f55e120]:
+                  - term [ref=f55e121]: SKUs
+                  - definition [ref=f55e122]: "140"
+              - paragraph [ref=f55e123]: 140 SKU(s) trained, 0 skipped for thin history. Each SKU keeps its own champion — moving_average ×91, ses ×25, holt ×19, seasonal_naive ×4, naive ×1. Moving average was the strongest single algorithm across the catalogue (5.86% window error against 3.96% for the mix).
+        - generic [ref=f55e124]:
+          - heading "Version history" [level=2] [ref=f55e125]
+          - table [ref=f55e127]:
+            - rowgroup [ref=f55e128]:
+              - row [ref=f55e129]:
+                - columnheader "Version" [ref=f55e130]
+                - columnheader "Algorithm" [ref=f55e131]
+                - columnheader "Rows" [ref=f55e132]
+                - columnheader "SKUs" [ref=f55e133]
+                - columnheader "Window error" [ref=f55e134]
+                - columnheader "WAPE" [ref=f55e135]
+                - columnheader "MAE" [ref=f55e136]
+                - columnheader "Trained" [ref=f55e137]
+                - columnheader [ref=f55e138]
+            - rowgroup [ref=f55e139]:
+              - row [ref=f55e140]:
+                - cell "v1serving" [ref=f55e141]
+                - cell "moving average" [ref=f55e142]
+                - cell "71,297" [ref=f55e143]
+                - cell "140" [ref=f55e144]
+                - cell "3.96%" [ref=f55e145]
+                - cell "79.99%" [ref=f55e146]
+                - cell "0.7959" [ref=f55e147]
+                - cell "14 Sept 2026" [ref=f55e148]
+                - cell [ref=f55e149]
+          - paragraph [ref=f55e150]: Versions are never overwritten. Each training run adds one and promotes it only after its metrics are recorded, so any earlier version can be put back.
+        - generic [ref=f55e151]:
+          - heading "Training runs" [level=2] [ref=f55e152]
+          - list [ref=f55e153]:
+            - listitem [ref=f55e154]:
+              - generic [ref=f55e155]: succeeded
+              - generic [ref=f55e156]: Version 1 active — total-window error 3.96%, day-level WAPE 79.99%
+              - generic [ref=f55e157]: 14 Sept 2026 · 874ms
+        - generic [ref=f55e158]:
+          - heading "Candidates" [level=2] [ref=f55e159]
+          - paragraph [ref=f55e160]: "Every one of these is fitted and scored on held-out days for every SKU, at each of its settings. The winner is whichever measures best — per SKU, not per catalogue. Searching the settings rather than assuming them matters: a seven-day mean forecasts nothing at all for a piece that sells twice a fortnight."
+          - list [ref=f55e161]:
+            - listitem [ref=f55e162]:
+              - generic [ref=f55e163]: Naive (last observation)
+              - generic [ref=f55e164]: needs 2 days
+            - listitem [ref=f55e165]:
+              - generic [ref=f55e166]: Seasonal naive (same weekday)
+              - generic [ref=f55e167]: needs 14 days
+            - listitem [ref=f55e168]:
+              - generic [ref=f55e169]: Moving average
+              - generic [ref=f55e170]: 5 window settings · needs 7 days
+            - listitem [ref=f55e171]:
+              - generic [ref=f55e172]: Simple exponential smoothing
+              - generic [ref=f55e173]: 5 alpha settings · needs 14 days
+            - listitem [ref=f55e174]:
+              - generic [ref=f55e175]: Holt's linear trend
+              - generic [ref=f55e176]: 4 alpha, beta settings · needs 56 days
+  - button "Open AI assistant" [ref=f55e72] [cursor=pointer]: Ask AI

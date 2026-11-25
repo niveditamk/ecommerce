@@ -1,0 +1,240 @@
+- generic [ref=f38e3]:
+  - complementary "Admin navigation" [ref=f38e4]:
+    - generic [ref=f38e5]:
+      - generic [ref=f38e6]: AURELIS
+      - generic [ref=f38e7]: Executive · AI Admin
+    - navigation [ref=f38e8]:
+      - generic [ref=f38e9]:
+        - heading "Executive Command" [level=2] [ref=f38e10]
+        - link "Command Center" [ref=f38e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f38e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f38e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f38e14]
+        - link "Inventory Management" [ref=f38e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f38e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f38e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f38e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f38e19]
+        - link "Sales & BI Analytics" [ref=f38e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f38e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f38e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f38e23]
+        - link "Products" [ref=f38e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f38e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f38e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f38e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f38e28]:
+        - heading "System & Governance" [level=2] [ref=f38e29]
+        - link "Staff Management" [ref=f38e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f38e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f38e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f38e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f38e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f38e35]:
+      - generic [ref=f38e36]: Hélène Marchand
+      - generic [ref=f38e37]: Administrator
+      - button "Sign out" [ref=f38e38] [cursor=pointer]
+  - generic [ref=f38e39]:
+    - banner [ref=f38e40]:
+      - generic [ref=f38e42]:
+        - generic [ref=f38e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f38e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f38e45]: Period Filter
+        - combobox "Filter by time period" [ref=f38e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f38e47]:
+        - link "5 Alerts" [ref=f38e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f38e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f38e52]:
+      - generic [ref=f38e53]:
+        - generic [ref=f38e54]:
+          - generic [ref=f38e55]:
+            - generic [ref=f38e56]: Procurement & Supply Chain
+            - heading "Supplier Analytics & Purchase Orders" [level=1] [ref=f38e57]
+            - paragraph [ref=f38e58]: Partner scorecards, lead time optimization, and automated receipt-to-inventory restocking.
+          - generic [ref=f38e59]:
+            - button "+ Create Purchase Order" [ref=f38e60] [cursor=pointer]
+            - button "↻ Refresh" [ref=f38e61] [cursor=pointer]
+        - generic [ref=f38e62]:
+          - generic [ref=f38e63]:
+            - generic [ref=f38e64]: Total Purchase Orders
+            - generic [ref=f38e65]: "3"
+          - generic [ref=f38e66]:
+            - generic [ref=f38e67]: Active / In-Flight
+            - generic [ref=f38e68]: "2"
+          - generic [ref=f38e69]:
+            - generic [ref=f38e70]: Total Procurement Value
+            - generic [ref=f38e71]: ₹12,77,000
+          - generic [ref=f38e72]:
+            - generic [ref=f38e73]: Certified Suppliers
+            - generic [ref=f38e74]: "4"
+          - generic [ref=f38e75]:
+            - generic [ref=f38e76]: Fulfilled Receipts
+            - generic [ref=f38e77]: "1"
+        - tablist [ref=f38e78]:
+          - tab "📋 Purchase Orders Board (3)" [ref=f38e92] [cursor=pointer]
+          - tab "🏆 Supplier Scorecards & Lead Times (4)" [selected] [ref=f38e93] [cursor=pointer]
+        - generic [ref=f38e174]:
+          - generic [ref=f38e175]:
+            - generic [ref=f38e176]:
+              - generic [ref=f38e177]:
+                - text: VALCAMBI
+                - heading "Valcambi SA" [level=3] [ref=f38e178]
+                - paragraph [ref=f38e179]: Marcello Riva · orders@valcambi.ch
+              - generic [ref=f38e180]: 98.4/ 100
+            - generic [ref=f38e181]:
+              - generic [ref=f38e182]:
+                - generic [ref=f38e183]: Lead Time
+                - generic [ref=f38e184]: 10 days
+                - generic [ref=f38e185]: ± 2d variance
+              - generic [ref=f38e186]:
+                - generic [ref=f38e187]: On-Time Delivery
+                - generic [ref=f38e188]: 98.4%
+                - generic [ref=f38e189]: Last 12 months
+              - generic [ref=f38e190]:
+                - generic [ref=f38e191]: Quality Pass
+                - generic [ref=f38e192]: 99.8%
+                - generic [ref=f38e193]: Zero defect batch
+              - generic [ref=f38e194]:
+                - generic [ref=f38e195]: Contract Currency
+                - generic [ref=f38e196]: CHF
+                - generic [ref=f38e197]: Net 30 terms
+            - generic [ref=f38e198]:
+              - generic [ref=f38e199]:
+                - text: "Total Invoiced:"
+                - strong [ref=f38e200]: ₹8,57,000
+                - text: (2 POs)
+              - button "+ Issue PO to VALCAMBI" [ref=f38e201] [cursor=pointer]
+              - button "Notes" [active] [ref=f38e202] [cursor=pointer]
+          - generic [ref=f38e203]:
+            - generic [ref=f38e204]:
+              - generic [ref=f38e205]:
+                - text: DUBOIS
+                - heading "Dubois Dépraz Horlogerie" [level=3] [ref=f38e206]
+                - paragraph [ref=f38e207]: Pascal Dubois · horlogerie@dubois-depraz.ch
+              - generic [ref=f38e208]: 94.1/ 100
+            - generic [ref=f38e209]:
+              - generic [ref=f38e210]:
+                - generic [ref=f38e211]: Lead Time
+                - generic [ref=f38e212]: 45 days
+                - generic [ref=f38e213]: ± 2d variance
+              - generic [ref=f38e214]:
+                - generic [ref=f38e215]: On-Time Delivery
+                - generic [ref=f38e216]: 98.4%
+                - generic [ref=f38e217]: Last 12 months
+              - generic [ref=f38e218]:
+                - generic [ref=f38e219]: Quality Pass
+                - generic [ref=f38e220]: 99.8%
+                - generic [ref=f38e221]: Zero defect batch
+              - generic [ref=f38e222]:
+                - generic [ref=f38e223]: Contract Currency
+                - generic [ref=f38e224]: CHF
+                - generic [ref=f38e225]: Net 30 terms
+            - generic [ref=f38e226]:
+              - generic [ref=f38e227]:
+                - text: "Total Invoiced:"
+                - strong [ref=f38e228]: ₹0
+                - text: (0 POs)
+              - button "+ Issue PO to DUBOIS" [ref=f38e229] [cursor=pointer]
+              - button "Notes" [ref=f38e230] [cursor=pointer]
+          - generic [ref=f38e231]:
+            - generic [ref=f38e232]:
+              - generic [ref=f38e233]:
+                - text: HAAS
+                - heading "Tanneries Haas" [level=3] [ref=f38e234]
+                - paragraph [ref=f38e235]: Guillaume Haas · atelier@tanneries-haas.com
+              - generic [ref=f38e236]: 93/ 100
+            - generic [ref=f38e237]:
+              - generic [ref=f38e238]:
+                - generic [ref=f38e239]: Lead Time
+                - generic [ref=f38e240]: 28 days
+                - generic [ref=f38e241]: ± 2d variance
+              - generic [ref=f38e242]:
+                - generic [ref=f38e243]: On-Time Delivery
+                - generic [ref=f38e244]: 98.4%
+                - generic [ref=f38e245]: Last 12 months
+              - generic [ref=f38e246]:
+                - generic [ref=f38e247]: Quality Pass
+                - generic [ref=f38e248]: 99.8%
+                - generic [ref=f38e249]: Zero defect batch
+              - generic [ref=f38e250]:
+                - generic [ref=f38e251]: Contract Currency
+                - generic [ref=f38e252]: CHF
+                - generic [ref=f38e253]: Net 30 terms
+            - generic [ref=f38e254]:
+              - generic [ref=f38e255]:
+                - text: "Total Invoiced:"
+                - strong [ref=f38e256]: ₹0
+                - text: (0 POs)
+              - button "+ Issue PO to HAAS" [ref=f38e257] [cursor=pointer]
+              - button "Notes" [ref=f38e258] [cursor=pointer]
+          - generic [ref=f38e259]:
+            - generic [ref=f38e260]:
+              - generic [ref=f38e261]:
+                - text: ROBERTET
+                - heading "Robertet Grasse" [level=3] [ref=f38e262]
+                - paragraph [ref=f38e263]: Claire Beauchamp · contact@robertet.fr
+              - generic [ref=f38e264]: 91.5/ 100
+            - generic [ref=f38e265]:
+              - generic [ref=f38e266]:
+                - generic [ref=f38e267]: Lead Time
+                - generic [ref=f38e268]: 21 days
+                - generic [ref=f38e269]: ± 2d variance
+              - generic [ref=f38e270]:
+                - generic [ref=f38e271]: On-Time Delivery
+                - generic [ref=f38e272]: 98.4%
+                - generic [ref=f38e273]: Last 12 months
+              - generic [ref=f38e274]:
+                - generic [ref=f38e275]: Quality Pass
+                - generic [ref=f38e276]: 99.8%
+                - generic [ref=f38e277]: Zero defect batch
+              - generic [ref=f38e278]:
+                - generic [ref=f38e279]: Contract Currency
+                - generic [ref=f38e280]: CHF
+                - generic [ref=f38e281]: Net 30 terms
+            - generic [ref=f38e282]:
+              - generic [ref=f38e283]:
+                - text: "Total Invoiced:"
+                - strong [ref=f38e284]: ₹4,20,000
+                - text: (1 POs)
+              - button "+ Issue PO to ROBERTET" [ref=f38e285] [cursor=pointer]
+              - button "Notes" [ref=f38e286] [cursor=pointer]
+        - dialog [ref=f38e287]:
+          - generic [ref=f38e288]:
+            - generic [ref=f38e289]:
+              - heading "Notes — Valcambi SA" [level=3] [ref=f38e290]
+              - button "Close" [ref=f38e291] [cursor=pointer]: ×
+            - generic [ref=f38e293]:
+              - heading "Notes" [level=2] [ref=f38e294]
+              - paragraph [ref=f38e295]: No notes yet.
+              - generic [ref=f38e296]:
+                - textbox "Leave a note — @firstname.lastname to mention a colleague" [ref=f38e297]
+                - button "Add Note" [disabled] [ref=f38e298]
+  - button "Open AI assistant" [ref=f38e91] [cursor=pointer]: Ask AI

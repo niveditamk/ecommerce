@@ -1,10 +1,8 @@
 /* =============================================================
-   AURELIS MAISON — PRODUCT DETAIL PAGE (PDP)
-   Editorial luxury dossier with high-res multi-view gallery,
-   real-time inventory indicators, variant pills, size selectors,
-   live pincode delivery estimator, collapsible craftsmanship specs,
-   "The Making of the Object" narrative, verified reviews, and
-   complementary recommendations.
+   AURELIS MAISON // EDITORIAL LUXURY PRODUCT DOSSIER (PDP)
+   Dual-column architectural showcase, multi-angle vitrines,
+   material swatches, size selectors, Indian pincode checker,
+   and expandable craftsmanship specifications.
    ============================================================= */
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -57,7 +55,6 @@ export default function Product() {
         label: dx(product.name)
       });
     }
-    // Add atelier close-up view
     views.push({
       shape: 'atelier',
       palette: product.palette,
@@ -107,79 +104,75 @@ export default function Product() {
   /* Collapsible Accordion sections */
   const detailAccordions = [
     {
-      title: 'TECHNICAL SPECIFICATIONS & BLUEPRINT METRICS',
+      title: 'Craftsmanship & Provenance',
+      body: (
+        <>
+          <p style={{ lineHeight: 1.7, color: 'var(--pearl-2)' }}>{dx(product.story)}</p>
+          <p style={{ marginTop: '12px', fontSize: '0.84rem', color: 'var(--pearl-3)' }}>
+            Finished entirely by hand at 14 Rue du Rh&ocirc;ne, Geneva. Individually numbered, hallmarked, and permanently registered in the central Maison archives.
+          </p>
+        </>
+      )
+    },
+    {
+      title: 'Technical Specifications & Noble Materials',
       body: (
         <table className="pdp-spec-table">
           <tbody>
             <tr>
-              <td>SYSTEM REF</td>
-              <td>AUR-{product.id.toUpperCase()}</td>
-            </tr>
-            <tr>
-              <td>DISCIPLINE</td>
-              <td>{catName.toUpperCase()}</td>
+              <td>Collection M&eacute;tier</td>
+              <td>{catName}</td>
             </tr>
             {product.details?.map((d) => (
               <tr key={d.k}>
-                <td>{dx(d.k).toUpperCase()}</td>
+                <td>{dx(d.k)}</td>
                 <td>{dx(d.v)}</td>
               </tr>
             ))}
             {product.edition && (
               <tr>
-                <td>EDITION STATUS</td>
-                <td>{dx(product.edition).toUpperCase()}</td>
+                <td>Edition Series</td>
+                <td>{dx(product.edition)}</td>
               </tr>
             )}
             {product.year && (
               <tr>
-                <td>COMMISSION YEAR</td>
+                <td>Commission Year</td>
                 <td>{product.year}</td>
               </tr>
             )}
             <tr>
-              <td>FABRICATION BENCH</td>
-              <td>RUE DU RHÔNE 14, GENEVA</td>
+              <td>Atelier Location</td>
+              <td>Rue du Rh&ocirc;ne 14, Gen&egrave;ve</td>
             </tr>
             <tr>
-              <td>ASSAY REGISTRATION</td>
-              <td>CENTRAL LEDGER VERIFIED</td>
+              <td>Assay Hallmark</td>
+              <td>Certified Swiss Hallmarked Assay</td>
             </tr>
           </tbody>
         </table>
       )
     },
     {
-      title: 'PROVENANCE & CRAFTSMANSHIP',
+      title: 'Lifetime Servicing & Ultrasonic Care',
       body: (
         <>
-          <p>{dx(product.story)}</p>
-          <p style={{ marginTop: '12px', fontSize: '12px', fontFamily: 'var(--font-mono)', color: 'var(--pearl-3)' }}>
-            Finished by hand at 14 Rue du Rhône, Geneva. Numbered and permanently registered in the central system ledger.
+          <p style={{ lineHeight: 1.7, color: 'var(--pearl-2)' }}>{dx(product.care)}</p>
+          <p style={{ marginTop: '12px', fontSize: '0.84rem', color: 'var(--pearl-3)' }}>
+            Every creation includes complimentary annual ultrasonic restoration, movement regulation, and polish across all AURELIS salons worldwide.
           </p>
         </>
       )
     },
     {
-      title: 'MAINTENANCE & CALIBRATION',
+      title: 'Insured Delivery & 30-Day Return Privilege',
       body: (
         <>
-          <p>{dx(product.care)}</p>
-          <p style={{ marginTop: '12px', fontSize: '12px', fontFamily: 'var(--font-mono)', color: 'var(--pearl-3)' }}>
-            Complimentary annual ultrasonic cleaning and assay polish available at any certified AURELIS node worldwide.
+          <p style={{ lineHeight: 1.7, color: 'var(--pearl-2)' }}>
+            Complimentary white-glove signature courier delivery across India. Tracked, tamper-evident, and fully insured from the bench to your residence.
           </p>
-        </>
-      )
-    },
-    {
-      title: 'INSURED ESCROW DISPATCH & REVERSAL',
-      body: (
-        <>
-          <p>
-            Complimentary white-glove signature courier delivery. Tracked, encrypted, and 100% insured from bench to destination.
-          </p>
-          <p style={{ marginTop: '8px' }}>
-            30-day return privilege. Courier collection arranged at zero friction with automated ledger refund.
+          <p style={{ marginTop: '10px', lineHeight: 1.7, color: 'var(--pearl-2)' }}>
+            30-day return privilege with complimentary doorstep courier collection and immediate credit or bespoke exchange.
           </p>
         </>
       )
@@ -190,46 +183,45 @@ export default function Product() {
     <div className="shell">
       <Breadcrumbs
         trail={[
-          { label: 'SYS.ROOT', to: '/' },
-          { label: 'DISCIPLINES', to: '/categories' },
-          { label: catName.toUpperCase(), to: `/category/${product.cat}` },
-          { label: `REF // ${product.id.toUpperCase()}` }
+          { label: 'Home', to: '/' },
+          { label: 'Collections', to: '/categories' },
+          { label: catName, to: `/category/${product.cat}` },
+          { label: dx(product.name) }
         ]}
       />
 
-      {/* ============ PDP SPLIT DOSSIER ============ */}
-      <div className="pdp-grid">
-        {/* Left: Multi-View Gallery */}
+      {/* ============ PDP DUAL-COLUMN SHOWCASE ============ */}
+      <div className="pdp-split">
+        {/* Left: Multi-Angle Image Gallery */}
         <div className="pdp-gallery">
-          <div className="hero-chassis pdp-gallery__main" style={{ position: 'relative' }}>
-            <div className="hero-chassis__bracket hero-chassis__bracket--tl" aria-hidden="true" />
-            <div className="hero-chassis__bracket hero-chassis__bracket--tr" aria-hidden="true" />
-            <div className="hero-chassis__bracket hero-chassis__bracket--bl" aria-hidden="true" />
-            <div className="hero-chassis__bracket hero-chassis__bracket--br" aria-hidden="true" />
-
-            <div style={{ position: 'absolute', top: 12, left: 16, zIndex: 2, fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--pearl-3)', letterSpacing: '0.08em' }}>
-              [ CAD SCHEMATIC VIEW // REF: {product.id.toUpperCase()} ]
-            </div>
-
+          <div className="pdp-main-vitrine">
             <ProductArt
               id={activeView === 0 ? product.id : null}
               shape={galleryViews[activeView]?.shape || product.shape}
               palette={galleryViews[activeView]?.palette || product.palette}
               label={galleryViews[activeView]?.label || product.name}
-              className="art--tall"
             />
           </div>
 
           {galleryViews.length > 1 && (
-            <div className="pdp-gallery__thumbs" aria-label="Gallery views">
+            <div style={{ display: 'flex', gap: '12px', marginTop: '16px', overflowX: 'auto' }} aria-label="Gallery thumbnails">
               {galleryViews.map((v, i) => (
                 <button
                   key={i}
                   type="button"
-                  className={`pdp-gallery__thumb${i === activeView ? ' is-active' : ''}`}
                   onClick={() => setActiveView(i)}
                   aria-label={v.label}
-                  style={{ border: i === activeView ? '2px solid var(--color-terminal-green)' : '1px solid var(--line)' }}
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: 'var(--r-md)',
+                    border: i === activeView ? '2px solid var(--gold)' : '1px solid var(--line)',
+                    background: '#FFFFFF',
+                    padding: '8px',
+                    cursor: 'pointer',
+                    transition: 'border-color 0.2s ease',
+                    flexShrink: 0
+                  }}
                 >
                   <ProductArt
                     id={i === 0 ? product.id : null}
@@ -243,86 +235,79 @@ export default function Product() {
           )}
         </div>
 
-        {/* Right: Sticky Dossier Info */}
+        {/* Right: Buy-Box & Product Narrative */}
         <div className="pdp-info">
-          <div className="between" style={{ alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '8px', marginBottom: '14px' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-terminal-green-text)', fontWeight: 700 }}>
-              // SPECIMEN DOSSIER &middot; REF: AUR-{product.id.toUpperCase()}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <span className="eyebrow" style={{ margin: 0 }}>
+              {catName} &middot; {dx(product.sub || 'Maison Piece')}
             </span>
             {product.edition && (
-              <span className="badge badge--green">[ {dx(product.edition).toUpperCase()} ]</span>
+              <span className="badge badge--gold">{dx(product.edition)}</span>
             )}
           </div>
 
-          <h1 className="pdp-title" style={{ fontFamily: 'var(--font-grotesk)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
+          <h1 className="pdp-title">
             {dx(product.name)}
           </h1>
 
-          {/* Rating & Review Link */}
-          <div className="center" style={{ gap: '10px', marginTop: '10px' }}>
-            <Stars rating={product.rating} size={13} />
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: 'var(--pearl-2)' }}>
+          {/* Rating */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+            <Stars rating={product.rating} size={14} />
+            <span style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--pearl-2)' }}>
               {product.rating.toFixed(1)}
             </span>
-            <a href="#reviews" style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--pearl-3)', textDecoration: 'underline' }}>
-              ({product.reviews} VERIFIED COLLECTOR APPRAISALS)
+            <a href="#reviews" style={{ fontSize: '0.82rem', color: 'var(--gold-text)', textDecoration: 'none' }}>
+              ({product.reviews} Verified Client Appraisals)
             </a>
           </div>
 
-          {/* Price & Installment Note */}
-          <div className="pdp-price-row" style={{ marginTop: '16px' }}>
-            <span className="pdp-price" style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--pearl)' }}>
-              {product.was && <s style={{ color: 'var(--pearl-3)', fontSize: '16px', marginRight: '10px' }}>{money(product.was)}</s>}
+          {/* Pricing & Installment Note */}
+          <div className="pdp-price-row">
+            <span className="pdp-price">
+              {product.was && <s style={{ color: 'var(--pearl-4)', fontSize: '1.2rem', marginRight: '12px', fontWeight: 400 }}>{money(product.was)}</s>}
               {money(product.price)}
             </span>
-            <span className="badge badge--green" style={{ marginLeft: '12px' }}>
-              VERIFIED SPECIMEN
+            <span className="badge badge--green">
+              Complimentary Insured Delivery
             </span>
           </div>
-          <div className="pdp-installment" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--pearl-3)' }}>
-            [ ESCROW SPLIT: 3x INTEREST-FREE CYCLES OF {money(product.price / 3)} ]
+
+          <div style={{ fontSize: '0.86rem', color: 'var(--pearl-3)', marginTop: '-12px', marginBottom: '20px' }}>
+            Or 3 monthly instalments of <b>{money(Math.round(product.price / 3))}</b> with 0% interest
           </div>
 
-          {/* Real-time Inventory Status Indicator */}
-          {product.stock > 3 ? (
-            <div className="pdp-stock-badge pdp-stock-badge--available" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-              <span className="pdp-stock-dot" />
-              <span>[ SYS.LEDGER // NOMINAL: SHIPS WITHIN 24 HOURS ]</span>
-            </div>
-          ) : product.stock > 0 ? (
-            <div className="pdp-stock-badge pdp-stock-badge--low" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-              <span className="pdp-stock-dot" />
-              <span>[ SYS.LEDGER // CRITICAL: ONLY {product.stock} SPECIMENS REMAINING ]</span>
-            </div>
-          ) : (
-            <div className="pdp-stock-badge pdp-stock-badge--out" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-              <span className="pdp-stock-dot" />
-              <span>[ SYS.LEDGER // EXHAUSTED: ALLOCATE FROM NEXT BATCH ]</span>
-            </div>
-          )}
+          {/* Availability Indicator */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px', fontSize: '0.86rem' }}>
+            {product.stock > 3 ? (
+              <span style={{ color: 'var(--success)', fontWeight: 600 }}>&bull; In Stock &middot; Ships within 24 hours</span>
+            ) : product.stock > 0 ? (
+              <span style={{ color: 'var(--alert)', fontWeight: 600 }}>&bull; Only {product.stock} pieces remaining in Geneva salon</span>
+            ) : (
+              <span style={{ color: 'var(--pearl-3)', fontWeight: 600 }}>&bull; Sold Out &middot; Join waitlist for next commission run</span>
+            )}
+          </div>
 
-          <p className="pdp-blurb" style={{ fontFamily: 'var(--font-grotesk)', fontSize: '0.95rem', lineHeight: 1.6, color: 'var(--pearl-2)' }}>
+          <p style={{ fontSize: '0.98rem', lineHeight: 1.7, color: 'var(--pearl-2)', marginBottom: '28px' }}>
             {dx(product.blurb)}
           </p>
 
-          {/* Variant Finishes */}
+          {/* Material Finishes */}
           {product.colors?.length > 0 && (
-            <div className="pdp-swatches">
-              <div className="pdp-swatches__label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-                <span>MATERIAL / FINISH:</span>
-                <b style={{ color: 'var(--pearl)' }}>{variant?.toUpperCase()}</b>
+            <div style={{ marginBottom: '24px' }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--pearl-3)', marginBottom: '10px' }}>
+                Noble Material: <b style={{ color: 'var(--pearl)' }}>{variant}</b>
               </div>
-              <div className="pdp-swatches__row">
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 {product.colors.map((c) => (
                   <button
                     key={c.name}
                     type="button"
-                    className={`pdp-color-pill${variant === c.name ? ' is-active' : ''}`}
+                    className={`btn btn--sm ${variant === c.name ? 'btn--primary' : 'btn--outline'}`}
                     onClick={() => setVariant(c.name)}
-                    style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}
+                    style={{ borderRadius: 'var(--r-pill)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                   >
-                    <span className="pdp-color-dot" style={{ backgroundColor: c.hex }} />
-                    <span>{dx(c.name).toUpperCase()}</span>
+                    <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: c.hex, border: '1px solid rgba(0,0,0,0.1)' }} />
+                    <span>{dx(c.name)}</span>
                   </button>
                 ))}
               </div>
@@ -331,21 +316,23 @@ export default function Product() {
 
           {/* Size Selector */}
           {product.sizes?.length > 0 && (
-            <div className="pdp-swatches">
-              <div className="pdp-swatches__label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-                <span>CALIBRATED SIZING:</span>
-                <Link to="/help?topic=Sizing" style={{ textDecoration: 'underline', color: 'var(--color-terminal-green-text)' }}>
-                  [ SIZING GUIDE ]
+            <div style={{ marginBottom: '28px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--pearl-3)' }}>
+                  Size / Dimension:
+                </span>
+                <Link to="/help?topic=Sizing" style={{ fontSize: '0.78rem', color: 'var(--gold-text)', textDecoration: 'none' }}>
+                  Complimentary Sizing Guide &rarr;
                 </Link>
               </div>
-              <div className="pdp-swatches__row">
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 {product.sizes.map((s) => (
                   <button
                     key={s}
                     type="button"
-                    className={`pdp-size-btn${size === s ? ' is-active' : ''}`}
+                    className={`btn btn--sm ${size === s ? 'btn--primary' : 'btn--outline'}`}
                     onClick={() => setSize(s)}
-                    style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}
+                    style={{ minWidth: '44px', borderRadius: 'var(--r-pill)' }}
                   >
                     {dx(s)}
                   </button>
@@ -354,8 +341,8 @@ export default function Product() {
             </div>
           )}
 
-          {/* Quantity & Actions */}
-          <div className="pdp-actions">
+          {/* Quantity & CTA Actions */}
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '28px' }}>
             <QtyControl
               qty={qty}
               onChange={setQty}
@@ -366,144 +353,74 @@ export default function Product() {
             <button
               type="button"
               className="btn btn--gold"
-              style={{ flex: 1, padding: '14px 20px', fontSize: '0.82rem' }}
+              style={{ flex: 1, padding: '16px 24px' }}
               onClick={handleAdd}
               disabled={busy || product.stock === 0}
             >
-              {product.stock === 0 ? 'RESERVE UPCOMING RUN' : 'INITIALIZE ORDER [ ADD TO BAG ]'}
+              {product.stock === 0 ? 'Join Waitlist' : 'Add to Bag'}
             </button>
 
             <button
               type="button"
-              className={`btn btn--outline${saved ? ' is-active' : ''}`}
+              className={`btn btn--outline${saved ? ' is-on' : ''}`}
+              style={{ width: '52px', height: '52px', padding: 0, borderRadius: '50%', flexShrink: 0 }}
               onClick={() => toggleWish(product.id, dx(product.name))}
               aria-label={saved ? 'Remove from wishlist' : 'Save to wishlist'}
-              style={{ padding: '12px 18px' }}
-              title={saved ? 'Specimen Saved' : 'Save Specimen'}
             >
-              <Icon name={saved ? 'check' : 'bag'} size={18} />
+              <Icon name={saved ? 'check' : 'heart'} size={18} />
             </button>
           </div>
 
-          {/* Live Pincode Estimator */}
+          {/* Indian PIN Code Delivery Checker */}
           <PincodeChecker />
 
-          {/* Collapsible Accordions */}
-          <Accordion items={detailAccordions} openFirst />
+          {/* Expandable Specifications Accordion */}
+          <div style={{ marginTop: '36px' }}>
+            <Accordion items={detailAccordions} openFirst />
+          </div>
         </div>
       </div>
 
-      {/* ============ "THE MAKING OF THE OBJECT" EDITORIAL ============ */}
-      <section className="section" style={{ borderTop: '1px solid var(--line)', marginTop: '48px' }}>
-        <Reveal>
-          <div className="story-split">
-            <div>
-              <span className="eyebrow" style={{ color: 'var(--color-terminal-green-text)', fontWeight: 700 }}>
-                // BENCH FABRICATION &middot; DOSSIER
-              </span>
-              <h2 className="h2" style={{ marginTop: '8px', fontFamily: 'var(--font-grotesk)', fontWeight: 700, textTransform: 'uppercase' }}>
-                Fabricated without compromise.
-              </h2>
-              <p className="lede muted" style={{ marginTop: '16px' }}>
-                {dx(product.story || product.blurb)}
-              </p>
-              <div style={{ marginTop: '24px', display: 'grid', gap: '12px' }}>
-                <div className="center" style={{ gap: '12px' }}>
-                  <Icon name="scissors" size={20} />
-                  <span style={{ fontSize: '14px', color: 'var(--pearl-2)', fontFamily: 'var(--font-mono)' }}>
-                    BENCH TIME: 14 TO 60 DAYS ACCORDING TO SPECIFICATION TOLERANCES.
-                  </span>
-                </div>
-                <div className="center" style={{ gap: '12px' }}>
-                  <Icon name="shield" size={20} />
-                  <span style={{ fontSize: '14px', color: 'var(--pearl-2)', fontFamily: 'var(--font-mono)' }}>
-                    ASSAY HALLMARK: DIRECT SURFACE PUNCH REGISTERED TO CENTRAL NODE.
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="story-split__media hero-chassis">
-              <ProductArt shape="atelier" palette={product.palette} label="Artisan Bench" className="art--wide" />
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* ============ REVIEWS SECTION ============ */}
-      <section id="reviews" className="reviews-section">
+      {/* ============ VERIFIED CLIENT REVIEWS ============ */}
+      <section className="section" id="reviews" style={{ borderTop: '1px solid var(--line)', marginTop: '64px' }} aria-label="Client Appraisals">
         <Reveal>
           <SectionHead
-            kicker="// SYSTEM APPRAISALS &middot; VERIFIED OWNERSHIP"
-            title="COLLECTOR FIELD REPORTS"
-            body="Evaluations from authenticated owners and verified patrons registered in the central system."
+            kicker="Client Testimonials"
+            title="Verified Client Appraisals"
+            body={`Read authentic appraisals from verified patrons who have acquired ${dx(product.name)}.`}
           />
         </Reveal>
 
-        <div className="reviews-grid">
-          {/* Summary Score Box */}
-          <div className="review-summary" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)' }}>
-            <div className="review-summary__big" style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--pearl)' }}>{product.rating.toFixed(1)}</div>
-            <div style={{ marginTop: '6px' }}><Stars rating={product.rating} size={16} /></div>
-            <div className="tiny" style={{ marginTop: '8px', color: 'var(--pearl-3)', fontFamily: 'var(--font-mono)' }}>
-              [ {product.reviews} VERIFIED COLLECTOR APPRAISALS ]
-            </div>
-
-            {reviewsData?.distribution && (
-              <div className="review-bars">
-                {[5, 4, 3, 2, 1].map((stars, idx) => {
-                  const count = reviewsData.distribution[idx] || 0;
-                  const pct = Math.round((count / (product.reviews || 1)) * 100);
-                  return (
-                    <div className="review-bar-row" key={stars} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-                      <span>{stars}&star;</span>
-                      <div className="review-bar-track">
-                        <div className="review-bar-fill" style={{ width: `${pct}%`, background: 'var(--color-terminal-green)' }} />
-                      </div>
-                      <span>{count}</span>
-                    </div>
-                  );
-                })}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginTop: '32px' }}>
+          {(reviewsData?.items || []).slice(0, 3).map((r, i) => (
+            <div key={i} style={{ background: '#FFFFFF', padding: '28px', borderRadius: 'var(--r-md)', border: '1px solid var(--line)', boxShadow: 'var(--sh-1)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <Stars rating={r.rating} size={12} />
+                <span className="tiny" style={{ color: 'var(--pearl-4)' }}>Verified Purchase</span>
               </div>
-            )}
-          </div>
-
-          {/* Reviews List */}
-          <div>
-            {reviewsData?.items?.map((r, i) => (
-              <article className="review-item" key={i} style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', marginBottom: '12px', padding: '16px' }}>
-                <div className="review-item__head">
-                  <div className="center" style={{ gap: '10px' }}>
-                    <Stars rating={r.rating} size={12} />
-                    <b style={{ fontSize: '14px', fontFamily: 'var(--font-grotesk)', color: 'var(--pearl)' }}>{r.name}</b>
-                    <span className="tiny" style={{ color: 'var(--pearl-3)', fontFamily: 'var(--font-mono)' }}>({r.city})</span>
-                  </div>
-                  <span className="badge badge--green" style={{ fontSize: '0.65rem' }}>VERIFIED OWNER</span>
-                </div>
-                <h4 className="review-item__title" style={{ fontFamily: 'var(--font-grotesk)', fontWeight: 700, marginTop: '8px' }}>{r.title}</h4>
-                <p className="review-item__body" style={{ fontSize: '0.85rem', color: 'var(--pearl-2)', lineHeight: 1.5, marginTop: '4px' }}>{r.body}</p>
-                <div className="tiny" style={{ color: 'var(--pearl-3)', fontFamily: 'var(--font-mono)', marginTop: '8px' }}>
-                  TIMESTAMP: {r.date}
-                </div>
-              </article>
-            ))}
-          </div>
+              <h4 className="h4" style={{ fontSize: '1.05rem', margin: '0 0 8px' }}>{dx(r.title)}</h4>
+              <p style={{ fontSize: '0.88rem', color: 'var(--pearl-2)', lineHeight: 1.6 }}>{dx(r.body)}</p>
+              <div style={{ fontSize: '0.78rem', color: 'var(--pearl-3)', marginTop: '16px', fontWeight: 600 }}>
+                {dx(r.author)} &middot; {dx(r.location || 'India')}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ============ RECOMMENDATIONS GRID ============ */}
+      {/* ============ ATELIER COMPLEMENTARY RECOMMENDATIONS ============ */}
       {relatedItems.length > 0 && (
-        <section className="section" style={{ borderTop: '1px solid var(--line)', marginTop: '64px' }}>
+        <section className="section" style={{ borderTop: '1px solid var(--line)', marginTop: '64px' }} aria-label="Complementary Creations">
           <Reveal>
             <SectionHead
-              kicker="// CO-ENGINEERED ARTIFACTS"
-              title="COMPLEMENTARY SPECIMENS"
-              body="Objects engineered to share proportions, metallurgical standards, and physical tolerances."
+              kicker="Maison Harmonies"
+              title="Complementary creations from the atelier"
+              body="Pieces that share material metallurgy, chronometric calibre, or styling affinity."
             />
           </Reveal>
 
           <Reveal delay={1}>
-            <ProductGrid items={relatedItems} />
+            <ProductGrid items={relatedItems.slice(0, 4)} />
           </Reveal>
         </section>
       )}

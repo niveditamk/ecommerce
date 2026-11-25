@@ -1,0 +1,43 @@
+- generic [active] [ref=f84e1]:
+  - generic [ref=f84e2]: AURELIS Admin — Module Decomposition
+  - generic [ref=f84e3]: Every module reachable from the sidebar, grouped by function
+  - generic [ref=f84e4]: AURELIS ADMIN CONSOLE
+  - generic [ref=f84e5]:
+    - generic [ref=f84e6]:
+      - heading "Executive Command" [level=4] [ref=f84e7]
+      - list [ref=f84e8]:
+        - listitem [ref=f84e9]: Command Center (14 live KPIs)
+        - listitem [ref=f84e10]: AI Intelligence (7 panels)
+    - generic [ref=f84e11]:
+      - heading "Inventory & Vaults" [level=4] [ref=f84e12]
+      - list [ref=f84e13]:
+        - listitem [ref=f84e14]: Inventory Management
+        - listitem [ref=f84e15]: — Ledger, Cycle Counts, Batches
+        - listitem [ref=f84e16]: Warehouses & Heatmaps
+        - listitem [ref=f84e17]: Procurement & Purchase Orders
+    - generic [ref=f84e18]:
+      - heading "Intelligence & Reports" [level=4] [ref=f84e19]
+      - list [ref=f84e20]:
+        - listitem [ref=f84e21]: Sales & BI Analytics
+        - listitem [ref=f84e22]: — Compare tool
+        - listitem [ref=f84e23]: Reports & Exports
+        - listitem [ref=f84e24]: — Scheduled reports
+    - generic [ref=f84e25]:
+      - heading "Catalog & Orders" [level=4] [ref=f84e26]
+      - list [ref=f84e27]:
+        - listitem [ref=f84e28]: Products (+ Batches, Notes)
+        - listitem [ref=f84e29]: Categories
+        - listitem [ref=f84e30]: Orders (+ Notes)
+        - listitem [ref=f84e31]: Customers
+    - generic [ref=f84e32]:
+      - heading "System & Governance" [level=4] [ref=f84e33]
+      - list [ref=f84e34]:
+        - listitem [ref=f84e35]: Staff Management
+        - listitem [ref=f84e36]: Roles & RBAC
+        - listitem [ref=f84e37]: Audit Trail
+    - generic [ref=f84e38]:
+      - heading "AI / ML & Integrations" [level=4] [ref=f84e39]
+      - list [ref=f84e40]:
+        - listitem [ref=f84e41]: ML Operations (5 tabs)
+        - listitem [ref=f84e42]: — Registry, Forecast, Recs, Data
+        - listitem [ref=f84e43]: Commerce Engine (Medusa)

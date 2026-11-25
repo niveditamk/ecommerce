@@ -133,12 +133,6 @@ function evict() {
   for (const [id] of byAge.slice(0, sessions.size - MAX_SESSIONS)) sessions.delete(id);
 }
 
-export function resetSession(id) {
-  sessions.set(id, blank(id));
-  flush();
-  return sessions.get(id);
-}
-
 export function sessionCount() { return sessions.size; }
 
 hydrate();

@@ -20,36 +20,7 @@ export function Stars({ rating = 5, size = 12 }) {
   return <span className="stars-wrap" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-/* ---------- Barcode Graphic Motif ---------- */
-export function Barcode({ code = 'AUR-1980', className = '' }) {
-  const bars = useMemo(() => {
-    const chars = String(code).split('');
-    return chars.flatMap((c) => {
-      const codeVal = c.charCodeAt(0);
-      return [
-        { w: (codeVal % 3) + 1, space: (codeVal % 2) + 1 },
-        { w: ((codeVal >> 1) % 3) + 1, space: 1 }
-      ];
-    }).slice(0, 14);
-  }, [code]);
-
-  return (
-    <div className={`barcode-motif ${className}`} aria-hidden="true">
-      {bars.map((b, i) => (
-        <span
-          key={i}
-          className="barcode-bar"
-          style={{
-            width: `${b.w}px`,
-            marginRight: `${b.space}px`
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ---------- Product Imagery & Technical Blueprint Vitrine ---------- */
+/* ---------- High-End Luxury Product Imagery & Procedural Art Vitrine ---------- */
 export function ProductArt({ id, shape, palette, label, category, className = '', glow = false }) {
   const photo = id ? IMAGES[id] : null;
   const [failed, setFailed] = useState(false);
@@ -61,7 +32,7 @@ export function ProductArt({ id, shape, palette, label, category, className = ''
 
   if (photo && !failed) {
     return (
-      <figure className={`art art--photo ${className}`}>
+      <figure className={`art art--photo ${className}`} style={{ position: 'relative', overflow: 'hidden', width: '100%', height: '100%', margin: 0 }}>
         <img
           className="art__img"
           src={photo.src}
@@ -69,38 +40,22 @@ export function ProductArt({ id, shape, palette, label, category, className = ''
           loading="lazy"
           decoding="async"
           onError={() => setFailed(true)}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)' }}
         />
-        <div className="blueprint-corners" aria-hidden="true" />
         {glow && <span className="art__glow" />}
       </figure>
     );
   }
 
-  const refCode = id ? String(id).toUpperCase() : 'REF-001';
-  const catCode = category ? String(category).toUpperCase() : (shape || 'OBJECT').toUpperCase();
-
   return (
-    <figure className={`blueprint-card ${className}`}>
-      <div className="blueprint-corners" aria-hidden="true" />
-      
-      {/* Top Technical Metadata */}
-      <div style={{ position: 'absolute', top: 8, left: 10, right: 10, display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--pearl-3)', letterSpacing: '0.06em' }}>
-        <span>SPEC // {refCode}</span>
-        <span style={{ color: 'var(--color-terminal-green-text)', fontWeight: 700 }}>[ CAD SCHEMATIC ]</span>
+    <figure className={`art-vitrine ${className}`} style={{ position: 'relative', width: '100%', height: '100%', margin: 0 }}>
+      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <span
+          className="art__svg"
+          style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </div>
-
-      {/* Center Precision Blueprint SVG */}
-      <div className="blueprint-svg-wrap">
-        <span className="art__svg" style={{ width: '100%', height: '100%' }} dangerouslySetInnerHTML={{ __html: html }} />
-      </div>
-
-      {/* Bottom Technical Scale & Barcode */}
-      <div className="blueprint-meta">
-        <span>DIV // {catCode}</span>
-        <Barcode code={refCode} />
-        <span>1:1 SCALE</span>
-      </div>
-
       {glow && <span className="art__glow" />}
     </figure>
   );
@@ -350,11 +305,6 @@ export function Empty({ icon = 'bag', title, body, cta }) {
       )}
     </div>
   );
-}
-
-/* ---------- Badge ---------- */
-export function Badge({ children, tone = '' }) {
-  return <span className={`badge${tone ? ` badge--${tone}` : ''}`}>{children}</span>;
 }
 
 /* ---------- Skeleton Loader ---------- */

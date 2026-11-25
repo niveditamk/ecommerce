@@ -1,0 +1,108 @@
+- generic [ref=f74e3]:
+  - complementary "Admin navigation" [ref=f74e4]:
+    - generic [ref=f74e5]:
+      - generic [ref=f74e6]: AURELIS
+      - generic [ref=f74e7]: Executive · AI Admin
+    - navigation [ref=f74e8]:
+      - generic [ref=f74e9]:
+        - heading "Executive Command" [level=2] [ref=f74e10]
+        - link "Command Center" [ref=f74e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f74e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f74e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f74e14]
+        - link "Inventory Management" [ref=f74e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f74e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f74e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f74e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f74e19]
+        - link "Sales & BI Analytics" [ref=f74e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f74e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f74e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f74e23]
+        - link "Products" [ref=f74e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f74e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f74e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f74e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f74e28]:
+        - heading "System & Governance" [level=2] [ref=f74e29]
+        - link "Staff Management" [ref=f74e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f74e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f74e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f74e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f74e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f74e35]:
+      - generic [ref=f74e36]: Hélène Marchand
+      - generic [ref=f74e37]: Administrator
+      - button "Sign out" [ref=f74e38] [cursor=pointer]
+  - generic [ref=f74e39]:
+    - banner [ref=f74e40]:
+      - generic [ref=f74e42]:
+        - generic [ref=f74e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f74e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f74e45]: Period Filter
+        - combobox "Filter by time period" [ref=f74e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f74e47]:
+        - link "4 Alerts" [ref=f74e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f74e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f74e52]:
+      - generic [ref=f74e53]:
+        - generic [ref=f74e54]:
+          - generic [ref=f74e55]:
+            - generic [ref=f74e56]: Logistics & Supply Infrastructure
+            - heading "Multi-Warehouse & Heatmap Operations" [level=1] [ref=f74e57]
+            - paragraph [ref=f74e58]: Facility utilization, 2D bin coordinate heatmaps, and secure inter-vault stock transfers.
+          - generic [ref=f74e59]:
+            - button "+ Initiate Stock Transfer" [ref=f74e60] [cursor=pointer]
+            - button "↻ Refresh" [ref=f74e61] [cursor=pointer]
+        - tablist [ref=f74e62]:
+          - tab "🗺️ 2D Bin Heatmap & Coordinates" [selected] [ref=f74e63] [cursor=pointer]
+          - tab "🏛️ Facility Directory & Capacity (0)" [ref=f74e64] [cursor=pointer]
+          - tab "🔄 Inter-Warehouse Transfers (0)" [ref=f74e65] [cursor=pointer]
+        - generic [ref=f74e66]:
+          - generic [ref=f74e67]:
+            - generic [ref=f74e68]:
+              - generic [ref=f74e69]: "Facility:"
+              - combobox "Facility:" [ref=f74e70]
+              - generic [ref=f74e71]: "Aisle:"
+              - combobox "Aisle:" [ref=f74e72]:
+                - option "All Aisles (A – D)" [selected]
+                - option "Aisle A — Fine Jewelry Vault"
+                - option "Aisle B — Timepieces & Complications"
+                - option "Aisle C — Parfumerie & Extracts"
+                - option "Aisle D — Leather Goods & Luggage"
+            - generic [ref=f74e73]:
+              - generic [ref=f74e74]: Empty
+              - generic [ref=f74e76]: Low Stock
+              - generic [ref=f74e78]: Healthy
+              - generic [ref=f74e80]: High Density
+              - generic [ref=f74e82]: Overstocked
+          - generic [ref=f74e84]: Rendering bin spatial telemetry...
+  - button "Open AI assistant" [ref=f74e86] [cursor=pointer]: Ask AI

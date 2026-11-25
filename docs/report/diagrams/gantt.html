@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { width:1500px; background:#fff; font-family:'Segoe UI', Arial, sans-serif; padding:30px; }
+  .title { font-size:24px; font-weight:700; color:#1a1a2e; text-align:center; margin-bottom:6px;}
+  .subtitle { font-size:13px; color:#555; text-align:center; margin-bottom:26px; }
+  table { width:100%; border-collapse:collapse; }
+  th, td { border:1px solid #ddd; padding:8px 10px; font-size:12px; text-align:left; }
+  th { background:#1a1a2e; color:#fff; }
+  .bar { height:20px; border-radius:4px; }
+  tr:nth-child(even) td.phase { background:#f7f9ff; }
+</style></head>
+<body>
+  <div class="title">AURELIS &mdash; Development Work Breakdown and Sequencing</div>
+  <div class="subtitle">Iterative/incremental delivery order, each phase verified live before the next began (Section 3.4)</div>
+  <table>
+    <tr><th style="width:26%">Phase</th><th style="width:34%">Deliverable</th><th style="width:40%">Relative Sequence</th></tr>
+    <tr><td class="phase">1. Core commerce &amp; inventory backbone</td><td>Product/category/order schema, warehouse stock model, canonical transaction ledger, purchase-order lifecycle</td><td><div class="bar" style="width:22%; background:#3b5bdb;"></div></td></tr>
+    <tr><td class="phase">2. RBAC &amp; governance</td><td>Roles, permissions, staff accounts, audit trail</td><td><div class="bar" style="width:18%; background:#3b5bdb; margin-left:8%;"></div></td></tr>
+    <tr><td class="phase">3. AI forecasting core</td><td>Per-SKU candidate algorithm search, model registry &amp; versioning, stockout risk, smart reorder</td><td><div class="bar" style="width:26%; background:#2f9e5c; margin-left:16%;"></div></td></tr>
+    <tr><td class="phase">4. Real-time &amp; operational tooling</td><td>Alert polling, cycle counting &amp; barcode scanning, navigation-link corrections</td><td><div class="bar" style="width:22%; background:#2f9e5c; margin-left:32%;"></div></td></tr>
+    <tr><td class="phase">5. Collaboration &amp; automation</td><td>Notes &amp; @mentions across 5 entities, scheduled reporting, period/warehouse comparison tool</td><td><div class="bar" style="width:20%; background:#e08b1c; margin-left:42%;"></div></td></tr>
+    <tr><td class="phase">6. Domain-specific extension</td><td>Batch &amp; expiry tracking (Parfums), extending collaboration app-wide</td><td><div class="bar" style="width:14%; background:#e08b1c; margin-left:54%;"></div></td></tr>
+    <tr><td class="phase">7. Systematic verification</td><td>Live, three-way parallel functional audit of every admin screen; defect triage by severity</td><td><div class="bar" style="width:16%; background:#8442d6; margin-left:62%;"></div></td></tr>
+    <tr><td class="phase">8. Defect remediation</td><td>4 confirmed defects, 1 security issue, 1 gating bug fixed and re-verified live</td><td><div class="bar" style="width:12%; background:#8442d6; margin-left:72%;"></div></td></tr>
+    <tr><td class="phase">9. Missing-capability completion</td><td>Staff CRUD, customer edit, category create/delete, audit filter, ML snapshot &amp; run history, Medusa probe</td><td><div class="bar" style="width:14%; background:#d6416a; margin-left:78%;"></div></td></tr>
+    <tr><td class="phase">10. Documentation</td><td>This report and accompanying presentation</td><td><div class="bar" style="width:10%; background:#d6416a; margin-left:88%;"></div></td></tr>
+  </table>
+</body></html>

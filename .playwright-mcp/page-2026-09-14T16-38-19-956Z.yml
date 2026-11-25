@@ -1,0 +1,117 @@
+- generic [ref=f32e3]:
+  - complementary "Admin navigation" [ref=f32e4]:
+    - generic [ref=f32e5]:
+      - generic [ref=f32e6]: AURELIS
+      - generic [ref=f32e7]: Executive · AI Admin
+    - navigation [ref=f32e8]:
+      - generic [ref=f32e9]:
+        - heading "Executive Command" [level=2] [ref=f32e10]
+        - link "Command Center" [ref=f32e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f32e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f32e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f32e14]
+        - link "Inventory Management" [ref=f32e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f32e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f32e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f32e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f32e19]
+        - link "Sales & BI Analytics" [ref=f32e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f32e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f32e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f32e23]
+        - link "Products" [ref=f32e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f32e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f32e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f32e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f32e28]:
+        - heading "System & Governance" [level=2] [ref=f32e29]
+        - link "Staff Management" [ref=f32e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f32e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f32e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f32e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f32e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f32e35]:
+      - generic [ref=f32e36]: Hélène Marchand
+      - generic [ref=f32e37]: Administrator
+      - button "Sign out" [ref=f32e38] [cursor=pointer]
+  - generic [ref=f32e39]:
+    - banner [ref=f32e40]:
+      - generic [ref=f32e42]:
+        - generic [ref=f32e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f32e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f32e45]: Period Filter
+        - combobox "Filter by time period" [ref=f32e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f32e47]:
+        - link "5 Alerts" [ref=f32e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f32e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f32e52]:
+      - generic [ref=f32e53]:
+        - generic [ref=f32e54]:
+          - generic [ref=f32e55]:
+            - generic [ref=f32e56]: Compliance & Regulatory Auditing
+            - heading "Financial Reports & Data Exports" [level=1] [ref=f32e57]
+            - paragraph [ref=f32e58]: Generate auditable financial ledgers, inventory valuations, and supplier metrics for export.
+          - generic [ref=f32e59]:
+            - button "↓ Export CSV Document" [ref=f32e60] [cursor=pointer]
+            - button "🖨️ Print / PDF" [ref=f32e61] [cursor=pointer]
+        - tablist [ref=f32e62]:
+          - tab "Generate Now" [ref=f32e63] [cursor=pointer]
+          - tab "🕐 Scheduled Reports (1 active)" [active] [selected] [ref=f32e76] [cursor=pointer]
+        - generic [ref=f32e77]:
+          - generic [ref=f32e78]:
+            - generic [ref=f32e79]: A schedule advances on its own — no one has to remember to click Generate. Each run is saved here, not emailed.
+            - button "+ New Schedule" [ref=f32e80] [cursor=pointer]
+          - table [ref=f32e82]:
+            - rowgroup [ref=f32e83]:
+              - row [ref=f32e84]:
+                - columnheader "Name" [ref=f32e85]
+                - columnheader "Type" [ref=f32e86]
+                - columnheader "Frequency" [ref=f32e87]
+                - columnheader "Status" [ref=f32e88]
+                - columnheader "Next Run" [ref=f32e89]
+                - columnheader "Last Run" [ref=f32e90]
+                - columnheader "Runs" [ref=f32e91]
+                - columnheader "Action" [ref=f32e92]
+            - rowgroup [ref=f32e93]:
+              - row [ref=f32e94]:
+                - cell "Weekly inventory valuation" [ref=f32e95]
+                - cell "inventory" [ref=f32e96]
+                - cell "weekly" [ref=f32e97]
+                - cell "active" [ref=f32e98]
+                - cell "2026-09-21 16:37" [ref=f32e100]
+                - cell "2026-09-14 16:37" [ref=f32e101]
+                - cell "1" [ref=f32e102]
+                - cell [ref=f32e103]:
+                  - generic [ref=f32e104]:
+                    - button "View Latest" [ref=f32e105] [cursor=pointer]
+                    - button "Pause" [ref=f32e106] [cursor=pointer]
+                    - button "Delete" [ref=f32e107] [cursor=pointer]
+  - button "Open AI assistant" [ref=f32e75] [cursor=pointer]: Ask AI

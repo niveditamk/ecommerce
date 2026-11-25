@@ -264,11 +264,25 @@ const SUGGESTED = [
 ];
 
 function Assistant() {
+  const { can } = useAdmin();
   const [question, setQuestion] = useState('');
   const [result, setResult] = useState(null);
   const [busy, setBusy] = useState(false);
   const [showData, setShowData] = useState(false);
+  const [probe, setProbe] = useState(null);
+  const [probing, setProbing] = useState(false);
   const { data: status } = useAsync(() => adminApi.medusa.aiStatus(), []);
+
+  const runProbe = async () => {
+    setProbing(true); setProbe(null);
+    try {
+      setProbe(await adminApi.medusa.aiProbe());
+    } catch (err) {
+      setProbe({ configured: true, error: err.message });
+    } finally {
+      setProbing(false);
+    }
+  };
 
   const submit = async (q) => {
     const text = (q ?? question).trim();
@@ -306,6 +320,29 @@ function Assistant() {
         it was not given, and to say so when the data cannot answer. The figures it used are shown
         underneath every answer, so you can check the working.
       </p>
+
+      {can('ai.manage') && (
+        <div style={{ marginBottom: 'var(--spacing-12)' }}>
+          <button type="button" className="btn btn--outline btn--sm" onClick={runProbe} disabled={probing}>
+            {probing ? 'Pinging models…' : 'Run diagnostic probe'}
+          </button>
+          {probe && !probe.configured && (
+            <div className="notice notice--warning" style={{ marginTop: 8 }}>Not configured — no API key set.</div>
+          )}
+          {probe && probe.error && (
+            <div className="notice notice--warning" style={{ marginTop: 8 }}>{probe.error}</div>
+          )}
+          {probe?.configured && Array.isArray(probe.models) && (
+            <ul style={{ marginTop: 8 }}>
+              {probe.models.map((m) => (
+                <li key={m.model} className="tiny mono" style={{ textTransform: 'none' }}>
+                  {m.ok ? '✓' : '✗'} {m.model}{m.note ? ` — ${m.note}` : ''}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
 
       <form
         onSubmit={(e) => { e.preventDefault(); submit(); }}
@@ -416,9 +453,13 @@ export default function AdminMedusa() {
 
       {loading ? <div className="skeleton-line" style={{ height: 140 }} /> : <Explainer status={status} />}
 
+      {/* The free-form assistant reads this shop's own data through
+          OpenRouter — it has nothing to do with whether the separate
+          Medusa process is up, so it doesn't wait on that check. */}
+      {can('ai.view') && <Assistant />}
+
       {status?.reachable && (
         <>
-          {can('ai.view') && <Assistant />}
           {can('ai.view') && <Ask />}
           {can('inventory.view') && <Inventory />}
         </>

@@ -114,6 +114,14 @@ export const adminApi = {
 
   dashboard: () => request('/dashboard'),
 
+  /* ---- AI assistant ----
+     Available everywhere in the admin, unlike the Medusa-scoped
+     ask() below — same engine, whole-catalogue context. */
+  ai: {
+    status: () => request('/ai/status'),
+    ask: (question, history) => request('/ai/ask', { method: 'POST', body: { question, history } })
+  },
+
   products: (params) => request(`/products${qs(params)}`),
   product: (id) => request(`/products/${id}`),
   updateProduct: (id, patch) => request(`/products/${id}`, { method: 'PATCH', body: patch }),
@@ -140,18 +148,23 @@ export const adminApi = {
 
   categories: () => request('/categories'),
   updateCategory: (slug, patch) => request(`/categories/${slug}`, { method: 'PATCH', body: patch }),
-
-  inventory: () => request('/inventory'),
-  adjustStock: (id, delta, reason, note) =>
-    request(`/inventory/${id}/adjust`, { method: 'POST', body: { delta, reason, note } }),
-  stockHistory: (id) => request(`/inventory/${id}/history`),
+  createCategory: (body) => request('/categories', { method: 'POST', body }),
+  deleteCategory: (slug) => request(`/categories/${slug}`, { method: 'DELETE' }),
 
   orders: (params) => request(`/orders${qs(params)}`),
   order: (id) => request(`/orders/${id}`),
   updateOrder: (id, patch) => request(`/orders/${id}`, { method: 'PATCH', body: patch }),
+  cancelOrder: (id, reason) => request(`/orders/${id}/cancel`, { method: 'POST', body: { reason } }),
 
   customers: () => request('/customers'),
+  customer: (id) => request(`/customers/${id}`),
+  updateCustomer: (id, patch) => request(`/customers/${id}`, { method: 'PATCH', body: patch }),
+
   staff: () => request('/staff'),
+  createStaff: (body) => request('/staff', { method: 'POST', body }),
+  updateStaff: (id, patch) => request(`/staff/${id}`, { method: 'PATCH', body: patch }),
+  disableStaff: (id) => request(`/staff/${id}`, { method: 'DELETE' }),
+
   roles: () => request('/roles'),
   audit: (params) => request(`/audit${qs(params)}`),
 
@@ -167,7 +180,8 @@ export const adminApi = {
     ask: (id) => request(`/medusa/ask/${id}`),
     aiStatus: () => request('/medusa/ai/status'),
     aiContext: () => request('/medusa/ai/context'),
-    aiAsk: (question) => request('/medusa/ai/ask', { method: 'POST', body: { question } })
+    aiAsk: (question) => request('/medusa/ai/ask', { method: 'POST', body: { question } }),
+    aiProbe: () => request('/medusa/ai/probe')
   },
 
   /* ---- ML operations ----

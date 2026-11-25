@@ -1,10 +1,10 @@
 /* =============================================================
-   AURELIS // MACHINE-INDEXED PRODUCT MODULE
-   Retro-futuristic catalog card with product index number,
-   barcode motif, technical category coordinates, and tactile CTA.
+   AURELIS MAISON // EDITORIAL LUXURY PRODUCT CARD
+   Clean haute vitrine, floating wishlist control,
+   refined typography, and effortless Add to Bag action.
    ============================================================= */
 import { Link } from 'react-router-dom';
-import { Barcode, Icon, ProductArt, Stars } from './primitives';
+import { Icon, ProductArt, Stars } from './primitives';
 import { useStore } from '../context/StoreContext';
 import { dx, money } from '../lib/format';
 
@@ -12,19 +12,12 @@ export default function ProductCard({ product, categoryName, showQuickAdd = true
   const { addToCart, toggleWish, isWished, busy } = useStore();
   const saved = isWished(product.id);
 
-  // Extract or format 3-digit product index number (e.g. aur-101 -> PRODUCT 101)
-  const numMatch = product.id.match(/\d+/);
-  const prodNumber = numMatch ? `PRODUCT ${numMatch[0].padStart(3, '0')}` : `REF // ${product.id.toUpperCase()}`;
-
   // Availability status
-  let stockStatus = '[ IN STOCK ]';
-  let statusClass = 'badge--green';
+  let stockBadge = null;
   if (product.stock <= 3 && product.stock > 0) {
-    stockStatus = `[ ONLY ${product.stock} LEFT ]`;
-    statusClass = 'badge--alert';
+    stockBadge = <span className="badge badge--alert">Only {product.stock} left</span>;
   } else if (product.stock === 0) {
-    stockStatus = '[ OUT OF STOCK ]';
-    statusClass = 'badge--terminal';
+    stockBadge = <span className="badge">Sold Out</span>;
   }
 
   const quickAdd = (e) => {
@@ -42,17 +35,7 @@ export default function ProductCard({ product, categoryName, showQuickAdd = true
 
   return (
     <article className="card">
-      {/* 1. Machine Index Header: PRODUCT 024 + Availability */}
-      <div className="card__top-index">
-        <span style={{ fontWeight: 700, color: 'var(--pearl)', letterSpacing: '0.06em' }}>
-          {prodNumber}
-        </span>
-        <span className={`badge ${statusClass}`} style={{ fontSize: '0.62rem', padding: '2px 6px' }}>
-          {stockStatus}
-        </span>
-      </div>
-
-      {/* 2. Product Visual (High-Res Photo or Technical CAD Blueprint) */}
+      {/* 1. Product Visual Vitrine */}
       <Link className="card__media" to={`/product/${product.id}`} aria-label={dx(product.name)}>
         <ProductArt
           id={product.id}
@@ -61,76 +44,89 @@ export default function ProductCard({ product, categoryName, showQuickAdd = true
           label={product.name}
           category={product.cat}
         />
+
+        {/* Floating Wishlist Button */}
+        <button
+          type="button"
+          className="btn--ghost"
+          style={{
+            position: 'absolute',
+            top: '12px',
+            right: '12px',
+            width: '36px',
+            height: '36px',
+            padding: 0,
+            borderRadius: '50%',
+            background: 'rgba(255, 255, 255, 0.85)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            color: saved ? 'var(--alert)' : 'var(--pearl-2)',
+            zIndex: 3
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            toggleWish(product.id, dx(product.name));
+          }}
+          aria-pressed={saved}
+          aria-label={saved ? 'Remove from wishlist' : 'Save to wishlist'}
+          title={saved ? 'Saved in wishlist' : 'Save to wishlist'}
+        >
+          <Icon name={saved ? 'check' : 'heart'} size={16} />
+        </button>
       </Link>
 
-      {/* 3. Barcode Decoration & SKU */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', paddingBottom: '6px', borderBottom: '1px dotted var(--line)' }}>
-        <Barcode code={product.id} />
-        <span className="barcode-meta">
-          ID // {product.id.toUpperCase()}
-        </span>
-      </div>
-
-      {/* 4. Product Metadata & Title */}
+      {/* 2. Product Narrative & Information */}
       <div className="card__body">
-        <span className="card__cat" style={{ color: 'var(--color-terminal-green-text)', fontWeight: 700 }}>
-          {dx(categoryName || product.cat || 'OBJECT').toUpperCase()} // {dx(product.sub || 'EDITION')}
-        </span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+          <span className="card__cat">
+            {dx(categoryName || product.cat || 'Piece')} &middot; {dx(product.sub || 'Edition')}
+          </span>
+          {stockBadge}
+        </div>
 
         <Link className="card__name" to={`/product/${product.id}`}>
           {dx(product.name)}
         </Link>
 
-        <p className="card__meta" style={{ margin: '4px 0 10px', fontSize: '0.74rem', color: 'var(--pearl-3)' }}>
+        <p className="card__meta">
           {dx(product.blurb || product.materials)}
         </p>
 
-        {/* 5. Monospace Price & Star Rating */}
+        {/* 3. Pricing & Ratings */}
         <div className="card__foot">
           <div className="card__price">
             {product.was && <s>{money(product.was)}</s>}
             <span>{money(product.price)}</span>
           </div>
-          <div className="card__stars">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <Stars rating={product.rating} size={11} />
-            <em style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>{product.rating.toFixed(1)}</em>
+            <span style={{ fontSize: '0.74rem', color: 'var(--pearl-3)' }}>{product.rating.toFixed(1)}</span>
           </div>
         </div>
 
-        {/* 6. Tactical Action Controls */}
-        <div className="card__quick">
-          {showQuickAdd && (
+        {/* 4. Action Control */}
+        {showQuickAdd && (
+          <div className="card__quick">
             <button
               type="button"
               className="btn btn--sm btn--primary"
-              style={{ flexGrow: 1, padding: '9px 12px', fontSize: '0.74rem' }}
+              style={{ width: '100%', borderRadius: 'var(--r-sm)' }}
               onClick={quickAdd}
               disabled={busy || product.stock === 0}
             >
-              {product.stock === 0 ? '[ WAITLIST ]' : '[ ADD TO CART ]'}
+              {product.stock === 0 ? 'Join Waitlist' : 'Add to Bag'}
             </button>
-          )}
-          <button
-            type="button"
-            className={`btn btn--sm btn--outline${saved ? ' is-on' : ''}`}
-            style={{ padding: '8px 12px', minWidth: '40px' }}
-            onClick={(e) => {
-              e.preventDefault();
-              toggleWish(product.id, dx(product.name));
-            }}
-            aria-pressed={saved}
-            aria-label={saved ? 'Remove from saved' : 'Save to wishlist'}
-            title={saved ? 'Saved in memory' : 'Save object'}
-          >
-            <Icon name={saved ? 'check' : 'heart'} size={14} />
-          </button>
-        </div>
+          </div>
+        )}
       </div>
     </article>
   );
 }
 
-export function ProductGrid({ items, categoryLookup, showQuickAdd = true, className = 'card-grid' }) {
+export function ProductGrid({ items, categoryLookup, showQuickAdd = true, className = 'product-grid' }) {
   return (
     <div className={className}>
       {items.map((p) => (

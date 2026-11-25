@@ -1,0 +1,78 @@
+- generic [ref=f34e3]:
+  - complementary "Admin navigation" [ref=f34e4]:
+    - generic [ref=f34e5]:
+      - generic [ref=f34e6]: AURELIS
+      - generic [ref=f34e7]: Executive · AI Admin
+    - navigation [ref=f34e8]:
+      - generic [ref=f34e9]:
+        - heading "Executive Command" [level=2] [ref=f34e10]
+        - link "Command Center" [ref=f34e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f34e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f34e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f34e14]
+        - link "Inventory Management" [ref=f34e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f34e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f34e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f34e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f34e19]
+        - link "Sales & BI Analytics" [ref=f34e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f34e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f34e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f34e23]
+        - link "Products" [ref=f34e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f34e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f34e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f34e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f34e28]:
+        - heading "System & Governance" [level=2] [ref=f34e29]
+        - link "Staff Management" [ref=f34e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f34e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f34e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f34e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f34e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f34e35]:
+      - generic [ref=f34e36]: Hélène Marchand
+      - generic [ref=f34e37]: Administrator
+      - button "Sign out" [ref=f34e38] [cursor=pointer]
+  - generic [ref=f34e39]:
+    - banner [ref=f34e40]:
+      - generic [ref=f34e42]:
+        - generic [ref=f34e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f34e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f34e45]: Period Filter
+        - combobox "Filter by time period" [ref=f34e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f34e47]:
+        - link "5 Alerts" [ref=f34e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f34e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f34e52]:
+      - status [ref=f34e53]:
+        - paragraph [ref=f34e55]: Synthesizing analytics telemetry and business intelligence...
+  - button "Open AI assistant" [ref=f34e57] [cursor=pointer]: Ask AI

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { width:1500px; background:#fff; font-family:'Segoe UI', Arial, sans-serif; padding:30px; }
+  .title { font-size:24px; font-weight:700; color:#1a1a2e; text-align:center; margin-bottom:6px;}
+  .subtitle { font-size:13px; color:#555; text-align:center; margin-bottom:26px; }
+  .root { width:260px; margin:0 auto 30px; padding:14px; text-align:center; background:#1a1a2e; color:#fff; border-radius:8px; font-weight:700; font-size:15px; }
+  .groups { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .group { width:270px; border:2px solid #3b5bdb; border-radius:8px; background:#f7f9ff; }
+  .group h4 { background:#3b5bdb; color:#fff; font-size:13px; padding:8px 10px; border-radius:6px 6px 0 0; text-align:center; }
+  .group ul { list-style:none; padding:10px 14px; font-size:11.5px; color:#333; }
+  .group li { padding:3px 0; border-bottom:1px dashed #ddd; }
+  .group li:last-child { border-bottom:none; }
+  .connector { text-align:center; font-size:11px; color:#999; margin:-14px 0 14px; }
+</style></head>
+<body>
+  <div class="title">AURELIS Admin &mdash; Module Decomposition</div>
+  <div class="subtitle">Every module reachable from the sidebar, grouped by function</div>
+  <div class="root">AURELIS ADMIN CONSOLE</div>
+  <div class="groups">
+    <div class="group">
+      <h4>Executive Command</h4>
+      <ul><li>Command Center (14 live KPIs)</li><li>AI Intelligence (7 panels)</li></ul>
+    </div>
+    <div class="group">
+      <h4>Inventory &amp; Vaults</h4>
+      <ul><li>Inventory Management</li><li>&nbsp;&nbsp;&mdash; Ledger, Cycle Counts, Batches</li><li>Warehouses &amp; Heatmaps</li><li>Procurement &amp; Purchase Orders</li></ul>
+    </div>
+    <div class="group">
+      <h4>Intelligence &amp; Reports</h4>
+      <ul><li>Sales &amp; BI Analytics</li><li>&nbsp;&nbsp;&mdash; Compare tool</li><li>Reports &amp; Exports</li><li>&nbsp;&nbsp;&mdash; Scheduled reports</li></ul>
+    </div>
+    <div class="group">
+      <h4>Catalog &amp; Orders</h4>
+      <ul><li>Products (+ Batches, Notes)</li><li>Categories</li><li>Orders (+ Notes)</li><li>Customers</li></ul>
+    </div>
+    <div class="group">
+      <h4>System &amp; Governance</h4>
+      <ul><li>Staff Management</li><li>Roles &amp; RBAC</li><li>Audit Trail</li></ul>
+    </div>
+    <div class="group">
+      <h4>AI / ML &amp; Integrations</h4>
+      <ul><li>ML Operations (5 tabs)</li><li>&nbsp;&nbsp;&mdash; Registry, Forecast, Recs, Data</li><li>Commerce Engine (Medusa)</li></ul>
+    </div>
+  </div>
+</body></html>

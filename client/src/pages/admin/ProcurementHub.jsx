@@ -1,12 +1,15 @@
 /* =============================================================
    PROCUREMENT HUB
    Supplier analytics, performance scorecards, and complete
-   purchase order lifecycle (Draft -> Issued -> Shipped -> Received).
+   purchase order lifecycle (Pending Approval -> Approved -> Sent ->
+   Received), matching the statuses createPurchaseOrder/
+   updatePurchaseOrderStatus in inventoryService.js actually use.
    ============================================================= */
 import { useEffect, useState } from 'react';
 import { useAdmin } from '../../context/AdminContext';
 import { money, dx } from '../../lib/format';
 import { readToken, authFetch } from '../../lib/adminApi';
+import NotesPanel from '../../components/admin/NotesPanel';
 
 export default function ProcurementHub() {
   const { can, staff } = useAdmin();
@@ -31,8 +34,16 @@ export default function ProcurementHub() {
   const [poSubmitting, setPoSubmitting] = useState(false);
   const [actionFeedback, setActionFeedback] = useState(null);
 
+  // Notes modal — shared between PO rows and supplier cards
+  const [notesTarget, setNotesTarget] = useState(null); // { entity, entityId, label }
+  const [staffDirectory, setStaffDirectory] = useState([]);
+
   const token = readToken();
   const headers = { Authorization: `Bearer ${token}` };
+
+  useEffect(() => {
+    fetch('/api/admin/staff', { headers }).then((r) => r.json()).then((res) => setStaffDirectory(res.items || [])).catch(() => {});
+  }, []);
 
   const loadData = async () => {
     setLoading(true);
@@ -47,7 +58,7 @@ export default function ProcurementHub() {
         fetch('/api/admin/warehouses', { headers }).then((r) => r.json())
       ]);
 
-      setPurchaseOrders(poRes.items || []);
+      setPurchaseOrders(poRes.orders || []);
       setSuppliers(supRes.suppliers || []);
       setWarehouses(whRes.warehouses || []);
       setLoading(false);
@@ -225,10 +236,10 @@ export default function ProcurementHub() {
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
                 <option value="">All PO Statuses</option>
-                <option value="Draft">Draft</option>
-                <option value="Issued">Issued</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Shipped">Shipped</option>
+                <option value="Pending Approval">Pending Approval</option>
+                <option value="Approved">Approved</option>
+                <option value="Sent">Sent to Supplier</option>
+                <option value="Partially Received">Partially Received</option>
                 <option value="Received">Received (Restocked)</option>
                 <option value="Cancelled">Cancelled</option>
               </select>
@@ -293,7 +304,12 @@ export default function ProcurementHub() {
                         {money(po.total_value)}
                       </td>
                       <td>
-                        <span className={`pill pill--${po.status === 'Received' ? 'ok' : po.status === 'Shipped' ? 'info' : po.status === 'Confirmed' ? 'warn' : 'neutral'}`}>
+                        <span className={`pill pill--${
+                          po.status === 'Received' ? 'ok'
+                            : po.status === 'Partially Received' || po.status === 'Sent' ? 'info'
+                            : po.status === 'Pending Approval' ? 'warn'
+                            : 'neutral'
+                        }`}>
                           {po.status}
                         </span>
                       </td>
@@ -302,34 +318,34 @@ export default function ProcurementHub() {
                       </td>
                       <td className="tr">
                         <div style={{ display: 'inline-flex', gap: 4 }}>
-                          {po.status === 'Draft' && can('inventory.purchase') && (
+                          {po.status === 'Pending Approval' && can('inventory.purchase') && (
+                            <>
+                              <button
+                                type="button"
+                                className="btn btn--sm btn--gold"
+                                onClick={() => handleUpdateStatus(po.id, 'Approved')}
+                              >
+                                Approve
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn--sm btn--outline"
+                                onClick={() => handleUpdateStatus(po.id, 'Cancelled')}
+                              >
+                                Reject
+                              </button>
+                            </>
+                          )}
+                          {po.status === 'Approved' && can('inventory.purchase') && (
                             <button
                               type="button"
                               className="btn btn--sm"
-                              onClick={() => handleUpdateStatus(po.id, 'Issued')}
+                              onClick={() => handleUpdateStatus(po.id, 'Sent')}
                             >
-                              Issue PO
+                              Mark Sent to Supplier
                             </button>
                           )}
-                          {po.status === 'Issued' && can('inventory.purchase') && (
-                            <button
-                              type="button"
-                              className="btn btn--sm"
-                              onClick={() => handleUpdateStatus(po.id, 'Confirmed')}
-                            >
-                              Confirm
-                            </button>
-                          )}
-                          {po.status === 'Confirmed' && can('inventory.purchase') && (
-                            <button
-                              type="button"
-                              className="btn btn--sm"
-                              onClick={() => handleUpdateStatus(po.id, 'Shipped')}
-                            >
-                              Mark Shipped
-                            </button>
-                          )}
-                          {po.status === 'Shipped' && can('inventory.purchase') && (
+                          {(po.status === 'Sent' || po.status === 'Partially Received') && can('inventory.purchase') && (
                             <button
                               type="button"
                               className="btn btn--sm btn--gold"
@@ -342,6 +358,16 @@ export default function ProcurementHub() {
                           {po.status === 'Received' && (
                             <span className="tiny mono text-ok">&#10003; Goods Restocked</span>
                           )}
+                          {po.status === 'Cancelled' && (
+                            <span className="tiny mono" style={{ opacity: 0.65 }}>Cancelled</span>
+                          )}
+                          <button
+                            type="button"
+                            className="btn btn--sm btn--outline"
+                            onClick={() => setNotesTarget({ entity: 'purchase_order', entityId: po.id, label: po.po_number })}
+                          >
+                            Notes
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -411,6 +437,13 @@ export default function ProcurementHub() {
                     disabled={!can('inventory.purchase')}
                   >
                     + Issue PO to {sup.code}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn--sm btn--outline"
+                    onClick={() => setNotesTarget({ entity: 'supplier', entityId: sup.id, label: sup.name })}
+                  >
+                    Notes
                   </button>
                 </div>
               </div>
@@ -559,6 +592,20 @@ export default function ProcurementHub() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {notesTarget && (
+        <div className="admin-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-notes-title">
+          <div className="admin-modal-box">
+            <div className="admin-modal-head">
+              <h3 id="modal-notes-title" className="h3">Notes — {notesTarget.label}</h3>
+              <button type="button" className="modal-close-btn" onClick={() => setNotesTarget(null)} aria-label="Close">&times;</button>
+            </div>
+            <div style={{ padding: 'var(--spacing-24)' }}>
+              <NotesPanel entity={notesTarget.entity} entityId={notesTarget.entityId} staffDirectory={staffDirectory} />
+            </div>
           </div>
         </div>
       )}

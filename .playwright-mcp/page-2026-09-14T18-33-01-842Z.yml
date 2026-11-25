@@ -1,0 +1,93 @@
+- generic [ref=f78e3]:
+  - complementary "Admin navigation" [ref=f78e4]:
+    - generic [ref=f78e5]:
+      - generic [ref=f78e6]: AURELIS
+      - generic [ref=f78e7]: Executive · AI Admin
+    - navigation [ref=f78e8]:
+      - generic [ref=f78e9]:
+        - heading "Executive Command" [level=2] [ref=f78e10]
+        - link "Command Center" [ref=f78e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f78e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f78e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f78e14]
+        - link "Inventory Management" [ref=f78e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f78e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f78e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f78e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f78e19]
+        - link "Sales & BI Analytics" [ref=f78e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f78e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f78e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f78e23]
+        - link "Products" [ref=f78e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f78e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f78e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f78e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f78e28]:
+        - heading "System & Governance" [level=2] [ref=f78e29]
+        - link "Staff Management" [ref=f78e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f78e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f78e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f78e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f78e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f78e35]:
+      - generic [ref=f78e36]: Hélène Marchand
+      - generic [ref=f78e37]: Administrator
+      - button "Sign out" [ref=f78e38] [cursor=pointer]
+  - generic [ref=f78e39]:
+    - banner [ref=f78e40]:
+      - generic [ref=f78e42]:
+        - generic [ref=f78e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f78e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f78e45]: Period Filter
+        - combobox "Filter by time period" [ref=f78e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f78e47]:
+        - link "4 Alerts" [ref=f78e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f78e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f78e52]:
+      - generic [ref=f78e53]:
+        - generic [ref=f78e54]:
+          - generic [ref=f78e55]:
+            - generic [ref=f78e56]: Aurelis
+            - generic [ref=f78e57]: ML Operations
+          - paragraph [ref=f78e58]: Decision support. Every figure carries its evidence; nothing here changes stock on its own.
+        - navigation "ML console" [ref=f78e59]:
+          - link "Overview" [ref=f78e60] [cursor=pointer]:
+            - /url: /admin/ml
+          - link "Models" [ref=f78e61] [cursor=pointer]:
+            - /url: /admin/ml/models
+          - link "Forecasts" [ref=f78e62] [cursor=pointer]:
+            - /url: /admin/ml/forecast
+          - link "Recommendations" [ref=f78e63] [cursor=pointer]:
+            - /url: /admin/ml/recommendations
+          - link "Training data" [ref=f78e64] [cursor=pointer]:
+            - /url: /admin/ml/data
+  - button "Open AI assistant" [ref=f78e72] [cursor=pointer]: Ask AI

@@ -1,0 +1,215 @@
+- generic [ref=f51e3]:
+  - complementary "Admin navigation" [ref=f51e4]:
+    - generic [ref=f51e5]:
+      - generic [ref=f51e6]: AURELIS
+      - generic [ref=f51e7]: Executive · AI Admin
+    - navigation [ref=f51e8]:
+      - generic [ref=f51e9]:
+        - heading "Executive Command" [level=2] [ref=f51e10]
+        - link "Command Center" [ref=f51e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f51e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f51e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f51e14]
+        - link "Inventory Management" [ref=f51e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f51e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f51e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f51e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f51e19]
+        - link "Sales & BI Analytics" [ref=f51e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f51e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f51e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f51e23]
+        - link "Products" [ref=f51e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f51e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f51e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f51e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f51e28]:
+        - heading "System & Governance" [level=2] [ref=f51e29]
+        - link "Staff Management" [ref=f51e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f51e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f51e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f51e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f51e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f51e35]:
+      - generic [ref=f51e36]: Hélène Marchand
+      - generic [ref=f51e37]: Administrator
+      - button "Sign out" [ref=f51e38] [cursor=pointer]
+  - generic [ref=f51e39]:
+    - banner [ref=f51e40]:
+      - generic [ref=f51e42]:
+        - generic [ref=f51e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f51e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f51e45]: Period Filter
+        - combobox "Filter by time period" [ref=f51e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f51e47]:
+        - link "5 Alerts" [ref=f51e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f51e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f51e52]:
+      - generic [ref=f51e53]:
+        - generic [ref=f51e54]:
+          - generic [ref=f51e55]:
+            - generic [ref=f51e56]: Aurelis
+            - generic [ref=f51e57]: ML Operations
+          - paragraph [ref=f51e58]: Decision support. Every figure carries its evidence; nothing here changes stock on its own.
+        - navigation "ML console" [ref=f51e59]:
+          - link "Overview" [ref=f51e60] [cursor=pointer]:
+            - /url: /admin/ml
+          - link "Models" [ref=f51e61] [cursor=pointer]:
+            - /url: /admin/ml/models
+          - link "Forecasts" [ref=f51e62] [cursor=pointer]:
+            - /url: /admin/ml/forecast
+          - link "Recommendations" [ref=f51e63] [cursor=pointer]:
+            - /url: /admin/ml/recommendations
+          - link "Training data" [ref=f51e64] [cursor=pointer]:
+            - /url: /admin/ml/data
+        - generic [ref=f51e65]:
+          - generic [ref=f51e66]:
+            - generic [ref=f51e67]: Forecasting
+            - heading "Forecast explorer" [level=1] [ref=f51e68]
+            - paragraph [ref=f51e69]: What the serving version says about one piece, and the history it says it from.
+          - generic [ref=f51e70]:
+            - generic [ref=f51e71]:
+              - generic [ref=f51e72]: Choose a product
+              - combobox "Choose a product" [ref=f51e73]:
+                - option "Aequus Decanter · aur-501" [selected]
+                - option "Alashan Stole · aur-602"
+                - option "Aldgate Instrument Bag · aur-406"
+                - option "Amarna Band · aur-105"
+                - option "Amathus Swivel · aur-112"
+                - option "Antiquary's Carnelian · aur-109"
+                - option "Appenzell Cutwork · aur-619"
+                - option "Aquileia Intaglio · aur-108"
+                - option "Argive Collar · aur-120"
+                - option "Ashfield Gladstone · aur-411"
+                - option "Attic Hoop · aur-115"
+                - option "Aurige Case · aur-712"
+                - option "Balancier 17 · aur-204"
+                - option "Bascule 18 · aur-209"
+                - option "Bastion Tote · aur-401"
+                - option "Baume de Cyrene · aur-310"
+                - option "Beffroi Table Clock · aur-505"
+                - option "Bianhu Flask · aur-416"
+                - option "Bicolore Ribbon Tins · aur-515"
+                - option "Blonda Almagro · aur-605"
+                - option "Bouteille de Treves · aur-307"
+                - option "Bracteate Page Marker · aur-508"
+                - option "Brevet Anonyme · aur-208"
+                - option "Brocanteur Optical · aur-709"
+                - option "Brouilly Sun · aur-714"
+                - option "Bukhara Suzani · aur-613"
+                - option "Bursa Dival · aur-612"
+                - option "Cachet Travelling Case · aur-707"
+                - option "Calibre 09 Reserve · aur-201"
+                - option "Camphre et Cire · aur-316"
+                - option "Canton Manton · aur-610"
+                - option "Carlton Optical · aur-716"
+                - option "Carre Astral · aur-601"
+                - option "Carte Cardholder · aur-403"
+                - option "Cassis Sun · aur-701"
+                - option "Catalogue 1911 · aur-213"
+                - option "Cendre Bleue · aur-309"
+                - option "Chaine et Fusee · aur-218"
+                - option "Chalcedon Blue · aur-116"
+                - option "Chappuis 1911 · aur-317"
+                - option "Chevalet Watch Stand · aur-520"
+                - option "Chutes Swatch Coffret · aur-410"
+                - option "Cire No.7 — Fig & Ash · aur-502"
+                - option "Clerkenwell Three-Quarter · aur-205"
+                - option "Coffret Aquilee · aur-321"
+                - option "Coimbra Manta · aur-604"
+                - option "Colcha Castelo · aur-614"
+                - option "Copyist Stand · aur-516"
+                - option "Counter Demonstrator · aur-215"
+                - option "Crown at Three · aur-212"
+                - option "Demi-Lune Optical · aur-711"
+                - option "Deux Parts · aur-217"
+                - option "Discovery Coffret No.1 · aur-303"
+                - option "Eads Three-Well Tray · aur-509"
+                - option "Ecole 218 · aur-211"
+                - option "Elytra Zardozi · aur-603"
+                - option "Ember Band · aur-104"
+                - option "Encre de Chene · aur-319"
+                - option "Encrier No.4 · aur-514"
+                - option "Epirus Cypress · aur-615"
+                - option "Erebus Glacier · aur-717"
+                - option "Filament Optical · aur-702"
+                - option "Filigree Scaraboid · aur-113"
+                - option "Flambeau Sun · aur-708"
+                - option "Folsom Noir · aur-715"
+                - option "Fores Reader · aur-703"
+                - option "Fowler Shot Pouch · aur-408"
+                - option "Fumee d’Or Extrait · aur-301"
+                - option "Garnet Oath · aur-107"
+                - option "Halation Cat-Eye · aur-713"
+                - option "Himeji Kinchaku Pouch · aur-415"
+                - option "Horn Coupe-Papier · aur-519"
+                - option "Iris de Ravenne · aur-308"
+                - option "Iron-Gall Optical · aur-705"
+                - option "Kainuu Field Bag · aur-404"
+                - option "Kalocsa Rosette · aur-611"
+                - option "Kauri Dressing Case · aur-510"
+                - option "Kerman Pateh · aur-616"
+                - option "Kingwood Letter Rack · aur-518"
+                - option "Kourion Cabochon · aur-106"
+                - option "Lancier Table Clock · aur-504"
+                - option "Lanework Pouch · aur-409"
+                - option "Legionary Seal · aur-117"
+                - option "Leiden Reading Stand · aur-506"
+                - option "Liao Crescent Bag · aur-419"
+                - option "Longue Meche · aur-318"
+                - option "Lumen Table Lamp · aur-503"
+                - option "Lustenau Whitework · aur-606"
+                - option "Meridian Cuff · aur-103"
+                - option "Mouvement Nu · aur-216"
+                - option "Nard Noir · aur-313"
+                - option "Nocturne Pendant · aur-102"
+                - option "Nuit Chronograph · aur-203"
+                - option "Nuit de Sel · aur-304"
+                - option "Ordos Saddle Bag · aur-417"
+                - option "Parfleche Envelope · aur-407"
+                - option "Pella Bezel · aur-121"
+                - option "Perpetuel Automatic · aur-202"
+                - option "Pierre Ponce · aur-320"
+                - option "Pinang Canteen · aur-420"
+            - button "Generate snapshot (30d)" [ref=f51e74] [cursor=pointer]
+        - generic [ref=f51e89]: Careful — No active version.
+        - generic [ref=f51e77]:
+          - generic [ref=f51e78]:
+            - generic [ref=f51e80]: Insufficient data
+            - generic [ref=f51e81]: No forecast. Not the same as a forecast of zero.
+          - generic [ref=f51e82]:
+            - generic [ref=f51e83]: What is missing
+            - list [ref=f51e84]:
+              - listitem [ref=f51e85]: — No trained version. Train the model first.
+        - generic [ref=f51e86]:
+          - heading "Sales history" [level=2] [ref=f51e87]
+          - paragraph [ref=f51e88]: No sales history recorded.
+  - button "Open AI assistant" [ref=f51e76] [cursor=pointer]: Ask AI

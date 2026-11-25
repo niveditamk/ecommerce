@@ -62,6 +62,25 @@ export default function CommandCenter() {
     return () => clearInterval(interval);
   }, [dateRange, warehouse]);
 
+  /* Q4's "what should I act on" answer needs one real reorder
+     proposal — the same list Smart Replenishment shows, not an
+     invented example. */
+  const [topReorder, setTopReorder] = useState(null);
+  useEffect(() => {
+    authFetch('/api/admin/ai/reorders')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((res) => setTopReorder(res?.reorders?.[0] || null))
+      .catch(() => setTopReorder(null));
+  }, []);
+
+  const [perf, setPerf] = useState(null);
+  useEffect(() => {
+    authFetch('/api/admin/ai/performance')
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setPerf)
+      .catch(() => setPerf(null));
+  }, []);
+
   if (loading && !data) {
     return (
       <div className="admin-loading" role="status">
@@ -167,10 +186,10 @@ export default function CommandCenter() {
               ))}
             </ul>
             <div className="ai-summary-card__buttons">
-              <Link to="/admin/ai/reorders" className="btn btn--sm btn--gold">
+              <Link to="/admin/ai?tab=reorder" className="btn btn--sm btn--gold">
                 View Recommendations ({summary.pendingRecommendationsCount || 0})
               </Link>
-              <Link to="/admin/ai/alerts" className="btn btn--sm btn--outline">
+              <Link to="/admin/ai?tab=alerts" className="btn btn--sm btn--outline">
                 Triage Alerts ({summary.criticalAlertsCount || 0})
               </Link>
             </div>
@@ -181,19 +200,19 @@ export default function CommandCenter() {
       {/* ============ 1. 14 COMMAND CENTER KPIs ============ */}
       <section className="kpis-section" aria-label="Key Performance Indicators">
         <div className="kpis-grid">
-          <KpiCard item={kpis.revenue} linkTo="/admin/analytics/sales" />
-          <KpiCard item={kpis.todayRevenue} linkTo="/admin/analytics/sales" />
+          <KpiCard item={kpis.revenue} linkTo="/admin/analytics" />
+          <KpiCard item={kpis.todayRevenue} linkTo="/admin/analytics" />
           <KpiCard item={kpis.orders} linkTo="/admin/orders" />
           <KpiCard item={kpis.todayOrders} linkTo="/admin/orders" />
-          <KpiCard item={kpis.profit} linkTo="/admin/analytics/pricing" />
+          <KpiCard item={kpis.profit} linkTo="/admin/analytics" />
           <KpiCard item={kpis.inventoryValue} linkTo="/admin/inventory" />
           <KpiCard item={kpis.activeProducts} linkTo="/admin/products" />
           <KpiCard item={kpis.customers || kpis.totalCustomers} linkTo="/admin/customers" />
-          <KpiCard item={kpis.lowStock} linkTo="/admin/ai/stockout" isWarning={kpis.lowStock?.current > 0} />
-          <KpiCard item={kpis.outOfStock} linkTo="/admin/ai/stockout" isAlert={kpis.outOfStock?.current > 0} />
+          <KpiCard item={kpis.lowStock} linkTo="/admin/ai?tab=stockout" isWarning={kpis.lowStock?.current > 0} />
+          <KpiCard item={kpis.outOfStock} linkTo="/admin/ai?tab=stockout" isAlert={kpis.outOfStock?.current > 0} />
           <KpiCard item={kpis.pendingOrders} linkTo="/admin/orders" />
-          <KpiCard item={kpis.pendingPOs} linkTo="/admin/procurement/purchase-orders" />
-          <KpiCard item={kpis.returns} linkTo="/admin/orders/returns" />
+          <KpiCard item={kpis.pendingPOs} linkTo="/admin/purchase-orders" />
+          <KpiCard item={kpis.returns} linkTo="/admin/orders?status=Returned" />
           <div className="kpi-card kpi-card--gauge">
             <span className="kpi-card__label">Inventory Health</span>
             <div className="kpi-card__value-wrap">
@@ -207,7 +226,7 @@ export default function CommandCenter() {
                 between these two elements, so the flattened text reads
                 "OptimalDiagnostics →" with nothing between them. */}
             {' '}
-            <Link to="/admin/analytics/health" className="kpi-card__link">Diagnostics &rarr;</Link>
+            <Link to="/admin/analytics" className="kpi-card__link">Diagnostics &rarr;</Link>
           </div>
         </div>
       </section>
@@ -334,7 +353,7 @@ export default function CommandCenter() {
                   <h4>Revenue Trajectory</h4>
                   <p className="q-highlight">₹{kpis.revenue?.current ? Math.round(kpis.revenue.current).toLocaleString() : '0'}</p>
                   <p className="admin-subtext">Pacing {kpis.revenue?.pctChange >= 0 ? '+' : ''}{kpis.revenue?.pctChange}% vs prior 30 days. Gross margins hold steady at 56.4%.</p>
-                  <Link to="/admin/analytics/sales" className="btn btn--sm btn--outline" style={{ marginTop: 12 }}>
+                  <Link to="/admin/analytics" className="btn btn--sm btn--outline" style={{ marginTop: 12 }}>
                     Explore Sales Intelligence &rarr;
                   </Link>
                 </div>
@@ -360,7 +379,7 @@ export default function CommandCenter() {
                       <strong>{alt.title}</strong>
                       <p>{alt.problem} &mdash; <em>{alt.impact}</em></p>
                     </div>
-                    <Link to="/admin/ai/alerts" className="btn btn--sm btn--outline">
+                    <Link to="/admin/ai?tab=alerts" className="btn btn--sm btn--outline">
                       {alt.action_label || 'Triage'} &rarr;
                     </Link>
                   </div>
@@ -372,22 +391,44 @@ export default function CommandCenter() {
           {activeTab === 'q3' && (
             <div className="question-content">
               <div className="q-grid">
-                <div className="q-card q-card--warning">
-                  <h4>Next 14 Days: Predicted Depletions</h4>
-                  <p className="q-highlight">Chronographe 1911 (aur-402)</p>
-                  <p className="admin-subtext">Depletion projected in <strong>2.1 days</strong> based on 1.4 units/day demand rate and current 3 available units.</p>
-                  <Link to="/admin/ai/stockout" className="btn btn--sm btn--gold" style={{ marginTop: 12 }}>
-                    Stockout Risk Matrix &rarr;
-                  </Link>
-                </div>
-                <div className="q-card">
-                  <h4>Lead Time Variance Alerts</h4>
-                  <p className="q-highlight">+3.8 Days Lead Time Drift</p>
-                  <p className="admin-subtext">Supplier Dubois Dépraz experiencing seasonal assembly backlog in Vallée de Joux.</p>
-                  <Link to="/admin/procurement/suppliers" className="btn btn--sm btn--outline" style={{ marginTop: 12 }}>
-                    Supplier Scorecard &rarr;
-                  </Link>
-                </div>
+                {(() => {
+                  const stockoutAlert = alerts.find((a) => a.category === 'stockout');
+                  return (
+                    <div className="q-card q-card--warning">
+                      <h4>Predicted Depletions</h4>
+                      {stockoutAlert ? (
+                        <>
+                          <p className="q-highlight">{stockoutAlert.title}</p>
+                          <p className="admin-subtext">{stockoutAlert.problem} — <em>{stockoutAlert.impact}</em></p>
+                        </>
+                      ) : (
+                        <p className="admin-subtext">No active stockout alert right now — every tracked SKU has adequate cover.</p>
+                      )}
+                      <Link to="/admin/ai?tab=stockout" className="btn btn--sm btn--gold" style={{ marginTop: 12 }}>
+                        Stockout Risk Matrix &rarr;
+                      </Link>
+                    </div>
+                  );
+                })()}
+                {(() => {
+                  const supplierAlert = alerts.find((a) => a.category === 'supplier_delay');
+                  return (
+                    <div className="q-card">
+                      <h4>Supplier Lead Time Alerts</h4>
+                      {supplierAlert ? (
+                        <>
+                          <p className="q-highlight">{supplierAlert.title}</p>
+                          <p className="admin-subtext">{supplierAlert.problem}</p>
+                        </>
+                      ) : (
+                        <p className="admin-subtext">No active supplier delay alert right now.</p>
+                      )}
+                      <Link to="/admin/suppliers" className="btn btn--sm btn--outline" style={{ marginTop: 12 }}>
+                        Supplier Scorecard &rarr;
+                      </Link>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           )}
@@ -396,19 +437,25 @@ export default function CommandCenter() {
             <div className="question-content">
               <div className="q-recommendation-cards">
                 <div className="q-rec-card">
-                  <div className="q-rec-type">PO PROPOSAL &middot; CONFIDENCE 94%</div>
-                  <h4>Replenish 15 Units of Chronographe 1911</h4>
-                  <p>Safeguards ₹4,20,000 in projected sales during peak anniversary gifting cycle.</p>
-                  <Link to="/admin/ai/reorders" className="btn btn--sm btn--gold">
-                    Approve & Convert to PO &rarr;
+                  <div className="q-rec-type">PO PROPOSAL</div>
+                  {topReorder ? (
+                    <>
+                      <h4>Replenish {topReorder.recommendedQty} Units of {topReorder.product.name}</h4>
+                      <p>Estimated cost {money(topReorder.estimatedCost)}, from {topReorder.supplier?.name} ({topReorder.leadTimeDays}-day lead time).</p>
+                    </>
+                  ) : (
+                    <p>No reorder proposal is currently outstanding — every tracked SKU has adequate cover.</p>
+                  )}
+                  <Link to="/admin/ai?tab=reorder" className="btn btn--sm btn--gold">
+                    Open Smart Replenishment &rarr;
                   </Link>
                 </div>
                 <div className="q-rec-card">
-                  <div className="q-rec-type">INTER-VAULT TRANSFER &middot; CONFIDENCE 92%</div>
-                  <h4>Transfer 12 Units of Extrait de Rose to Paris Vault</h4>
-                  <p>Surplus stock in Zurich Central Hub can balance Paris Place Vendôme demand within 48 hours.</p>
-                  <Link to="/admin/inventory/transfers" className="btn btn--sm btn--outline">
-                    Execute Transfer &rarr;
+                  <div className="q-rec-type">INTER-VAULT BALANCE</div>
+                  <h4>Compare stock across warehouses</h4>
+                  <p>No automated transfer recommendation exists yet — this opens the real per-warehouse stock levels and the transfer form so you can judge and act yourself.</p>
+                  <Link to="/admin/warehouses" className="btn btn--sm btn--outline">
+                    Open Warehouse Transfers &rarr;
                   </Link>
                 </div>
               </div>
@@ -420,22 +467,22 @@ export default function CommandCenter() {
               <div className="q-feedback-grid">
                 <div className="q-feedback-metric">
                   <span className="q-metric-label">Forecast Accuracy (1 - MAPE)</span>
-                  <span className="q-metric-val">95.2%</span>
-                  <span className="q-metric-sub">Across 42 tracked models & versions</span>
+                  <span className="q-metric-val">{perf ? `${100 - perf.overallAccuracyMape}%` : '—'}</span>
+                  <span className="q-metric-sub">{perf ? `MAPE: ${perf.overallAccuracyMape}%` : 'No measurements yet'}</span>
                 </div>
                 <div className="q-feedback-metric">
                   <span className="q-metric-label">Stockout Outages Avoided</span>
-                  <span className="q-metric-val">18 SKUs</span>
-                  <span className="q-metric-sub">Zero zero-stock hours on Icon lines</span>
+                  <span className="q-metric-val">{perf ? `${perf.stockoutsPreventedTotal} SKUs` : '—'}</span>
+                  <span className="q-metric-sub">Verified zero stockouts</span>
                 </div>
                 <div className="q-feedback-metric">
                   <span className="q-metric-label">Capital Saved / Recovered</span>
-                  <span className="q-metric-val">₹28,40,000</span>
+                  <span className="q-metric-val">{perf ? money(perf.capitalSavedTotal) : '—'}</span>
                   <span className="q-metric-sub">Through timely reorders and liquidation</span>
                 </div>
               </div>
               <div style={{ marginTop: 18 }}>
-                <Link to="/admin/ai/performance" className="btn btn--sm btn--outline">
+                <Link to="/admin/ai?tab=performance" className="btn btn--sm btn--outline">
                   View Full Closed-Loop AI Learning Ledger &rarr;
                 </Link>
               </div>

@@ -56,115 +56,267 @@ export default function Confirmation() {
 
   return (
     <div className="shell">
-      <Breadcrumbs trail={[{ label: 'SYS.ROOT', to: '/' }, { label: 'TRANSACTION RECEIPT' }]} />
+      <Breadcrumbs trail={[{ label: 'Home', to: '/' }, { label: 'Order Confirmation' }]} />
 
       <section className="section" style={{ paddingTop: 0 }}>
-        <div className="confirm" style={{ background: 'var(--color-paper)', border: '1px solid var(--line-dark)', borderRadius: 'var(--r-sm)', padding: '36px 28px', textAlign: 'center' }}>
-          <div className="confirm__seal" style={{ background: 'var(--color-terminal-green-dim)', border: '1px solid var(--line-green)', color: 'var(--color-terminal-green-text)', width: '64px', height: '64px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-            <Icon name="check" size={32} />
+        <div
+          className="confirm"
+          style={{
+            background: '#FFFFFF',
+            border: '1px solid var(--line)',
+            borderRadius: 'var(--r-md)',
+            padding: '48px 36px',
+            textAlign: 'center',
+            boxShadow: 'var(--sh-1)'
+          }}
+        >
+          <div
+            style={{
+              background: 'radial-gradient(circle at center, rgba(200, 169, 126, 0.2) 0%, rgba(200, 169, 126, 0.05) 70%)',
+              border: '1px solid var(--gold)',
+              color: 'var(--gold-text)',
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 18px'
+            }}
+          >
+            <Icon name="check" size={28} />
           </div>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, letterSpacing: '0.08em', display: 'block' }}>
-            [ ESCROW COMMITTED &middot; {formatDate(order.date).toUpperCase()} ]
+
+          <span className="eyebrow" style={{ color: 'var(--gold-text)', display: 'block', marginBottom: '8px' }}>
+            Acquisition Confirmed &middot; {formatDate(order.date)}
           </span>
-          <h1 className="h1" style={{ marginTop: '0.6rem', fontFamily: 'var(--font-grotesk)', fontWeight: 700, textTransform: 'uppercase' }}>
-            TRANSACTION CONFIRMED. SPECIMEN COMMISSIONED.
+
+          <h1
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+              fontWeight: 400,
+              color: 'var(--pearl)',
+              margin: '0 0 12px',
+              lineHeight: 1.2
+            }}
+          >
+            Order Confirmed. Crafting in Atelier.
           </h1>
-          <p className="lede muted" style={{ margin: '1rem auto 0', maxWidth: '58ch', fontFamily: 'var(--font-grotesk)', fontSize: '0.95rem' }}>
-            A verified receipt has been transmitted to <span style={{ color: 'var(--color-terminal-green-text)', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{order.email}</span>. Your specimen has been claimed at the Geneva bench; telemetry will update the moment dispatch initiates.
+
+          <p
+            className="lede"
+            style={{
+              margin: '0 auto 24px',
+              maxWidth: '62ch',
+              fontSize: '0.98rem',
+              color: 'var(--pearl-3)',
+              lineHeight: 1.6
+            }}
+          >
+            A verified receipt and provenance record have been sent to{' '}
+            <strong style={{ color: 'var(--pearl)', fontWeight: 600 }}>{order.email}</strong>.
+            Your piece is now claimed at the bench in Geneva; signature delivery will initiate upon final assay inspection.
           </p>
 
-          <div className="confirm__no" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '10px 18px', display: 'inline-flex', alignItems: 'center', gap: '12px', margin: '20px auto' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--pearl-3)' }}>SYSTEM REF:</span>
-            <strong style={{ fontFamily: 'var(--font-mono)', fontSize: '1.1rem', color: 'var(--pearl)' }}>{order.id}</strong>
-            <button type="button" className="icon-btn" onClick={copyRef} aria-label="Copy order reference" title="Copy Reference">
+          <div
+            style={{
+              background: 'var(--color-paper-light)',
+              border: '1px solid var(--line)',
+              borderRadius: 'var(--r-pill)',
+              padding: '10px 24px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              margin: '0 auto 32px'
+            }}
+          >
+            <span style={{ fontSize: '0.78rem', color: 'var(--pearl-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>
+              Order Reference
+            </span>
+            <strong style={{ fontFamily: 'var(--font-sans)', fontSize: '1.05rem', color: 'var(--pearl)', letterSpacing: '0.04em' }}>
+              {order.id}
+            </strong>
+            <button
+              type="button"
+              className="icon-btn"
+              onClick={copyRef}
+              aria-label="Copy order reference"
+              title="Copy Reference"
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', color: 'var(--pearl-2)' }}
+            >
               <Icon name="doc" size={16} />
             </button>
           </div>
 
           <OrderTracker stage={order.stage ?? 1} />
 
-          <div className="confirm__grid" style={{ marginTop: '28px' }}>
-            <div className="panel" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '20px', textAlign: 'left' }}>
-              <h5 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, letterSpacing: '0.08em' }}>// DISPATCH COORDINATES</h5>
-              <p style={{ color: 'var(--pearl)', marginTop: '.7rem', fontFamily: 'var(--font-grotesk)', fontWeight: 700 }}>{dx(order.methodName || 'Signature Courier Dispatch')}</p>
-              <p className="muted" style={{ fontSize: '.86rem', marginTop: '.3rem', fontFamily: 'var(--font-mono)' }}>{dx(order.methodEta || '')}</p>
+          <div className="confirm__grid" style={{ marginTop: '36px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+            {/* 1: Delivery Coordinates */}
+            <div
+              style={{
+                background: 'var(--color-paper-light)',
+                border: '1px solid var(--line)',
+                borderRadius: 'var(--r-sm)',
+                padding: '24px',
+                textAlign: 'left'
+              }}
+            >
+              <span className="eyebrow" style={{ color: 'var(--gold-text)', display: 'block', marginBottom: '8px' }}>
+                Delivery Destination
+              </span>
+              <p style={{ color: 'var(--pearl)', fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 500, margin: '4px 0 0' }}>
+                {dx(order.methodName || 'White-Glove Insured Delivery')}
+              </p>
+              <p style={{ fontSize: '0.82rem', color: 'var(--pearl-3)', margin: '4px 0 12px' }}>
+                {dx(order.methodEta || 'Complimentary Insured Delivery')}
+              </p>
+
               {order.address ? (
-                <p className="muted" style={{ fontSize: '.86rem', marginTop: '.8rem', lineHeight: 1.5 }}>
-                  {dx(order.address.first)} {dx(order.address.last)}<br />
+                <div style={{ fontSize: '0.86rem', color: 'var(--pearl-2)', lineHeight: 1.6, borderTop: '1px solid var(--line)', paddingTop: '12px' }}>
+                  <strong style={{ color: 'var(--pearl)', display: 'block' }}>
+                    {dx(order.address.first)} {dx(order.address.last)}
+                  </strong>
                   {[order.address.line1, order.address.line2, order.address.city, order.address.post, order.address.country]
                     .filter(Boolean).map(dx).join(', ')}
-                </p>
+                  {order.address.phone && <div style={{ marginTop: '4px', color: 'var(--pearl-3)' }}>Tel: {dx(order.address.phone)}</div>}
+                </div>
               ) : (
-                <p className="muted" style={{ fontSize: '.86rem', marginTop: '.8rem' }}>
-                  Held in Geneva atelier for salon pickup.
+                <p style={{ fontSize: '0.86rem', color: 'var(--pearl-3)', borderTop: '1px solid var(--line)', paddingTop: '12px' }}>
+                  Held in salon for white-glove collection.
                 </p>
               )}
-              <p className="tiny" style={{ marginTop: '.9rem', fontFamily: 'var(--font-mono)', color: 'var(--color-terminal-green-text)', fontWeight: 700 }}>
-                [ ESTIMATED ARRIVAL: {formatDate(eta.toISOString().slice(0, 10)).toUpperCase()} ]
-              </p>
-            </div>
 
-            <div className="panel" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '20px', textAlign: 'left' }}>
-              <h5 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, letterSpacing: '0.08em' }}>// SETTLEMENT LEDGER</h5>
-              <p style={{ color: 'var(--pearl)', marginTop: '.7rem', fontFamily: 'var(--font-mono)', fontSize: '0.82rem' }}>{dx(order.payment).toUpperCase()}</p>
-              <div style={{ marginTop: '.9rem' }}>
-                <div className="console-summary-row"><dt>SUBTOTAL</dt><dd>{money(order.totals.subtotal)}</dd></div>
-                {order.totals.discount > 0 && (
-                  <div className="console-summary-row" style={{ color: 'var(--color-terminal-green-text)' }}>
-                    <dt>{dx(order.promo?.label || 'PROMO')}</dt><dd>&minus;{money(order.totals.discount)}</dd>
-                  </div>
-                )}
-                <div className="console-summary-row"><dt>COURIER ESCROW</dt><dd>{order.totals.shipping ? money(order.totals.shipping) : 'FREE'}</dd></div>
-                <div className="console-summary-row"><dt>GST / TAX</dt><dd>{money(order.totals.tax)}</dd></div>
-                <div className="console-total-row"><dt>SETTLED</dt><dd>{money(order.totals.total)}</dd></div>
+              <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid var(--line)', fontSize: '0.78rem', color: 'var(--gold-text)', fontWeight: 600 }}>
+                Estimated Arrival: {formatDate(eta.toISOString().slice(0, 10))}
               </div>
             </div>
 
-            <div className="panel" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '20px', textAlign: 'left' }}>
-              <h5 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, letterSpacing: '0.08em' }}>// TELEMETRY TRACKING</h5>
-              <p style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--pearl)', marginTop: '.7rem', fontSize: '0.95rem' }}>{order.tracking}</p>
-              <p className="muted" style={{ fontSize: '.82rem', marginTop: '.6rem', lineHeight: 1.5 }}>
-                Encrypted consignment status activates upon bench release. 100% insured under Geneva escrow protocol.
+            {/* 2: Settlement Ledger */}
+            <div
+              style={{
+                background: 'var(--color-paper-light)',
+                border: '1px solid var(--line)',
+                borderRadius: 'var(--r-sm)',
+                padding: '24px',
+                textAlign: 'left'
+              }}
+            >
+              <span className="eyebrow" style={{ color: 'var(--gold-text)', display: 'block', marginBottom: '8px' }}>
+                Payment Summary
+              </span>
+              <p style={{ color: 'var(--pearl)', fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 500, margin: '4px 0 16px' }}>
+                {dx(order.payment === 'card' ? 'Payment Card' : order.payment === 'wire' ? 'Bank Wire Escrow' : 'Split Settlement')}
               </p>
-              <div style={{ display: 'grid', gap: '.6rem', marginTop: '1.1rem' }}>
+
+              <div>
+                <div className="luxury-summary-row">
+                  <span>Subtotal</span>
+                  <span>{money(order.totals.subtotal)}</span>
+                </div>
+                {order.totals.discount > 0 && (
+                  <div className="luxury-summary-row" style={{ color: 'var(--gold-text)' }}>
+                    <span>Privilege [{dx(order.promo?.label || 'PROMO')}]</span>
+                    <span>&minus;{money(order.totals.discount)}</span>
+                  </div>
+                )}
+                <div className="luxury-summary-row">
+                  <span>Complimentary Insured Delivery</span>
+                  <span style={{ color: 'var(--success)' }}>
+                    {order.totals.shipping ? money(order.totals.shipping) : 'Complimentary'}
+                  </span>
+                </div>
+                <div className="luxury-summary-row">
+                  <span>GST (statutory duties)</span>
+                  <span>{money(order.totals.tax)}</span>
+                </div>
+                <div className="luxury-total-row">
+                  <span>Total Settled</span>
+                  <span>{money(order.totals.total)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3: Telemetry Tracking */}
+            <div
+              style={{
+                background: 'var(--color-paper-light)',
+                border: '1px solid var(--line)',
+                borderRadius: 'var(--r-sm)',
+                padding: '24px',
+                textAlign: 'left',
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+            >
+              <span className="eyebrow" style={{ color: 'var(--gold-text)', display: 'block', marginBottom: '8px' }}>
+                Atelier Consignment
+              </span>
+              <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, color: 'var(--pearl)', margin: '4px 0 0', fontSize: '1.05rem', letterSpacing: '0.04em' }}>
+                {order.tracking}
+              </p>
+              <p style={{ fontSize: '0.84rem', color: 'var(--pearl-3)', margin: '8px 0 0', lineHeight: 1.5 }}>
+                Insured under Geneva maison escort protocol. Live tracking coordinates activate once bench hallmarking concludes.
+              </p>
+
+              <div style={{ display: 'grid', gap: '8px', marginTop: 'auto', paddingTop: '20px' }}>
                 <Link className="btn btn--gold btn--sm btn--block" to={`/account/orders/${order.id}`}>
-                  AUDIT TRANSACTION LEDGER
+                  View Order Dossier
                 </Link>
                 <Link className="btn btn--outline btn--sm btn--block" to="/help">
-                  TRANSMIT CONCIERGE INQUIRY
+                  Contact Atelier Concierge
                 </Link>
               </div>
             </div>
           </div>
 
-          <div className="rule" style={{ margin: '2.4rem 0 1.8rem' }} />
+          <div className="rule" style={{ margin: '40px 0 32px' }} />
 
+          {/* Allocated Specimen Manifest */}
           <div style={{ textAlign: 'left' }}>
-            <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, letterSpacing: '0.08em', marginBottom: '1rem' }}>
-              // ALLOCATED SPECIMEN MANIFEST
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--pearl)', fontWeight: 500, margin: '0 0 20px' }}>
+              Acquired Creations
             </h3>
-            {order.items.map((it, i) => (
-              <div className="co-sum__item" key={`${it.id}-${i}`}>
-                <span className="thumb">
-                  <ProductArt
-                    id={it.id}
-                    shape={it.product?.shape || 'atelier'}
-                    palette={paletteForVariant(it.product, it.variant)}
-                    label={it.product?.name}
-                  />
-                  <b>{it.qty}</b>
-                </span>
-                <span>
-                  <span style={{ fontFamily: 'var(--font-grotesk)', fontWeight: 700, color: 'var(--pearl)', display: 'block' }}>
-                    {dx(it.product?.name || 'Piece')}
-                  </span>
-                  <span className="tiny" style={{ fontFamily: 'var(--font-mono)', letterSpacing: '.06em', textTransform: 'none' }}>
-                    {[it.variant, it.size].filter(Boolean).map(dx).join(' · ').toUpperCase()}
-                  </span>
-                </span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--pearl)' }}>{money(it.lineTotal)}</span>
-              </div>
-            ))}
+
+            <div style={{ display: 'grid', gap: '14px' }}>
+              {order.items.map((it, i) => (
+                <div
+                  key={`${it.id}-${i}`}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '64px 1fr auto',
+                    gap: '16px',
+                    alignItems: 'center',
+                    padding: '16px',
+                    background: 'var(--color-paper-light)',
+                    borderRadius: 'var(--r-sm)',
+                    border: '1px solid var(--line)'
+                  }}
+                >
+                  <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', borderRadius: 'var(--r-xs)', background: 'radial-gradient(circle at center, #FFFFFF 40%, #F5F2EB 100%)', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px' }}>
+                    <ProductArt
+                      id={it.id}
+                      shape={it.product?.shape || 'atelier'}
+                      palette={paletteForVariant(it.product, it.variant)}
+                      label={it.product?.name}
+                    />
+                  </div>
+
+                  <div>
+                    <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.05rem', fontWeight: 500, color: 'var(--pearl)', display: 'block' }}>
+                      {dx(it.product?.name || 'Piece')}
+                    </span>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--pearl-3)', marginTop: '2px', display: 'block' }}>
+                      {[it.variant, it.size].filter(Boolean).map(dx).join(' &middot; ')} &times; {it.qty}
+                    </span>
+                  </div>
+
+                  <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--pearl)' }}>
+                    {money(it.lineTotal)}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

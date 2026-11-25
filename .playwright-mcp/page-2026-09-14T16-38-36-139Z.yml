@@ -1,0 +1,634 @@
+- generic [ref=f32e3]:
+  - complementary "Admin navigation" [ref=f32e4]:
+    - generic [ref=f32e5]:
+      - generic [ref=f32e6]: AURELIS
+      - generic [ref=f32e7]: Executive · AI Admin
+    - navigation [ref=f32e8]:
+      - generic [ref=f32e9]:
+        - heading "Executive Command" [level=2] [ref=f32e10]
+        - link "Command Center" [ref=f32e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f32e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f32e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f32e14]
+        - link "Inventory Management" [ref=f32e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f32e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f32e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f32e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f32e19]
+        - link "Sales & BI Analytics" [ref=f32e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f32e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f32e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f32e23]
+        - link "Products" [ref=f32e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f32e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f32e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f32e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f32e28]:
+        - heading "System & Governance" [level=2] [ref=f32e29]
+        - link "Staff Management" [ref=f32e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f32e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f32e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f32e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f32e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f32e35]:
+      - generic [ref=f32e36]: Hélène Marchand
+      - generic [ref=f32e37]: Administrator
+      - button "Sign out" [ref=f32e38] [cursor=pointer]
+  - generic [ref=f32e39]:
+    - banner [ref=f32e40]:
+      - generic [ref=f32e42]:
+        - generic [ref=f32e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f32e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f32e45]: Period Filter
+        - combobox "Filter by time period" [ref=f32e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f32e47]:
+        - link "5 Alerts" [ref=f32e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f32e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f32e52]:
+      - generic [ref=f32e53]:
+        - generic [ref=f32e54]:
+          - generic [ref=f32e55]:
+            - generic [ref=f32e56]: Compliance & Regulatory Auditing
+            - heading "Financial Reports & Data Exports" [level=1] [ref=f32e57]
+            - paragraph [ref=f32e58]: Generate auditable financial ledgers, inventory valuations, and supplier metrics for export.
+          - generic [ref=f32e59]:
+            - button "↓ Export CSV Document" [ref=f32e60] [cursor=pointer]
+            - button "🖨️ Print / PDF" [ref=f32e61] [cursor=pointer]
+        - tablist [ref=f32e62]:
+          - tab "Generate Now" [ref=f32e63] [cursor=pointer]
+          - tab "🕐 Scheduled Reports (1 active)" [selected] [ref=f32e76] [cursor=pointer]
+        - generic [ref=f32e77]:
+          - generic [ref=f32e78]:
+            - generic [ref=f32e79]: A schedule advances on its own — no one has to remember to click Generate. Each run is saved here, not emailed.
+            - button "+ New Schedule" [ref=f32e80] [cursor=pointer]
+          - table [ref=f32e82]:
+            - rowgroup [ref=f32e83]:
+              - row [ref=f32e84]:
+                - columnheader "Name" [ref=f32e85]
+                - columnheader "Type" [ref=f32e86]
+                - columnheader "Frequency" [ref=f32e87]
+                - columnheader "Status" [ref=f32e88]
+                - columnheader "Next Run" [ref=f32e89]
+                - columnheader "Last Run" [ref=f32e90]
+                - columnheader "Runs" [ref=f32e91]
+                - columnheader "Action" [ref=f32e92]
+            - rowgroup [ref=f32e93]:
+              - row [ref=f32e94]:
+                - cell "Weekly inventory valuation" [ref=f32e95]
+                - cell "inventory" [ref=f32e96]
+                - cell "weekly" [ref=f32e97]
+                - cell "active" [ref=f32e98]
+                - cell "2026-09-21 16:37" [ref=f32e100]
+                - cell "2026-09-14 16:37" [ref=f32e101]
+                - cell "1" [ref=f32e102]
+                - cell [ref=f32e103]:
+                  - generic [ref=f32e104]:
+                    - button "View Latest" [active] [ref=f32e105] [cursor=pointer]
+                    - button "Pause" [ref=f32e106] [cursor=pointer]
+                    - button "Delete" [ref=f32e107] [cursor=pointer]
+          - generic [ref=f32e108]:
+            - generic [ref=f32e109]:
+              - heading "Run from 2026-09-14 16:37 · 140 rows" [level=3] [ref=f32e110]
+              - button "Close" [ref=f32e111] [cursor=pointer]
+            - table [ref=f32e113]:
+              - rowgroup [ref=f32e114]:
+                - row [ref=f32e115]:
+                  - columnheader "SKU" [ref=f32e116]
+                  - columnheader "Product" [ref=f32e117]
+                  - columnheader "Category" [ref=f32e118]
+                  - columnheader "Stock" [ref=f32e119]
+                  - columnheader "Available" [ref=f32e120]
+                  - columnheader "Price" [ref=f32e121]
+                  - columnheader "Valuation" [ref=f32e122]
+                  - columnheader "SafetyStock" [ref=f32e123]
+                  - columnheader "Status" [ref=f32e124]
+              - rowgroup [ref=f32e125]:
+                - row [ref=f32e126]:
+                  - cell "aur-501" [ref=f32e127]
+                  - cell "Aequus Decanter" [ref=f32e128]
+                  - cell "objets" [ref=f32e129]
+                  - cell "15" [ref=f32e130]
+                  - cell "15" [ref=f32e131]
+                  - cell "120000" [ref=f32e132]
+                  - cell "1800000" [ref=f32e133]
+                  - cell "0" [ref=f32e134]
+                  - cell "Healthy" [ref=f32e135]
+                - row [ref=f32e136]:
+                  - cell "aur-602" [ref=f32e137]
+                  - cell "Alashan Stole" [ref=f32e138]
+                  - cell "silk" [ref=f32e139]
+                  - cell "17" [ref=f32e140]
+                  - cell "17" [ref=f32e141]
+                  - cell "98000" [ref=f32e142]
+                  - cell "1666000" [ref=f32e143]
+                  - cell "0" [ref=f32e144]
+                  - cell "Healthy" [ref=f32e145]
+                - row [ref=f32e146]:
+                  - cell "aur-406" [ref=f32e147]
+                  - cell "Aldgate Instrument Bag" [ref=f32e148]
+                  - cell "leather" [ref=f32e149]
+                  - cell "3" [ref=f32e150]
+                  - cell "3" [ref=f32e151]
+                  - cell "189600" [ref=f32e152]
+                  - cell "568800" [ref=f32e153]
+                  - cell "0" [ref=f32e154]
+                  - cell "Critical" [ref=f32e155]
+                - row [ref=f32e156]:
+                  - cell "aur-105" [ref=f32e157]
+                  - cell "Amarna Band" [ref=f32e158]
+                  - cell "jewellery" [ref=f32e159]
+                  - cell "13" [ref=f32e160]
+                  - cell "13" [ref=f32e161]
+                  - cell "486300" [ref=f32e162]
+                  - cell "6321900" [ref=f32e163]
+                  - cell "0" [ref=f32e164]
+                  - cell "Healthy" [ref=f32e165]
+                - row [ref=f32e166]:
+                  - cell "aur-112" [ref=f32e167]
+                  - cell "Amathus Swivel" [ref=f32e168]
+                  - cell "jewellery" [ref=f32e169]
+                  - cell "1" [ref=f32e170]
+                  - cell "1" [ref=f32e171]
+                  - cell "838400" [ref=f32e172]
+                  - cell "838400" [ref=f32e173]
+                  - cell "0" [ref=f32e174]
+                  - cell "Critical" [ref=f32e175]
+                - row [ref=f32e176]:
+                  - cell "aur-109" [ref=f32e177]
+                  - cell "Antiquary's Carnelian" [ref=f32e178]
+                  - cell "jewellery" [ref=f32e179]
+                  - cell "0" [ref=f32e180]
+                  - cell "0" [ref=f32e181]
+                  - cell "615200" [ref=f32e182]
+                  - cell "0" [ref=f32e183]
+                  - cell "0" [ref=f32e184]
+                  - cell "Out of Stock" [ref=f32e185]
+                - row [ref=f32e186]:
+                  - cell "aur-619" [ref=f32e187]
+                  - cell "Appenzell Cutwork" [ref=f32e188]
+                  - cell "silk" [ref=f32e189]
+                  - cell "6" [ref=f32e190]
+                  - cell "6" [ref=f32e191]
+                  - cell "39600" [ref=f32e192]
+                  - cell "237600" [ref=f32e193]
+                  - cell "0" [ref=f32e194]
+                  - cell "Healthy" [ref=f32e195]
+                - row [ref=f32e196]:
+                  - cell "aur-108" [ref=f32e197]
+                  - cell "Aquileia Intaglio" [ref=f32e198]
+                  - cell "jewellery" [ref=f32e199]
+                  - cell "2" [ref=f32e200]
+                  - cell "2" [ref=f32e201]
+                  - cell "967400" [ref=f32e202]
+                  - cell "1934800" [ref=f32e203]
+                  - cell "0" [ref=f32e204]
+                  - cell "Critical" [ref=f32e205]
+                - row [ref=f32e206]:
+                  - cell "aur-120" [ref=f32e207]
+                  - cell "Argive Collar" [ref=f32e208]
+                  - cell "jewellery" [ref=f32e209]
+                  - cell "2" [ref=f32e210]
+                  - cell "2" [ref=f32e211]
+                  - cell "196300" [ref=f32e212]
+                  - cell "392600" [ref=f32e213]
+                  - cell "0" [ref=f32e214]
+                  - cell "Critical" [ref=f32e215]
+                - row [ref=f32e216]:
+                  - cell "aur-411" [ref=f32e217]
+                  - cell "Ashfield Gladstone" [ref=f32e218]
+                  - cell "leather" [ref=f32e219]
+                  - cell "0" [ref=f32e220]
+                  - cell "0" [ref=f32e221]
+                  - cell "312700" [ref=f32e222]
+                  - cell "0" [ref=f32e223]
+                  - cell "0" [ref=f32e224]
+                  - cell "Out of Stock" [ref=f32e225]
+                - row [ref=f32e226]:
+                  - cell "aur-115" [ref=f32e227]
+                  - cell "Attic Hoop" [ref=f32e228]
+                  - cell "jewellery" [ref=f32e229]
+                  - cell "33" [ref=f32e230]
+                  - cell "33" [ref=f32e231]
+                  - cell "96400" [ref=f32e232]
+                  - cell "3181200" [ref=f32e233]
+                  - cell "0" [ref=f32e234]
+                  - cell "Healthy" [ref=f32e235]
+                - row [ref=f32e236]:
+                  - cell "aur-712" [ref=f32e237]
+                  - cell "Aurige Case" [ref=f32e238]
+                  - cell "eyewear" [ref=f32e239]
+                  - cell "0" [ref=f32e240]
+                  - cell "0" [ref=f32e241]
+                  - cell "287500" [ref=f32e242]
+                  - cell "0" [ref=f32e243]
+                  - cell "0" [ref=f32e244]
+                  - cell "Out of Stock" [ref=f32e245]
+                - row [ref=f32e246]:
+                  - cell "aur-204" [ref=f32e247]
+                  - cell "Balancier 17" [ref=f32e248]
+                  - cell "horology" [ref=f32e249]
+                  - cell "3" [ref=f32e250]
+                  - cell "3" [ref=f32e251]
+                  - cell "486200" [ref=f32e252]
+                  - cell "1458600" [ref=f32e253]
+                  - cell "0" [ref=f32e254]
+                  - cell "Critical" [ref=f32e255]
+                - row [ref=f32e256]:
+                  - cell "aur-209" [ref=f32e257]
+                  - cell "Bascule 18" [ref=f32e258]
+                  - cell "horology" [ref=f32e259]
+                  - cell "7" [ref=f32e260]
+                  - cell "7" [ref=f32e261]
+                  - cell "512700" [ref=f32e262]
+                  - cell "3588900" [ref=f32e263]
+                  - cell "0" [ref=f32e264]
+                  - cell "Healthy" [ref=f32e265]
+                - row [ref=f32e266]:
+                  - cell "aur-401" [ref=f32e267]
+                  - cell "Bastion Tote" [ref=f32e268]
+                  - cell "leather" [ref=f32e269]
+                  - cell "8" [ref=f32e270]
+                  - cell "8" [ref=f32e271]
+                  - cell "327500" [ref=f32e272]
+                  - cell "2620000" [ref=f32e273]
+                  - cell "0" [ref=f32e274]
+                  - cell "Healthy" [ref=f32e275]
+                - row [ref=f32e276]:
+                  - cell "aur-310" [ref=f32e277]
+                  - cell "Baume de Cyrene" [ref=f32e278]
+                  - cell "parfums" [ref=f32e279]
+                  - cell "2" [ref=f32e280]
+                  - cell "2" [ref=f32e281]
+                  - cell "112500" [ref=f32e282]
+                  - cell "225000" [ref=f32e283]
+                  - cell "0" [ref=f32e284]
+                  - cell "Critical" [ref=f32e285]
+                - row [ref=f32e286]:
+                  - cell "aur-505" [ref=f32e287]
+                  - cell "Beffroi Table Clock" [ref=f32e288]
+                  - cell "objets" [ref=f32e289]
+                  - cell "0" [ref=f32e290]
+                  - cell "0" [ref=f32e291]
+                  - cell "297400" [ref=f32e292]
+                  - cell "0" [ref=f32e293]
+                  - cell "0" [ref=f32e294]
+                  - cell "Out of Stock" [ref=f32e295]
+                - row [ref=f32e296]:
+                  - cell "aur-416" [ref=f32e297]
+                  - cell "Bianhu Flask" [ref=f32e298]
+                  - cell "leather" [ref=f32e299]
+                  - cell "9" [ref=f32e300]
+                  - cell "9" [ref=f32e301]
+                  - cell "87600" [ref=f32e302]
+                  - cell "788400" [ref=f32e303]
+                  - cell "0" [ref=f32e304]
+                  - cell "Healthy" [ref=f32e305]
+                - row [ref=f32e306]:
+                  - cell "aur-515" [ref=f32e307]
+                  - cell "Bicolore Ribbon Tins" [ref=f32e308]
+                  - cell "objets" [ref=f32e309]
+                  - cell "40" [ref=f32e310]
+                  - cell "40" [ref=f32e311]
+                  - cell "19800" [ref=f32e312]
+                  - cell "792000" [ref=f32e313]
+                  - cell "0" [ref=f32e314]
+                  - cell "Overstock" [ref=f32e315]
+                - row [ref=f32e316]:
+                  - cell "aur-605" [ref=f32e317]
+                  - cell "Blonda Almagro" [ref=f32e318]
+                  - cell "silk" [ref=f32e319]
+                  - cell "1" [ref=f32e320]
+                  - cell "1" [ref=f32e321]
+                  - cell "132500" [ref=f32e322]
+                  - cell "132500" [ref=f32e323]
+                  - cell "0" [ref=f32e324]
+                  - cell "Critical" [ref=f32e325]
+                - row [ref=f32e326]:
+                  - cell "aur-307" [ref=f32e327]
+                  - cell "Bouteille de Treves" [ref=f32e328]
+                  - cell "parfums" [ref=f32e329]
+                  - cell "0" [ref=f32e330]
+                  - cell "0" [ref=f32e331]
+                  - cell "96400" [ref=f32e332]
+                  - cell "0" [ref=f32e333]
+                  - cell "0" [ref=f32e334]
+                  - cell "Out of Stock" [ref=f32e335]
+                - row [ref=f32e336]:
+                  - cell "aur-508" [ref=f32e337]
+                  - cell "Bracteate Page Marker" [ref=f32e338]
+                  - cell "objets" [ref=f32e339]
+                  - cell "0" [ref=f32e340]
+                  - cell "0" [ref=f32e341]
+                  - cell "26450" [ref=f32e342]
+                  - cell "0" [ref=f32e343]
+                  - cell "0" [ref=f32e344]
+                  - cell "Out of Stock" [ref=f32e345]
+                - row [ref=f32e346]:
+                  - cell "aur-208" [ref=f32e347]
+                  - cell "Brevet Anonyme" [ref=f32e348]
+                  - cell "horology" [ref=f32e349]
+                  - cell "0" [ref=f32e350]
+                  - cell "0" [ref=f32e351]
+                  - cell "342800" [ref=f32e352]
+                  - cell "0" [ref=f32e353]
+                  - cell "0" [ref=f32e354]
+                  - cell "Out of Stock" [ref=f32e355]
+                - row [ref=f32e356]:
+                  - cell "aur-709" [ref=f32e357]
+                  - cell "Brocanteur Optical" [ref=f32e358]
+                  - cell "eyewear" [ref=f32e359]
+                  - cell "8" [ref=f32e360]
+                  - cell "8" [ref=f32e361]
+                  - cell "128600" [ref=f32e362]
+                  - cell "1028800" [ref=f32e363]
+                  - cell "0" [ref=f32e364]
+                  - cell "Healthy" [ref=f32e365]
+                - row [ref=f32e366]:
+                  - cell "aur-714" [ref=f32e367]
+                  - cell "Brouilly Sun" [ref=f32e368]
+                  - cell "eyewear" [ref=f32e369]
+                  - cell "9" [ref=f32e370]
+                  - cell "9" [ref=f32e371]
+                  - cell "105750" [ref=f32e372]
+                  - cell "951750" [ref=f32e373]
+                  - cell "0" [ref=f32e374]
+                  - cell "Healthy" [ref=f32e375]
+                - row [ref=f32e376]:
+                  - cell "aur-613" [ref=f32e377]
+                  - cell "Bukhara Suzani" [ref=f32e378]
+                  - cell "silk" [ref=f32e379]
+                  - cell "1" [ref=f32e380]
+                  - cell "1" [ref=f32e381]
+                  - cell "109300" [ref=f32e382]
+                  - cell "109300" [ref=f32e383]
+                  - cell "0" [ref=f32e384]
+                  - cell "Critical" [ref=f32e385]
+                - row [ref=f32e386]:
+                  - cell "aur-612" [ref=f32e387]
+                  - cell "Bursa Dival" [ref=f32e388]
+                  - cell "silk" [ref=f32e389]
+                  - cell "0" [ref=f32e390]
+                  - cell "0" [ref=f32e391]
+                  - cell "84200" [ref=f32e392]
+                  - cell "0" [ref=f32e393]
+                  - cell "0" [ref=f32e394]
+                  - cell "Out of Stock" [ref=f32e395]
+                - row [ref=f32e396]:
+                  - cell "aur-707" [ref=f32e397]
+                  - cell "Cachet Travelling Case" [ref=f32e398]
+                  - cell "eyewear" [ref=f32e399]
+                  - cell "0" [ref=f32e400]
+                  - cell "0" [ref=f32e401]
+                  - cell "67300" [ref=f32e402]
+                  - cell "0" [ref=f32e403]
+                  - cell "0" [ref=f32e404]
+                  - cell "Out of Stock" [ref=f32e405]
+                - row [ref=f32e406]:
+                  - cell "aur-201" [ref=f32e407]
+                  - cell "Calibre 09 Reserve" [ref=f32e408]
+                  - cell "horology" [ref=f32e409]
+                  - cell "2" [ref=f32e410]
+                  - cell "2" [ref=f32e411]
+                  - cell "1568500" [ref=f32e412]
+                  - cell "3137000" [ref=f32e413]
+                  - cell "0" [ref=f32e414]
+                  - cell "Critical" [ref=f32e415]
+                - row [ref=f32e416]:
+                  - cell "aur-316" [ref=f32e417]
+                  - cell "Camphre et Cire" [ref=f32e418]
+                  - cell "parfums" [ref=f32e419]
+                  - cell "30" [ref=f32e420]
+                  - cell "30" [ref=f32e421]
+                  - cell "24800" [ref=f32e422]
+                  - cell "744000" [ref=f32e423]
+                  - cell "0" [ref=f32e424]
+                  - cell "Healthy" [ref=f32e425]
+                - row [ref=f32e426]:
+                  - cell "aur-610" [ref=f32e427]
+                  - cell "Canton Manton" [ref=f32e428]
+                  - cell "silk" [ref=f32e429]
+                  - cell "4" [ref=f32e430]
+                  - cell "4" [ref=f32e431]
+                  - cell "141900" [ref=f32e432]
+                  - cell "567600" [ref=f32e433]
+                  - cell "0" [ref=f32e434]
+                  - cell "Critical" [ref=f32e435]
+                - row [ref=f32e436]:
+                  - cell "aur-716" [ref=f32e437]
+                  - cell "Carlton Optical" [ref=f32e438]
+                  - cell "eyewear" [ref=f32e439]
+                  - cell "7" [ref=f32e440]
+                  - cell "7" [ref=f32e441]
+                  - cell "138900" [ref=f32e442]
+                  - cell "972300" [ref=f32e443]
+                  - cell "0" [ref=f32e444]
+                  - cell "Healthy" [ref=f32e445]
+                - row [ref=f32e446]:
+                  - cell "aur-601" [ref=f32e447]
+                  - cell "Carre Astral" [ref=f32e448]
+                  - cell "silk" [ref=f32e449]
+                  - cell "26" [ref=f32e450]
+                  - cell "26" [ref=f32e451]
+                  - cell "49000" [ref=f32e452]
+                  - cell "1274000" [ref=f32e453]
+                  - cell "0" [ref=f32e454]
+                  - cell "Healthy" [ref=f32e455]
+                - row [ref=f32e456]:
+                  - cell "aur-403" [ref=f32e457]
+                  - cell "Carte Cardholder" [ref=f32e458]
+                  - cell "leather" [ref=f32e459]
+                  - cell "30" [ref=f32e460]
+                  - cell "30" [ref=f32e461]
+                  - cell "26500" [ref=f32e462]
+                  - cell "795000" [ref=f32e463]
+                  - cell "0" [ref=f32e464]
+                  - cell "Healthy" [ref=f32e465]
+                - row [ref=f32e466]:
+                  - cell "aur-701" [ref=f32e467]
+                  - cell "Cassis Sun" [ref=f32e468]
+                  - cell "eyewear" [ref=f32e469]
+                  - cell "22" [ref=f32e470]
+                  - cell "22" [ref=f32e471]
+                  - cell "64500" [ref=f32e472]
+                  - cell "1419000" [ref=f32e473]
+                  - cell "0" [ref=f32e474]
+                  - cell "Healthy" [ref=f32e475]
+                - row [ref=f32e476]:
+                  - cell "aur-213" [ref=f32e477]
+                  - cell "Catalogue 1911" [ref=f32e478]
+                  - cell "horology" [ref=f32e479]
+                  - cell "30" [ref=f32e480]
+                  - cell "30" [ref=f32e481]
+                  - cell "289400" [ref=f32e482]
+                  - cell "8682000" [ref=f32e483]
+                  - cell "0" [ref=f32e484]
+                  - cell "Healthy" [ref=f32e485]
+                - row [ref=f32e486]:
+                  - cell "aur-309" [ref=f32e487]
+                  - cell "Cendre Bleue" [ref=f32e488]
+                  - cell "parfums" [ref=f32e489]
+                  - cell "30" [ref=f32e490]
+                  - cell "30" [ref=f32e491]
+                  - cell "27900" [ref=f32e492]
+                  - cell "837000" [ref=f32e493]
+                  - cell "0" [ref=f32e494]
+                  - cell "Healthy" [ref=f32e495]
+                - row [ref=f32e496]:
+                  - cell "aur-218" [ref=f32e497]
+                  - cell "Chaine et Fusee" [ref=f32e498]
+                  - cell "horology" [ref=f32e499]
+                  - cell "0" [ref=f32e500]
+                  - cell "0" [ref=f32e501]
+                  - cell "2118000" [ref=f32e502]
+                  - cell "0" [ref=f32e503]
+                  - cell "0" [ref=f32e504]
+                  - cell "Out of Stock" [ref=f32e505]
+                - row [ref=f32e506]:
+                  - cell "aur-116" [ref=f32e507]
+                  - cell "Chalcedon Blue" [ref=f32e508]
+                  - cell "jewellery" [ref=f32e509]
+                  - cell "3" [ref=f32e510]
+                  - cell "3" [ref=f32e511]
+                  - cell "372600" [ref=f32e512]
+                  - cell "1117800" [ref=f32e513]
+                  - cell "0" [ref=f32e514]
+                  - cell "Critical" [ref=f32e515]
+                - row [ref=f32e516]:
+                  - cell "aur-317" [ref=f32e517]
+                  - cell "Chappuis 1911" [ref=f32e518]
+                  - cell "parfums" [ref=f32e519]
+                  - cell "3" [ref=f32e520]
+                  - cell "3" [ref=f32e521]
+                  - cell "158600" [ref=f32e522]
+                  - cell "475800" [ref=f32e523]
+                  - cell "0" [ref=f32e524]
+                  - cell "Critical" [ref=f32e525]
+                - row [ref=f32e526]:
+                  - cell "aur-520" [ref=f32e527]
+                  - cell "Chevalet Watch Stand" [ref=f32e528]
+                  - cell "objets" [ref=f32e529]
+                  - cell "3" [ref=f32e530]
+                  - cell "3" [ref=f32e531]
+                  - cell "96400" [ref=f32e532]
+                  - cell "289200" [ref=f32e533]
+                  - cell "0" [ref=f32e534]
+                  - cell "Critical" [ref=f32e535]
+                - row [ref=f32e536]:
+                  - cell "aur-410" [ref=f32e537]
+                  - cell "Chutes Swatch Coffret" [ref=f32e538]
+                  - cell "leather" [ref=f32e539]
+                  - cell "21" [ref=f32e540]
+                  - cell "21" [ref=f32e541]
+                  - cell "41200" [ref=f32e542]
+                  - cell "865200" [ref=f32e543]
+                  - cell "0" [ref=f32e544]
+                  - cell "Healthy" [ref=f32e545]
+                - row [ref=f32e546]:
+                  - cell "aur-502" [ref=f32e547]
+                  - cell "Cire No.7 &mdash; Fig &amp; Ash" [ref=f32e548]
+                  - cell "objets" [ref=f32e549]
+                  - cell "86" [ref=f32e550]
+                  - cell "86" [ref=f32e551]
+                  - cell "12000" [ref=f32e552]
+                  - cell "1032000" [ref=f32e553]
+                  - cell "0" [ref=f32e554]
+                  - cell "Overstock" [ref=f32e555]
+                - row [ref=f32e556]:
+                  - cell "aur-205" [ref=f32e557]
+                  - cell "Clerkenwell Three-Quarter" [ref=f32e558]
+                  - cell "horology" [ref=f32e559]
+                  - cell "4" [ref=f32e560]
+                  - cell "4" [ref=f32e561]
+                  - cell "742000" [ref=f32e562]
+                  - cell "2968000" [ref=f32e563]
+                  - cell "0" [ref=f32e564]
+                  - cell "Critical" [ref=f32e565]
+                - row [ref=f32e566]:
+                  - cell "aur-321" [ref=f32e567]
+                  - cell "Coffret Aquilee" [ref=f32e568]
+                  - cell "parfums" [ref=f32e569]
+                  - cell "12" [ref=f32e570]
+                  - cell "12" [ref=f32e571]
+                  - cell "42300" [ref=f32e572]
+                  - cell "507600" [ref=f32e573]
+                  - cell "0" [ref=f32e574]
+                  - cell "Healthy" [ref=f32e575]
+                - row [ref=f32e576]:
+                  - cell "aur-604" [ref=f32e577]
+                  - cell "Coimbra Manta" [ref=f32e578]
+                  - cell "silk" [ref=f32e579]
+                  - cell "11" [ref=f32e580]
+                  - cell "11" [ref=f32e581]
+                  - cell "88600" [ref=f32e582]
+                  - cell "974600" [ref=f32e583]
+                  - cell "0" [ref=f32e584]
+                  - cell "Healthy" [ref=f32e585]
+                - row [ref=f32e586]:
+                  - cell "aur-614" [ref=f32e587]
+                  - cell "Colcha Castelo" [ref=f32e588]
+                  - cell "silk" [ref=f32e589]
+                  - cell "8" [ref=f32e590]
+                  - cell "8" [ref=f32e591]
+                  - cell "79400" [ref=f32e592]
+                  - cell "635200" [ref=f32e593]
+                  - cell "0" [ref=f32e594]
+                  - cell "Healthy" [ref=f32e595]
+                - row [ref=f32e596]:
+                  - cell "aur-516" [ref=f32e597]
+                  - cell "Copyist Stand" [ref=f32e598]
+                  - cell "objets" [ref=f32e599]
+                  - cell "22" [ref=f32e600]
+                  - cell "22" [ref=f32e601]
+                  - cell "52300" [ref=f32e602]
+                  - cell "1150600" [ref=f32e603]
+                  - cell "0" [ref=f32e604]
+                  - cell "Healthy" [ref=f32e605]
+                - row [ref=f32e606]:
+                  - cell "aur-215" [ref=f32e607]
+                  - cell "Counter Demonstrator" [ref=f32e608]
+                  - cell "horology" [ref=f32e609]
+                  - cell "7" [ref=f32e610]
+                  - cell "7" [ref=f32e611]
+                  - cell "448300" [ref=f32e612]
+                  - cell "3138100" [ref=f32e613]
+                  - cell "0" [ref=f32e614]
+                  - cell "Healthy" [ref=f32e615]
+                - row [ref=f32e616]:
+                  - cell "aur-212" [ref=f32e617]
+                  - cell "Crown at Three" [ref=f32e618]
+                  - cell "horology" [ref=f32e619]
+                  - cell "0" [ref=f32e620]
+                  - cell "0" [ref=f32e621]
+                  - cell "331500" [ref=f32e622]
+                  - cell "0" [ref=f32e623]
+                  - cell "0" [ref=f32e624]
+                  - cell "Out of Stock" [ref=f32e625]
+  - button "Open AI assistant" [ref=f32e75] [cursor=pointer]: Ask AI

@@ -43,8 +43,6 @@ export function Evidence({ lines, title = 'Why' }) {
 }
 
 /* ---------- risk ---------- */
-export const RISK_ORDER = ['OUT', 'HIGH', 'MEDIUM', 'UNKNOWN', 'LOW'];
-
 export function Risk({ value }) {
   return <span className={`ml-risk ml-risk--${String(value || 'unknown').toLowerCase()}`}>{value}</span>;
 }

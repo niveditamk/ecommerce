@@ -4,7 +4,7 @@
    These share one table/filter idiom deliberately — an operator
    should only have to learn the pattern once.
    ============================================================= */
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAsync } from '../../lib/useAsync';
 import adminApi from '../../lib/adminApi';
@@ -289,6 +289,9 @@ export function AdminCategories() {
   const [editing, setEditing] = useState(null);
   const [draft, setDraft] = useState({});
   const [flash, setFlash] = useState(null);
+  const [creating, setCreating] = useState(false);
+  const [newCat, setNewCat] = useState({ slug: '', name: '', tag: '', blurb: '' });
+  const [busy, setBusy] = useState(false);
 
   if (error) return <div className="notice notice--error">{error}</div>;
   if (loading && !data) return <Loading />;
@@ -312,10 +315,71 @@ export function AdminCategories() {
     setTimeout(() => setFlash(null), 4000);
   };
 
+  const createCollection = async () => {
+    setBusy(true);
+    try {
+      await adminApi.createCategory(newCat);
+      setFlash(`Created ${newCat.name}.`);
+      setCreating(false);
+      setNewCat({ slug: '', name: '', tag: '', blurb: '' });
+      reload();
+    } catch (err) {
+      setFlash(err.message);
+    } finally {
+      setBusy(false);
+      setTimeout(() => setFlash(null), 4000);
+    }
+  };
+
+  const remove = async (c) => {
+    if (!window.confirm(`Delete the "${c.name}" collection? This cannot be undone.`)) return;
+    setBusy(true);
+    try {
+      await adminApi.deleteCategory(c.slug);
+      setFlash(`Deleted ${c.name}.`);
+      reload();
+    } catch (err) {
+      setFlash(err.message);
+    } finally {
+      setBusy(false);
+      setTimeout(() => setFlash(null), 4000);
+    }
+  };
+
   return (
     <>
-      <Head label="Catalog" title="Collections" note={`${data.items.length} collections`} />
+      <Head label="Catalog" title="Collections" note={`${data.items.length} collections`}>
+        {can('categories.manage') && !creating && (
+          <button type="button" className="btn btn--gold btn--sm" onClick={() => setCreating(true)}>New collection</button>
+        )}
+      </Head>
       {flash && <div className="notice" style={{ marginBottom: 'var(--spacing-18)' }}>{flash}</div>}
+
+      {creating && (
+        <div className="notice" style={{ marginBottom: 'var(--spacing-18)' }}>
+          <div style={{ display: 'flex', gap: 'var(--spacing-12)', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+            <label className="field">
+              <span className="field__label">Slug</span>
+              <input className="input" value={newCat.slug} placeholder="e.g. maroquinerie"
+                onChange={(e) => setNewCat((d) => ({ ...d, slug: e.target.value.toLowerCase() }))} />
+            </label>
+            <label className="field">
+              <span className="field__label">Name</span>
+              <input className="input" value={newCat.name} onChange={(e) => setNewCat((d) => ({ ...d, name: e.target.value }))} />
+            </label>
+            <label className="field">
+              <span className="field__label">Label</span>
+              <input className="input" value={newCat.tag} onChange={(e) => setNewCat((d) => ({ ...d, tag: e.target.value }))} />
+            </label>
+            <label className="field" style={{ flex: '1 1 220px' }}>
+              <span className="field__label">Description</span>
+              <input className="input" value={newCat.blurb} onChange={(e) => setNewCat((d) => ({ ...d, blurb: e.target.value }))} />
+            </label>
+            <button type="button" className="btn btn--gold btn--sm" disabled={busy || !newCat.slug || !newCat.name} onClick={createCollection}>Create</button>
+            <button type="button" className="btn btn--outline btn--sm" onClick={() => setCreating(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
 
       <div className="tbl-wrap">
         <table className="tbl">
@@ -349,97 +413,14 @@ export function AdminCategories() {
                     <td style={{ maxWidth: 420 }}>{dx(c.blurb)}</td>
                     <td className="tr mono">{c.product_count}</td>
                     <td className="tr">
-                      {can('categories.manage')
-                        ? <button type="button" className="link tiny" onClick={() => start(c)}>Edit</button>
-                        : <span className="tiny">—</span>}
+                      {can('categories.manage') ? (
+                        <>
+                          <button type="button" className="link tiny" onClick={() => start(c)}>Edit</button>{' '}
+                          <button type="button" className="mc-remove" disabled={busy} onClick={() => remove(c)}>Delete</button>
+                        </>
+                      ) : <span className="tiny">—</span>}
                     </td>
                   </>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
-  );
-}
-
-/* =========================================================
-   INVENTORY
-   ========================================================= */
-export function AdminInventory() {
-  const { can } = useAdmin();
-  const { data, loading, error, reload } = useAsync(() => adminApi.inventory(), []);
-  const [busyId, setBusyId] = useState(null);
-  const [flash, setFlash] = useState(null);
-
-  const adjust = async (id, delta) => {
-    setBusyId(id);
-    try {
-      const res = await adminApi.adjustStock(id, delta, 'adjustment', 'Adjusted from inventory screen');
-      setFlash(`${id} → ${res.stock} in stock`);
-      reload();
-    } catch (err) {
-      setFlash(err.message);
-    } finally {
-      setBusyId(null);
-      setTimeout(() => setFlash(null), 3000);
-    }
-  };
-
-  if (error) return <div className="notice notice--error">{error}</div>;
-  /* Only the FIRST load gets the skeleton. reload() sets loading
-     true again, and returning <Loading/> then unmounted the table,
-     the flash the operator was meant to read, and their scroll
-     position — on every single stock adjustment. */
-  if (loading && !data) return <Loading />;
-  if (!data) return null;
-
-  const { items, totals } = data;
-
-  return (
-    <>
-      {/* The catalogue holds no cost price — products.price is the
-          retail figure — so calling this "at cost" overstated what
-          the number knows. */}
-      <Head label="Inventory" title="Stock" note={`${totals.skus} SKUs · ${money(totals.value)} at retail`} />
-
-      <section className="admin-kpis">
-        <div className="admin-kpi"><span className="admin-kpi__label">Inventory value</span><b className="admin-kpi__value">{money(totals.value)}</b></div>
-        <div className="admin-kpi"><span className="admin-kpi__label">Out of stock</span><b className="admin-kpi__value">{totals.out}</b></div>
-        <div className="admin-kpi"><span className="admin-kpi__label">Running low</span><b className="admin-kpi__value">{totals.low}</b></div>
-        <div className="admin-kpi"><span className="admin-kpi__label">Active SKUs</span><b className="admin-kpi__value">{totals.skus}</b></div>
-      </section>
-
-      {flash && <div className="notice" style={{ marginBottom: 'var(--spacing-18)' }}>{flash}</div>}
-
-      <div className="tbl-wrap">
-        <table className="tbl">
-          <thead>
-            <tr>
-              <th>Product</th><th className="tr">Stock</th><th className="tr">Reorder at</th>
-              <th className="tr">Value</th>{can('inventory.adjust') && <th className="tr">Adjust</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((p) => (
-              <tr key={p.id} className={busyId === p.id ? 'is-saving' : ''}>
-                <td><b>{dx(p.name)}</b><div className="tiny mono" style={{ textTransform: 'none' }}>{p.id}</div></td>
-                <td className="tr mono">
-                  {p.stock === 0
-                    ? <span className="pill pill--urgent">0</span>
-                    : p.stock <= p.low_stock_at ? <span className="pill pill--warn">{p.stock}</span> : p.stock}
-                </td>
-                <td className="tr mono">{p.low_stock_at}</td>
-                <td className="tr mono">{money(p.value)}</td>
-                {can('inventory.adjust') && (
-                  <td className="tr">
-                    <span className="admin-adjust">
-                      <button type="button" onClick={() => adjust(p.id, -1)} disabled={busyId === p.id || p.stock === 0} aria-label={`Decrease ${dx(p.name)}`}>−</button>
-                      <button type="button" onClick={() => adjust(p.id, 1)} disabled={busyId === p.id} aria-label={`Increase ${dx(p.name)}`}>+</button>
-                      <button type="button" onClick={() => adjust(p.id, 10)} disabled={busyId === p.id}>+10</button>
-                    </span>
-                  </td>
                 )}
               </tr>
             ))}
@@ -468,7 +449,13 @@ export function AdminOrders() {
 
   const setStatus = async (id, next) => {
     try {
-      await adminApi.updateOrder(id, { status: next });
+      if (next === 'Cancelled') {
+        const reason = window.prompt('Reason for cancelling this order? Required — this restocks the inventory and is written to the audit log.');
+        if (!reason || !reason.trim()) return;
+        await adminApi.cancelOrder(id, reason.trim());
+      } else {
+        await adminApi.updateOrder(id, { status: next });
+      }
       setFlash(`${id} → ${next}`);
       reload();
     } catch (err) {
@@ -516,7 +503,7 @@ export function AdminOrders() {
       )}
 
       <div className="admin-filters">
-        {['', 'Confirmed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'].map((s) => (
+        {['', 'Confirmed', 'Processing', 'Packed', 'Shipped', 'Delivered', 'Cancelled'].map((s) => (
           <button
             key={s || 'all'}
             type="button"
@@ -541,7 +528,7 @@ export function AdminOrders() {
             <tbody>
               {data.items.map((o) => (
                 <tr key={o.id}>
-                  <td><b className="mono">{o.id}</b></td>
+                  <td><Link to={`/admin/orders/${o.id}`} className="mono">{o.id}</Link></td>
                   <td>{formatShortDate(o.placed_at?.slice(0, 10))}</td>
                   <td>{o.email}</td>
                   <td className="tr mono">{o.item_count}</td>
@@ -567,25 +554,80 @@ export function AdminOrders() {
    CUSTOMERS
    ========================================================= */
 export function AdminCustomers() {
-  const { data, loading, error } = useAsync(() => adminApi.customers(), []);
+  const { can } = useAdmin();
+  const { data, loading, error, reload } = useAsync(() => adminApi.customers(), []);
+  const [editingId, setEditingId] = useState(null);
+  const [draft, setDraft] = useState({});
+  const [flash, setFlash] = useState(null);
+  const [busy, setBusy] = useState(false);
+
   if (error) return <Denied what="view customers" />;
   if (loading && !data) return <Loading />;
   if (!data) return null;
 
+  const knownTiers = [...new Set(data.items.map((c) => c.tier).filter(Boolean))];
+
+  const start = (c) => { setEditingId(c.id); setDraft({ first_name: c.first_name, last_name: c.last_name, email: c.email, tier: c.tier || '', phone: c.phone || '' }); };
+
+  const save = async (id) => {
+    setBusy(true);
+    try {
+      await adminApi.updateCustomer(id, draft);
+      setFlash('Customer updated.');
+      setEditingId(null);
+      reload();
+    } catch (err) {
+      setFlash(err.message);
+    } finally {
+      setBusy(false);
+      setTimeout(() => setFlash(null), 4000);
+    }
+  };
+
   return (
     <>
       <Head label="Sales" title="Customers" note={`${data.total} registered`} />
+      {flash && <div className="notice" style={{ marginBottom: 'var(--spacing-18)' }}>{flash}</div>}
+      <datalist id="customer-tiers">
+        {knownTiers.map((t) => <option key={t} value={t} />)}
+      </datalist>
       <div className="tbl-wrap">
         <table className="tbl">
-          <thead><tr><th>Customer</th><th>Email</th><th>Tier</th><th className="tr">Orders</th><th className="tr">Lifetime value</th></tr></thead>
+          <thead><tr><th>Customer</th><th>Email</th><th>Tier</th><th>Phone</th><th className="tr">Orders</th><th className="tr">Lifetime value</th><th /></tr></thead>
           <tbody>
             {data.items.map((c) => (
               <tr key={c.id}>
-                <td><b>{c.first_name} {c.last_name}</b></td>
-                <td>{c.email}</td>
-                <td>{c.tier}</td>
-                <td className="tr mono">{c.orders}</td>
-                <td className="tr mono">{money(c.lifetime)}</td>
+                {editingId === c.id ? (
+                  <>
+                    <td>
+                      <input className="admin-cell" value={draft.first_name} onChange={(e) => setDraft((d) => ({ ...d, first_name: e.target.value }))} aria-label="First name" />
+                      <input className="admin-cell" value={draft.last_name} onChange={(e) => setDraft((d) => ({ ...d, last_name: e.target.value }))} aria-label="Last name" />
+                    </td>
+                    <td><input className="admin-cell" type="email" value={draft.email} onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))} aria-label="Email" /></td>
+                    <td><input className="admin-cell" list="customer-tiers" value={draft.tier} onChange={(e) => setDraft((d) => ({ ...d, tier: e.target.value }))} aria-label="Tier" /></td>
+                    <td><input className="admin-cell" value={draft.phone} onChange={(e) => setDraft((d) => ({ ...d, phone: e.target.value }))} aria-label="Phone" /></td>
+                    <td className="tr mono">{c.orders}</td>
+                    <td className="tr mono">{money(c.lifetime)}</td>
+                    <td className="tr">
+                      <button type="button" className="link tiny" disabled={busy} onClick={() => save(c.id)}>Save</button>{' '}
+                      <button type="button" className="mc-remove" onClick={() => setEditingId(null)}>Cancel</button>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td><b>{c.first_name} {c.last_name}</b></td>
+                    <td>{c.email}</td>
+                    <td>{c.tier}</td>
+                    <td>{c.phone || '—'}</td>
+                    <td className="tr mono">{c.orders}</td>
+                    <td className="tr mono">{money(c.lifetime)}</td>
+                    <td className="tr">
+                      {can('customers.edit')
+                        ? <button type="button" className="link tiny" onClick={() => start(c)}>Edit</button>
+                        : <span className="tiny">—</span>}
+                    </td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>
@@ -599,27 +641,165 @@ export function AdminCustomers() {
    STAFF
    ========================================================= */
 export function AdminStaff() {
-  const { data, loading, error } = useAsync(() => adminApi.staff(), []);
+  const { staff: me, can } = useAdmin();
+  const { data, loading, error, reload } = useAsync(() => adminApi.staff(), []);
+  const roles = useAsync(() => adminApi.roles(), []);
+  const [flash, setFlash] = useState(null);
+  const [busy, setBusy] = useState(false);
+
+  const [creating, setCreating] = useState(false);
+  const [draft, setDraft] = useState({ first: '', last: '', email: '', password: '', role: '' });
+
+  const [editingId, setEditingId] = useState(null);
+  const [editDraft, setEditDraft] = useState({});
+
   if (error) return <Denied what="view staff" />;
   if (loading && !data) return <Loading />;
   if (!data) return null;
 
+  const roleOptions = roles.data?.roles || [];
+
+  const say = (msg) => { setFlash(msg); setTimeout(() => setFlash(null), 4000); };
+
+  const createAccount = async () => {
+    setBusy(true);
+    try {
+      await adminApi.createStaff(draft);
+      say(`Created ${draft.email}.`);
+      setCreating(false);
+      setDraft({ first: '', last: '', email: '', password: '', role: '' });
+      reload();
+    } catch (err) {
+      say(err.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const startEdit = (s) => { setEditingId(s.id); setEditDraft({ first_name: s.first_name, last_name: s.last_name, role: s.role_key }); };
+
+  const saveEdit = async (id) => {
+    setBusy(true);
+    try {
+      await adminApi.updateStaff(id, editDraft);
+      say('Updated.');
+      setEditingId(null);
+      reload();
+    } catch (err) {
+      say(err.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const toggleStatus = async (s) => {
+    setBusy(true);
+    try {
+      if (s.status === 'active') {
+        await adminApi.disableStaff(s.id);
+        say(`Revoked access for ${s.email}.`);
+      } else {
+        await adminApi.updateStaff(s.id, { status: 'active' });
+        say(`Reactivated ${s.email}.`);
+      }
+      reload();
+    } catch (err) {
+      say(err.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
   return (
     <>
-      <Head label="Access" title="Staff" note={`${data.items.length} accounts`} />
+      <Head label="Access" title="Staff" note={`${data.items.length} accounts`}>
+        {can('staff.manage') && !creating && (
+          <button type="button" className="btn btn--gold btn--sm" onClick={() => setCreating(true)}>New staff</button>
+        )}
+      </Head>
+      {flash && <div className="notice" style={{ marginBottom: 'var(--spacing-18)' }}>{flash}</div>}
+
+      {creating && (
+        <div className="notice" style={{ marginBottom: 'var(--spacing-18)' }}>
+          <div style={{ display: 'flex', gap: 'var(--spacing-12)', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+            <label className="field">
+              <span className="field__label">First name</span>
+              <input className="input" value={draft.first} onChange={(e) => setDraft((d) => ({ ...d, first: e.target.value }))} />
+            </label>
+            <label className="field">
+              <span className="field__label">Last name</span>
+              <input className="input" value={draft.last} onChange={(e) => setDraft((d) => ({ ...d, last: e.target.value }))} />
+            </label>
+            <label className="field">
+              <span className="field__label">Email</span>
+              <input className="input" type="email" value={draft.email} onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))} />
+            </label>
+            <label className="field">
+              <span className="field__label">Temporary password</span>
+              <input className="input" type="password" value={draft.password} onChange={(e) => setDraft((d) => ({ ...d, password: e.target.value }))} />
+            </label>
+            <label className="field">
+              <span className="field__label">Role</span>
+              <select className="input" value={draft.role} onChange={(e) => setDraft((d) => ({ ...d, role: e.target.value }))}>
+                <option value="">Default</option>
+                {roleOptions.map((r) => <option key={r.key} value={r.key}>{r.name}</option>)}
+              </select>
+            </label>
+            <button type="button" className="btn btn--gold btn--sm" disabled={busy || !draft.first || !draft.last || !draft.email || !draft.password} onClick={createAccount}>Create</button>
+            <button type="button" className="btn btn--outline btn--sm" onClick={() => setCreating(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
+
       <div className="tbl-wrap">
         <table className="tbl">
-          <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last signed in</th></tr></thead>
+          <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last signed in</th><th /></tr></thead>
           <tbody>
-            {data.items.map((s) => (
-              <tr key={s.id}>
-                <td><b>{s.first_name} {s.last_name}</b></td>
-                <td>{s.email}</td>
-                <td>{s.role_name}</td>
-                <td><span className={`pill pill--${s.status}`}>{s.status}</span></td>
-                <td>{s.last_login_at ? formatShortDate(s.last_login_at.slice(0, 10)) : 'Never'}</td>
-              </tr>
-            ))}
+            {data.items.map((s) => {
+              const isSelf = me?.id === s.id;
+              return (
+                <tr key={s.id}>
+                  {editingId === s.id ? (
+                    <>
+                      <td>
+                        <input className="admin-cell" value={editDraft.first_name} onChange={(e) => setEditDraft((d) => ({ ...d, first_name: e.target.value }))} aria-label="First name" />
+                        <input className="admin-cell" value={editDraft.last_name} onChange={(e) => setEditDraft((d) => ({ ...d, last_name: e.target.value }))} aria-label="Last name" />
+                      </td>
+                      <td>{s.email}</td>
+                      <td>
+                        <select className="admin-cell" value={editDraft.role} disabled={isSelf} onChange={(e) => setEditDraft((d) => ({ ...d, role: e.target.value }))}>
+                          {roleOptions.map((r) => <option key={r.key} value={r.key}>{r.name}</option>)}
+                        </select>
+                      </td>
+                      <td><span className={`pill pill--${s.status}`}>{s.status}</span></td>
+                      <td>{s.last_login_at ? formatShortDate(s.last_login_at.slice(0, 10)) : 'Never'}</td>
+                      <td className="tr">
+                        <button type="button" className="link tiny" disabled={busy} onClick={() => saveEdit(s.id)}>Save</button>{' '}
+                        <button type="button" className="mc-remove" onClick={() => setEditingId(null)}>Cancel</button>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td><b>{s.first_name} {s.last_name}</b>{isSelf && <span className="tiny"> (you)</span>}</td>
+                      <td>{s.email}</td>
+                      <td>{s.role_name}</td>
+                      <td><span className={`pill pill--${s.status}`}>{s.status}</span></td>
+                      <td>{s.last_login_at ? formatShortDate(s.last_login_at.slice(0, 10)) : 'Never'}</td>
+                      <td className="tr">
+                        {can('staff.manage') && !isSelf ? (
+                          <>
+                            <button type="button" className="link tiny" onClick={() => startEdit(s)}>Edit</button>{' '}
+                            <button type="button" className="mc-remove" disabled={busy} onClick={() => toggleStatus(s)}>
+                              {s.status === 'active' ? 'Disable' : 'Reactivate'}
+                            </button>
+                          </>
+                        ) : <span className="tiny">—</span>}
+                      </td>
+                    </>
+                  )}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -678,14 +858,34 @@ export function AdminRoles() {
    AUDIT LOG
    ========================================================= */
 export function AdminAudit() {
-  const { data, loading, error } = useAsync(() => adminApi.audit({ limit: 100 }), []);
+  const [entity, setEntity] = useState('');
+  const { data, loading, error } = useAsync(() => adminApi.audit({ limit: 100, entity: entity || undefined }), [entity]);
+  const [entities, setEntities] = useState([]);
+
+  /* No endpoint enumerates every entity type that has ever been
+     audited, so the filter's options grow from what has actually
+     been seen rather than a guessed, possibly-stale list. */
+  useEffect(() => {
+    if (!data || entity) return;
+    const seen = [...new Set(data.items.map((a) => a.entity))];
+    setEntities((prev) => [...new Set([...prev, ...seen])].sort());
+  }, [data, entity]);
+
   if (error) return <Denied what="view the audit log" />;
   if (loading && !data) return <Loading />;
   if (!data) return null;
 
   return (
     <>
-      <Head label="Access" title="Audit log" note="Who changed what, when — newest first." />
+      <Head label="Access" title="Audit log" note="Who changed what, when — newest first.">
+        <label className="field">
+          <span className="field__label">Entity</span>
+          <select className="input" value={entity} onChange={(e) => setEntity(e.target.value)}>
+            <option value="">All</option>
+            {entities.map((e) => <option key={e} value={e}>{e.replace(/_/g, ' ')}</option>)}
+          </select>
+        </label>
+      </Head>
       <div className="tbl-wrap">
         <table className="tbl">
           <thead><tr><th>When</th><th>Who</th><th>Action</th><th>What changed</th></tr></thead>

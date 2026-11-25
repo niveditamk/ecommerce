@@ -18,6 +18,7 @@ import mlRoutes from './routes/ml.js';
 import medusaRoutes from './routes/medusa.js';
 import { init as initDb, db as dbHandle } from './db/index.js';
 import { startSweeper } from './inventory/engine.js';
+import { startReportScheduler } from './reports.js';
 import { getSession, newSessionId, sessionCount, isKnownSession } from './store.js';
 import { deploymentFacts, announceDeployment } from './deployment.js';
 
@@ -29,6 +30,7 @@ initDb();
 announceDeployment();
 /* abandoned checkouts must not hold stock for ever */
 startSweeper();
+startReportScheduler();
 
 const app = express();
 

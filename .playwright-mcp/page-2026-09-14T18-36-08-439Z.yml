@@ -1,0 +1,26 @@
+- generic [active] [ref=f83e1]:
+  - generic [ref=f83e2]: AURELIS — Data Flow Diagrams
+  - generic [ref=f83e3]: Level 0 (context) and Level 1 (admin decomposition)
+  - heading "Level 0 — Context Diagram" [level=3] [ref=f83e4]
+  - generic [ref=f83e5]:
+    - generic [ref=f83e9]: order, browse, account
+    - generic [ref=f83e10]: confirmation, tracking
+    - generic [ref=f83e11]: alert, forecast, recommendation
+    - generic [ref=f83e12]: approve / adjust / reject
+    - generic [ref=f83e13]: CUSTOMER
+    - generic [ref=f83e14]: AURELISCommerce & AIInventory System
+    - generic [ref=f83e15]: STAFF / ADMIN
+    - generic [ref=f83e16]: SUPPLIER(via PO lifecycle)
+  - heading "Level 1 — Admin / AI Decomposition" [level=3] [ref=f83e17]
+  - generic [ref=f83e18]:
+    - generic [ref=f83e22]: stock movement
+    - generic [ref=f83e23]: history
+    - generic [ref=f83e24]: read demand
+    - generic [ref=f83e25]: alerts, proposals
+    - generic [ref=f83e26]: apply adjustment
+    - generic [ref=f83e27]: feedback / decision
+    - generic [ref=f83e28]: 1.0InventoryAdjustment
+    - generic [ref=f83e29]: D1 — inventory_transactions /warehouse_stock
+    - generic [ref=f83e30]: 2.0AI Forecasting &Risk Scoring
+    - generic [ref=f83e31]: D2 — ml_versions /ml_predictions
+    - generic [ref=f83e32]: 3.0Recommendation& Feedback Loop

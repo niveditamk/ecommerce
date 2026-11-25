@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { width:1500px; background:#ffffff; font-family: 'Segoe UI', Arial, sans-serif; padding:30px; }
+  .title { font-size:26px; font-weight:700; color:#1a1a2e; text-align:center; margin-bottom:6px; }
+  .subtitle { font-size:14px; color:#555; text-align:center; margin-bottom:24px; }
+  .layer { border-radius:10px; padding:16px; margin-bottom:18px; position:relative; }
+  .layer-label { position:absolute; top:-12px; left:20px; background:#1a1a2e; color:#fff; font-size:12px; font-weight:600; padding:3px 12px; border-radius:12px; letter-spacing:0.5px; }
+  .row { display:flex; gap:16px; justify-content:center; }
+  .box { border:2px solid; border-radius:8px; padding:14px 18px; text-align:center; min-width:170px; background:#fff; }
+  .box h4 { font-size:14px; margin-bottom:4px; }
+  .box p { font-size:11px; color:#555; line-height:1.4; }
+  .client { background:#eef4ff; border-color:#3b5bdb; }
+  .client .box { border-color:#3b5bdb; }
+  .api { background:#eefbf3; border-color:#2f9e5c; }
+  .api .box { border-color:#2f9e5c; }
+  .service { background:#fff7e6; border-color:#e08b1c; }
+  .service .box { border-color:#e08b1c; }
+  .data { background:#f5eefe; border-color:#8442d6; }
+  .data .box { border-color:#8442d6; }
+  .external { background:#fdeef0; border-color:#d6416a; }
+  .external .box { border-color:#d6416a; }
+  .arrowdown { text-align:center; font-size:22px; color:#333; margin:2px 0; }
+</style></head>
+<body>
+  <div class="title">AURELIS &mdash; System Architecture</div>
+  <div class="subtitle">Three-tier architecture: React/Vite client, Express REST API, SQLite persistence, with an AI/ML decision-support layer</div>
+
+  <div class="layer client">
+    <div class="layer-label">PRESENTATION LAYER</div>
+    <div class="row">
+      <div class="box"><h4>Storefront (React)</h4><p>Customer-facing shop &mdash; catalogue, cart, checkout</p></div>
+      <div class="box"><h4>Admin Console (React)</h4><p>Command Center, AI Intelligence, Inventory, Procurement, Reports</p></div>
+      <div class="box"><h4>Vite Build</h4><p>SPA bundling, HMR in dev, static assets in production</p></div>
+    </div>
+  </div>
+  <div class="arrowdown">&#8595; HTTPS / JSON (fetch, Bearer token auth)</div>
+
+  <div class="layer api">
+    <div class="layer-label">APPLICATION / API LAYER (Express.js)</div>
+    <div class="row">
+      <div class="box"><h4>Auth &amp; RBAC</h4><p>Staff sessions, permission grants, audit logging</p></div>
+      <div class="box"><h4>Commerce Routes</h4><p>Products, Orders, Customers, Categories</p></div>
+      <div class="box"><h4>Admin Routes</h4><p>Inventory, Procurement, Warehouses, Cycle Counts, Notes, Reports</p></div>
+      <div class="box"><h4>ML / AI Routes</h4><p>Forecast, Risk, Reorder, Anomalies, Feedback, Training</p></div>
+    </div>
+  </div>
+  <div class="arrowdown">&#8595;</div>
+
+  <div class="layer service">
+    <div class="layer-label">DOMAIN SERVICE LAYER</div>
+    <div class="row">
+      <div class="box"><h4>Inventory Service</h4><p>adjustStock() &mdash; single source of truth for every stock mutation</p></div>
+      <div class="box"><h4>AI Analytics Engine</h4><p>Forecasting, stockout risk, reorder proposals, anomaly &amp; overstock detection</p></div>
+      <div class="box"><h4>ML Trainer &amp; Registry</h4><p>Model versioning, training runs, candidate algorithm search</p></div>
+      <div class="box"><h4>Reports &amp; Notes Engine</h4><p>Scheduled report generation, collaboration &amp; @mentions</p></div>
+    </div>
+  </div>
+  <div class="arrowdown">&#8595;</div>
+
+  <div class="layer data">
+    <div class="layer-label">PERSISTENCE LAYER</div>
+    <div class="row">
+      <div class="box"><h4>SQLite (node:sqlite)</h4><p>Single-file relational store &mdash; products, orders, inventory, ML versions, audit log</p></div>
+      <div class="box"><h4>Background Jobs</h4><p>Sweeper (reservation expiry), Report Scheduler (setInterval-based)</p></div>
+    </div>
+  </div>
+
+  <div class="arrowdown">&#8596; optional, proxied</div>
+  <div class="layer external">
+    <div class="layer-label">EXTERNAL / EVALUATED INTEGRATIONS</div>
+    <div class="row">
+      <div class="box"><h4>OpenRouter LLM</h4><p>Free-tier model chain &mdash; explains figures, never invents them</p></div>
+      <div class="box"><h4>Medusa Commerce Engine</h4><p>Evaluated second inventory system &mdash; read-only comparison, not authoritative</p></div>
+    </div>
+  </div>
+</body></html>

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { NavLink, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
 import { useAdmin } from '../../context/AdminContext';
 import { useAdminFilters } from '../../context/AdminFilterContext';
+import AIChatWidget from './AIChatWidget';
 
 const NAV = [
   {
@@ -197,6 +198,8 @@ export default function AdminLayout() {
           onClick={() => setNavOpen(false)}
         />
       )}
+
+      <AIChatWidget />
     </div>
   );
 }

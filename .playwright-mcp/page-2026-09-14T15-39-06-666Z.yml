@@ -1,0 +1,90 @@
+- generic [ref=f12e3]:
+  - complementary "Admin navigation" [ref=f12e4]:
+    - generic [ref=f12e5]:
+      - generic [ref=f12e6]: AURELIS
+      - generic [ref=f12e7]: Executive · AI Admin
+    - navigation [ref=f12e8]:
+      - generic [ref=f12e9]:
+        - heading "Executive Command" [level=2] [ref=f12e10]
+        - link "Command Center" [ref=f12e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f12e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f12e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f12e14]
+        - link "Inventory Management" [ref=f12e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f12e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f12e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f12e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f12e19]
+        - link "Sales & BI Analytics" [ref=f12e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f12e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f12e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f12e23]
+        - link "Products" [ref=f12e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f12e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f12e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f12e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f12e28]:
+        - heading "System & Governance" [level=2] [ref=f12e29]
+        - link "Staff Management" [ref=f12e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f12e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f12e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f12e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f12e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f12e35]:
+      - generic [ref=f12e36]: Hélène Marchand
+      - generic [ref=f12e37]: Administrator
+      - button "Sign out" [ref=f12e38] [cursor=pointer]
+  - generic [ref=f12e39]:
+    - banner [ref=f12e40]:
+      - generic [ref=f12e42]:
+        - generic [ref=f12e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f12e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f12e45]: Period Filter
+        - combobox "Filter by time period" [ref=f12e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f12e47]:
+        - link "2 Alerts" [ref=f12e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f12e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f12e52]:
+      - generic [ref=f12e53]:
+        - generic [ref=f12e55]:
+          - generic [ref=f12e56]: Artificial Intelligence Engine
+          - heading "AI Intelligence & Forecasting" [level=1] [ref=f12e57]
+          - paragraph [ref=f12e58]: Predictive demand, autonomous anomaly detection, and decision-support workflows.
+        - tablist [ref=f12e59]:
+          - tab "AI Alert Center" [ref=f12e60] [cursor=pointer]
+          - tab "Demand Forecasting" [ref=f12e61] [cursor=pointer]
+          - tab "Stockout Risk Matrix" [ref=f12e62] [cursor=pointer]
+          - tab "Smart Replenishment" [selected] [ref=f12e63] [cursor=pointer]
+          - tab "Overstock & Dead Stock" [ref=f12e64] [cursor=pointer]
+          - tab "What-If Simulator" [ref=f12e65] [cursor=pointer]
+          - tab "AI Evaluation & Learning" [ref=f12e66] [cursor=pointer]
+        - paragraph [ref=f12e70]: AI proposals calculated from supplier lead times, minimum order quantities (MOQ), and targeted 95% service-level safety stock.
+  - button "Open AI assistant" [ref=f12e74] [cursor=pointer]: Ask AI

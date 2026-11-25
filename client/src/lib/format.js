@@ -15,14 +15,6 @@ export function money(value, currency = CURRENCY) {
   return symbol + Math.round(Number(value) || 0).toLocaleString(locale);
 }
 
-/* Long figures read better as words in running copy: "₹15.69 lakh". */
-export function moneyShort(value) {
-  const n = Math.round(Number(value) || 0);
-  if (n >= 10000000) return `₹${(n / 10000000).toFixed(2).replace(/\.00$/, '')} crore`;
-  if (n >= 100000) return `₹${(n / 100000).toFixed(2).replace(/\.00$/, '')} lakh`;
-  return money(n);
-}
-
 /* Catalogue copy is authored with HTML entities so it reads well in
    any context; React renders text nodes literally, so decode first. */
 const ENTITIES = {
@@ -76,8 +68,4 @@ export function paletteForVariant(product, variantName) {
   if (!variantName) return product.palette;
   const match = (product.colors || []).find((c) => c.name === variantName);
   return match?.palette || product.palette;
-}
-
-export function pluralise(n, one, many) {
-  return `${n} ${n === 1 ? one : many}`;
 }

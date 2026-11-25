@@ -8,7 +8,8 @@
      1. Every row is labelled. Orders carry channel='synthetic'
         and a SYN- prefix; ledger rows carry reference_type
         ='synthetic'. Nothing pretends to be a real sale.
-     2. Business reporting excludes it — see excludeSynthetic().
+     2. Business reporting excludes it — every real-trade query filters
+        on channel != 'synthetic' directly.
      3. It is reversible. purgeSynthetic() removes every trace.
 
    The generator is seeded, so the same seed gives the same
@@ -17,9 +18,6 @@
 import { db } from '../db/index.js';
 
 export const SYNTHETIC_CHANNEL = 'synthetic';
-
-/* SQL fragment for anything that reports on real trade. */
-export const excludeSynthetic = (alias = 'o') => `${alias}.channel != '${SYNTHETIC_CHANNEL}'`;
 
 /* ---------- deterministic randomness ----------
    Math.random() would make every run unreproducible, which is the

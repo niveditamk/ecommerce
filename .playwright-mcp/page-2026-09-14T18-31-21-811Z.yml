@@ -1,0 +1,105 @@
+- generic [ref=f68e3]:
+  - complementary "Admin navigation" [ref=f68e4]:
+    - generic [ref=f68e5]:
+      - generic [ref=f68e6]: AURELIS
+      - generic [ref=f68e7]: Executive · AI Admin
+    - navigation [ref=f68e8]:
+      - generic [ref=f68e9]:
+        - heading "Executive Command" [level=2] [ref=f68e10]
+        - link "Command Center" [ref=f68e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f68e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f68e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f68e14]
+        - link "Inventory Management" [ref=f68e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f68e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f68e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f68e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f68e19]
+        - link "Sales & BI Analytics" [ref=f68e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f68e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f68e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f68e23]
+        - link "Products" [ref=f68e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f68e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f68e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f68e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f68e28]:
+        - heading "System & Governance" [level=2] [ref=f68e29]
+        - link "Staff Management" [ref=f68e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f68e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f68e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f68e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f68e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f68e35]:
+      - generic [ref=f68e36]: Hélène Marchand
+      - generic [ref=f68e37]: Administrator
+      - button "Sign out" [ref=f68e38] [cursor=pointer]
+  - generic [ref=f68e39]:
+    - banner [ref=f68e40]:
+      - generic [ref=f68e42]:
+        - generic [ref=f68e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f68e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f68e45]: Period Filter
+        - combobox "Filter by time period" [ref=f68e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f68e47]:
+        - link "4 Alerts" [ref=f68e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f68e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f68e52]:
+      - generic [ref=f68e53]:
+        - generic [ref=f68e55]:
+          - generic [ref=f68e56]: Artificial Intelligence Engine
+          - heading "AI Intelligence & Forecasting" [level=1] [ref=f68e57]
+          - paragraph [ref=f68e58]: Predictive demand, autonomous anomaly detection, and decision-support workflows.
+        - tablist [ref=f68e59]:
+          - tab "AI Alert Center" [ref=f68e60] [cursor=pointer]
+          - tab "Demand Forecasting" [selected] [ref=f68e61] [cursor=pointer]
+          - tab "Stockout Risk Matrix" [ref=f68e62] [cursor=pointer]
+          - tab "Smart Replenishment" [ref=f68e63] [cursor=pointer]
+          - tab "Overstock & Dead Stock" [ref=f68e64] [cursor=pointer]
+          - tab "What-If Simulator" [ref=f68e65] [cursor=pointer]
+          - tab "AI Evaluation & Learning" [ref=f68e66] [cursor=pointer]
+        - generic [ref=f68e70]:
+          - generic [ref=f68e71]:
+            - generic [ref=f68e72]: Target Piece / Reference
+            - combobox "Target Piece / Reference" [ref=f68e73]:
+              - option "aur-402 — Chronographe 1911 (Horology)" [selected]
+              - option "aur-401 — Bague Solitaire 18k (Jewellery)"
+              - option "aur-201 — Extrait de Rose des Cendres (Parfums)"
+              - option "aur-104 — Sac de Voyage Barenia (Leather)"
+              - option "aur-302 — Tourbillon Squelette (Horology)"
+          - generic [ref=f68e74]:
+            - generic [ref=f68e75]: Forecast Horizon
+            - generic [ref=f68e76]:
+              - button "Next 7 Days" [ref=f68e77] [cursor=pointer]
+              - button "Next 14 Days" [ref=f68e78] [cursor=pointer]
+              - button "Next 30 Days" [ref=f68e79] [cursor=pointer]
+              - button "Next 90 Days" [ref=f68e80] [cursor=pointer]
+  - button "Open AI assistant" [ref=f68e84] [cursor=pointer]: Ask AI

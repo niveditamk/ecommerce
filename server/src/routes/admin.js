@@ -16,15 +16,24 @@ import {
 import {
   listWarehouses, getWarehouseHeatmap, listInventory, adjustStock,
   listTransactions, listTransfers, createTransfer, updateTransferStatus,
-  listSuppliers, listPurchaseOrders, createPurchaseOrder, updatePurchaseOrderStatus
+  listSuppliers, listPurchaseOrders, createPurchaseOrder, updatePurchaseOrderStatus,
+  createCycleCount, listCycleCounts, getCycleCount, recordCount, completeCycleCount, cancelCycleCount
 } from '../inventory/inventoryService.js';
 import {
   getCommandCenterKPIs, getAIBusinessSummary, listAIAlerts, updateAIAlertStatus,
   getDemandForecast, getStockoutRiskBoard, getSmartReorders, getOverstockAndDeadStock,
   getInventoryHealthScore, runForecastSimulation, getProductPerformanceMatrix,
   getCustomerBehaviorAnalytics, getReturnsAnalytics, getPricingAnalytics,
-  getAIPerformanceOutcomes
+  getAIPerformanceOutcomes, getPeriodMetrics
 } from '../ml/aiAnalyticsEngine.js';
+import { askAssistant } from '../ai/assistant.js';
+import { listNotes, createNote } from '../notes.js';
+import { listBatches, createBatch, deleteBatch, listExpiringBatches } from '../batches.js';
+import {
+  generateReportRows, listSchedules, createSchedule, setScheduleStatus,
+  deleteSchedule, listRuns, getRun
+} from '../reports.js';
+import { isConfigured as aiAssistantConfigured } from '../ai/openrouter.js';
 
 const router = Router();
 const ipOf = (req) => req.headers['x-forwarded-for'] || req.socket?.remoteAddress || null;
@@ -188,6 +197,93 @@ router.get('/dashboard', require_('dashboard.view'), (req, res) => {
 });
 
 /* =========================================================
+   AI ASSISTANT — available from every admin page, not just
+   the Medusa panel. Gated on dashboard.view (the one permission
+   every staff session already holds) since it is a read-only
+   question box, not a place that changes anything.
+   ========================================================= */
+router.get('/ai/status', require_('dashboard.view'), (_req, res) => {
+  res.json({ configured: aiAssistantConfigured() });
+});
+
+router.post('/ai/ask', require_('dashboard.view'), async (req, res) => {
+  const out = await askAssistant(req.body?.question, { history: req.body?.history });
+  res.status(out.ok ? 200 : 503).json(out);
+});
+
+/* =========================================================
+   COLLABORATION NOTES
+   ========================================================= */
+router.get('/notes', require_('dashboard.view'), (req, res) => {
+  try {
+    res.json({ notes: listNotes(req.query.entity, req.query.entityId) });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.post('/notes', require_('dashboard.view'), (req, res) => {
+  try {
+    const note = createNote({ ...req.body, staff: req.staff });
+    res.status(201).json({ note });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+/* =========================================================
+   SCHEDULED REPORTS
+   ========================================================= */
+router.get('/scheduled-reports', require_('reports.view'), (_req, res) => {
+  res.json({ schedules: listSchedules() });
+});
+
+router.post('/scheduled-reports', require_('reports.view'), (req, res) => {
+  try {
+    const result = createSchedule({ ...req.body, staff: req.staff });
+    res.status(201).json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.patch('/scheduled-reports/:id', require_('reports.view'), (req, res) => {
+  try {
+    const result = setScheduleStatus({ id: req.params.id, status: req.body?.status, staff: req.staff });
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.delete('/scheduled-reports/:id', require_('reports.view'), (req, res) => {
+  try {
+    const result = deleteSchedule({ id: req.params.id, staff: req.staff });
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.get('/scheduled-reports/:id/runs', require_('reports.view'), (req, res) => {
+  res.json({ runs: listRuns(req.params.id) });
+});
+
+router.get('/report-runs/:id', require_('reports.view'), (req, res) => {
+  const run = getRun(req.params.id);
+  if (!run) return res.status(404).json({ error: 'Report run not found' });
+  res.json({ run });
+});
+
+router.post('/reports/preview/:type', require_('reports.view'), (req, res) => {
+  try {
+    res.json({ rows: generateReportRows(req.params.type) });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+/* =========================================================
    PRODUCTS
    ========================================================= */
 const productShape = (r) => ({
@@ -225,6 +321,34 @@ router.get('/products/:id', require_('products.view'), (req, res) => {
     'SELECT * FROM stock_movements WHERE product_id = ? ORDER BY created_at DESC LIMIT 20'
   ).all(req.params.id);
   res.json({ product: productShape(row), movements });
+});
+
+/* =========================================================
+   BATCH & EXPIRY TRACKING (parfums only — see batches.js)
+   ========================================================= */
+router.get('/products/:id/batches', require_('products.view'), (req, res) => {
+  res.json({ batches: listBatches(req.params.id) });
+});
+
+router.post('/products/:id/batches', require_('products.edit'), (req, res) => {
+  try {
+    const batch = createBatch({ ...req.body, productId: req.params.id, staff: req.staff });
+    res.status(201).json({ batch });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.delete('/product-batches/:id', require_('products.edit'), (req, res) => {
+  try {
+    res.json(deleteBatch({ id: req.params.id, staff: req.staff }));
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.get('/batches/expiring', require_('products.view'), (req, res) => {
+  res.json({ batches: listExpiringBatches(Number(req.query.days) || 90) });
 });
 
 const EDITABLE = ['name', 'cat', 'sub', 'price', 'was', 'materials', 'blurb', 'story', 'care',
@@ -385,57 +509,6 @@ router.patch('/categories/:slug', require_('categories.manage'), (req, res) => {
 });
 
 /* =========================================================
-   INVENTORY
-   ========================================================= */
-router.get('/inventory', require_('inventory.view'), (req, res) => {
-  const items = db.prepare(
-    `SELECT id, name, cat, stock, low_stock_at, price, (price * stock) AS value, status
-       FROM products WHERE status != 'archived' ORDER BY stock ASC`
-  ).all();
-  const totals = db.prepare(
-    `SELECT COALESCE(SUM(price*stock),0) AS value, COUNT(*) AS skus,
-            SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS out,
-            SUM(CASE WHEN stock > 0 AND stock <= low_stock_at THEN 1 ELSE 0 END) AS low
-       FROM products WHERE status != 'archived'`
-  ).get();
-  res.json({ items, totals });
-});
-
-router.post('/inventory/:id/adjust', require_('inventory.adjust'), (req, res) => {
-  const delta = Number(req.body?.delta);
-  const reason = String(req.body?.reason || 'adjustment');
-  const note = req.body?.note || null;
-  if (!Number.isFinite(delta) || delta === 0) return res.status(400).json({ error: 'Enter a non-zero adjustment.' });
-
-  const p = db.prepare('SELECT * FROM products WHERE id = ?').get(req.params.id);
-  if (!p) return res.status(404).json({ error: 'Product not found' });
-
-  const balance = Math.max(0, p.stock + delta);
-  db.prepare("UPDATE products SET stock = ?, updated_at = datetime('now') WHERE id = ?").run(balance, p.id);
-  db.prepare(
-    'INSERT INTO stock_movements (product_id, delta, reason, note, staff_id, balance) VALUES (?,?,?,?,?,?)'
-  ).run(p.id, delta, reason, note, req.staff.id, balance);
-
-  audit({
-    staff: req.staff, action: 'adjusted', entity: 'stock', entityId: p.id,
-    summary: `${p.name} stock ${p.stock} → ${balance}`,
-    before: { stock: p.stock }, after: { stock: balance }, ip: ipOf(req)
-  });
-
-  res.json({ id: p.id, stock: balance, delta });
-});
-
-router.get('/inventory/:id/history', require_('inventory.view'), (req, res) => {
-  res.json({
-    movements: db.prepare(
-      `SELECT m.*, s.first_name || ' ' || s.last_name AS staff
-         FROM stock_movements m LEFT JOIN staff s ON s.id = m.staff_id
-        WHERE m.product_id = ? ORDER BY m.created_at DESC LIMIT 100`
-    ).all(req.params.id)
-  });
-});
-
-/* =========================================================
    ORDERS
    ========================================================= */
 const STAGES = ['Confirmed', 'Processing', 'Packed', 'Shipped', 'Delivered'];
@@ -516,8 +589,10 @@ router.patch('/orders/:id', require_('orders.edit'), (req, res) => {
    CUSTOMERS
    ========================================================= */
 router.get('/customers', require_('customers.view'), (req, res) => {
+  /* Credentials never leave the server — password_hash/password_salt
+     are excluded explicitly rather than trusted to a `c.*` select. */
   const items = db.prepare(
-    `SELECT c.*,
+    `SELECT c.id, c.email, c.first_name, c.last_name, c.tier, c.phone, c.created_at,
             (SELECT COUNT(*) FROM orders o WHERE o.customer_id = c.id AND ${REAL_TRADE_O}) AS orders,
             (SELECT COALESCE(SUM(total),0) FROM orders o WHERE o.customer_id = c.id AND ${REAL_TRADE_O}) AS lifetime
        FROM customers c ORDER BY lifetime DESC`
@@ -1066,8 +1141,74 @@ router.get('/inventory/transactions', require_('inventory.view'), (req, res) => 
 });
 
 /* =========================================================
+   CYCLE COUNTS — physical stocktake
+   ========================================================= */
+router.get('/cycle-counts', require_('inventory.view'), (_req, res) => {
+  try {
+    res.json({ counts: listCycleCounts() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.post('/cycle-counts', require_('inventory.adjust'), (req, res) => {
+  try {
+    const result = createCycleCount({ ...req.body, staff: req.staff });
+    res.status(201).json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.get('/cycle-counts/:id', require_('inventory.view'), (req, res) => {
+  const cc = getCycleCount(req.params.id);
+  if (!cc) return res.status(404).json({ error: 'Cycle count not found' });
+  res.json({ cycleCount: cc });
+});
+
+router.patch('/cycle-counts/:id/items/:productId', require_('inventory.adjust'), (req, res) => {
+  try {
+    const result = recordCount({
+      cycleCountId: req.params.id,
+      productId: req.params.productId,
+      countedQty: req.body?.countedQty,
+      staff: req.staff
+    });
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.post('/cycle-counts/:id/complete', require_('inventory.adjust'), (req, res) => {
+  try {
+    const result = completeCycleCount({ cycleCountId: req.params.id, staff: req.staff, ip: ipOf(req) });
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.post('/cycle-counts/:id/cancel', require_('inventory.adjust'), (req, res) => {
+  try {
+    const result = cancelCycleCount({ cycleCountId: req.params.id, staff: req.staff });
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+/* =========================================================
    ANALYTICS & REPORTING
    ========================================================= */
+router.get('/analytics/period', require_('dashboard.view'), (req, res) => {
+  try {
+    res.json(getPeriodMetrics({ from: req.query.from, to: req.query.to }));
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 router.get('/analytics/products', require_('dashboard.view'), (_req, res) => {
   try {
     res.json({ products: getProductPerformanceMatrix() });

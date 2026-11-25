@@ -1,6 +1,6 @@
 /* =============================================================
-   AURELIS MAISON — SEARCH RESULTS PAGE
-   Instant faceted search discovery, sorting, and category filters.
+   AURELIS MAISON // SEARCH RESULTS & DISCOVERY
+   Faceted search discovery, sorting, and category filters.
    ============================================================= */
 import { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -12,11 +12,11 @@ import api from '../lib/api';
 import { dx, money } from '../lib/format';
 
 const SORTS = [
-  { value: 'relevance', label: 'Best match' },
+  { value: 'relevance', label: 'Recommended' },
   { value: 'price-asc', label: 'Price: Low to High' },
   { value: 'price-desc', label: 'Price: High to Low' },
   { value: 'rating', label: 'Highest Rated' },
-  { value: 'newest', label: 'Newest First' }
+  { value: 'newest', label: 'Newest Additions' }
 ];
 
 export default function Search() {
@@ -58,19 +58,19 @@ export default function Search() {
 
   return (
     <div className="shell">
-      <Breadcrumbs trail={[{ label: 'Home', to: '/' }, { label: 'Search Catalogue' }]} />
+      <Breadcrumbs trail={[{ label: 'Home', to: '/' }, { label: 'Search' }]} />
 
       <PageHead
-        kicker="// TERMINAL DISCOVERY PROTOCOL"
-        title={query ? `QUERY: "${query.toUpperCase()}"` : 'DATABASE SEARCH'}
+        kicker="Search Results"
+        title={query ? `Results for “${query}”` : 'Maison Catalogue Search'}
         lede={
           query
-            ? `Indexed specimen records matching "${query}" across jewellery, horology, parfums, and leather ateliers.`
-            : 'Query system archive by piece designation, metallurgical standard, atelier discipline, or reference SKU.'
+            ? `Creations matching “${query}” across our fine jewellery, horology, and leather ateliers.`
+            : 'Explore our creations by material, collection, artisan métier, or reference.'
         }
         aside={
-          <button type="button" className="btn btn--gold btn--sm" onClick={() => openLayer('search')}>
-            &gt;_ REFINE QUERY
+          <button type="button" className="btn btn--outline btn--sm" onClick={() => openLayer('search')}>
+            Refine Search
           </button>
         }
       />
@@ -79,63 +79,63 @@ export default function Search() {
         {!query ? (
           <Empty
             icon="search"
-            title="AWAITING SYSTEM QUERY PARAMETERS"
-            body="Query system records by material ('18k gold', 'citrine'), discipline ('horology', 'parfums'), or unique specimen code."
-            cta={{ to: '/categories', label: 'EXPLORE ALL DISCIPLINES [ 04 ]' }}
+            title="Search the Maison Catalogue"
+            body="Discover creations by material ('18k gold', 'citrine'), collection ('horology', 'jewellery'), or reference number."
+            cta={{ to: '/categories', label: 'Explore All Collections' }}
           />
         ) : loading ? (
-          <div className="card-grid">
+          <div className="product-grid">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="card" style={{ minHeight: 380 }}>
-                <div style={{ aspectRatio: '3/4', background: 'var(--color-bone)' }} />
+                <div style={{ aspectRatio: '1/1', background: 'var(--color-bone)' }} />
               </div>
             ))}
           </div>
         ) : (data?.total || 0) === 0 ? (
           <Empty
             icon="search"
-            title={`ZERO RECORDS LOCATED FOR "${query.toUpperCase()}"`}
-            body="All specimens are crafted in numbered batches. Certain editions may be restricted to private archive ledgers. Concierge can verify unlisted allocations."
-            cta={{ to: '/help', label: 'TRANSMIT CONCIERGE DISPATCH' }}
+            title={`No results found for “${query}”`}
+            body="All creations are handcrafted in limited series. Our concierge team can verify archive pieces or assist with bespoke commissions."
+            cta={{ to: '/help', label: 'Contact Maison Concierge' }}
           />
         ) : (
           <>
-            {/* Filter toolbar */}
-            <div className="filter-bar" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '10px 16px' }}>
-              <div className="filter-bar__left" style={{ alignItems: 'center' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, marginRight: '12px' }}>
-                  [ {results.length} / {data.total} SPECIMENS ]
+            {/* Filter Toolbar */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', padding: '16px 20px', background: '#FFFFFF', border: '1px solid var(--line)', borderRadius: 'var(--r-sm)', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--pearl-2)', marginRight: '8px' }}>
+                  {results.length} {results.length === 1 ? 'Piece' : 'Pieces'}
                 </span>
                 {facets.map((f) => (
                   <button
                     key={f.slug}
                     type="button"
-                    className={`chip${facet === f.slug ? ' is-active' : ''}`}
+                    className={`btn btn--sm ${facet === f.slug ? 'btn--primary' : 'btn--outline'}`}
                     onClick={() => setFacet(f.slug)}
-                    style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}
+                    style={{ borderRadius: 'var(--r-pill)', fontSize: '0.74rem' }}
                   >
-                    {f.name.toUpperCase()} [{f.n}]
+                    {f.name} ({f.n})
                   </button>
                 ))}
                 {facet && (
-                  <button type="button" className="tiny" onClick={() => setFacet('')} style={{ color: 'var(--error)', textDecoration: 'none', fontFamily: 'var(--font-mono)', fontSize: '0.7rem' }}>
-                    [ &times; RESET FILTER ]
+                  <button type="button" className="btn--ghost" onClick={() => setFacet('')} style={{ fontSize: '0.76rem', color: 'var(--alert)' }}>
+                    Reset Filter
                   </button>
                 )}
               </div>
 
-              <div className="center" style={{ gap: '8px' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--pearl-3)' }}>SORT_ORDER:</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ fontSize: '0.78rem', color: 'var(--pearl-3)' }}>Sort by:</span>
                 <select
                   value={sort}
                   onChange={(e) => setSort(e.target.value)}
                   style={{
-                    padding: '6px 12px',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    border: '1px solid var(--line-dark)',
-                    borderRadius: 'var(--r-xs)',
-                    background: 'var(--color-paper)',
+                    padding: '8px 14px',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.82rem',
+                    border: '1px solid var(--line-control)',
+                    borderRadius: 'var(--r-pill)',
+                    background: '#FFFFFF',
                     color: 'var(--pearl)'
                   }}
                 >
@@ -150,19 +150,19 @@ export default function Search() {
               <ProductGrid items={results} categoryLookup={catName} />
             </Reveal>
 
-            {/* Archive Assistance */}
-            <div style={{ marginTop: '48px', padding: '32px', background: 'var(--color-bone)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)' }}>
-              <div className="between wrap" style={{ gap: '20px' }}>
+            {/* Concierge Assistance */}
+            <div style={{ marginTop: '56px', padding: '36px', background: '#FFFFFF', border: '1px solid var(--line)', borderRadius: 'var(--r-md)', boxShadow: 'var(--sh-1)' }}>
+              <div className="between wrap" style={{ gap: '24px', alignItems: 'center' }}>
                 <div>
-                  <h4 className="h4" style={{ fontFamily: 'var(--serif)', fontSize: '20px' }}>
+                  <h3 className="h3" style={{ fontSize: '1.4rem' }}>
                     Looking for a specific archive edition?
-                  </h4>
-                  <p style={{ fontSize: '14px', color: 'var(--pearl-3)', marginTop: '4px', maxWidth: '52ch' }}>
-                    Over two thousand historic pieces and custom commissions reside in our private Geneva vault.
+                  </h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--pearl-3)', marginTop: '6px', maxWidth: '52ch' }}>
+                    Historic references, rare stone allocations, and private commissions can be accessed through our Geneva salon archives.
                   </p>
                 </div>
-                <Link className="btn btn--gold btn--sm" to="/help">
-                  Inquire with Archive
+                <Link className="btn btn--primary" to="/help">
+                  Inquire with Concierge
                 </Link>
               </div>
             </div>

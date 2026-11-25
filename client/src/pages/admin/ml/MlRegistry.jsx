@@ -15,6 +15,10 @@ import { Head, Loading, Metrics } from './shared';
 /* ---------- list ---------- */
 export function MlModels() {
   const { data, loading, error } = useAsync(() => adminApi.ml.models(), []);
+  const [runModel, setRunModel] = useState('');
+  const [runLimit, setRunLimit] = useState(30);
+  const runs = useAsync(() => adminApi.ml.runs({ model: runModel || undefined, limit: runLimit }), [runModel, runLimit]);
+
   if (loading) return <Loading />;
   if (error) return <div className="notice notice--error">{error}</div>;
 
@@ -52,6 +56,57 @@ export function MlModels() {
           </article>
         ))}
       </div>
+
+      <section className="ml-panel" style={{ marginTop: 'var(--spacing-24)' }}>
+        <div className="ml-panel__head">
+          <h2 className="h4">Run history</h2>
+          <span className="tiny">Every training attempt, across all models — including the ones that failed or were skipped</span>
+        </div>
+        <div style={{ display: 'flex', gap: 'var(--spacing-12)', flexWrap: 'wrap', margin: '12px 0' }}>
+          <label className="field">
+            <span className="field__label">Model</span>
+            <select className="input" value={runModel} onChange={(e) => setRunModel(e.target.value)}>
+              <option value="">All models</option>
+              {data.models.map((m) => <option key={m.key} value={m.key}>{m.name}</option>)}
+            </select>
+          </label>
+          <label className="field">
+            <span className="field__label">Show</span>
+            <select className="input" value={runLimit} onChange={(e) => setRunLimit(Number(e.target.value))}>
+              {[10, 30, 50, 100].map((n) => <option key={n} value={n}>Last {n}</option>)}
+            </select>
+          </label>
+        </div>
+
+        {runs.loading ? <Loading /> : runs.error ? (
+          <div className="notice notice--error">{runs.error}</div>
+        ) : !runs.data?.runs?.length ? (
+          <div className="notice">No training runs recorded{runModel ? ' for that model' : ''} yet.</div>
+        ) : (
+          <div className="tbl-wrap">
+            <table className="tbl">
+              <thead>
+                <tr><th>Started</th><th>Model</th><th>Trigger</th><th>Status</th><th>Winner</th><th className="tr">Rows</th><th className="tr">SKUs</th><th>By</th><th>Note</th></tr>
+              </thead>
+              <tbody>
+                {runs.data.runs.map((r) => (
+                  <tr key={r.id}>
+                    <td className="mono tiny" style={{ textTransform: 'none' }}>{formatShortDate(r.started_at)}</td>
+                    <td>{r.model_key}</td>
+                    <td>{r.trigger}</td>
+                    <td><span className={`pill pill--${r.status}`}>{r.status}</span></td>
+                    <td className="tiny">{r.winner || '—'}</td>
+                    <td className="tr mono">{r.rows_used ?? '—'}</td>
+                    <td className="tr mono">{r.skus ?? '—'}</td>
+                    <td className="tiny">{r.by_name || '—'}</td>
+                    <td className="tiny" style={{ textTransform: 'none' }}>{r.message || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
     </>
   );
 }

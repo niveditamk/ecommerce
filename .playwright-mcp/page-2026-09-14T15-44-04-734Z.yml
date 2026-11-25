@@ -1,0 +1,225 @@
+- generic [ref=f20e3]:
+  - complementary "Admin navigation" [ref=f20e4]:
+    - generic [ref=f20e5]:
+      - generic [ref=f20e6]: AURELIS
+      - generic [ref=f20e7]: Executive · AI Admin
+    - navigation [ref=f20e8]:
+      - generic [ref=f20e9]:
+        - heading "Executive Command" [level=2] [ref=f20e10]
+        - link "Command Center" [ref=f20e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f20e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f20e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f20e14]
+        - link "Inventory Management" [ref=f20e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f20e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f20e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f20e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f20e19]
+        - link "Sales & BI Analytics" [ref=f20e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f20e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f20e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f20e23]
+        - link "Products" [ref=f20e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f20e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f20e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f20e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f20e28]:
+        - heading "System & Governance" [level=2] [ref=f20e29]
+        - link "Staff Management" [ref=f20e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f20e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f20e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f20e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f20e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f20e35]:
+      - generic [ref=f20e36]: Hélène Marchand
+      - generic [ref=f20e37]: Administrator
+      - button "Sign out" [ref=f20e38] [cursor=pointer]
+  - generic [ref=f20e39]:
+    - banner [ref=f20e40]:
+      - generic [ref=f20e42]:
+        - generic [ref=f20e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f20e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f20e45]: Period Filter
+        - combobox "Filter by time period" [ref=f20e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f20e47]:
+        - link "5 Alerts" [ref=f20e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f20e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f20e52]:
+      - generic [ref=f20e53]:
+        - generic [ref=f20e55]:
+          - generic [ref=f20e56]: Artificial Intelligence Engine
+          - heading "AI Intelligence & Forecasting" [level=1] [ref=f20e57]
+          - paragraph [ref=f20e58]: Predictive demand, autonomous anomaly detection, and decision-support workflows.
+        - tablist [ref=f20e59]:
+          - tab "AI Alert Center" [selected] [ref=f20e60] [cursor=pointer]
+          - tab "Demand Forecasting" [ref=f20e61] [cursor=pointer]
+          - tab "Stockout Risk Matrix" [ref=f20e62] [cursor=pointer]
+          - tab "Smart Replenishment" [ref=f20e63] [cursor=pointer]
+          - tab "Overstock & Dead Stock" [ref=f20e64] [cursor=pointer]
+          - tab "What-If Simulator" [ref=f20e65] [cursor=pointer]
+          - tab "AI Evaluation & Learning" [ref=f20e66] [cursor=pointer]
+        - generic [ref=f20e68]:
+          - generic [ref=f20e70]:
+            - button "All Alerts (5)" [ref=f20e79] [cursor=pointer]
+            - button "Critical" [ref=f20e72] [cursor=pointer]
+            - button "Warning" [ref=f20e73] [cursor=pointer]
+            - button "Information" [ref=f20e74] [cursor=pointer]
+          - generic [ref=f20e75]:
+            - generic [ref=f20e80]:
+              - generic [ref=f20e81]:
+                - generic [ref=f20e82]:
+                  - generic [ref=f20e83]: CRITICAL
+                  - generic [ref=f20e84]: LEATHER
+                  - generic [ref=f20e85]: aur-402
+                - generic [ref=f20e86]:
+                  - text: "Confidence:"
+                  - strong [ref=f20e87]: 94%
+                  - text: · 9/11/2026
+              - heading "Imminent Stockout on Chronographe 1911" [level=3] [ref=f20e88]
+              - generic [ref=f20e89]:
+                - generic [ref=f20e90]:
+                  - generic [ref=f20e91]: Identified Problem
+                  - paragraph [ref=f20e92]: Available inventory is 3 units; forecast demand is 1.4 units/day. Expected depletion in 2.1 days.
+                - generic [ref=f20e93]:
+                  - generic [ref=f20e94]: Business Impact
+                  - paragraph [ref=f20e95]: Projected missed revenue of ₹4,20,000 over 14 days if unreplenished.
+              - generic [ref=f20e96]:
+                - generic [ref=f20e97]:
+                  - text: "Recommended Action:"
+                  - strong [ref=f20e98]: Raise Purchase Order
+                - generic [ref=f20e99]:
+                  - button "Approve" [ref=f20e100] [cursor=pointer]
+                  - button "Snooze (24h)" [ref=f20e101] [cursor=pointer]
+                  - button "Reject" [ref=f20e102] [cursor=pointer]
+                  - button "Mark Resolved" [ref=f20e103] [cursor=pointer]
+            - generic [ref=f20e104]:
+              - generic [ref=f20e105]:
+                - generic [ref=f20e106]: CRITICAL
+                - generic [ref=f20e108]:
+                  - text: "Confidence:"
+                  - strong [ref=f20e109]: 91%
+                  - text: · 9/11/2026
+              - heading "Supplier Dubois Dépraz Average Delay Alert" [level=3] [ref=f20e110]
+              - generic [ref=f20e111]:
+                - generic [ref=f20e112]:
+                  - generic [ref=f20e113]: Identified Problem
+                  - paragraph [ref=f20e114]: Average lead time increased by 3.8 days over the last 60 days on calibre batch shipments.
+                - generic [ref=f20e115]:
+                  - generic [ref=f20e116]: Business Impact
+                  - paragraph [ref=f20e117]: 3 dependent timepiece releases risk delayed assembly and fulfillment.
+              - generic [ref=f20e118]:
+                - generic [ref=f20e119]:
+                  - text: "Recommended Action:"
+                  - strong [ref=f20e120]: Expedite Shipments
+                - generic [ref=f20e121]:
+                  - button "Approve" [ref=f20e122] [cursor=pointer]
+                  - button "Snooze (24h)" [ref=f20e123] [cursor=pointer]
+                  - button "Reject" [ref=f20e124] [cursor=pointer]
+                  - button "Mark Resolved" [ref=f20e125] [cursor=pointer]
+            - generic [ref=f20e126]:
+              - generic [ref=f20e127]:
+                - generic [ref=f20e128]:
+                  - generic [ref=f20e129]: WARNING
+                  - generic [ref=f20e130]: JEWELLERY
+                  - generic [ref=f20e131]: aur-104
+                - generic [ref=f20e132]:
+                  - text: "Confidence:"
+                  - strong [ref=f20e133]: 88%
+                  - text: · 9/11/2026
+              - heading "Elevated Days of Cover on Barenia Weekend Bag" [level=3] [ref=f20e134]
+              - generic [ref=f20e135]:
+                - generic [ref=f20e136]:
+                  - generic [ref=f20e137]: Identified Problem
+                  - paragraph [ref=f20e138]: Current stock of 24 units with sales velocity of 0.2 units/day represents 120 days of inventory.
+                - generic [ref=f20e139]:
+                  - generic [ref=f20e140]: Business Impact
+                  - paragraph [ref=f20e141]: ₹18,50,000 in working capital tied up; carrying cost accumulating.
+              - generic [ref=f20e142]:
+                - generic [ref=f20e143]:
+                  - text: "Recommended Action:"
+                  - strong [ref=f20e144]: Configure Editorial Spotlight
+                - generic [ref=f20e145]:
+                  - button "Approve" [ref=f20e146] [cursor=pointer]
+                  - button "Snooze (24h)" [ref=f20e147] [cursor=pointer]
+                  - button "Reject" [ref=f20e148] [cursor=pointer]
+                  - button "Mark Resolved" [ref=f20e149] [cursor=pointer]
+            - generic [ref=f20e150]:
+              - generic [ref=f20e151]:
+                - generic [ref=f20e152]:
+                  - generic [ref=f20e153]: WARNING
+                  - generic [ref=f20e154]: HOROLOGY
+                  - generic [ref=f20e155]: aur-201
+                - generic [ref=f20e156]:
+                  - text: "Confidence:"
+                  - strong [ref=f20e157]: 92%
+                  - text: · 9/11/2026
+              - heading "Unusual Demand Surge in Paris Atelier" [level=3] [ref=f20e158]
+              - generic [ref=f20e159]:
+                - generic [ref=f20e160]:
+                  - generic [ref=f20e161]: Identified Problem
+                  - paragraph [ref=f20e162]: Extrait de Rose des Cendres sales in Paris increased 240% week-over-week.
+                - generic [ref=f20e163]:
+                  - generic [ref=f20e164]: Business Impact
+                  - paragraph [ref=f20e165]: Paris Vault stock will deplete 9 days ahead of regional forecast.
+              - generic [ref=f20e166]:
+                - generic [ref=f20e167]:
+                  - text: "Recommended Action:"
+                  - strong [ref=f20e168]: Transfer from Zurich
+                - generic [ref=f20e169]:
+                  - button "Approve" [ref=f20e170] [cursor=pointer]
+                  - button "Snooze (24h)" [ref=f20e171] [cursor=pointer]
+                  - button "Reject" [ref=f20e172] [cursor=pointer]
+                  - button "Mark Resolved" [ref=f20e173] [cursor=pointer]
+            - generic [ref=f20e174]:
+              - generic [ref=f20e175]:
+                - generic [ref=f20e176]: INFO
+                - generic [ref=f20e178]:
+                  - text: "Confidence:"
+                  - strong [ref=f20e179]: 99%
+                  - text: · 9/11/2026
+              - heading "Monthly Revenue Milestone Achieved" [level=3] [ref=f20e180]
+              - generic [ref=f20e181]:
+                - generic [ref=f20e182]:
+                  - generic [ref=f20e183]: Identified Problem
+                  - paragraph [ref=f20e184]: Net revenue for the current 30-day period exceeded target threshold by 14.2%.
+                - generic [ref=f20e185]:
+                  - generic [ref=f20e186]: Business Impact
+                  - paragraph [ref=f20e187]: Strongest growth observed in Fine Jewellery (+18%) and Horology (+12%).
+              - generic [ref=f20e188]:
+                - generic [ref=f20e189]:
+                  - text: "Recommended Action:"
+                  - strong [ref=f20e190]: View Financial Report
+                - generic [ref=f20e191]:
+                  - button "Approve" [ref=f20e192] [cursor=pointer]
+                  - button "Snooze (24h)" [ref=f20e193] [cursor=pointer]
+                  - button "Reject" [ref=f20e194] [cursor=pointer]
+                  - button "Mark Resolved" [ref=f20e195] [cursor=pointer]
+  - button "Open AI assistant" [ref=f20e78] [cursor=pointer]: Ask AI

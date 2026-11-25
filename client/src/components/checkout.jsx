@@ -10,16 +10,16 @@ import { useStore } from '../context/StoreContext';
 import { dx, money, paletteForVariant, initials } from '../lib/format';
 
 const CHECKOUT_STEPS = [
-  { id: 'login', label: '01 // IDENTITY', to: '/checkout/login' },
-  { id: 'shipping', label: '02 // DISPATCH', to: '/checkout/shipping' },
-  { id: 'payment', label: '03 // SETTLEMENT', to: '/checkout/payment' },
-  { id: 'review', label: '04 // VERIFY & COMMIT', to: '/checkout/review' }
+  { id: 'login', step: 1, label: 'Identification', to: '/checkout/login' },
+  { id: 'shipping', step: 2, label: 'Delivery', to: '/checkout/shipping' },
+  { id: 'payment', step: 3, label: 'Payment', to: '/checkout/payment' },
+  { id: 'review', step: 4, label: 'Review & Commit', to: '/checkout/review' }
 ];
 
 export function CheckoutSteps({ current }) {
   const index = CHECKOUT_STEPS.findIndex((s) => s.id === current);
   return (
-    <nav className="checkout-steps" aria-label="Checkout Progress" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '12px 20px', marginBottom: '32px' }}>
+    <nav className="checkout-steps" aria-label="Checkout Progress">
       {CHECKOUT_STEPS.map((step, i) => {
         const isDone = i < index;
         const isCurrent = i === index;
@@ -27,20 +27,21 @@ export function CheckoutSteps({ current }) {
           <div
             key={step.id}
             className={`checkout-step${isCurrent ? ' is-active' : ''}${isDone ? ' is-done' : ''}`}
-            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.06em' }}
           >
             {isDone ? (
-              <Link to={step.to} style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--color-terminal-green-text)', fontWeight: 700 }}>
-                <span>[✓]</span>
+              <Link to={step.to} className="checkout-step" style={{ textDecoration: 'none' }}>
+                <span className="checkout-step-badge">✓</span>
                 <span>{step.label}</span>
               </Link>
             ) : (
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: isCurrent ? 'var(--pearl)' : 'var(--pearl-4)', fontWeight: isCurrent ? 700 : 500 }}>
-                {isCurrent && <span style={{ color: 'var(--color-terminal-green-text)' }}>&gt;</span>}
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="checkout-step-badge">{step.step}</span>
                 <span>{step.label}</span>
               </span>
             )}
-            {i < CHECKOUT_STEPS.length - 1 && <span style={{ opacity: 0.3, margin: '0 10px' }}>&middot;&middot;&middot;</span>}
+            {i < CHECKOUT_STEPS.length - 1 && (
+              <span style={{ opacity: 0.25, margin: '0 8px', fontSize: '0.8rem' }}>&rarr;</span>
+            )}
           </div>
         );
       })}
@@ -61,23 +62,31 @@ export function OrderSummary({ showPromo = true, editable = true }) {
   };
 
   return (
-    <aside style={{ background: 'var(--color-paper)', border: '1px solid var(--line-dark)', borderRadius: 'var(--r-sm)', padding: '22px' }}>
-      <div className="between" style={{ marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid var(--line)' }}>
-        <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, letterSpacing: '0.06em' }}>
-          // TRANSACTION LEDGER ({totals.count} {totals.count === 1 ? 'SPECIMEN' : 'SPECIMENS'})
+    <aside
+      style={{
+        background: '#FFFFFF',
+        border: '1px solid var(--line)',
+        borderRadius: 'var(--r-md)',
+        padding: '24px',
+        boxShadow: 'var(--sh-1)'
+      }}
+    >
+      <div className="between" style={{ marginBottom: '18px', paddingBottom: '12px', borderBottom: '1px solid var(--line)' }}>
+        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--pearl)', fontWeight: 500, margin: 0 }}>
+          Order Summary ({totals.count} {totals.count === 1 ? 'Piece' : 'Pieces'})
         </h3>
         {editable && (
-          <Link to="/cart" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--pearl-3)', textDecoration: 'underline' }}>
-            [ EDIT QUEUE ]
+          <Link to="/cart" style={{ fontSize: '0.78rem', color: 'var(--gold-text)', textDecoration: 'none', fontWeight: 600 }}>
+            Edit Bag
           </Link>
         )}
       </div>
 
       {/* Cart Items List */}
-      <div style={{ display: 'grid', gap: '12px', marginBottom: '18px' }}>
+      <div style={{ display: 'grid', gap: '14px', marginBottom: '20px' }}>
         {cart.map((line) => (
-          <div key={line.key} style={{ display: 'grid', gridTemplateColumns: '48px 1fr auto', gap: '12px', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '10px' }}>
-            <div style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: 'var(--r-xs)', background: 'var(--color-paper-light)', border: '1px solid var(--line)' }}>
+          <div key={line.key} style={{ display: 'grid', gridTemplateColumns: '54px 1fr auto', gap: '14px', alignItems: 'center', borderBottom: '1px solid var(--line)', paddingBottom: '12px' }}>
+            <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', borderRadius: 'var(--r-xs)', background: 'radial-gradient(circle at center, #FFFFFF 40%, #F5F2EB 100%)', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px' }}>
               <ProductArt
                 id={line.product.id}
                 shape={line.product.shape}
@@ -86,14 +95,14 @@ export function OrderSummary({ showPromo = true, editable = true }) {
               />
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-grotesk)', fontSize: '0.88rem', fontWeight: 700, color: 'var(--pearl)', lineHeight: 1.2 }}>
+              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.98rem', fontWeight: 500, color: 'var(--pearl)', lineHeight: 1.25 }}>
                 {dx(line.product.name)}
               </div>
-              <div className="tiny" style={{ fontFamily: 'var(--font-mono)', color: 'var(--pearl-3)', marginTop: '2px' }}>
-                {[line.variant, line.size].filter(Boolean).map(dx).join(' · ').toUpperCase()} &times; {line.qty}
+              <div style={{ fontSize: '0.76rem', color: 'var(--pearl-3)', marginTop: '3px' }}>
+                {[line.variant, line.size].filter(Boolean).map(dx).join(' &middot; ')} &times; {line.qty}
               </div>
             </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.88rem', fontWeight: 700 }}>
+            <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--pearl)' }}>
               {money(line.lineTotal)}
             </div>
           </div>
@@ -102,55 +111,64 @@ export function OrderSummary({ showPromo = true, editable = true }) {
 
       {/* Promo Form */}
       {showPromo && (
-        <div style={{ marginBottom: '16px', paddingTop: '10px' }}>
+        <div style={{ marginBottom: '18px', paddingTop: '8px' }}>
           {checkout.promo ? (
-            <div className="between" style={{ padding: '6px 10px', background: 'var(--color-terminal-green-dim)', border: '1px solid var(--line-green)', borderRadius: 'var(--r-xs)' }}>
-              <span className="tiny" style={{ color: 'var(--color-terminal-green-text)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>[ {checkout.promo.code} APPLIED ]</span>
-              <button type="button" className="tiny" onClick={clearPromo} style={{ color: 'var(--error)', fontFamily: 'var(--font-mono)' }}>[ REMOVE ]</button>
+            <div className="between" style={{ padding: '8px 12px', background: 'var(--color-paper-light)', border: '1px solid var(--gold)', borderRadius: 'var(--r-xs)' }}>
+              <span style={{ color: 'var(--gold-text)', fontSize: '0.8rem', fontWeight: 600 }}>
+                Privilege [{checkout.promo.code}] Applied
+              </span>
+              <button type="button" onClick={clearPromo} style={{ color: 'var(--error)', background: 'none', border: 'none', fontSize: '0.76rem', cursor: 'pointer', textDecoration: 'underline' }}>
+                Remove
+              </button>
             </div>
           ) : (
-            <form onSubmit={submitPromo} style={{ display: 'flex', gap: '6px' }}>
+            <form onSubmit={submitPromo} style={{ display: 'flex', gap: '8px' }}>
               <input
                 type="text"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                placeholder="PROMO CODE >"
-                style={{ padding: '6px 10px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', flex: 1, textTransform: 'uppercase' }}
+                placeholder="Privilege code"
+                style={{
+                  padding: '8px 14px',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.82rem',
+                  background: '#FFFFFF',
+                  border: '1px solid var(--line-control)',
+                  borderRadius: 'var(--r-pill)',
+                  flex: 1,
+                  textTransform: 'uppercase'
+                }}
               />
               <button type="submit" className="btn btn--sm btn--gold" disabled={busy}>
-                APPLY
+                Apply
               </button>
             </form>
           )}
         </div>
       )}
 
-      {/* Price Breakdown with dotted leaders */}
-      <div style={{ paddingTop: '10px', borderTop: '1px solid var(--line)' }}>
-        <div className="console-summary-row">
-          <span>SUBTOTAL</span>
-          <span className="console-dots" />
+      {/* Price Breakdown */}
+      <div style={{ paddingTop: '8px', borderTop: '1px solid var(--line)' }}>
+        <div className="luxury-summary-row">
+          <span>Subtotal</span>
           <span>{money(totals.subtotal)}</span>
         </div>
         {totals.discount > 0 && (
-          <div className="console-summary-row" style={{ color: 'var(--color-terminal-green-text)' }}>
-            <span>PROMO [{dx(checkout.promo?.label || 'DISCOUNT')}]</span>
-            <span className="console-dots" />
+          <div className="luxury-summary-row" style={{ color: 'var(--gold-text)' }}>
+            <span>Privilege [{dx(checkout.promo?.label || 'DISCOUNT')}]</span>
             <span>&minus;{money(totals.discount)}</span>
           </div>
         )}
-        <div className="console-summary-row">
-          <span>INSURED DISPATCH</span>
-          <span className="console-dots" />
-          <span>{totals.shipping ? money(totals.shipping) : 'COMPLIMENTARY'}</span>
+        <div className="luxury-summary-row">
+          <span>Complimentary Insured Delivery</span>
+          <span style={{ color: 'var(--success)' }}>{totals.shipping ? money(totals.shipping) : 'Complimentary'}</span>
         </div>
-        <div className="console-summary-row">
-          <span>GST / STATUTORY DUTIES</span>
-          <span className="console-dots" />
+        <div className="luxury-summary-row">
+          <span>Goods &amp; Services Tax (GST included)</span>
           <span>{money(totals.tax)}</span>
         </div>
-        <div className="console-total-row">
-          <span>COMMIT TOTAL</span>
+        <div className="luxury-total-row">
+          <span>Total</span>
           <span>{money(totals.total)}</span>
         </div>
       </div>

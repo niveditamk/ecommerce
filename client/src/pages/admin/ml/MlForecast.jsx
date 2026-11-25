@@ -9,14 +9,18 @@ import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAsync } from '../../../lib/useAsync';
 import adminApi from '../../../lib/adminApi';
+import { useAdmin } from '../../../context/AdminContext';
 import { dx } from '../../../lib/format';
 import { Head, Loading, Confidence, Evidence, Series, Metrics, Risk } from './shared';
 
 const HORIZONS = [7, 14, 30, 60, 90];
 
 export default function MlForecast() {
+  const { can } = useAdmin();
   const [params, setParams] = useSearchParams();
   const sku = params.get('sku') || '';
+  const [snapBusy, setSnapBusy] = useState(false);
+  const [snapResult, setSnapResult] = useState(null);
 
   const products = useAsync(() => adminApi.products({ perPage: 200, sort: 'name' }), []);
   const list = products.data?.items || [];
@@ -34,6 +38,18 @@ export default function MlForecast() {
     setParams(next);
   };
 
+  const runSnapshot = async () => {
+    setSnapBusy(true); setSnapResult(null);
+    try {
+      const out = await adminApi.ml.snapshot(30);
+      setSnapResult({ ok: true, saved: out.saved, version: out.version });
+    } catch (err) {
+      setSnapResult({ ok: false, reason: err.payload?.reason || err.message });
+    } finally {
+      setSnapBusy(false);
+    }
+  };
+
   return (
     <>
       <Head
@@ -47,7 +63,20 @@ export default function MlForecast() {
             {list.map((p) => <option key={p.id} value={p.id}>{dx(p.name)} · {p.id}</option>)}
           </select>
         </label>
+        {can('ai.manage') && (
+          <button type="button" className="btn btn--outline btn--sm" onClick={runSnapshot} disabled={snapBusy}>
+            {snapBusy ? 'Saving…' : 'Generate snapshot (30d)'}
+          </button>
+        )}
       </Head>
+
+      {snapResult && (
+        <div className={`notice ${snapResult.ok ? '' : 'notice--warning'}`} style={{ marginBottom: 'var(--spacing-12)' }}>
+          {snapResult.ok
+            ? `Saved ${snapResult.saved} prediction(s) from version ${snapResult.version} for later scoring against reality.`
+            : snapResult.reason}
+        </div>
+      )}
 
       {loading && <Loading />}
       {error && <div className="notice notice--error">{error}</div>}

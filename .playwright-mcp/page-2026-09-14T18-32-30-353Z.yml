@@ -1,0 +1,121 @@
+- generic [ref=f75e3]:
+  - complementary "Admin navigation" [ref=f75e4]:
+    - generic [ref=f75e5]:
+      - generic [ref=f75e6]: AURELIS
+      - generic [ref=f75e7]: Executive · AI Admin
+    - navigation [ref=f75e8]:
+      - generic [ref=f75e9]:
+        - heading "Executive Command" [level=2] [ref=f75e10]
+        - link "Command Center" [ref=f75e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f75e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f75e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f75e14]
+        - link "Inventory Management" [ref=f75e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f75e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f75e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f75e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f75e19]
+        - link "Sales & BI Analytics" [ref=f75e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f75e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f75e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f75e23]
+        - link "Products" [ref=f75e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f75e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f75e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f75e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f75e28]:
+        - heading "System & Governance" [level=2] [ref=f75e29]
+        - link "Staff Management" [ref=f75e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f75e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f75e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f75e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f75e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f75e35]:
+      - generic [ref=f75e36]: Hélène Marchand
+      - generic [ref=f75e37]: Administrator
+      - button "Sign out" [ref=f75e38] [cursor=pointer]
+  - generic [ref=f75e39]:
+    - banner [ref=f75e40]:
+      - generic [ref=f75e42]:
+        - generic [ref=f75e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f75e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f75e45]: Period Filter
+        - combobox "Filter by time period" [ref=f75e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f75e47]:
+        - link "4 Alerts" [ref=f75e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f75e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f75e52]:
+      - generic [ref=f75e53]:
+        - generic [ref=f75e54]:
+          - generic [ref=f75e55]:
+            - generic [ref=f75e56]: Procurement & Supply Chain
+            - heading "Supplier Analytics & Purchase Orders" [level=1] [ref=f75e57]
+            - paragraph [ref=f75e58]: Partner scorecards, lead time optimization, and automated receipt-to-inventory restocking.
+          - generic [ref=f75e59]:
+            - button "+ Create Purchase Order" [ref=f75e60] [cursor=pointer]
+            - button "↻ Refresh" [ref=f75e61] [cursor=pointer]
+        - generic [ref=f75e62]:
+          - generic [ref=f75e63]:
+            - generic [ref=f75e64]: Total Purchase Orders
+            - generic [ref=f75e65]: "0"
+          - generic [ref=f75e66]:
+            - generic [ref=f75e67]: Active / In-Flight
+            - generic [ref=f75e68]: "0"
+          - generic [ref=f75e69]:
+            - generic [ref=f75e70]: Total Procurement Value
+            - generic [ref=f75e71]: ₹0
+          - generic [ref=f75e72]:
+            - generic [ref=f75e73]: Certified Suppliers
+            - generic [ref=f75e74]: "0"
+          - generic [ref=f75e75]:
+            - generic [ref=f75e76]: Fulfilled Receipts
+            - generic [ref=f75e77]: "0"
+        - tablist [ref=f75e78]:
+          - tab "📋 Purchase Orders Board (0)" [selected] [ref=f75e79] [cursor=pointer]
+          - tab "🏆 Supplier Scorecards & Lead Times (0)" [ref=f75e80] [cursor=pointer]
+        - generic [ref=f75e81]:
+          - generic [ref=f75e82]:
+            - generic [ref=f75e83]:
+              - generic [ref=f75e84]: Status
+              - combobox "Status" [ref=f75e85]:
+                - option "All PO Statuses" [selected]
+                - option "Pending Approval"
+                - option "Approved"
+                - option "Sent to Supplier"
+                - option "Partially Received"
+                - option "Received (Restocked)"
+                - option "Cancelled"
+              - generic [ref=f75e86]: Supplier
+              - combobox "Supplier" [ref=f75e87]:
+                - option "All Suppliers" [selected]
+            - generic [ref=f75e88]: Auto-restock active · Receiving items automatically logs warehouse balance
+          - generic [ref=f75e89]: Retrieving purchase order records...
+  - button "Open AI assistant" [ref=f75e91] [cursor=pointer]: Ask AI

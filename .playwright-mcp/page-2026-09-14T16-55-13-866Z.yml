@@ -1,0 +1,154 @@
+- generic [ref=f39e3]:
+  - complementary "Admin navigation" [ref=f39e4]:
+    - generic [ref=f39e5]:
+      - generic [ref=f39e6]: AURELIS
+      - generic [ref=f39e7]: Executive · AI Admin
+    - navigation [ref=f39e8]:
+      - generic [ref=f39e9]:
+        - heading "Executive Command" [level=2] [ref=f39e10]
+        - link "Command Center" [ref=f39e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f39e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f39e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f39e14]
+        - link "Inventory Management" [ref=f39e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f39e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f39e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f39e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f39e19]
+        - link "Sales & BI Analytics" [ref=f39e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f39e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f39e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f39e23]
+        - link "Products" [ref=f39e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f39e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f39e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f39e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f39e28]:
+        - heading "System & Governance" [level=2] [ref=f39e29]
+        - link "Staff Management" [ref=f39e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f39e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f39e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f39e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f39e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f39e35]:
+      - generic [ref=f39e36]: Hélène Marchand
+      - generic [ref=f39e37]: Administrator
+      - button "Sign out" [ref=f39e38] [cursor=pointer]
+  - generic [ref=f39e39]:
+    - banner [ref=f39e40]:
+      - generic [ref=f39e42]:
+        - generic [ref=f39e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f39e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f39e45]: Period Filter
+        - combobox "Filter by time period" [ref=f39e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f39e47]:
+        - link "5 Alerts" [ref=f39e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f39e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f39e52]:
+      - generic [ref=f39e53]:
+        - generic [ref=f39e54]:
+          - generic [ref=f39e55]:
+            - generic [ref=f39e56]: Inventory Management System
+            - heading "Real-Time Inventory & Stock Operations" [level=1] [ref=f39e57]
+            - paragraph [ref=f39e58]: Multi-warehouse stock allocation, auditable transaction ledger, and inventory adjustments.
+          - generic [ref=f39e59]:
+            - button "+ Adjust Stock Balance" [ref=f39e60] [cursor=pointer]
+            - button "↻ Refresh" [ref=f39e61] [cursor=pointer]
+        - generic [ref=f39e62]:
+          - generic [ref=f39e63]:
+            - generic [ref=f39e64]: Total SKUs
+            - generic [ref=f39e65]: "140"
+          - generic [ref=f39e66]:
+            - generic [ref=f39e67]: Units On Hand
+            - generic [ref=f39e68]: 1,608
+          - generic [ref=f39e69]:
+            - generic [ref=f39e70]: Inventory Valuation
+            - generic [ref=f39e71]: ₹20,04,02,100
+          - generic [ref=f39e72]:
+            - generic [ref=f39e73]: Low Stock Alerts
+            - generic [ref=f39e74]: "44"
+          - generic [ref=f39e75]:
+            - generic [ref=f39e76]: Stockouts
+            - generic [ref=f39e77]: "19"
+          - generic "Parfums batches expiring within 30 days" [ref=f39e78]:
+            - generic [ref=f39e79]: Expiring Batches (30d)
+            - generic [ref=f39e80]: "1"
+        - tablist [ref=f39e81]:
+          - tab "📦 Stock Levels & Warehouses (25)" [ref=f39e100] [cursor=pointer]
+          - tab "📜 Stock Movements Ledger (25)" [ref=f39e101] [cursor=pointer]
+          - tab "🔢 Cycle Counts (0 open)" [active] [selected] [ref=f39e84] [cursor=pointer]
+        - generic [ref=f39e102]:
+          - generic [ref=f39e103]:
+            - generic [ref=f39e104]: A physical count of what is actually on the shelf, reconciled against what the system expects.
+            - button "+ Start Cycle Count" [ref=f39e105] [cursor=pointer]
+          - table [ref=f39e107]:
+            - rowgroup [ref=f39e108]:
+              - row [ref=f39e109]:
+                - 'columnheader "Count #" [ref=f39e110]'
+                - columnheader "Warehouse" [ref=f39e111]
+                - columnheader "Scope" [ref=f39e112]
+                - columnheader "Progress" [ref=f39e113]
+                - columnheader "Variances" [ref=f39e114]
+                - columnheader "Status" [ref=f39e115]
+                - columnheader "Started" [ref=f39e116]
+                - columnheader "Action" [ref=f39e117]
+            - rowgroup [ref=f39e118]:
+              - row [ref=f39e119]:
+                - cell "CC-2026-53701" [ref=f39e120]
+                - cell "GVA-ATELIER" [ref=f39e121]
+                - cell "low stock" [ref=f39e122]
+                - cell "84 / 84" [ref=f39e123]
+                - cell "0" [ref=f39e124]
+                - cell "Completed" [ref=f39e125]
+                - cell "2026-09-14" [ref=f39e127]
+                - cell [ref=f39e128]:
+                  - button "View" [ref=f39e129] [cursor=pointer]
+              - row [ref=f39e130]:
+                - cell "CC-2026-89854" [ref=f39e131]
+                - cell "ZRH-CENTRAL" [ref=f39e132]
+                - cell "all" [ref=f39e133]
+                - cell "0 / 140" [ref=f39e134]
+                - cell "0" [ref=f39e135]
+                - cell "Cancelled" [ref=f39e136]
+                - cell "2026-09-14" [ref=f39e138]
+                - cell [ref=f39e139]:
+                  - button "View" [ref=f39e140] [cursor=pointer]
+              - row [ref=f39e141]:
+                - cell "CC-2026-28129" [ref=f39e142]
+                - cell "GVA-ATELIER" [ref=f39e143]
+                - cell "low stock" [ref=f39e144]
+                - cell "84 / 84" [ref=f39e145]
+                - cell "1" [ref=f39e146]
+                - cell "Completed" [ref=f39e147]
+                - cell "2026-09-14" [ref=f39e149]
+                - cell [ref=f39e150]:
+                  - button "View" [ref=f39e151] [cursor=pointer]
+  - button "Open AI assistant" [ref=f39e99] [cursor=pointer]: Ask AI

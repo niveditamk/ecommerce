@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { width:1500px; background:#fff; font-family:'Segoe UI', Arial, sans-serif; padding:30px; }
+  .title { font-size:24px; font-weight:700; color:#1a1a2e; text-align:center; }
+  .subtitle { font-size:13px; color:#555; text-align:center; margin-bottom:10px; }
+  h3 { font-size:16px; margin:26px 0 14px 4px; color:#1a1a2e; border-left:4px solid #3b5bdb; padding-left:8px; }
+  .row { position:relative; height:230px; }
+  .entity { position:absolute; width:150px; padding:14px; border:2px solid #444; background:#f3f3f3; text-align:center; font-size:12px; font-weight:600; top:70px; }
+  .process { position:absolute; width:190px; padding:14px; border-radius:50%; border:2px solid #2f9e5c; background:#eefbf3; text-align:center; font-size:12px; font-weight:600; top:50px; height:150px; display:flex; align-items:center; justify-content:center; }
+  .store { position:absolute; width:170px; padding:10px 14px; border-top:2px solid #8442d6; border-bottom:2px solid #8442d6; background:#f9f6ff; text-align:center; font-size:11.5px; top:80px; }
+  svg { position:absolute; top:0; left:0; width:1500px; height:230px; }
+  .lbl { position:absolute; font-size:10px; color:#555; background:#fff; padding:1px 4px; }
+</style></head>
+<body>
+  <div class="title">AURELIS &mdash; Data Flow Diagrams</div>
+  <div class="subtitle">Level 0 (context) and Level 1 (admin decomposition)</div>
+
+  <h3>Level 0 &mdash; Context Diagram</h3>
+  <div class="row">
+    <svg>
+      <defs><marker id="a0" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#888"/></marker></defs>
+      <line x1="150" y1="145" x2="530" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#a0)"/>
+      <line x1="720" y1="120" x2="1090" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#a0)"/>
+      <line x1="1090" y1="150" x2="720" y2="150" stroke="#888" stroke-width="1.5" marker-end="url(#a0)"/>
+      <line x1="530" y1="150" x2="150" y2="175" stroke="#888" stroke-width="1.5" marker-end="url(#a0)"/>
+    </svg>
+    <div class="lbl" style="left:280px; top:95px;">order, browse, account</div>
+    <div class="lbl" style="left:270px; top:180px;">confirmation, tracking</div>
+    <div class="lbl" style="left:820px; top:95px;">alert, forecast, recommendation</div>
+    <div class="lbl" style="left:800px; top:180px;">approve / adjust / reject</div>
+    <div class="entity" style="left:0px;">CUSTOMER</div>
+    <div class="process" style="left:530px;">AURELIS<br/>Commerce &amp; AI<br/>Inventory System</div>
+    <div class="entity" style="left:1090px;">STAFF / ADMIN</div>
+    <div class="entity" style="left:1300px; top:100px;">SUPPLIER<br/><span style="font-weight:400; font-size:10px;">(via PO lifecycle)</span></div>
+  </div>
+
+  <h3>Level 1 &mdash; Admin / AI Decomposition</h3>
+  <div class="row" style="height:260px;">
+    <svg style="height:260px;">
+      <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#888"/></marker></defs>
+      <line x1="150" y1="150" x2="300" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+      <line x1="490" y1="120" x2="620" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+      <line x1="490" y1="150" x2="300" y2="180" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+      <line x1="810" y1="120" x2="960" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+      <line x1="960" y1="150" x2="810" y2="150" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+      <line x1="1150" y1="120" x2="1300" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+      <line x1="1300" y1="150" x2="1150" y2="150" stroke="#888" stroke-width="1.5" marker-end="url(#a1)"/>
+    </svg>
+    <div class="lbl" style="left:170px; top:100px;">stock movement</div>
+    <div class="lbl" style="left:500px; top:100px;">history</div>
+    <div class="lbl" style="left:830px; top:100px;">read demand</div>
+    <div class="lbl" style="left:820px; top:180px;">alerts, proposals</div>
+    <div class="lbl" style="left:1170px; top:100px;">apply adjustment</div>
+    <div class="lbl" style="left:1160px; top:180px;">feedback / decision</div>
+
+    <div class="process" style="left:0px; width:150px;">1.0<br/>Inventory<br/>Adjustment</div>
+    <div class="store" style="left:300px;">D1 &mdash; inventory_transactions /<br/>warehouse_stock</div>
+    <div class="process" style="left:620px; width:190px;">2.0<br/>AI Forecasting &amp;<br/>Risk Scoring</div>
+    <div class="store" style="left:960px;">D2 &mdash; ml_versions /<br/>ml_predictions</div>
+    <div class="process" style="left:1300px; width:170px;">3.0<br/>Recommendation<br/>&amp; Feedback Loop</div>
+  </div>
+</body></html>

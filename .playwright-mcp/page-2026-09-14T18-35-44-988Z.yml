@@ -1,0 +1,67 @@
+- generic [active] [ref=f81e1]:
+  - generic [ref=f81e2]: AURELIS — System Architecture
+  - generic [ref=f81e3]: "Three-tier architecture: React/Vite client, Express REST API, SQLite persistence, with an AI/ML decision-support layer"
+  - generic [ref=f81e4]:
+    - generic [ref=f81e5]: PRESENTATION LAYER
+    - generic [ref=f81e6]:
+      - generic [ref=f81e7]:
+        - heading "Storefront (React)" [level=4] [ref=f81e8]
+        - paragraph [ref=f81e9]: Customer-facing shop — catalogue, cart, checkout
+      - generic [ref=f81e10]:
+        - heading "Admin Console (React)" [level=4] [ref=f81e11]
+        - paragraph [ref=f81e12]: Command Center, AI Intelligence, Inventory, Procurement, Reports
+      - generic [ref=f81e13]:
+        - heading "Vite Build" [level=4] [ref=f81e14]
+        - paragraph [ref=f81e15]: SPA bundling, HMR in dev, static assets in production
+  - generic [ref=f81e16]: ↓ HTTPS / JSON (fetch, Bearer token auth)
+  - generic [ref=f81e17]:
+    - generic [ref=f81e18]: APPLICATION / API LAYER (Express.js)
+    - generic [ref=f81e19]:
+      - generic [ref=f81e20]:
+        - heading "Auth & RBAC" [level=4] [ref=f81e21]
+        - paragraph [ref=f81e22]: Staff sessions, permission grants, audit logging
+      - generic [ref=f81e23]:
+        - heading "Commerce Routes" [level=4] [ref=f81e24]
+        - paragraph [ref=f81e25]: Products, Orders, Customers, Categories
+      - generic [ref=f81e26]:
+        - heading "Admin Routes" [level=4] [ref=f81e27]
+        - paragraph [ref=f81e28]: Inventory, Procurement, Warehouses, Cycle Counts, Notes, Reports
+      - generic [ref=f81e29]:
+        - heading "ML / AI Routes" [level=4] [ref=f81e30]
+        - paragraph [ref=f81e31]: Forecast, Risk, Reorder, Anomalies, Feedback, Training
+  - generic [ref=f81e32]: ↓
+  - generic [ref=f81e33]:
+    - generic [ref=f81e34]: DOMAIN SERVICE LAYER
+    - generic [ref=f81e35]:
+      - generic [ref=f81e36]:
+        - heading "Inventory Service" [level=4] [ref=f81e37]
+        - paragraph [ref=f81e38]: adjustStock() — single source of truth for every stock mutation
+      - generic [ref=f81e39]:
+        - heading "AI Analytics Engine" [level=4] [ref=f81e40]
+        - paragraph [ref=f81e41]: Forecasting, stockout risk, reorder proposals, anomaly & overstock detection
+      - generic [ref=f81e42]:
+        - heading "ML Trainer & Registry" [level=4] [ref=f81e43]
+        - paragraph [ref=f81e44]: Model versioning, training runs, candidate algorithm search
+      - generic [ref=f81e45]:
+        - heading "Reports & Notes Engine" [level=4] [ref=f81e46]
+        - paragraph [ref=f81e47]: Scheduled report generation, collaboration & @mentions
+  - generic [ref=f81e48]: ↓
+  - generic [ref=f81e49]:
+    - generic [ref=f81e50]: PERSISTENCE LAYER
+    - generic [ref=f81e51]:
+      - generic [ref=f81e52]:
+        - heading "SQLite (node:sqlite)" [level=4] [ref=f81e53]
+        - paragraph [ref=f81e54]: Single-file relational store — products, orders, inventory, ML versions, audit log
+      - generic [ref=f81e55]:
+        - heading "Background Jobs" [level=4] [ref=f81e56]
+        - paragraph [ref=f81e57]: Sweeper (reservation expiry), Report Scheduler (setInterval-based)
+  - generic [ref=f81e58]: ↔ optional, proxied
+  - generic [ref=f81e59]:
+    - generic [ref=f81e60]: EXTERNAL / EVALUATED INTEGRATIONS
+    - generic [ref=f81e61]:
+      - generic [ref=f81e62]:
+        - heading "OpenRouter LLM" [level=4] [ref=f81e63]
+        - paragraph [ref=f81e64]: Free-tier model chain — explains figures, never invents them
+      - generic [ref=f81e65]:
+        - heading "Medusa Commerce Engine" [level=4] [ref=f81e66]
+        - paragraph [ref=f81e67]: Evaluated second inventory system — read-only comparison, not authoritative

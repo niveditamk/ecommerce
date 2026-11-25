@@ -1,0 +1,90 @@
+- generic [ref=f15e3]:
+  - complementary "Admin navigation" [ref=f15e4]:
+    - generic [ref=f15e5]:
+      - generic [ref=f15e6]: AURELIS
+      - generic [ref=f15e7]: Executive · AI Admin
+    - navigation [ref=f15e8]:
+      - generic [ref=f15e9]:
+        - heading "Executive Command" [level=2] [ref=f15e10]
+        - link "Command Center" [ref=f15e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f15e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f15e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f15e14]
+        - link "Inventory Management" [ref=f15e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f15e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f15e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f15e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f15e19]
+        - link "Sales & BI Analytics" [ref=f15e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f15e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f15e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f15e23]
+        - link "Products" [ref=f15e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f15e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f15e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f15e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f15e28]:
+        - heading "System & Governance" [level=2] [ref=f15e29]
+        - link "Staff Management" [ref=f15e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f15e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f15e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f15e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f15e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f15e35]:
+      - generic [ref=f15e36]: Hélène Marchand
+      - generic [ref=f15e37]: Administrator
+      - button "Sign out" [ref=f15e38] [cursor=pointer]
+  - generic [ref=f15e39]:
+    - banner [ref=f15e40]:
+      - generic [ref=f15e42]:
+        - generic [ref=f15e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f15e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f15e45]: Period Filter
+        - combobox "Filter by time period" [ref=f15e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f15e47]:
+        - link "2 Alerts" [ref=f15e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f15e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f15e52]:
+      - generic [ref=f15e53]:
+        - generic [ref=f15e55]:
+          - generic [ref=f15e56]: Artificial Intelligence Engine
+          - heading "AI Intelligence & Forecasting" [level=1] [ref=f15e57]
+          - paragraph [ref=f15e58]: Predictive demand, autonomous anomaly detection, and decision-support workflows.
+        - tablist [ref=f15e59]:
+          - tab "AI Alert Center" [ref=f15e60] [cursor=pointer]
+          - tab "Demand Forecasting" [ref=f15e61] [cursor=pointer]
+          - tab "Stockout Risk Matrix" [ref=f15e62] [cursor=pointer]
+          - tab "Smart Replenishment" [ref=f15e63] [cursor=pointer]
+          - tab "Overstock & Dead Stock" [ref=f15e64] [cursor=pointer]
+          - tab "What-If Simulator" [ref=f15e65] [cursor=pointer]
+          - tab "AI Evaluation & Learning" [selected] [ref=f15e66] [cursor=pointer]
+        - paragraph [ref=f15e70]: "Continuous model feedback loop: measuring accuracy, decision outcomes, and verified capital recovery."
+  - button "Open AI assistant" [ref=f15e74] [cursor=pointer]: Ask AI

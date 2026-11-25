@@ -1,0 +1,132 @@
+- generic [ref=f73e3]:
+  - complementary "Admin navigation" [ref=f73e4]:
+    - generic [ref=f73e5]:
+      - generic [ref=f73e6]: AURELIS
+      - generic [ref=f73e7]: Executive · AI Admin
+    - navigation [ref=f73e8]:
+      - generic [ref=f73e9]:
+        - heading "Executive Command" [level=2] [ref=f73e10]
+        - link "Command Center" [ref=f73e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f73e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f73e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f73e14]
+        - link "Inventory Management" [ref=f73e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f73e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f73e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f73e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f73e19]
+        - link "Sales & BI Analytics" [ref=f73e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f73e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f73e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f73e23]
+        - link "Products" [ref=f73e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f73e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f73e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f73e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f73e28]:
+        - heading "System & Governance" [level=2] [ref=f73e29]
+        - link "Staff Management" [ref=f73e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f73e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f73e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f73e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f73e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f73e35]:
+      - generic [ref=f73e36]: Hélène Marchand
+      - generic [ref=f73e37]: Administrator
+      - button "Sign out" [ref=f73e38] [cursor=pointer]
+  - generic [ref=f73e39]:
+    - banner [ref=f73e40]:
+      - generic [ref=f73e42]:
+        - generic [ref=f73e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f73e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f73e45]: Period Filter
+        - combobox "Filter by time period" [ref=f73e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f73e47]:
+        - link "4 Alerts" [ref=f73e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f73e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f73e52]:
+      - generic [ref=f73e53]:
+        - generic [ref=f73e54]:
+          - generic [ref=f73e55]:
+            - generic [ref=f73e56]: Inventory Management System
+            - heading "Real-Time Inventory & Stock Operations" [level=1] [ref=f73e57]
+            - paragraph [ref=f73e58]: Multi-warehouse stock allocation, auditable transaction ledger, and inventory adjustments.
+          - generic [ref=f73e59]:
+            - button "+ Adjust Stock Balance" [ref=f73e60] [cursor=pointer]
+            - button "↻ Refresh" [ref=f73e61] [cursor=pointer]
+        - generic [ref=f73e62]:
+          - generic [ref=f73e63]:
+            - generic [ref=f73e64]: Total SKUs
+            - generic [ref=f73e65]: "0"
+          - generic [ref=f73e66]:
+            - generic [ref=f73e67]: Units On Hand
+            - generic [ref=f73e68]: "0"
+          - generic [ref=f73e69]:
+            - generic [ref=f73e70]: Inventory Valuation
+            - generic [ref=f73e71]: ₹0
+          - generic [ref=f73e72]:
+            - generic [ref=f73e73]: Low Stock Alerts
+            - generic [ref=f73e74]: "0"
+          - generic [ref=f73e75]:
+            - generic [ref=f73e76]: Stockouts
+            - generic [ref=f73e77]: "0"
+          - generic "Parfums batches expiring within 30 days" [ref=f73e78]:
+            - generic [ref=f73e79]: Expiring Batches (30d)
+            - generic [ref=f73e80]: "0"
+        - tablist [ref=f73e81]:
+          - tab "📦 Stock Levels & Warehouses (0)" [selected] [ref=f73e82] [cursor=pointer]
+          - tab "📜 Stock Movements Ledger (0)" [ref=f73e83] [cursor=pointer]
+          - tab "🔢 Cycle Counts (0 open)" [ref=f73e84] [cursor=pointer]
+        - generic [ref=f73e85]:
+          - generic [ref=f73e86]:
+            - generic [ref=f73e87]:
+              - searchbox "Search SKU, Product Name..." [ref=f73e88]
+              - button "Search" [ref=f73e89] [cursor=pointer]
+            - generic [ref=f73e90]:
+              - generic [ref=f73e91]: Warehouse
+              - combobox "Warehouse" [ref=f73e92]:
+                - option "All Warehouses" [selected]
+              - generic [ref=f73e93]: Category
+              - combobox "Category" [ref=f73e94]:
+                - option "All Collections" [selected]
+                - option "Fine Jewelry"
+                - option "Timepieces"
+                - option "Haute Parfumerie"
+                - option "Leather Goods"
+              - generic [ref=f73e95]: Stock Status
+              - combobox "Stock Status" [ref=f73e96]:
+                - option "All Stock States" [selected]
+                - option "Out of Stock (0)"
+                - option "Low Stock (≤ Reorder Pt)"
+                - option "Healthy Stock"
+                - option "Overstocked (> Safety)"
+          - generic [ref=f73e97]: Loading inventory catalog...
+  - button "Open AI assistant" [ref=f73e99] [cursor=pointer]: Ask AI

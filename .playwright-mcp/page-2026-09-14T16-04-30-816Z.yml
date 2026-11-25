@@ -1,0 +1,803 @@
+- generic [ref=f22e3]:
+  - complementary "Admin navigation" [ref=f22e4]:
+    - generic [ref=f22e5]:
+      - generic [ref=f22e6]: AURELIS
+      - generic [ref=f22e7]: Executive · AI Admin
+    - navigation [ref=f22e8]:
+      - generic [ref=f22e9]:
+        - heading "Executive Command" [level=2] [ref=f22e10]
+        - link "Command Center" [ref=f22e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f22e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f22e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f22e14]
+        - link "Inventory Management" [ref=f22e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f22e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f22e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f22e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f22e19]
+        - link "Sales & BI Analytics" [ref=f22e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f22e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f22e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f22e23]
+        - link "Products" [ref=f22e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f22e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f22e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f22e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f22e28]:
+        - heading "System & Governance" [level=2] [ref=f22e29]
+        - link "Staff Management" [ref=f22e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f22e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f22e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f22e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f22e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f22e35]:
+      - generic [ref=f22e36]: Hélène Marchand
+      - generic [ref=f22e37]: Administrator
+      - button "Sign out" [ref=f22e38] [cursor=pointer]
+  - generic [ref=f22e39]:
+    - banner [ref=f22e40]:
+      - generic [ref=f22e42]:
+        - generic [ref=f22e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f22e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f22e45]: Period Filter
+        - combobox "Filter by time period" [ref=f22e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f22e47]:
+        - link "5 Alerts" [ref=f22e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f22e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f22e52]:
+      - generic [ref=f22e53]:
+        - generic [ref=f22e54]:
+          - generic [ref=f22e55]:
+            - generic [ref=f22e56]: Inventory Management System
+            - heading "Real-Time Inventory & Stock Operations" [level=1] [ref=f22e57]
+            - paragraph [ref=f22e58]: Multi-warehouse stock allocation, auditable transaction ledger, and inventory adjustments.
+          - generic [ref=f22e59]:
+            - button "+ Adjust Stock Balance" [ref=f22e60] [cursor=pointer]
+            - button "↻ Refresh" [ref=f22e61] [cursor=pointer]
+        - generic [ref=f22e62]:
+          - generic [ref=f22e63]:
+            - generic [ref=f22e64]: Total SKUs
+            - generic [ref=f22e65]: "25"
+          - generic [ref=f22e66]:
+            - generic [ref=f22e67]: Units On Hand
+            - generic [ref=f22e68]: NaN
+          - generic [ref=f22e69]:
+            - generic [ref=f22e70]: Inventory Valuation
+            - generic [ref=f22e71]: ₹0
+          - generic [ref=f22e72]:
+            - generic [ref=f22e73]: Low Stock Alerts
+            - generic [ref=f22e74]: "0"
+          - generic [ref=f22e75]:
+            - generic [ref=f22e76]: Stockouts
+            - generic [ref=f22e77]: "0"
+        - tablist [ref=f22e78]:
+          - tab "📦 Stock Levels & Warehouses (25)" [ref=f22e97] [cursor=pointer]
+          - tab "📜 Stock Movements Ledger (0)" [ref=f22e80] [cursor=pointer]
+          - tab "🔢 Cycle Counts (1 open)" [selected] [ref=f22e98] [cursor=pointer]
+        - generic [ref=f22e99]:
+          - generic [ref=f22e759]: "Reconciled: every SKU matched, nothing to adjust."
+          - generic [ref=f22e100]:
+            - generic [ref=f22e149]:
+              - strong [ref=f22e150]: CC-2026-53701
+              - generic [ref=f22e151]: Geneva Main Atelier & Vault · 84 SKUs · Open
+            - button "← Back to list" [ref=f22e152] [cursor=pointer]
+          - generic [ref=f22e103]:
+            - generic [ref=f22e153]:
+              - generic [ref=f22e154]:
+                - generic [ref=f22e155]: Scan or type a SKU, then press Enter
+                - textbox "Scan or type a SKU, then press Enter" [ref=f22e156]:
+                  - /placeholder: aur-101
+              - button "Count +1" [ref=f22e157] [cursor=pointer]
+            - paragraph [ref=f22e158]: Each scan adds one unit to that SKU's counted total. For a quantity you already know, type it directly into the row below instead.
+          - table [ref=f22e160]:
+            - rowgroup [ref=f22e161]:
+              - row [ref=f22e162]:
+                - columnheader "Product / SKU" [ref=f22e163]
+                - columnheader "Expected" [ref=f22e164]
+                - columnheader "Counted" [ref=f22e165]
+                - columnheader "Variance" [ref=f22e166]
+            - rowgroup [ref=f22e167]:
+              - row [ref=f22e168]:
+                - cell "Aldgate Instrument Bag aur-406" [ref=f22e169]:
+                  - generic [ref=f22e170]: Aldgate Instrument Bag
+                  - text: aur-406
+                - cell "3" [ref=f22e171]
+                - cell [ref=f22e172]:
+                  - spinbutton "—" [ref=f22e173]: "3"
+                - cell "0" [ref=f22e174]
+              - row [ref=f22e175]:
+                - cell "Amathus Swivel aur-112" [ref=f22e176]:
+                  - generic [ref=f22e177]: Amathus Swivel
+                  - text: aur-112
+                - cell "0" [ref=f22e178]
+                - cell [ref=f22e179]:
+                  - spinbutton "—" [ref=f22e180]: "0"
+                - cell "0" [ref=f22e181]
+              - row [ref=f22e182]:
+                - cell "Antiquary's Carnelian aur-109" [ref=f22e183]:
+                  - generic [ref=f22e184]: Antiquary's Carnelian
+                  - text: aur-109
+                - cell "0" [ref=f22e185]
+                - cell [ref=f22e186]:
+                  - spinbutton "—" [ref=f22e187]: "0"
+                - cell "0" [ref=f22e188]
+              - row [ref=f22e189]:
+                - cell "Appenzell Cutwork aur-619" [ref=f22e190]:
+                  - generic [ref=f22e191]: Appenzell Cutwork
+                  - text: aur-619
+                - cell "3" [ref=f22e192]
+                - cell [ref=f22e193]:
+                  - spinbutton "—" [ref=f22e194]: "3"
+                - cell "0" [ref=f22e195]
+              - row [ref=f22e196]:
+                - cell "Aquileia Intaglio aur-108" [ref=f22e197]:
+                  - generic [ref=f22e198]: Aquileia Intaglio
+                  - text: aur-108
+                - cell "1" [ref=f22e199]
+                - cell [ref=f22e200]:
+                  - spinbutton "—" [ref=f22e201]: "1"
+                - cell "0" [ref=f22e202]
+              - row [ref=f22e203]:
+                - cell "Argive Collar aur-120" [ref=f22e204]:
+                  - generic [ref=f22e205]: Argive Collar
+                  - text: aur-120
+                - cell "1" [ref=f22e206]
+                - cell [ref=f22e207]:
+                  - spinbutton "—" [ref=f22e208]: "1"
+                - cell "0" [ref=f22e209]
+              - row [ref=f22e210]:
+                - cell "Ashfield Gladstone aur-411" [ref=f22e211]:
+                  - generic [ref=f22e212]: Ashfield Gladstone
+                  - text: aur-411
+                - cell "0" [ref=f22e213]
+                - cell [ref=f22e214]:
+                  - spinbutton "—" [ref=f22e215]: "0"
+                - cell "0" [ref=f22e216]
+              - row [ref=f22e217]:
+                - cell "Aurige Case aur-712" [ref=f22e218]:
+                  - generic [ref=f22e219]: Aurige Case
+                  - text: aur-712
+                - cell "0" [ref=f22e220]
+                - cell [ref=f22e221]:
+                  - spinbutton "—" [ref=f22e222]: "0"
+                - cell "0" [ref=f22e223]
+              - row [ref=f22e224]:
+                - cell "Balancier 17 aur-204" [ref=f22e225]:
+                  - generic [ref=f22e226]: Balancier 17
+                  - text: aur-204
+                - cell "1" [ref=f22e227]
+                - cell [ref=f22e228]:
+                  - spinbutton "—" [ref=f22e229]: "1"
+                - cell "0" [ref=f22e230]
+              - row [ref=f22e231]:
+                - cell "Bascule 18 aur-209" [ref=f22e232]:
+                  - generic [ref=f22e233]: Bascule 18
+                  - text: aur-209
+                - cell "4" [ref=f22e234]
+                - cell [ref=f22e235]:
+                  - spinbutton "—" [ref=f22e236]: "4"
+                - cell "0" [ref=f22e237]
+              - row [ref=f22e238]:
+                - cell "Bastion Tote aur-401" [ref=f22e239]:
+                  - generic [ref=f22e240]: Bastion Tote
+                  - text: aur-401
+                - cell "4" [ref=f22e241]
+                - cell [ref=f22e242]:
+                  - spinbutton "—" [ref=f22e243]: "4"
+                - cell "0" [ref=f22e244]
+              - row [ref=f22e245]:
+                - cell "Baume de Cyrene aur-310" [ref=f22e246]:
+                  - generic [ref=f22e247]: Baume de Cyrene
+                  - text: aur-310
+                - cell "1" [ref=f22e248]
+                - cell [ref=f22e249]:
+                  - spinbutton "—" [ref=f22e250]: "1"
+                - cell "0" [ref=f22e251]
+              - row [ref=f22e252]:
+                - cell "Beffroi Table Clock aur-505" [ref=f22e253]:
+                  - generic [ref=f22e254]: Beffroi Table Clock
+                  - text: aur-505
+                - cell "0" [ref=f22e255]
+                - cell [ref=f22e256]:
+                  - spinbutton "—" [ref=f22e257]: "0"
+                - cell "0" [ref=f22e258]
+              - row [ref=f22e259]:
+                - cell "Bianhu Flask aur-416" [ref=f22e260]:
+                  - generic [ref=f22e261]: Bianhu Flask
+                  - text: aur-416
+                - cell "4" [ref=f22e262]
+                - cell [ref=f22e263]:
+                  - spinbutton "—" [ref=f22e264]: "4"
+                - cell "0" [ref=f22e265]
+              - row [ref=f22e266]:
+                - cell "Blonda Almagro aur-605" [ref=f22e267]:
+                  - generic [ref=f22e268]: Blonda Almagro
+                  - text: aur-605
+                - cell "0" [ref=f22e269]
+                - cell [ref=f22e270]:
+                  - spinbutton "—" [ref=f22e271]: "0"
+                - cell "0" [ref=f22e272]
+              - row [ref=f22e273]:
+                - cell "Bouteille de Treves aur-307" [ref=f22e274]:
+                  - generic [ref=f22e275]: Bouteille de Treves
+                  - text: aur-307
+                - cell "0" [ref=f22e276]
+                - cell [ref=f22e277]:
+                  - spinbutton "—" [ref=f22e278]: "0"
+                - cell "0" [ref=f22e279]
+              - row [ref=f22e280]:
+                - cell "Bracteate Page Marker aur-508" [ref=f22e281]:
+                  - generic [ref=f22e282]: Bracteate Page Marker
+                  - text: aur-508
+                - cell "0" [ref=f22e283]
+                - cell [ref=f22e284]:
+                  - spinbutton "—" [ref=f22e285]: "0"
+                - cell "0" [ref=f22e286]
+              - row [ref=f22e287]:
+                - cell "Brevet Anonyme aur-208" [ref=f22e288]:
+                  - generic [ref=f22e289]: Brevet Anonyme
+                  - text: aur-208
+                - cell "0" [ref=f22e290]
+                - cell [ref=f22e291]:
+                  - spinbutton "—" [ref=f22e292]: "0"
+                - cell "0" [ref=f22e293]
+              - row [ref=f22e294]:
+                - cell "Bukhara Suzani aur-613" [ref=f22e295]:
+                  - generic [ref=f22e296]: Bukhara Suzani
+                  - text: aur-613
+                - cell "0" [ref=f22e297]
+                - cell [ref=f22e298]:
+                  - spinbutton "—" [ref=f22e299]: "0"
+                - cell "0" [ref=f22e300]
+              - row [ref=f22e301]:
+                - cell "Bursa Dival aur-612" [ref=f22e302]:
+                  - generic [ref=f22e303]: Bursa Dival
+                  - text: aur-612
+                - cell "0" [ref=f22e304]
+                - cell [ref=f22e305]:
+                  - spinbutton "—" [ref=f22e306]: "0"
+                - cell "0" [ref=f22e307]
+              - row [ref=f22e308]:
+                - cell "Cachet Travelling Case aur-707" [ref=f22e309]:
+                  - generic [ref=f22e310]: Cachet Travelling Case
+                  - text: aur-707
+                - cell "0" [ref=f22e311]
+                - cell [ref=f22e312]:
+                  - spinbutton "—" [ref=f22e313]: "0"
+                - cell "0" [ref=f22e314]
+              - row [ref=f22e315]:
+                - cell "Calibre 09 Reserve aur-201" [ref=f22e316]:
+                  - generic [ref=f22e317]: Calibre 09 Reserve
+                  - text: aur-201
+                - cell "1" [ref=f22e318]
+                - cell [ref=f22e319]:
+                  - spinbutton "—" [ref=f22e320]: "1"
+                - cell "0" [ref=f22e321]
+              - row [ref=f22e322]:
+                - cell "Canton Manton aur-610" [ref=f22e323]:
+                  - generic [ref=f22e324]: Canton Manton
+                  - text: aur-610
+                - cell "2" [ref=f22e325]
+                - cell [ref=f22e326]:
+                  - spinbutton "—" [ref=f22e327]: "2"
+                - cell "0" [ref=f22e328]
+              - row [ref=f22e329]:
+                - cell "Carlton Optical aur-716" [ref=f22e330]:
+                  - generic [ref=f22e331]: Carlton Optical
+                  - text: aur-716
+                - cell "4" [ref=f22e332]
+                - cell [ref=f22e333]:
+                  - spinbutton "—" [ref=f22e334]: "4"
+                - cell "0" [ref=f22e335]
+              - row [ref=f22e336]:
+                - cell "Chaine et Fusee aur-218" [ref=f22e337]:
+                  - generic [ref=f22e338]: Chaine et Fusee
+                  - text: aur-218
+                - cell "0" [ref=f22e339]
+                - cell [ref=f22e340]:
+                  - spinbutton "—" [ref=f22e341]: "0"
+                - cell "0" [ref=f22e342]
+              - row [ref=f22e343]:
+                - cell "Chalcedon Blue aur-116" [ref=f22e344]:
+                  - generic [ref=f22e345]: Chalcedon Blue
+                  - text: aur-116
+                - cell "1" [ref=f22e346]
+                - cell [ref=f22e347]:
+                  - spinbutton "—" [ref=f22e348]: "1"
+                - cell "0" [ref=f22e349]
+              - row [ref=f22e350]:
+                - cell "Chappuis 1911 aur-317" [ref=f22e351]:
+                  - generic [ref=f22e352]: Chappuis 1911
+                  - text: aur-317
+                - cell "1" [ref=f22e353]
+                - cell [ref=f22e354]:
+                  - spinbutton "—" [ref=f22e355]: "1"
+                - cell "0" [ref=f22e356]
+              - row [ref=f22e357]:
+                - cell "Chevalet Watch Stand aur-520" [ref=f22e358]:
+                  - generic [ref=f22e359]: Chevalet Watch Stand
+                  - text: aur-520
+                - cell "1" [ref=f22e360]
+                - cell [ref=f22e361]:
+                  - spinbutton "—" [ref=f22e362]: "1"
+                - cell "0" [ref=f22e363]
+              - row [ref=f22e364]:
+                - cell "Clerkenwell Three-Quarter aur-205" [ref=f22e365]:
+                  - generic [ref=f22e366]: Clerkenwell Three-Quarter
+                  - text: aur-205
+                - cell "2" [ref=f22e367]
+                - cell [ref=f22e368]:
+                  - spinbutton "—" [ref=f22e369]: "2"
+                - cell "0" [ref=f22e370]
+              - row [ref=f22e371]:
+                - cell "Colcha Castelo aur-614" [ref=f22e372]:
+                  - generic [ref=f22e373]: Colcha Castelo
+                  - text: aur-614
+                - cell "4" [ref=f22e374]
+                - cell [ref=f22e375]:
+                  - spinbutton "—" [ref=f22e376]: "4"
+                - cell "0" [ref=f22e377]
+              - row [ref=f22e378]:
+                - cell "Counter Demonstrator aur-215" [ref=f22e379]:
+                  - generic [ref=f22e380]: Counter Demonstrator
+                  - text: aur-215
+                - cell "3" [ref=f22e381]
+                - cell [ref=f22e382]:
+                  - spinbutton "—" [ref=f22e383]: "3"
+                - cell "0" [ref=f22e384]
+              - row [ref=f22e385]:
+                - cell "Crown at Three aur-212" [ref=f22e386]:
+                  - generic [ref=f22e387]: Crown at Three
+                  - text: aur-212
+                - cell "0" [ref=f22e388]
+                - cell [ref=f22e389]:
+                  - spinbutton "—" [ref=f22e390]: "0"
+                - cell "0" [ref=f22e391]
+              - row [ref=f22e392]:
+                - cell "Demi-Lune Optical aur-711" [ref=f22e393]:
+                  - generic [ref=f22e394]: Demi-Lune Optical
+                  - text: aur-711
+                - cell "1" [ref=f22e395]
+                - cell [ref=f22e396]:
+                  - spinbutton "—" [ref=f22e397]: "1"
+                - cell "0" [ref=f22e398]
+              - row [ref=f22e399]:
+                - cell "Deux Parts aur-217" [ref=f22e400]:
+                  - generic [ref=f22e401]: Deux Parts
+                  - text: aur-217
+                - cell "1" [ref=f22e402]
+                - cell [ref=f22e403]:
+                  - spinbutton "—" [ref=f22e404]: "1"
+                - cell "0" [ref=f22e405]
+              - row [ref=f22e406]:
+                - cell "Eads Three-Well Tray aur-509" [ref=f22e407]:
+                  - generic [ref=f22e408]: Eads Three-Well Tray
+                  - text: aur-509
+                - cell "3" [ref=f22e409]
+                - cell [ref=f22e410]:
+                  - spinbutton "—" [ref=f22e411]: "3"
+                - cell "0" [ref=f22e412]
+              - row [ref=f22e413]:
+                - cell "Elytra Zardozi aur-603" [ref=f22e414]:
+                  - generic [ref=f22e415]: Elytra Zardozi
+                  - text: aur-603
+                - cell "1" [ref=f22e416]
+                - cell [ref=f22e417]:
+                  - spinbutton "—" [ref=f22e418]: "1"
+                - cell "0" [ref=f22e419]
+              - row [ref=f22e420]:
+                - cell "Encre de Chene aur-319" [ref=f22e421]:
+                  - generic [ref=f22e422]: Encre de Chene
+                  - text: aur-319
+                - cell "0" [ref=f22e423]
+                - cell [ref=f22e424]:
+                  - spinbutton "—" [ref=f22e425]: "0"
+                - cell "0" [ref=f22e426]
+              - row [ref=f22e427]:
+                - cell "Erebus Glacier aur-717" [ref=f22e428]:
+                  - generic [ref=f22e429]: Erebus Glacier
+                  - text: aur-717
+                - cell "1" [ref=f22e430]
+                - cell [ref=f22e431]:
+                  - spinbutton "—" [ref=f22e432]: "1"
+                - cell "0" [ref=f22e433]
+              - row [ref=f22e434]:
+                - cell "Filigree Scaraboid aur-113" [ref=f22e435]:
+                  - generic [ref=f22e436]: Filigree Scaraboid
+                  - text: aur-113
+                - cell "3" [ref=f22e437]
+                - cell [ref=f22e438]:
+                  - spinbutton "—" [ref=f22e439]: "3"
+                - cell "0" [ref=f22e440]
+              - row [ref=f22e441]:
+                - cell "Flambeau Sun aur-708" [ref=f22e442]:
+                  - generic [ref=f22e443]: Flambeau Sun
+                  - text: aur-708
+                - cell "3" [ref=f22e444]
+                - cell [ref=f22e445]:
+                  - spinbutton "—" [ref=f22e446]: "3"
+                - cell "0" [ref=f22e447]
+              - row [ref=f22e448]:
+                - cell "Folsom Noir aur-715" [ref=f22e449]:
+                  - generic [ref=f22e450]: Folsom Noir
+                  - text: aur-715
+                - cell "0" [ref=f22e451]
+                - cell [ref=f22e452]:
+                  - spinbutton "—" [ref=f22e453]: "0"
+                - cell "0" [ref=f22e454]
+              - row [ref=f22e455]:
+                - cell "Fores Reader aur-703" [ref=f22e456]:
+                  - generic [ref=f22e457]: Fores Reader
+                  - text: aur-703
+                - cell "1" [ref=f22e458]
+                - cell [ref=f22e459]:
+                  - spinbutton "—" [ref=f22e460]: "1"
+                - cell "0" [ref=f22e461]
+              - row [ref=f22e462]:
+                - cell "Fowler Shot Pouch aur-408" [ref=f22e463]:
+                  - generic [ref=f22e464]: Fowler Shot Pouch
+                  - text: aur-408
+                - cell "1" [ref=f22e465]
+                - cell [ref=f22e466]:
+                  - spinbutton "—" [ref=f22e467]: "1"
+                - cell "0" [ref=f22e468]
+              - row [ref=f22e469]:
+                - cell "Iron-Gall Optical aur-705" [ref=f22e470]:
+                  - generic [ref=f22e471]: Iron-Gall Optical
+                  - text: aur-705
+                - cell "4" [ref=f22e472]
+                - cell [ref=f22e473]:
+                  - spinbutton "—" [ref=f22e474]: "4"
+                - cell "0" [ref=f22e475]
+              - row [ref=f22e476]:
+                - cell "Kainuu Field Bag aur-404" [ref=f22e477]:
+                  - generic [ref=f22e478]: Kainuu Field Bag
+                  - text: aur-404
+                - cell "3" [ref=f22e479]
+                - cell [ref=f22e480]:
+                  - spinbutton "—" [ref=f22e481]: "3"
+                - cell "0" [ref=f22e482]
+              - row [ref=f22e483]:
+                - cell "Kauri Dressing Case aur-510" [ref=f22e484]:
+                  - generic [ref=f22e485]: Kauri Dressing Case
+                  - text: aur-510
+                - cell "1" [ref=f22e486]
+                - cell [ref=f22e487]:
+                  - spinbutton "—" [ref=f22e488]: "1"
+                - cell "0" [ref=f22e489]
+              - row [ref=f22e490]:
+                - cell "Kingwood Letter Rack aur-518" [ref=f22e491]:
+                  - generic [ref=f22e492]: Kingwood Letter Rack
+                  - text: aur-518
+                - cell "0" [ref=f22e493]
+                - cell [ref=f22e494]:
+                  - spinbutton "—" [ref=f22e495]: "0"
+                - cell "0" [ref=f22e496]
+              - row [ref=f22e497]:
+                - cell "Kourion Cabochon aur-106" [ref=f22e498]:
+                  - generic [ref=f22e499]: Kourion Cabochon
+                  - text: aur-106
+                - cell "4" [ref=f22e500]
+                - cell [ref=f22e501]:
+                  - spinbutton "—" [ref=f22e502]: "4"
+                - cell "0" [ref=f22e503]
+              - row [ref=f22e504]:
+                - cell "Lancier Table Clock aur-504" [ref=f22e505]:
+                  - generic [ref=f22e506]: Lancier Table Clock
+                  - text: aur-504
+                - cell "1" [ref=f22e507]
+                - cell [ref=f22e508]:
+                  - spinbutton "—" [ref=f22e509]: "1"
+                - cell "0" [ref=f22e510]
+              - row [ref=f22e511]:
+                - cell "Legionary Seal aur-117" [ref=f22e512]:
+                  - generic [ref=f22e513]: Legionary Seal
+                  - text: aur-117
+                - cell "4" [ref=f22e514]
+                - cell [ref=f22e515]:
+                  - spinbutton "—" [ref=f22e516]: "4"
+                - cell "0" [ref=f22e517]
+              - row [ref=f22e518]:
+                - cell "Liao Crescent Bag aur-419" [ref=f22e519]:
+                  - generic [ref=f22e520]: Liao Crescent Bag
+                  - text: aur-419
+                - cell "2" [ref=f22e521]
+                - cell [ref=f22e522]:
+                  - spinbutton "—" [ref=f22e523]: "2"
+                - cell "0" [ref=f22e524]
+              - row [ref=f22e525]:
+                - cell "Longue Meche aur-318" [ref=f22e526]:
+                  - generic [ref=f22e527]: Longue Meche
+                  - text: aur-318
+                - cell "3" [ref=f22e528]
+                - cell [ref=f22e529]:
+                  - spinbutton "—" [ref=f22e530]: "3"
+                - cell "0" [ref=f22e531]
+              - row [ref=f22e532]:
+                - cell "Lumen Table Lamp aur-503" [ref=f22e533]:
+                  - generic [ref=f22e534]: Lumen Table Lamp
+                  - text: aur-503
+                - cell "2" [ref=f22e535]
+                - cell [ref=f22e536]:
+                  - spinbutton "—" [ref=f22e537]: "2"
+                - cell "0" [ref=f22e538]
+              - row [ref=f22e539]:
+                - cell "Meridian Cuff aur-103" [ref=f22e540]:
+                  - generic [ref=f22e541]: Meridian Cuff
+                  - text: aur-103
+                - cell "1" [ref=f22e542]
+                - cell [ref=f22e543]:
+                  - spinbutton "—" [ref=f22e544]: "1"
+                - cell "0" [ref=f22e545]
+              - row [ref=f22e546]:
+                - cell "Mouvement Nu aur-216" [ref=f22e547]:
+                  - generic [ref=f22e548]: Mouvement Nu
+                  - text: aur-216
+                - cell "2" [ref=f22e549]
+                - cell [ref=f22e550]:
+                  - spinbutton "—" [ref=f22e551]: "2"
+                - cell "0" [ref=f22e552]
+              - row [ref=f22e553]:
+                - cell "Nard Noir aur-313" [ref=f22e554]:
+                  - generic [ref=f22e555]: Nard Noir
+                  - text: aur-313
+                - cell "0" [ref=f22e556]
+                - cell [ref=f22e557]:
+                  - spinbutton "—" [ref=f22e558]: "0"
+                - cell "0" [ref=f22e559]
+              - row [ref=f22e560]:
+                - cell "Nocturne Pendant aur-102" [ref=f22e561]:
+                  - generic [ref=f22e562]: Nocturne Pendant
+                  - text: aur-102
+                - cell "4" [ref=f22e563]
+                - cell [ref=f22e564]:
+                  - spinbutton "—" [ref=f22e565]: "4"
+                - cell "0" [ref=f22e566]
+              - row [ref=f22e567]:
+                - cell "Nuit Chronograph aur-203" [ref=f22e568]:
+                  - generic [ref=f22e569]: Nuit Chronograph
+                  - text: aur-203
+                - cell "0" [ref=f22e570]
+                - cell [ref=f22e571]:
+                  - spinbutton "—" [ref=f22e572]: "0"
+                - cell "0" [ref=f22e573]
+              - row [ref=f22e574]:
+                - cell "Nuit de Sel aur-304" [ref=f22e575]:
+                  - generic [ref=f22e576]: Nuit de Sel
+                  - text: aur-304
+                - cell "2" [ref=f22e577]
+                - cell [ref=f22e578]:
+                  - spinbutton "—" [ref=f22e579]: "2"
+                - cell "0" [ref=f22e580]
+              - row [ref=f22e581]:
+                - cell "Ordos Saddle Bag aur-417" [ref=f22e582]:
+                  - generic [ref=f22e583]: Ordos Saddle Bag
+                  - text: aur-417
+                - cell "1" [ref=f22e584]
+                - cell [ref=f22e585]:
+                  - spinbutton "—" [ref=f22e586]: "1"
+                - cell "0" [ref=f22e587]
+              - row [ref=f22e588]:
+                - cell "Pella Bezel aur-121" [ref=f22e589]:
+                  - generic [ref=f22e590]: Pella Bezel
+                  - text: aur-121
+                - cell "0" [ref=f22e591]
+                - cell [ref=f22e592]:
+                  - spinbutton "—" [ref=f22e593]: "0"
+                - cell "0" [ref=f22e594]
+              - row [ref=f22e595]:
+                - cell "Perpetuel Automatic aur-202" [ref=f22e596]:
+                  - generic [ref=f22e597]: Perpetuel Automatic
+                  - text: aur-202
+                - cell "2" [ref=f22e598]
+                - cell [ref=f22e599]:
+                  - spinbutton "—" [ref=f22e600]: "2"
+                - cell "0" [ref=f22e601]
+              - row [ref=f22e602]:
+                - cell "Pomponia Signet aur-119" [ref=f22e603]:
+                  - generic [ref=f22e604]: Pomponia Signet
+                  - text: aur-119
+                - cell "0" [ref=f22e605]
+                - cell [ref=f22e606]:
+                  - spinbutton "—" [ref=f22e607]: "0"
+                - cell "0" [ref=f22e608]
+              - row [ref=f22e609]:
+                - cell "Praeneste Oval aur-110" [ref=f22e610]:
+                  - generic [ref=f22e611]: Praeneste Oval
+                  - text: aur-110
+                - cell "2" [ref=f22e612]
+                - cell [ref=f22e613]:
+                  - spinbutton "—" [ref=f22e614]: "2"
+                - cell "0" [ref=f22e615]
+              - row [ref=f22e616]:
+                - cell "Praxis Visiting Bag aur-405" [ref=f22e617]:
+                  - generic [ref=f22e618]: Praxis Visiting Bag
+                  - text: aur-405
+                - cell "1" [ref=f22e619]
+                - cell [ref=f22e620]:
+                  - spinbutton "—" [ref=f22e621]: "1"
+                - cell "0" [ref=f22e622]
+              - row [ref=f22e623]:
+                - cell "Punto Assisi aur-617" [ref=f22e624]:
+                  - generic [ref=f22e625]: Punto Assisi
+                  - text: aur-617
+                - cell "0" [ref=f22e626]
+                - cell [ref=f22e627]:
+                  - spinbutton "—" [ref=f22e628]: "0"
+                - cell "0" [ref=f22e629]
+              - row [ref=f22e630]:
+                - cell "Quire Day Book aur-513" [ref=f22e631]:
+                  - generic [ref=f22e632]: Quire Day Book
+                  - text: aur-513
+                - cell "4" [ref=f22e633]
+                - cell [ref=f22e634]:
+                  - spinbutton "—" [ref=f22e635]: "4"
+                - cell "0" [ref=f22e636]
+              - row [ref=f22e637]:
+                - cell "Rack and Snail aur-220" [ref=f22e638]:
+                  - generic [ref=f22e639]: Rack and Snail
+                  - text: aur-220
+                - cell "1" [ref=f22e640]
+                - cell [ref=f22e641]:
+                  - spinbutton "—" [ref=f22e642]: "1"
+                - cell "0" [ref=f22e643]
+              - row [ref=f22e644]:
+                - cell "Ravenna Nicolo aur-118" [ref=f22e645]:
+                  - generic [ref=f22e646]: Ravenna Nicolo
+                  - text: aur-118
+                - cell "2" [ref=f22e647]
+                - cell [ref=f22e648]:
+                  - spinbutton "—" [ref=f22e649]: "2"
+                - cell "0" [ref=f22e650]
+              - row [ref=f22e651]:
+                - cell "Rayure Valise aur-413" [ref=f22e652]:
+                  - generic [ref=f22e653]: Rayure Valise
+                  - text: aur-413
+                - cell "0" [ref=f22e654]
+                - cell [ref=f22e655]:
+                  - spinbutton "—" [ref=f22e656]: "0"
+                - cell "0" [ref=f22e657]
+              - row [ref=f22e658]:
+                - cell "Registre Douze aur-206" [ref=f22e659]:
+                  - generic [ref=f22e660]: Registre Douze
+                  - text: aur-206
+                - cell "3" [ref=f22e661]
+                - cell [ref=f22e662]:
+                  - spinbutton "—" [ref=f22e663]: "3"
+                - cell "0" [ref=f22e664]
+              - row [ref=f22e665]:
+                - cell "Resine de Palmyre aur-311" [ref=f22e666]:
+                  - generic [ref=f22e667]: Resine de Palmyre
+                  - text: aur-311
+                - cell "0" [ref=f22e668]
+                - cell [ref=f22e669]:
+                  - spinbutton "—" [ref=f22e670]: "0"
+                - cell "0" [ref=f22e671]
+              - row [ref=f22e672]:
+                - cell "Ridgebar Valise aur-412" [ref=f22e673]:
+                  - generic [ref=f22e674]: Ridgebar Valise
+                  - text: aur-412
+                - cell "3" [ref=f22e675]
+                - cell [ref=f22e676]:
+                  - spinbutton "—" [ref=f22e677]: "3"
+                - cell "0" [ref=f22e678]
+              - row [ref=f22e679]:
+                - cell "Sagara Kyoto aur-618" [ref=f22e680]:
+                  - generic [ref=f22e681]: Sagara Kyoto
+                  - text: aur-618
+                - cell "1" [ref=f22e682]
+                - cell [ref=f22e683]:
+                  - spinbutton "—" [ref=f22e684]: "1"
+                - cell "0" [ref=f22e685]
+              - row [ref=f22e686]:
+                - cell "Sauria Grand Valise aur-414" [ref=f22e687]:
+                  - generic [ref=f22e688]: Sauria Grand Valise
+                  - text: aur-414
+                - cell "0" [ref=f22e689]
+                - cell [ref=f22e690]:
+                  - spinbutton "—" [ref=f22e691]: "0"
+                - cell "0" [ref=f22e692]
+              - row [ref=f22e693]:
+                - cell "Shore Road Aviator aur-719" [ref=f22e694]:
+                  - generic [ref=f22e695]: Shore Road Aviator
+                  - text: aur-719
+                - cell "0" [ref=f22e696]
+                - cell [ref=f22e697]:
+                  - spinbutton "—" [ref=f22e698]: "0"
+                - cell "0" [ref=f22e699]
+              - row [ref=f22e700]:
+                - cell "Sidon Verte aur-305" [ref=f22e701]:
+                  - generic [ref=f22e702]: Sidon Verte
+                  - text: aur-305
+                - cell "3" [ref=f22e703]
+                - cell [ref=f22e704]:
+                  - spinbutton "—" [ref=f22e705]: "3"
+                - cell "0" [ref=f22e706]
+              - row [ref=f22e707]:
+                - cell "Souffle Court aur-315" [ref=f22e708]:
+                  - generic [ref=f22e709]: Souffle Court
+                  - text: aur-315
+                - cell "4" [ref=f22e710]
+                - cell [ref=f22e711]:
+                  - spinbutton "—" [ref=f22e712]: "4"
+                - cell "0" [ref=f22e713]
+              - row [ref=f22e714]:
+                - cell "Sozni Nishat aur-609" [ref=f22e715]:
+                  - generic [ref=f22e716]: Sozni Nishat
+                  - text: aur-609
+                - cell "1" [ref=f22e717]
+                - cell [ref=f22e718]:
+                  - spinbutton "—" [ref=f22e719]: "1"
+                - cell "0" [ref=f22e720]
+              - row [ref=f22e721]:
+                - cell "Tambour Luneville aur-608" [ref=f22e722]:
+                  - generic [ref=f22e723]: Tambour Luneville
+                  - text: aur-608
+                - cell "0" [ref=f22e724]
+                - cell [ref=f22e725]:
+                  - spinbutton "—" [ref=f22e726]: "0"
+                - cell "0" [ref=f22e727]
+              - row [ref=f22e728]:
+                - cell "Uhrwerk Westfalen aur-219" [ref=f22e729]:
+                  - generic [ref=f22e730]: Uhrwerk Westfalen
+                  - text: aur-219
+                - cell "0" [ref=f22e731]
+                - cell [ref=f22e732]:
+                  - spinbutton "—" [ref=f22e733]: "0"
+                - cell "0" [ref=f22e734]
+              - row [ref=f22e735]:
+                - cell "Vitrine No. 4 aur-214" [ref=f22e736]:
+                  - generic [ref=f22e737]: Vitrine No. 4
+                  - text: aur-214
+                - cell "0" [ref=f22e738]
+                - cell [ref=f22e739]:
+                  - spinbutton "—" [ref=f22e740]: "0"
+                - cell "0" [ref=f22e741]
+              - row [ref=f22e742]:
+                - cell "Voyage Weekender aur-402" [ref=f22e743]:
+                  - generic [ref=f22e744]: Voyage Weekender
+                  - text: aur-402
+                - cell "2" [ref=f22e745]
+                - cell [ref=f22e746]:
+                  - spinbutton "—" [ref=f22e747]: "2"
+                - cell "0" [ref=f22e748]
+              - row [ref=f22e749]:
+                - cell "Watermark Folding aur-706" [ref=f22e750]:
+                  - generic [ref=f22e751]: Watermark Folding
+                  - text: aur-706
+                - cell "3" [ref=f22e752]
+                - cell [ref=f22e753]:
+                  - spinbutton "—" [ref=f22e754]: "3"
+                - cell "0" [ref=f22e755]
+          - generic [ref=f22e756]:
+            - button "Cancel Count" [ref=f22e757] [cursor=pointer]
+            - button "Complete & Reconcile Stock" [active] [ref=f22e758] [cursor=pointer]
+  - button "Open AI assistant" [ref=f22e96] [cursor=pointer]: Ask AI

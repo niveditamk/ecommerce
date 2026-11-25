@@ -10,6 +10,8 @@ import adminApi from '../../lib/adminApi';
 import { useAdmin } from '../../context/AdminContext';
 import { useAsync } from '../../lib/useAsync';
 import { money, formatShortDate, dx } from '../../lib/format';
+import NotesPanel from '../../components/admin/NotesPanel';
+import { readToken } from '../../lib/adminApi';
 
 const TEXT_FIELDS = ['name', 'sub', 'materials', 'blurb', 'story', 'care', 'edition'];
 
@@ -45,6 +47,7 @@ export default function ProductEditor() {
 
   const cats = useAsync(() => adminApi.categories(), []);
   const loaded = useAsync(() => (isNew ? Promise.resolve(null) : adminApi.product(id)), [id]);
+  const staffData = useAsync(() => adminApi.staff(), []);
 
   useEffect(() => {
     if (isNew) { setForm(BLANK); setOriginal(BLANK); return; }
@@ -350,6 +353,10 @@ export default function ProductEditor() {
             </section>
           )}
 
+          {!isNew && form.cat === 'parfums' && <BatchesPanel productId={id} readOnly={readOnly} />}
+
+          {!isNew && <NotesPanel entity="product" entityId={id} staffDirectory={staffData.data?.items || []} />}
+
           {!isNew && can('products.delete') && form.status !== 'archived' && (
             <section className="admin-panel">
               <h2 className="admin-panel__title">Danger zone</h2>
@@ -362,5 +369,116 @@ export default function ProductEditor() {
         </aside>
       </div>
     </form>
+  );
+}
+
+/* =============================================================
+   BATCH & EXPIRY TRACKING
+   Parfums only — see server/src/batches.js for why. Colour
+   marks urgency (expired / expiring soon / fine); the exact
+   date is always printed too, never colour alone.
+   ============================================================= */
+function BatchesPanel({ productId, readOnly }) {
+  const [batches, setBatches] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [batchNumber, setBatchNumber] = useState('');
+  const [qty, setQty] = useState(1);
+  const [expiryDate, setExpiryDate] = useState('');
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const token = readToken();
+
+  const load = () => {
+    fetch(`/api/admin/products/${productId}/batches`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.json())
+      .then((res) => { setBatches(res.batches || []); setLoading(false); })
+      .catch(() => setLoading(false));
+  };
+
+  useEffect(() => { load(); }, [productId]);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError('');
+    try {
+      const res = await fetch(`/api/admin/products/${productId}/batches`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ batchNumber, qty: Number(qty), expiryDate })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not log that batch.');
+      setBatchNumber(''); setQty(1); setExpiryDate('');
+      load();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const daysUntil = (dateStr) => Math.ceil((new Date(dateStr) - new Date()) / 86400000);
+
+  return (
+    <section className="admin-panel">
+      <h2 className="admin-panel__title">Batches &amp; expiry</h2>
+      <p className="field__hint" style={{ marginBottom: 'var(--spacing-12)' }}>
+        Tracked per received lot for compliance and waste reduction. This does not draw down as units sell —
+        it is a record of what arrived and when it expires, not a live remaining count.
+      </p>
+
+      {loading ? (
+        <p className="tiny" style={{ opacity: 0.65 }}>Loading…</p>
+      ) : batches.length === 0 ? (
+        <p className="tiny" style={{ opacity: 0.65 }}>No batches logged yet.</p>
+      ) : (
+        <table className="tbl" style={{ marginBottom: 'var(--spacing-12)' }}>
+          <thead>
+            <tr><th>Batch</th><th className="tr">Qty</th><th>Expires</th></tr>
+          </thead>
+          <tbody>
+            {batches.map((b) => {
+              const days = daysUntil(b.expiry_date);
+              const tone = days < 0 ? '#ff5252' : days <= 30 ? 'var(--gold-2)' : 'inherit';
+              return (
+                <tr key={b.id}>
+                  <td className="mono tiny">{b.batch_number}</td>
+                  <td className="tr mono">{b.qty}</td>
+                  <td className="tiny mono" style={{ color: tone, fontWeight: days <= 30 ? 600 : 400 }}>
+                    {b.expiry_date} {days < 0 ? '(expired)' : days <= 30 ? `(${days}d)` : ''}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
+
+      {readOnly ? (
+        <p className="tiny" style={{ opacity: 0.65 }}>Your role can view batches but not log new ones.</p>
+      ) : (
+        <>
+          <form onSubmit={submit} className="field-row">
+            <div className="field" style={{ flex: 1 }}>
+              <label htmlFor="batch-num">Batch #</label>
+              <input id="batch-num" className="input" value={batchNumber} onChange={(e) => setBatchNumber(e.target.value)} placeholder="BATCH-2026-003" required />
+            </div>
+            <div className="field" style={{ maxWidth: 90 }}>
+              <label htmlFor="batch-qty">Qty</label>
+              <input id="batch-qty" type="number" min="1" className="input" value={qty} onChange={(e) => setQty(e.target.value)} required />
+            </div>
+            <div className="field" style={{ flex: 1 }}>
+              <label htmlFor="batch-exp">Expires</label>
+              <input id="batch-exp" type="date" className="input" value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} required />
+            </div>
+            <button type="submit" className="btn btn--sm" disabled={submitting} style={{ alignSelf: 'flex-end' }}>
+              {submitting ? 'Saving…' : 'Add Batch'}
+            </button>
+          </form>
+          {error && <p className="field__err" style={{ display: 'block' }}>{error}</p>}
+        </>
+      )}
+    </section>
   );
 }

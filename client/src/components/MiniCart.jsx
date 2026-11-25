@@ -1,7 +1,7 @@
 /* =============================================================
-   AURELIS MAISON — MINI CART (Global Slide-Over Bag Drawer)
-   Real-time inventory sync, quantity controls, line removal,
-   complimentary delivery progress, and direct checkout trigger.
+   AURELIS MAISON // EDITORIAL LUXURY MINI CART
+   Global slide-over shopping bag with real-time sync,
+   quantity controls, complimentary engraving progress, and checkout.
    ============================================================= */
 import { Link } from 'react-router-dom';
 import { Icon, ProductArt, QtyControl } from './primitives';
@@ -18,69 +18,68 @@ export default function MiniCart() {
   return (
     <aside
       className={`drawer drawer--cart${open ? ' is-open' : ''}`}
-      aria-label="Transaction console"
+      aria-label="Shopping Bag"
       aria-hidden={!open}
     >
-      {/* Header */}
+      {/* Drawer Head */}
       <div className="drawer__head">
         <div>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, letterSpacing: '0.08em', display: 'block' }}>
-            // TRANSACTION CONSOLE · LEDGER ACTIVE
-          </span>
-          <div style={{ marginTop: '2px', fontFamily: 'var(--font-grotesk)', fontWeight: 700, fontSize: '1.1rem', textTransform: 'uppercase' }}>
-            [ {totals.count} {totals.count === 1 ? 'SPECIMEN' : 'SPECIMENS'} COMMITTED ]
-          </div>
+          <span className="eyebrow" style={{ margin: 0 }}>Maison Shopping Bag</span>
+          <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '2px' }}>
+            {totals.count} {totals.count === 1 ? 'Creation' : 'Creations'}
+          </h3>
         </div>
         <button
           type="button"
           onClick={closeLayer}
-          style={{ background: 'transparent', border: 'none', color: 'var(--pearl-3)', fontFamily: 'var(--font-mono)', fontSize: '0.68rem', cursor: 'pointer', padding: '4px 6px' }}
-          aria-label="Close transaction console"
+          className="btn--ghost"
+          style={{ padding: '6px 12px', fontSize: '1.1rem' }}
+          aria-label="Close bag"
         >
-          [ ESC // CLOSE ]
+          &times;
         </button>
       </div>
 
-      {/* Body */}
+      {/* Drawer Body */}
       <div className="drawer__body">
         {cart.length === 0 ? (
-          <div className="empty" style={{ padding: '48px 16px', textAlign: 'center' }}>
-            <div style={{ color: 'var(--color-terminal-green-text)', marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
-              <Icon name="bag" size={32} />
+          <div className="empty" style={{ padding: '64px 20px', textAlign: 'center' }}>
+            <div style={{ color: 'var(--gold-text)', marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
+              <Icon name="bag" size={36} />
             </div>
-            <h3 style={{ fontFamily: 'var(--font-grotesk)', fontWeight: 700, textTransform: 'uppercase', fontSize: '1.1rem' }}>TRANSACTION LEDGER EMPTY</h3>
-            <p className="muted" style={{ maxWidth: '34ch', margin: '10px auto 24px', fontSize: '13px', fontFamily: 'var(--font-mono)' }}>
-              Awaiting specimen allocation. Selected specimens are committed to escrow during checkout verification.
+            <h3 className="h3" style={{ fontSize: '1.3rem' }}>Your Bag is Empty</h3>
+            <p style={{ maxWidth: '34ch', margin: '12px auto 24px', fontSize: '0.9rem', color: 'var(--pearl-3)', lineHeight: 1.6 }}>
+              You have not added any creations from the atelier to your bag yet.
             </p>
-            <Link className="btn btn--sm btn--gold" to="/categories" onClick={closeLayer}>
-              EXPLORE CATALOGUE [ 01 &rarr; 04 ]
+            <Link className="btn btn--primary" to="/categories" onClick={closeLayer}>
+              Discover Collections
             </Link>
           </div>
         ) : (
           <>
-            {/* Complimentary Engraving / Delivery Indicator */}
-            <div className="mc-progress" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '10px 14px' }}>
-              <div className="between" style={{ gap: '10px' }}>
-                <span className="tiny" style={{ letterSpacing: '0.06em', fontWeight: 700, fontFamily: 'var(--font-mono)', color: 'var(--color-terminal-green-text)', fontSize: '0.68rem' }}>
+            {/* Complimentary Inscription Milestone */}
+            <div style={{ background: '#FFFFFF', border: '1px solid var(--line)', borderRadius: 'var(--r-sm)', padding: '14px 16px', marginBottom: '20px' }}>
+              <div className="between" style={{ gap: '10px', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--gold-text)' }}>
                   {totals.engravingUnlocked
-                    ? '[ ENGRAVING PROTOCOL: UNLOCKED ]'
-                    : `ALLOCATE ${money(totals.engravingRemaining)} FOR BESPOKE ENGRAVING`}
+                    ? 'Complimentary Inscription Unlocked'
+                    : `Add ${money(totals.engravingRemaining)} for complimentary bespoke inscription`}
                 </span>
                 {totals.engravingUnlocked && (
-                  <span style={{ color: 'var(--color-terminal-green-text)', display: 'flex' }}>
-                    <Icon name="check" size={14} />
+                  <span style={{ color: 'var(--gold-text)', display: 'flex' }}>
+                    <Icon name="check" size={16} />
                   </span>
                 )}
               </div>
-              <div className="mc-progress__bar" style={{ height: '4px', background: 'rgba(0,0,0,0.08)', marginTop: '8px' }}>
-                <div className="mc-progress__fill" style={{ width: `${pct}%`, background: 'var(--color-terminal-green)' }} />
+              <div style={{ height: '4px', background: 'rgba(0,0,0,0.06)', borderRadius: '2px', marginTop: '8px', overflow: 'hidden' }}>
+                <div style={{ width: `${pct}%`, height: '100%', background: 'var(--gold)', transition: 'width 0.3s ease' }} />
               </div>
             </div>
 
             {/* Cart Items List */}
             {cart.map((line) => (
-              <div className="mc-item" key={line.key} style={{ borderBottom: '1px solid var(--line)', padding: '14px 0' }}>
-                <Link className="mc-item__media" to={`/product/${line.id}`} onClick={closeLayer} style={{ border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', background: 'var(--color-paper-light)' }}>
+              <div key={line.key} style={{ display: 'grid', gridTemplateColumns: '76px 1fr', gap: '16px', padding: '16px 0', borderBottom: '1px solid var(--line)' }}>
+                <Link to={`/product/${line.id}`} onClick={closeLayer} style={{ aspectRatio: '1/1', background: 'var(--color-bone)', borderRadius: 'var(--r-sm)', overflow: 'hidden', display: 'block' }}>
                   <ProductArt
                     id={line.product.id}
                     shape={line.product.shape}
@@ -91,49 +90,37 @@ export default function MiniCart() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--color-terminal-green-text)', fontWeight: 700, display: 'block' }}>
-                      REF // AUR-{line.product.id.toUpperCase()}
-                    </span>
-                    <Link className="mc-item__name" to={`/product/${line.id}`} onClick={closeLayer} style={{ fontFamily: 'var(--font-grotesk)', fontWeight: 700, fontSize: '0.95rem' }}>
-                      {dx(line.product.name)}
-                    </Link>
-                    <div className="mc-item__meta" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--pearl-3)', marginTop: '2px' }}>
-                      {[line.variant, line.size].filter(Boolean).map(dx).join(' · ').toUpperCase() || dx(line.product.materials)}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <Link to={`/product/${line.id}`} onClick={closeLayer} style={{ textDecoration: 'none', color: 'var(--pearl)', fontFamily: 'var(--font-serif)', fontSize: '1.05rem', fontWeight: 500 }}>
+                        {dx(line.product.name)}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => removeLine(line.key)}
+                        disabled={busy}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--pearl-4)', fontSize: '1rem', padding: '0 4px' }}
+                        aria-label="Remove item"
+                      >
+                        &times;
+                      </button>
+                    </div>
+
+                    <div style={{ fontSize: '0.78rem', color: 'var(--pearl-3)', marginTop: '2px' }}>
+                      {[line.variant, line.size].filter(Boolean).join(' · ')}
                     </div>
                   </div>
 
-                  <div className="mc-item__ctrl" style={{ marginTop: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
                     <QtyControl
                       qty={line.qty}
+                      onChange={(q) => setLineQty(line.key, q)}
                       small
                       disabled={busy}
-                      onChange={(q) => setLineQty(line.key, q)}
                     />
-                    <button
-                      type="button"
-                      className="mc-remove"
-                      onClick={() => removeLine(line.key)}
-                      aria-label="Remove item"
-                      style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem' }}
-                    >
-                      [ REMOVE ]
-                    </button>
-                    {saveForLater && (
-                      <button
-                        type="button"
-                        className="mc-remove"
-                        onClick={() => saveForLater(line.key)}
-                        aria-label="Save for later"
-                        style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem' }}
-                      >
-                        [ HOLD ]
-                      </button>
-                    )}
+                    <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--pearl)' }}>
+                      {money(line.price * line.qty)}
+                    </span>
                   </div>
-                </div>
-
-                <div className="mc-item__price" style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '0.95rem' }}>
-                  {money(line.lineTotal)}
                 </div>
               </div>
             ))}
@@ -141,51 +128,37 @@ export default function MiniCart() {
         )}
       </div>
 
-      {/* Footer */}
+      {/* Drawer Footer */}
       {cart.length > 0 && (
-        <div className="drawer__foot" style={{ background: 'var(--color-paper-light)', borderTop: '1px solid var(--line-dark)', padding: '18px 20px' }}>
-          <div>
-            <div className="console-summary-row">
-              <span>SUBTOTAL</span>
-              <span className="console-dots" />
-              <span>{money(totals.subtotal)}</span>
-            </div>
-            {totals.discount > 0 && (
-              <div className="console-summary-row" style={{ color: 'var(--color-terminal-green-text)' }}>
-                <span>PROMO [{dx(session.checkout.promo?.label || 'DISCOUNT')}]</span>
-                <span className="console-dots" />
-                <span>&minus;{money(totals.discount)}</span>
-              </div>
-            )}
-            <div className="console-summary-row">
-              <span>INSURED ESCROW LOGISTICS</span>
-              <span className="console-dots" />
-              <span>{totals.shipping ? money(totals.shipping) : 'COMPLIMENTARY'}</span>
-            </div>
-            <div className="console-total-row">
-              <span>ESTIMATED TOTAL</span>
-              <span>{money(totals.total)}</span>
-            </div>
+        <div className="drawer__foot" style={{ padding: '24px', borderTop: '1px solid var(--line)', background: '#FFFFFF' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--pearl-2)' }}>Estimated Subtotal</span>
+            <span style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--pearl)' }}>
+              {money(totals.subtotal)}
+            </span>
           </div>
 
-          <p className="tiny" style={{ marginTop: '10px', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--pearl-3)' }}>
-            DUTIES, ASSAY TAX &amp; 256-BIT ESCROW SECURITY INCLUDED.
+          <p style={{ fontSize: '0.76rem', color: 'var(--pearl-3)', margin: '0 0 18px', lineHeight: 1.5 }}>
+            Complimentary insured white-glove courier delivery and taxes calculated at checkout.
           </p>
 
-          <div style={{ display: 'grid', gap: '8px', marginTop: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <Link
-              className="btn btn--block btn--gold"
+              className="btn btn--gold"
               to="/checkout/login"
               onClick={closeLayer}
+              style={{ width: '100%' }}
             >
-              INITIALIZE CHECKOUT PROTOCOL &rarr;
+              Proceed to Checkout
             </Link>
+
             <Link
-              className="btn btn--block btn--outline btn--sm"
+              className="btn btn--outline"
               to="/cart"
               onClick={closeLayer}
+              style={{ width: '100%' }}
             >
-              AUDIT FULL TRANSACTION LEDGER
+              View Full Bag
             </Link>
           </div>
         </div>

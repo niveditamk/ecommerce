@@ -1,0 +1,729 @@
+- generic [ref=f50e3]:
+  - complementary "Admin navigation" [ref=f50e4]:
+    - generic [ref=f50e5]:
+      - generic [ref=f50e6]: AURELIS
+      - generic [ref=f50e7]: Executive · AI Admin
+    - navigation [ref=f50e8]:
+      - generic [ref=f50e9]:
+        - heading "Executive Command" [level=2] [ref=f50e10]
+        - link "Command Center" [ref=f50e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f50e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f50e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f50e14]
+        - link "Inventory Management" [ref=f50e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f50e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f50e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f50e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f50e19]
+        - link "Sales & BI Analytics" [ref=f50e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f50e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f50e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f50e23]
+        - link "Products" [ref=f50e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f50e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f50e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f50e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f50e28]:
+        - heading "System & Governance" [level=2] [ref=f50e29]
+        - link "Staff Management" [ref=f50e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f50e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f50e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f50e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f50e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f50e35]:
+      - generic [ref=f50e36]: Hélène Marchand
+      - generic [ref=f50e37]: Administrator
+      - button "Sign out" [ref=f50e38] [cursor=pointer]
+  - generic [ref=f50e39]:
+    - banner [ref=f50e40]:
+      - generic [ref=f50e42]:
+        - generic [ref=f50e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f50e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f50e45]: Period Filter
+        - combobox "Filter by time period" [ref=f50e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f50e47]:
+        - link "5 Alerts" [ref=f50e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f50e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f50e52]:
+      - generic [ref=f50e62]:
+        - generic [ref=f50e63]:
+          - generic [ref=f50e64]: Access
+          - heading "Audit log" [level=1] [ref=f50e65]
+          - paragraph [ref=f50e66]: Who changed what, when — newest first.
+        - generic [ref=f50e68]:
+          - generic [ref=f50e69]: Entity
+          - combobox "Entity" [ref=f50e70]:
+            - option "All"
+            - option "category"
+            - option "customer"
+            - option "cycle count"
+            - option "inventory"
+            - option "order"
+            - option "product"
+            - option "purchase order"
+            - option "scheduled report"
+            - option "staff" [selected]
+      - table [ref=f50e72]:
+        - rowgroup [ref=f50e73]:
+          - row [ref=f50e74]:
+            - columnheader "When" [ref=f50e75]
+            - columnheader "Who" [ref=f50e76]
+            - columnheader "Action" [ref=f50e77]
+            - columnheader "What changed" [ref=f50e78]
+        - rowgroup [ref=f50e79]:
+          - row [ref=f50e80]:
+            - cell "14 Sept 2026 17:27 UTC" [ref=f50e81]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e82]: 17:27 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e83]
+            - cell "disabled" [ref=f50e84]
+            - cell "Revoked access for test.account@aurelis.local" [ref=f50e86]
+          - row [ref=f50e87]:
+            - cell "14 Sept 2026 17:26 UTC" [ref=f50e88]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e89]: 17:26 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e90]
+            - cell "created" [ref=f50e91]
+            - cell "Created test.account@aurelis.local as Administrator" [ref=f50e93]
+          - row [ref=f50e94]:
+            - cell "14 Sept 2026 17:25 UTC" [ref=f50e95]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e96]: 17:25 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e97]
+            - cell "deleted" [ref=f50e98]
+            - cell "Deleted Test Collection" [ref=f50e100]
+          - row [ref=f50e101]:
+            - cell "14 Sept 2026 17:24 UTC" [ref=f50e102]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e103]: 17:24 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e104]
+            - cell "created" [ref=f50e105]
+            - cell "Created Test Collection" [ref=f50e107]
+          - row [ref=f50e108]:
+            - cell "14 Sept 2026 17:24 UTC" [ref=f50e109]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e110]: 17:24 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e111]
+            - cell "updated" [ref=f50e112]
+            - cell [ref=f50e114]:
+              - text: Updated arjun.mehta@example.com
+              - generic [ref=f50e116]:
+                - term [ref=f50e117]: phone
+                - definition [ref=f50e118]: → +91 98765 43210
+          - row [ref=f50e119]:
+            - cell "14 Sept 2026 17:23 UTC" [ref=f50e120]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e121]: 17:23 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e122]
+            - cell "updated" [ref=f50e123]
+            - cell [ref=f50e125]:
+              - text: Updated arjun.mehta@example.com
+              - generic [ref=f50e127]:
+                - term [ref=f50e128]: phone
+                - definition [ref=f50e129]: null →
+          - row [ref=f50e130]:
+            - cell "14 Sept 2026 17:11 UTC" [ref=f50e131]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e132]: 17:11 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e133]
+            - cell "cancelled" [ref=f50e134]
+            - cell [ref=f50e136]:
+              - text: "Cancelled AUR-DEMO-003-5CDC5A — Testing: customer requested cancellation"
+              - generic [ref=f50e138]:
+                - term [ref=f50e139]: status
+                - definition [ref=f50e140]: Confirmed → Cancelled
+          - row [ref=f50e141]:
+            - cell "14 Sept 2026 16:54 UTC" [ref=f50e142]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e143]: 16:54 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e144]
+            - cell "note_added" [ref=f50e145]
+            - cell "Hélène Marchand added a note (mentioned 1 colleague(s))" [ref=f50e147]
+          - row [ref=f50e148]:
+            - cell "14 Sept 2026 16:50 UTC" [ref=f50e149]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e150]: 16:50 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e151]
+            - cell "login" [ref=f50e152]
+            - cell "Signed in" [ref=f50e154]
+          - row [ref=f50e155]:
+            - cell "14 Sept 2026 16:50 UTC" [ref=f50e156]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e157]: 16:50 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e158]
+            - cell "login" [ref=f50e159]
+            - cell "Signed in" [ref=f50e161]
+          - row [ref=f50e162]:
+            - cell "14 Sept 2026 16:50 UTC" [ref=f50e163]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e164]: 16:50 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e165]
+            - cell "batch_received" [ref=f50e166]
+            - cell "Logged batch BATCH-2026-001 (40 units, expires 2026-12-01)" [ref=f50e168]
+          - row [ref=f50e169]:
+            - cell "14 Sept 2026 16:50 UTC" [ref=f50e170]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e171]: 16:50 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e172]
+            - cell "batch_received" [ref=f50e173]
+            - cell "Logged batch BATCH-2026-002 (15 units, expires 2026-09-25)" [ref=f50e175]
+          - row [ref=f50e176]:
+            - cell "14 Sept 2026 16:41 UTC" [ref=f50e177]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e178]: 16:41 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e179]
+            - cell "login" [ref=f50e180]
+            - cell "Signed in" [ref=f50e182]
+          - row [ref=f50e183]:
+            - cell "14 Sept 2026 16:37 UTC" [ref=f50e184]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e185]: 16:37 UTC
+            - cell "system" [ref=f50e186]
+            - cell "report_run_generated" [ref=f50e187]
+            - cell "Auto-generated \"Weekly inventory valuation\" (140 rows)" [ref=f50e189]
+          - row [ref=f50e190]:
+            - cell "14 Sept 2026 16:36 UTC" [ref=f50e191]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e192]: 16:36 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e193]
+            - cell "report_schedule_created" [ref=f50e194]
+            - cell "Scheduled \"Weekly inventory valuation\" (inventory, weekly)" [ref=f50e196]
+          - row [ref=f50e197]:
+            - cell "14 Sept 2026 16:35 UTC" [ref=f50e198]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e199]: 16:35 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e200]
+            - cell "login" [ref=f50e201]
+            - cell "Signed in" [ref=f50e203]
+          - row [ref=f50e204]:
+            - cell "14 Sept 2026 16:35 UTC" [ref=f50e205]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e206]: 16:35 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e207]
+            - cell "stock_adjusted" [ref=f50e208]
+            - cell [ref=f50e210]:
+              - text: "Adjusted stock by +1 (inventory_count). New stock: 15"
+              - generic [ref=f50e211]:
+                - generic [ref=f50e212]:
+                  - term [ref=f50e213]: stock
+                  - definition [ref=f50e214]: 14 → 15
+                - generic [ref=f50e215]:
+                  - term [ref=f50e216]: delta
+                  - definition [ref=f50e217]: — → 1
+                - generic [ref=f50e218]:
+                  - term [ref=f50e219]: reason
+                  - definition [ref=f50e220]: — → inventory_count
+                - generic [ref=f50e221]:
+                  - term [ref=f50e222]: notes
+                  - definition [ref=f50e223]: — → verification test
+          - row [ref=f50e224]:
+            - cell "14 Sept 2026 16:33 UTC" [ref=f50e225]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e226]: 16:33 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e227]
+            - cell "login" [ref=f50e228]
+            - cell "Signed in" [ref=f50e230]
+          - row [ref=f50e231]:
+            - cell "14 Sept 2026 16:25 UTC" [ref=f50e232]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e233]: 16:25 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e234]
+            - cell "login" [ref=f50e235]
+            - cell "Signed in" [ref=f50e237]
+          - row [ref=f50e238]:
+            - cell "14 Sept 2026 16:25 UTC" [ref=f50e239]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e240]: 16:25 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e241]
+            - cell "login" [ref=f50e242]
+            - cell "Signed in" [ref=f50e244]
+          - row [ref=f50e245]:
+            - cell "14 Sept 2026 16:23 UTC" [ref=f50e246]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e247]: 16:23 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e248]
+            - cell "login" [ref=f50e249]
+            - cell "Signed in" [ref=f50e251]
+          - row [ref=f50e252]:
+            - cell "14 Sept 2026 16:20 UTC" [ref=f50e253]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e254]: 16:20 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e255]
+            - cell "login" [ref=f50e256]
+            - cell "Signed in" [ref=f50e258]
+          - row [ref=f50e259]:
+            - cell "14 Sept 2026 16:20 UTC" [ref=f50e260]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e261]: 16:20 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e262]
+            - cell "note_added" [ref=f50e263]
+            - cell "Hélène Marchand added a note (mentioned 1 colleague(s))" [ref=f50e265]
+          - row [ref=f50e266]:
+            - cell "14 Sept 2026 16:05 UTC" [ref=f50e267]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e268]: 16:05 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e269]
+            - cell "login" [ref=f50e270]
+            - cell "Signed in" [ref=f50e272]
+          - row [ref=f50e273]:
+            - cell "14 Sept 2026 16:04 UTC" [ref=f50e274]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e275]: 16:04 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e276]
+            - cell "cycle_count_completed" [ref=f50e277]
+            - 'cell "Completed cycle count CC-2026-53701: 0 adjustment(s) out of 84 SKUs" [ref=f50e279]'
+          - row [ref=f50e280]:
+            - cell "14 Sept 2026 16:03 UTC" [ref=f50e281]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e282]: 16:03 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e283]
+            - cell "login" [ref=f50e284]
+            - cell "Signed in" [ref=f50e286]
+          - row [ref=f50e287]:
+            - cell "14 Sept 2026 16:02 UTC" [ref=f50e288]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e289]: 16:02 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e290]
+            - cell "cycle_count_created" [ref=f50e291]
+            - 'cell "Started cycle count CC-2026-53701 at GVA-ATELIER (84 SKUs, scope: low_stock)" [ref=f50e293]'
+          - row [ref=f50e294]:
+            - cell "14 Sept 2026 15:59 UTC" [ref=f50e295]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e296]: 15:59 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e297]
+            - cell "cycle_count_cancelled" [ref=f50e298]
+            - cell "Cancelled cycle count CC-2026-89854 with no stock changes" [ref=f50e300]
+          - row [ref=f50e301]:
+            - cell "14 Sept 2026 15:59 UTC" [ref=f50e302]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e303]: 15:59 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e304]
+            - cell "login" [ref=f50e305]
+            - cell "Signed in" [ref=f50e307]
+          - row [ref=f50e308]:
+            - cell "14 Sept 2026 15:59 UTC" [ref=f50e309]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e310]: 15:59 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e311]
+            - cell "cycle_count_created" [ref=f50e312]
+            - 'cell "Started cycle count CC-2026-89854 at ZRH-CENTRAL (140 SKUs, scope: all)" [ref=f50e314]'
+          - row [ref=f50e315]:
+            - cell "14 Sept 2026 15:59 UTC" [ref=f50e316]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e317]: 15:59 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e318]
+            - cell "stock_adjusted" [ref=f50e319]
+            - cell [ref=f50e321]:
+              - text: "Adjusted stock by +3 (cycle_count). New stock: 3"
+              - generic [ref=f50e322]:
+                - generic [ref=f50e323]:
+                  - term [ref=f50e324]: stock
+                  - definition [ref=f50e325]: 0 → 3
+                - generic [ref=f50e326]:
+                  - term [ref=f50e327]: delta
+                  - definition [ref=f50e328]: — → 3
+                - generic [ref=f50e329]:
+                  - term [ref=f50e330]: reason
+                  - definition [ref=f50e331]: — → cycle_count
+                - generic [ref=f50e332]:
+                  - term [ref=f50e333]: notes
+                  - definition [ref=f50e334]: "— → Cycle count CC-2026-28129: expected 0, counted 3"
+          - row [ref=f50e335]:
+            - cell "14 Sept 2026 15:59 UTC" [ref=f50e336]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e337]: 15:59 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e338]
+            - cell "cycle_count_completed" [ref=f50e339]
+            - 'cell "Completed cycle count CC-2026-28129: 1 adjustment(s) out of 84 SKUs" [ref=f50e341]'
+          - row [ref=f50e342]:
+            - cell "14 Sept 2026 15:59 UTC" [ref=f50e343]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e344]: 15:59 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e345]
+            - cell "login" [ref=f50e346]
+            - cell "Signed in" [ref=f50e348]
+          - row [ref=f50e349]:
+            - cell "14 Sept 2026 15:59 UTC" [ref=f50e350]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e351]: 15:59 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e352]
+            - cell "login" [ref=f50e353]
+            - cell "Signed in" [ref=f50e355]
+          - row [ref=f50e356]:
+            - cell "14 Sept 2026 15:58 UTC" [ref=f50e357]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e358]: 15:58 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e359]
+            - cell "login" [ref=f50e360]
+            - cell "Signed in" [ref=f50e362]
+          - row [ref=f50e363]:
+            - cell "14 Sept 2026 15:58 UTC" [ref=f50e364]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e365]: 15:58 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e366]
+            - cell "cycle_count_created" [ref=f50e367]
+            - 'cell "Started cycle count CC-2026-28129 at GVA-ATELIER (84 SKUs, scope: low_stock)" [ref=f50e369]'
+          - row [ref=f50e370]:
+            - cell "14 Sept 2026 15:42 UTC" [ref=f50e371]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e372]: 15:42 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e373]
+            - cell "login" [ref=f50e374]
+            - cell "Signed in" [ref=f50e376]
+          - row [ref=f50e377]:
+            - cell "14 Sept 2026 15:27 UTC" [ref=f50e378]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e379]: 15:27 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e380]
+            - cell "created" [ref=f50e381]
+            - cell "Created camille.fontaine@aurelis.local as Administrator" [ref=f50e383]
+          - row [ref=f50e384]:
+            - cell "14 Sept 2026 15:27 UTC" [ref=f50e385]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e386]: 15:27 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e387]
+            - cell "created" [ref=f50e388]
+            - cell "Created daniel.osei@aurelis.local as Administrator" [ref=f50e390]
+          - row [ref=f50e391]:
+            - cell "14 Sept 2026 15:27 UTC" [ref=f50e392]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e393]: 15:27 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e394]
+            - cell "login" [ref=f50e395]
+            - cell "Signed in" [ref=f50e397]
+          - row [ref=f50e398]:
+            - cell "14 Sept 2026 15:27 UTC" [ref=f50e399]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e400]: 15:27 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e401]
+            - cell "created" [ref=f50e402]
+            - cell "Created marcus.whitfield@aurelis.local as Administrator" [ref=f50e404]
+          - row [ref=f50e405]:
+            - cell "14 Sept 2026 15:27 UTC" [ref=f50e406]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e407]: 15:27 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e408]
+            - cell "created" [ref=f50e409]
+            - cell "Created priya.devanathan@aurelis.local as Administrator" [ref=f50e411]
+          - row [ref=f50e412]:
+            - cell "14 Sept 2026 15:25 UTC" [ref=f50e413]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e414]: 15:25 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e415]
+            - cell "login" [ref=f50e416]
+            - cell "Signed in" [ref=f50e418]
+          - row [ref=f50e419]:
+            - cell "14 Sept 2026 15:25 UTC" [ref=f50e420]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e421]: 15:25 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e422]
+            - cell "purchase_order_status_updated" [ref=f50e423]
+            - cell [ref=f50e425]:
+              - text: PO PO-2026-25768 transitioned from Sent to Received
+              - generic [ref=f50e427]:
+                - term [ref=f50e428]: status
+                - definition [ref=f50e429]: Sent → Received
+          - row [ref=f50e430]:
+            - cell "14 Sept 2026 15:25 UTC" [ref=f50e431]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e432]: 15:25 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e433]
+            - cell "purchase_order_status_updated" [ref=f50e434]
+            - cell [ref=f50e436]:
+              - text: PO PO-2026-25768 transitioned from Approved to Sent
+              - generic [ref=f50e438]:
+                - term [ref=f50e439]: status
+                - definition [ref=f50e440]: Approved → Sent
+          - row [ref=f50e441]:
+            - cell "14 Sept 2026 15:25 UTC" [ref=f50e442]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e443]: 15:25 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e444]
+            - cell "purchase_order_status_updated" [ref=f50e445]
+            - cell [ref=f50e447]:
+              - text: PO PO-2026-25768 transitioned from Pending Approval to Approved
+              - generic [ref=f50e449]:
+                - term [ref=f50e450]: status
+                - definition [ref=f50e451]: Pending Approval → Approved
+          - row [ref=f50e452]:
+            - cell "14 Sept 2026 15:24 UTC" [ref=f50e453]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e454]: 15:24 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e455]
+            - cell "login" [ref=f50e456]
+            - cell "Signed in" [ref=f50e458]
+          - row [ref=f50e459]:
+            - cell "14 Sept 2026 15:23 UTC" [ref=f50e460]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e461]: 15:23 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e462]
+            - cell "purchase_order_created" [ref=f50e463]
+            - cell "Created purchase order PO-2026-25768 for ₹7,000" [ref=f50e465]
+          - row [ref=f50e466]:
+            - cell "14 Sept 2026 15:16 UTC" [ref=f50e467]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e468]: 15:16 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e469]
+            - cell "login" [ref=f50e470]
+            - cell "Signed in" [ref=f50e472]
+          - row [ref=f50e473]:
+            - cell "14 Sept 2026 11:49 UTC" [ref=f50e474]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e475]: 11:49 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e476]
+            - cell "login" [ref=f50e477]
+            - cell "Signed in" [ref=f50e479]
+          - row [ref=f50e480]:
+            - cell "14 Sept 2026 11:49 UTC" [ref=f50e481]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e482]: 11:49 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e483]
+            - cell "updated" [ref=f50e484]
+            - cell [ref=f50e486]:
+              - text: Status Processing → Confirmed
+              - generic [ref=f50e488]:
+                - term [ref=f50e489]: status
+                - definition [ref=f50e490]: Processing → Confirmed
+          - row [ref=f50e491]:
+            - cell "14 Sept 2026 11:48 UTC" [ref=f50e492]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e493]: 11:48 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e494]
+            - cell "login" [ref=f50e495]
+            - cell "Signed in" [ref=f50e497]
+          - row [ref=f50e498]:
+            - cell "14 Sept 2026 11:48 UTC" [ref=f50e499]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e500]: 11:48 UTC
+            - cell "Hélène Marchand (Administrator)" [ref=f50e501]
+            - cell "updated" [ref=f50e502]
+            - cell [ref=f50e504]:
+              - text: Status Confirmed → Processing
+              - generic [ref=f50e506]:
+                - term [ref=f50e507]: status
+                - definition [ref=f50e508]: Confirmed → Processing
+          - row [ref=f50e509]:
+            - cell "14 Sept 2026 11:48 UTC" [ref=f50e510]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e511]: 11:48 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e512]
+            - cell "login" [ref=f50e513]
+            - cell "Signed in" [ref=f50e515]
+          - row [ref=f50e516]:
+            - cell "14 Sept 2026 11:46 UTC" [ref=f50e517]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e518]: 11:46 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e519]
+            - cell "login" [ref=f50e520]
+            - cell "Signed in" [ref=f50e522]
+          - row [ref=f50e523]:
+            - cell "14 Sept 2026 11:45 UTC" [ref=f50e524]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e525]: 11:45 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e526]
+            - cell "login" [ref=f50e527]
+            - cell "Signed in" [ref=f50e529]
+          - row [ref=f50e530]:
+            - cell "14 Sept 2026 11:44 UTC" [ref=f50e531]:
+              - text: 14 Sept 2026
+              - generic [ref=f50e532]: 11:44 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e533]
+            - cell "login" [ref=f50e534]
+            - cell "Signed in" [ref=f50e536]
+          - row [ref=f50e537]:
+            - cell "13 Sept 2026 05:48 UTC" [ref=f50e538]:
+              - text: 13 Sept 2026
+              - generic [ref=f50e539]: 05:48 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e540]
+            - cell "login" [ref=f50e541]
+            - cell "Signed in" [ref=f50e543]
+          - row [ref=f50e544]:
+            - cell "11 Sept 2026 19:43 UTC" [ref=f50e545]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e546]: 19:43 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e547]
+            - cell "login" [ref=f50e548]
+            - cell "Signed in" [ref=f50e550]
+          - row [ref=f50e551]:
+            - cell "11 Sept 2026 19:41 UTC" [ref=f50e552]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e553]: 19:41 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e554]
+            - cell "login" [ref=f50e555]
+            - cell "Signed in" [ref=f50e557]
+          - row [ref=f50e558]:
+            - cell "11 Sept 2026 19:34 UTC" [ref=f50e559]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e560]: 19:34 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e561]
+            - cell "login" [ref=f50e562]
+            - cell "Signed in" [ref=f50e564]
+          - row [ref=f50e565]:
+            - cell "11 Sept 2026 19:27 UTC" [ref=f50e566]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e567]: 19:27 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e568]
+            - cell "login" [ref=f50e569]
+            - cell "Signed in" [ref=f50e571]
+          - row [ref=f50e572]:
+            - cell "11 Sept 2026 19:26 UTC" [ref=f50e573]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e574]: 19:26 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e575]
+            - cell "login" [ref=f50e576]
+            - cell "Signed in" [ref=f50e578]
+          - row [ref=f50e579]:
+            - cell "11 Sept 2026 19:24 UTC" [ref=f50e580]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e581]: 19:24 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e582]
+            - cell "login" [ref=f50e583]
+            - cell "Signed in" [ref=f50e585]
+          - row [ref=f50e586]:
+            - cell "11 Sept 2026 19:23 UTC" [ref=f50e587]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e588]: 19:23 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e589]
+            - cell "login" [ref=f50e590]
+            - cell "Signed in" [ref=f50e592]
+          - row [ref=f50e593]:
+            - cell "11 Sept 2026 19:21 UTC" [ref=f50e594]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e595]: 19:21 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e596]
+            - cell "login" [ref=f50e597]
+            - cell "Signed in" [ref=f50e599]
+          - row [ref=f50e600]:
+            - cell "11 Sept 2026 19:20 UTC" [ref=f50e601]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e602]: 19:20 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e603]
+            - cell "login" [ref=f50e604]
+            - cell "Signed in" [ref=f50e606]
+          - row [ref=f50e607]:
+            - cell "11 Sept 2026 19:02 UTC" [ref=f50e608]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e609]: 19:02 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e610]
+            - cell "login" [ref=f50e611]
+            - cell "Signed in" [ref=f50e613]
+          - row [ref=f50e614]:
+            - cell "11 Sept 2026 19:01 UTC" [ref=f50e615]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e616]: 19:01 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e617]
+            - cell "login" [ref=f50e618]
+            - cell "Signed in" [ref=f50e620]
+          - row [ref=f50e621]:
+            - cell "11 Sept 2026 19:00 UTC" [ref=f50e622]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e623]: 19:00 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e624]
+            - cell "login" [ref=f50e625]
+            - cell "Signed in" [ref=f50e627]
+          - row [ref=f50e628]:
+            - cell "11 Sept 2026 18:59 UTC" [ref=f50e629]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e630]: 18:59 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e631]
+            - cell "login" [ref=f50e632]
+            - cell "Signed in" [ref=f50e634]
+          - row [ref=f50e635]:
+            - cell "11 Sept 2026 18:57 UTC" [ref=f50e636]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e637]: 18:57 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e638]
+            - cell "login" [ref=f50e639]
+            - cell "Signed in" [ref=f50e641]
+          - row [ref=f50e642]:
+            - cell "11 Sept 2026 18:56 UTC" [ref=f50e643]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e644]: 18:56 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e645]
+            - cell "login" [ref=f50e646]
+            - cell "Signed in" [ref=f50e648]
+          - row [ref=f50e649]:
+            - cell "11 Sept 2026 18:56 UTC" [ref=f50e650]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e651]: 18:56 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e652]
+            - cell "login" [ref=f50e653]
+            - cell "Signed in" [ref=f50e655]
+          - row [ref=f50e656]:
+            - cell "11 Sept 2026 18:52 UTC" [ref=f50e657]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e658]: 18:52 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e659]
+            - cell "login" [ref=f50e660]
+            - cell "Signed in" [ref=f50e662]
+          - row [ref=f50e663]:
+            - cell "11 Sept 2026 17:58 UTC" [ref=f50e664]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e665]: 17:58 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e666]
+            - cell "login" [ref=f50e667]
+            - cell "Signed in" [ref=f50e669]
+          - row [ref=f50e670]:
+            - cell "11 Sept 2026 17:53 UTC" [ref=f50e671]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e672]: 17:53 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e673]
+            - cell "login" [ref=f50e674]
+            - cell "Signed in" [ref=f50e676]
+          - row [ref=f50e677]:
+            - cell "11 Sept 2026 17:52 UTC" [ref=f50e678]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e679]: 17:52 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e680]
+            - cell "login" [ref=f50e681]
+            - cell "Signed in" [ref=f50e683]
+          - row [ref=f50e684]:
+            - cell "11 Sept 2026 17:48 UTC" [ref=f50e685]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e686]: 17:48 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e687]
+            - cell "login" [ref=f50e688]
+            - cell "Signed in" [ref=f50e690]
+          - row [ref=f50e691]:
+            - cell "11 Sept 2026 17:35 UTC" [ref=f50e692]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e693]: 17:35 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e694]
+            - cell "login" [ref=f50e695]
+            - cell "Signed in" [ref=f50e697]
+          - row [ref=f50e698]:
+            - cell "11 Sept 2026 17:29 UTC" [ref=f50e699]:
+              - text: 11 Sept 2026
+              - generic [ref=f50e700]: 17:29 UTC
+            - cell "Hélène Marchand (admin)" [ref=f50e701]
+            - cell "login" [ref=f50e702]
+            - cell "Signed in" [ref=f50e704]
+  - button "Open AI assistant" [ref=f50e61] [cursor=pointer]: Ask AI

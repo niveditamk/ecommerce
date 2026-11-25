@@ -1,0 +1,104 @@
+- generic [ref=f79e3]:
+  - complementary "Admin navigation" [ref=f79e4]:
+    - generic [ref=f79e5]:
+      - generic [ref=f79e6]: AURELIS
+      - generic [ref=f79e7]: Executive · AI Admin
+    - navigation [ref=f79e8]:
+      - generic [ref=f79e9]:
+        - heading "Executive Command" [level=2] [ref=f79e10]
+        - link "Command Center" [ref=f79e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f79e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f79e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f79e14]
+        - link "Inventory Management" [ref=f79e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f79e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f79e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f79e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f79e19]
+        - link "Sales & BI Analytics" [ref=f79e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f79e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f79e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f79e23]
+        - link "Products" [ref=f79e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f79e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f79e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f79e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f79e28]:
+        - heading "System & Governance" [level=2] [ref=f79e29]
+        - link "Staff Management" [ref=f79e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f79e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f79e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f79e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f79e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f79e35]:
+      - generic [ref=f79e36]: Hélène Marchand
+      - generic [ref=f79e37]: Administrator
+      - button "Sign out" [ref=f79e38] [cursor=pointer]
+  - generic [ref=f79e39]:
+    - banner [ref=f79e40]:
+      - generic [ref=f79e42]:
+        - generic [ref=f79e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f79e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f79e45]: Period Filter
+        - combobox "Filter by time period" [ref=f79e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f79e47]:
+        - link "4 Alerts" [ref=f79e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f79e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f79e52]:
+      - generic [ref=f79e53]:
+        - generic [ref=f79e54]:
+          - generic [ref=f79e55]: Catalog
+          - heading "Products" [level=1] [ref=f79e56]
+          - paragraph [ref=f79e57]: Loading
+        - generic [ref=f79e58]:
+          - button "Export CSV" [ref=f79e59] [cursor=pointer]
+          - link "Add product" [ref=f79e60] [cursor=pointer]:
+            - /url: /admin/products/new
+      - generic [ref=f79e61]:
+        - textbox "Search products" [ref=f79e62]:
+          - /placeholder: Search name or SKU
+        - combobox "Collection" [ref=f79e63]:
+          - option "All collections" [selected]
+        - combobox "Status" [ref=f79e64]:
+          - option "Any status" [selected]
+          - option "Active"
+          - option "Draft"
+          - option "Archived"
+        - combobox "Stock" [ref=f79e65]:
+          - option "All stock" [selected]
+          - option "Running low"
+          - option "Out of stock"
+        - combobox "Sort" [ref=f79e66]:
+          - option "Name" [selected]
+          - option "Price, high to low"
+          - option "Stock, low to high"
+          - option "Newest"
+  - button "Open AI assistant" [ref=f79e75] [cursor=pointer]: Ask AI

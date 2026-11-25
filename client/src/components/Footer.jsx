@@ -1,100 +1,76 @@
 /* =============================================================
-   AURELIS // TERMINAL DIRECTORY & SYSTEM SPECIFICATIONS
-   Technical machine colophon, category directories, and transaction guarantees.
+   AURELIS MAISON // PRESTIGIOUS HAUTE COLOPHON & DIRECTORY
+   Geneva atelier heritage, client concierge services,
+   precious material provenance, and discreet administrative portal.
    ============================================================= */
 import { Link } from 'react-router-dom';
 import { Icon } from './primitives';
 import { useStore } from '../context/StoreContext';
 import { dx } from '../lib/format';
 
-const TERMINAL_CARE = [
-  ['/help', '01 // Concierge & Inquiries'],
-  ['/shipping', '02 // Global Courier Dispatch'],
-  ['/returns', '03 // 30-Day Escrow Return'],
-  ['/account/orders', '04 // Real-Time Ledger Tracking'],
-  ['/help?topic=Care', '05 // Technical Servicing & Restoration'],
-  ['/help?topic=Sizing', '06 // Calibration & Size Indices']
+const CLIENT_SERVICES = [
+  ['/help', 'Client Concierge & Inquiries'],
+  ['/shipping', 'Complimentary Insured Dispatch'],
+  ['/returns', '30-Day Return Privilege'],
+  ['/account/orders', 'Track Order & Valuation Certificate'],
+  ['/help?topic=Care', 'Lifetime Servicing & Ultrasonic Restoration'],
+  ['/help?topic=Sizing', 'Complimentary Sizing Kit & Measurement']
 ];
 
-const TERMINAL_SYSTEM = [
-  ['/membership', '01 // Member Terminal Access'],
-  ['/stores', '02 // Physical Atelier Vaults'],
-  ['/#story', '03 // Geneva Precision Heritage (1911)'],
-  ['/#journal', '04 // The Digital Dispatch'],
-  ['/legal#privacy', '05 // Cryptographic Discretion'],
-  ['/legal', '06 // Commercial Terms of Sale']
+const THE_MAISON = [
+  ['/stores', 'Atelier Flagships (Geneva, London, Paris, Mumbai)'],
+  ['/#story', 'The 1911 Geneva Precision Heritage'],
+  ['/membership', 'Private Collector Salon'],
+  ['/legal#privacy', 'Client Confidentiality & Discretion'],
+  ['/legal', 'Terms of Commission & Sale']
 ];
-
-const PROTOCOLS = ['ESCROW VERIFIED', '256-BIT RSA', 'NODE-DIRECT', 'GENEVA ATELIER CERTIFIED'];
 
 export default function Footer() {
   const { categories } = useStore();
 
   return (
-    <footer className="site-footer" style={{ borderTop: '1px solid var(--line-dark)', background: 'var(--color-paper-light)' }}>
-      {/* Top Machine Telemetry Ribbon */}
-      <div style={{ padding: '12px 24px', borderBottom: '1px dashed var(--line)', background: 'var(--color-bone)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--pearl-2)' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-terminal-green)', display: 'inline-block' }} />
-          <span>TERMINAL // ONLINE &middot; REAL-TIME COMMERCE PROTOCOL 1980.2026</span>
-        </div>
-        <div style={{ display: 'flex', gap: '14px', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--pearl-3)' }}>
-          {PROTOCOLS.map((p) => (
-            <span key={p}>[ {p} ]</span>
-          ))}
-        </div>
-      </div>
-
-      <div className="footer-grid" style={{ padding: '48px 24px' }}>
-        {/* Brand Colophon */}
-        <div className="footer-brand">
-          <Link className="brand" style={{ alignItems: 'flex-start', padding: 0 }} to="/">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ width: '6px', height: '6px', background: 'var(--color-terminal-green)', borderRadius: '1px' }} />
-              <span className="footer-brand__mark" style={{ letterSpacing: '0.1em' }}>AURELIS</span>
-            </div>
-            <span className="footer-brand__sub" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem' }}>
-              COMMERCE TERMINAL &middot; GENEVA NODE
-            </span>
-          </Link>
-          <p className="footer-brand__desc" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.88rem', lineHeight: '1.5', marginTop: '12px' }}>
-            Mechanical precision, numbered jewellery editions, and rare olfactive extraits. Engineered in Geneva ateliers. No production line. Recorded in the immutable maison ledger.
+    <footer className="site-footer">
+      <div className="footer-grid">
+        {/* Brand Colophon & Craftsmanship Statement */}
+        <div>
+          <div className="footer-brand">AURELIS</div>
+          <p className="footer-desc">
+            Handcrafted fine jewellery in recycled 18k gold and platinum, mechanical horology regulated across five positions, and artisanal leather goods bench-made in our Geneva ateliers.
           </p>
-          <div className="center wrap" style={{ marginTop: '20px', gap: '8px' }}>
-            <span className="badge badge--green">
-              <Icon name="shield" size={12} /> LIFETIME RESTORATION
-            </span>
-            <span className="badge badge--terminal">
-              <Icon name="truck" size={12} /> INSURED TRANSIT
-            </span>
+          <div style={{ marginTop: '20px', display: 'flex', gap: '16px', color: 'var(--gold)', fontSize: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            <span>Genève</span>
+            <span>&middot;</span>
+            <span>London</span>
+            <span>&middot;</span>
+            <span>Paris</span>
+            <span>&middot;</span>
+            <span>Mumbai</span>
+            <span>&middot;</span>
+            <span>New Delhi</span>
           </div>
         </div>
 
-        {/* Collections Directory */}
-        <div className="footer-col">
-          <h5 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.08em', color: 'var(--pearl-3)' }}>
-            CATALOGUE DIRECTORY
-          </h5>
-          <ul style={{ listStyle: 'none', padding: 0, marginTop: '14px' }}>
-            {categories.slice(0, 6).map((c, i) => (
-              <li key={c.slug} style={{ marginBottom: '8px' }}>
-                <Link to={`/category/${c.slug}`} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--pearl-2)' }}>
-                  {String(i + 1).padStart(2, '0')} // {dx(c.name)}
+        {/* Collections */}
+        <div>
+          <div className="footer-col-title">Collections</div>
+          <ul className="footer-links">
+            {categories.slice(0, 6).map((c) => (
+              <li key={c.slug}>
+                <Link to={`/category/${c.slug}`}>
+                  {dx(c.name)}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Client Care Directory */}
-        <div className="footer-col">
-          <h5 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.08em', color: 'var(--pearl-3)' }}>
-            CLIENT TERMINAL
-          </h5>
-          <ul style={{ listStyle: 'none', padding: 0, marginTop: '14px' }}>
-            {TERMINAL_CARE.map(([to, label]) => (
-              <li key={to} style={{ marginBottom: '8px' }}>
-                <Link to={to} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--pearl-2)' }}>
+        {/* Concierge & Client Care */}
+        <div>
+          <div className="footer-col-title">Concierge & Care</div>
+          <ul className="footer-links">
+            {CLIENT_SERVICES.map(([to, label]) => (
+              <li key={to}>
+                <Link to={to}>
                   {label}
                 </Link>
               </li>
@@ -102,39 +78,37 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* The Maison Systems */}
-        <div className="footer-col">
-          <h5 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.08em', color: 'var(--pearl-3)' }}>
-            SYSTEM PROTOCOLS
-          </h5>
-          <ul style={{ listStyle: 'none', padding: 0, marginTop: '14px' }}>
-            {TERMINAL_SYSTEM.map(([to, label]) => (
-              <li key={to} style={{ marginBottom: '8px' }}>
-                <Link to={to} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--pearl-2)' }}>
+        {/* The Maison & Governance */}
+        <div>
+          <div className="footer-col-title">The Maison</div>
+          <ul className="footer-links">
+            {THE_MAISON.map(([to, label]) => (
+              <li key={to}>
+                <Link to={to}>
                   {label}
                 </Link>
               </li>
             ))}
+            <li>
+              <Link to="/admin/login" style={{ color: 'var(--gold)', opacity: 0.85 }}>
+                Staff Management Portal &rarr;
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
 
-      {/* Footer Bottom Bar */}
-      <div className="footer-bottom" style={{ borderTop: '1px solid var(--line)', background: 'var(--color-paper)' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-          &copy; {new Date().getFullYear()} AURELIS TERMINAL SA &middot; ALL LEDGER RIGHTS RESERVED
+      {/* Bottom Colophon Bar */}
+      <div className="footer-bottom">
+        <div>
+          &copy; {new Date().getFullYear()} AURELIS MAISON GENÈVE. ALL RIGHTS RESERVED.
         </div>
-        <div className="center wrap" style={{ gap: '12px' }}>
-          {['VISA', 'MASTERCARD', 'AMEX', 'ESCROW WIRE', 'UPI NETBANKING'].map((p) => (
-            <span key={p} className="tiny footer-pay" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem' }}>
-              [ {p} ]
-            </span>
-          ))}
-        </div>
-        <div className="center" style={{ gap: '16px', fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}>
-          <Link to="/legal#privacy" className="footer-pay">DISCRETION</Link>
-          <Link to="/legal" className="footer-pay">TERMS</Link>
-          <Link to="/admin/login" className="footer-pay" style={{ color: 'var(--color-terminal-green-text)' }}>[ STAFF TERMINAL ]</Link>
+        <div style={{ display: 'flex', gap: '24px' }}>
+          <span>100% Recycled 18k Gold &amp; Platinum 950</span>
+          <span>&middot;</span>
+          <span>Insured Transit Across India</span>
+          <span>&middot;</span>
+          <span>Hallmarked Assay Certified</span>
         </div>
       </div>
     </footer>

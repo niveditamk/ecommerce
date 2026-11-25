@@ -1,0 +1,36 @@
+- generic [active] [ref=f86e1]:
+  - generic [ref=f86e2]: AURELIS — Use Case Diagram (Admin Console)
+  - generic [ref=f86e3]: Principal actors and their use cases
+  - generic [ref=f86e4]:
+    - generic [ref=f86e5]: AURELIS ADMIN SYSTEM
+    - generic [ref=f86e6]:
+      - generic [ref=f86e7]: 👤
+      - text: InventoryStaff
+    - generic [ref=f86e8]:
+      - generic [ref=f86e9]: 👤
+      - text: Administrator
+    - generic [ref=f86e10]:
+      - generic [ref=f86e11]: 👤
+      - text: ProcurementStaff
+    - generic [ref=f86e12]: Adjust / count stock (cycle count)
+    - generic [ref=f86e13]: Record batch & expiry
+    - generic [ref=f86e14]: View AI stockout risk
+    - generic [ref=f86e15]: Approve reorder proposal
+    - generic [ref=f86e16]: Manage staff & roles
+    - generic [ref=f86e17]: View audit trail
+    - generic [ref=f86e18]: Create / receive purchase order
+    - generic [ref=f86e19]: Manage suppliers
+    - generic [ref=f86e20]: Run demand forecast
+    - generic [ref=f86e21]: Train / activate ML model version
+    - generic [ref=f86e22]: Run what-if simulation
+    - generic [ref=f86e23]: Give feedback on AI recommendation
+    - generic [ref=f86e24]: Generate / schedule report
+    - generic [ref=f86e25]: Add collaboration note / @mention
+    - generic [ref=f86e26]: Cancel order (with restock)
+    - generic [ref=f86e27]: Create / delete collection
+    - generic [ref=f86e28]:
+      - generic [ref=f86e29]: 🤖
+      - text: AI Engine(system actor)
+    - generic [ref=f86e30]:
+      - generic [ref=f86e31]: 🔌
+      - text: ReportScheduler(system actor)

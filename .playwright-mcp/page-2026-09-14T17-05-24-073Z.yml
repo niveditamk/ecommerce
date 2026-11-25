@@ -1,0 +1,94 @@
+- generic [ref=f41e3]:
+  - complementary "Admin navigation" [ref=f41e4]:
+    - generic [ref=f41e5]:
+      - generic [ref=f41e6]: AURELIS
+      - generic [ref=f41e7]: Executive · AI Admin
+    - navigation [ref=f41e8]:
+      - generic [ref=f41e9]:
+        - heading "Executive Command" [level=2] [ref=f41e10]
+        - link "Command Center" [ref=f41e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f41e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f41e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f41e14]
+        - link "Inventory Management" [ref=f41e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f41e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f41e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f41e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f41e19]
+        - link "Sales & BI Analytics" [ref=f41e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f41e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f41e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f41e23]
+        - link "Products" [ref=f41e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f41e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f41e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f41e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f41e28]:
+        - heading "System & Governance" [level=2] [ref=f41e29]
+        - link "Staff Management" [ref=f41e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f41e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f41e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f41e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f41e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f41e35]:
+      - generic [ref=f41e36]: Hélène Marchand
+      - generic [ref=f41e37]: Administrator
+      - button "Sign out" [ref=f41e38] [cursor=pointer]
+  - generic [ref=f41e39]:
+    - banner [ref=f41e40]:
+      - generic [ref=f41e42]:
+        - generic [ref=f41e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f41e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f41e45]: Period Filter
+        - combobox "Filter by time period" [ref=f41e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f41e47]:
+        - link "5 Alerts" [ref=f41e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f41e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f41e52]:
+      - generic [ref=f41e53]:
+        - generic [ref=f41e55]:
+          - generic [ref=f41e56]: Artificial Intelligence Engine
+          - heading "AI Intelligence & Forecasting" [level=1] [ref=f41e57]
+          - paragraph [ref=f41e58]: Predictive demand, autonomous anomaly detection, and decision-support workflows.
+        - tablist [ref=f41e59]:
+          - tab "AI Alert Center" [selected] [ref=f41e60] [cursor=pointer]
+          - tab "Demand Forecasting" [ref=f41e61] [cursor=pointer]
+          - tab "Stockout Risk Matrix" [ref=f41e62] [cursor=pointer]
+          - tab "Smart Replenishment" [ref=f41e63] [cursor=pointer]
+          - tab "Overstock & Dead Stock" [ref=f41e64] [cursor=pointer]
+          - tab "What-If Simulator" [ref=f41e65] [cursor=pointer]
+          - tab "AI Evaluation & Learning" [ref=f41e66] [cursor=pointer]
+        - generic [ref=f41e70]:
+          - button "All Alerts (0)" [ref=f41e71] [cursor=pointer]
+          - button "Critical" [ref=f41e72] [cursor=pointer]
+          - button "Warning" [ref=f41e73] [cursor=pointer]
+          - button "Information" [ref=f41e74] [cursor=pointer]
+  - button "Open AI assistant" [ref=f41e78] [cursor=pointer]: Ask AI

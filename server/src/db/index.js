@@ -111,6 +111,16 @@ function applyIncremental() {
     done.push('inventory_transactions');
   }
 
+  /* --- the ledger needs to know which warehouse moved ---
+     adjustStock() already takes a warehouseId and updates the right
+     warehouse_stock row; the ledger it writes alongside that never
+     recorded which warehouse, so every read of it had nothing real
+     to show and fell back to a hardcoded warehouse label. */
+  if (!hasColumn('inventory_transactions', 'warehouse_id')) {
+    db.exec('ALTER TABLE inventory_transactions ADD COLUMN warehouse_id INTEGER REFERENCES warehouses(id)');
+    done.push('inventory_transactions.warehouse_id');
+  }
+
   /* --- orders need to know which session placed them --- */
   if (!hasColumn('orders', 'session_id')) {
     db.exec('ALTER TABLE orders ADD COLUMN session_id TEXT');
@@ -294,6 +304,113 @@ function migrateEnterpriseOperations(done) {
       );
     `);
     done.push('purchase_orders');
+  }
+
+  /* --- physical stocktake ---
+     A cycle count snapshots the system's expected quantity for a set of
+     SKUs at creation time, so a count entered hours later is still
+     compared against what the system believed *then* — not whatever
+     it has drifted to by the time the count is reconciled. */
+  if (!hasTable('cycle_counts')) {
+    db.exec(`
+      CREATE TABLE cycle_counts (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        count_number   TEXT NOT NULL UNIQUE,
+        warehouse_id   INTEGER NOT NULL REFERENCES warehouses(id),
+        status         TEXT NOT NULL DEFAULT 'Open',   -- Open | Completed | Cancelled
+        scope          TEXT NOT NULL DEFAULT 'all',    -- all | low_stock
+        notes          TEXT,
+        created_by     INTEGER REFERENCES staff(id),
+        completed_by   INTEGER REFERENCES staff(id),
+        created_at     TEXT NOT NULL DEFAULT (datetime('now')),
+        completed_at   TEXT
+      );
+      CREATE TABLE cycle_count_items (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        cycle_count_id INTEGER NOT NULL REFERENCES cycle_counts(id) ON DELETE CASCADE,
+        product_id     TEXT NOT NULL REFERENCES products(id),
+        expected_qty   INTEGER NOT NULL,
+        counted_qty    INTEGER,
+        counted_by     INTEGER REFERENCES staff(id),
+        counted_at     TEXT
+      );
+      CREATE INDEX idx_cyclecount_items_count ON cycle_count_items(cycle_count_id);
+    `);
+    done.push('cycle_counts');
+  }
+
+  /* --- internal collaboration notes ---
+     A record any staff member can leave a note on, with an @mention
+     resolved to a real staff id at write time (not re-parsed on every
+     read). author_name is denormalised like audit_logs.actor, so a
+     note still reads correctly after the author's account is gone. */
+  /* --- scheduled reports ---
+     A schedule that a background check advances on its own; each
+     run is stored, not emailed — there is no real mail sender wired
+     up here, and a report claiming to have been sent when it was not
+     is worse than one that is honest about only being saved. */
+  /* --- batch/expiry tracking ---
+     Fragrances are the one category in this catalogue with a real
+     shelf life; jewellery, horology and leather do not expire, so
+     this is deliberately scoped to a category rather than every
+     product (enforced in server/src/batches.js, not just the UI). */
+  if (!hasTable('product_batches')) {
+    db.exec(`
+      CREATE TABLE product_batches (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        product_id     TEXT NOT NULL REFERENCES products(id),
+        batch_number   TEXT NOT NULL,
+        qty            INTEGER NOT NULL,
+        expiry_date    TEXT NOT NULL,
+        received_at    TEXT NOT NULL DEFAULT (datetime('now')),
+        created_by     INTEGER REFERENCES staff(id)
+      );
+      CREATE INDEX idx_batches_product ON product_batches(product_id, expiry_date);
+    `);
+    done.push('product_batches');
+  }
+
+  if (!hasTable('scheduled_reports')) {
+    db.exec(`
+      CREATE TABLE scheduled_reports (
+        id           INTEGER PRIMARY KEY AUTOINCREMENT,
+        name         TEXT NOT NULL,
+        report_type  TEXT NOT NULL,
+        frequency    TEXT NOT NULL,               -- daily | weekly | monthly
+        status       TEXT NOT NULL DEFAULT 'active', -- active | paused
+        next_run_at  TEXT NOT NULL,
+        last_run_at  TEXT,
+        created_by   INTEGER REFERENCES staff(id),
+        created_at   TEXT NOT NULL DEFAULT (datetime('now'))
+      );
+      CREATE TABLE report_runs (
+        id                   INTEGER PRIMARY KEY AUTOINCREMENT,
+        scheduled_report_id  INTEGER NOT NULL REFERENCES scheduled_reports(id) ON DELETE CASCADE,
+        report_type          TEXT NOT NULL,
+        row_count            INTEGER NOT NULL,
+        data                 TEXT NOT NULL,        -- JSON snapshot
+        generated_at         TEXT NOT NULL DEFAULT (datetime('now'))
+      );
+      CREATE INDEX idx_report_runs_schedule ON report_runs(scheduled_report_id, generated_at DESC);
+    `);
+    done.push('scheduled_reports');
+  }
+
+  if (!hasTable('admin_notes')) {
+    db.exec(`
+      CREATE TABLE admin_notes (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        entity         TEXT NOT NULL,       -- order | product
+        entity_id      TEXT NOT NULL,
+        body           TEXT NOT NULL,
+        author_id      INTEGER REFERENCES staff(id),
+        author_name    TEXT NOT NULL,
+        mentioned_ids  TEXT,                 -- JSON array of staff ids
+        created_at     TEXT NOT NULL DEFAULT (datetime('now'))
+      );
+      CREATE INDEX idx_notes_entity ON admin_notes(entity, entity_id, created_at DESC);
+    `);
+    done.push('admin_notes');
   }
 
   if (!hasTable('goods_receipts')) {

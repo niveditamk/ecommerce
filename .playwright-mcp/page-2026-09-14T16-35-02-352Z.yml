@@ -1,0 +1,412 @@
+- generic [ref=f29e3]:
+  - complementary "Admin navigation" [ref=f29e5]:
+    - generic [ref=f29e6]:
+      - generic [ref=f29e7]: AURELIS
+      - generic [ref=f29e8]: Executive · AI Admin
+    - navigation [ref=f29e9]:
+      - generic [ref=f29e10]:
+        - heading "Executive Command" [level=2] [ref=f29e11]
+        - link "Command Center" [ref=f29e12] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f29e13] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f29e14]:
+        - heading "Inventory & Vaults" [level=2] [ref=f29e15]
+        - link "Inventory Management" [ref=f29e16] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f29e17] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f29e18] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f29e19]:
+        - heading "Intelligence & Reports" [level=2] [ref=f29e20]
+        - link "Sales & BI Analytics" [ref=f29e21] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f29e22] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f29e23]:
+        - heading "Catalog & Orders" [level=2] [ref=f29e24]
+        - link "Products" [ref=f29e25] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f29e26] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f29e27] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f29e28] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f29e29]:
+        - heading "System & Governance" [level=2] [ref=f29e30]
+        - link "Staff Management" [ref=f29e31] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f29e32] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f29e33] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f29e34] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f29e35] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f29e36]:
+      - generic [ref=f29e37]: Hélène Marchand
+      - generic [ref=f29e38]: Administrator
+      - button "Sign out" [ref=f29e39] [cursor=pointer]
+  - generic [ref=f29e40]:
+    - banner [ref=f29e41]:
+      - generic [ref=f29e43]:
+        - generic [ref=f29e44]: Facility Filter
+        - combobox "Filter by facility" [ref=f29e45] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f29e46]: Period Filter
+        - combobox "Filter by time period" [ref=f29e47] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f29e48]:
+        - link "5 Alerts" [ref=f29e49] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f29e52] [cursor=pointer]:
+          - /url: /
+    - main [ref=f29e53]:
+      - generic [ref=f29e54]:
+        - generic [ref=f29e55]:
+          - generic [ref=f29e56]:
+            - generic [ref=f29e57]: Inventory Management System
+            - heading "Real-Time Inventory & Stock Operations" [level=1] [ref=f29e58]
+            - paragraph [ref=f29e59]: Multi-warehouse stock allocation, auditable transaction ledger, and inventory adjustments.
+          - generic [ref=f29e60]:
+            - button "+ Adjust Stock Balance" [ref=f29e61] [cursor=pointer]
+            - button "↻ Refresh" [ref=f29e62] [cursor=pointer]
+        - generic [ref=f29e63]:
+          - generic [ref=f29e64]:
+            - generic [ref=f29e65]: Total SKUs
+            - generic [ref=f29e66]: "140"
+          - generic [ref=f29e67]:
+            - generic [ref=f29e68]: Units On Hand
+            - generic [ref=f29e69]: 1,607
+          - generic [ref=f29e70]:
+            - generic [ref=f29e71]: Inventory Valuation
+            - generic [ref=f29e72]: ₹20,02,82,100
+          - generic [ref=f29e73]:
+            - generic [ref=f29e74]: Low Stock Alerts
+            - generic [ref=f29e75]: "44"
+          - generic [ref=f29e76]:
+            - generic [ref=f29e77]: Stockouts
+            - generic [ref=f29e78]: "19"
+        - tablist [ref=f29e79]:
+          - tab "📦 Stock Levels & Warehouses (25)" [ref=f29e80] [cursor=pointer]
+          - tab "📜 Stock Movements Ledger (25)" [active] [selected] [ref=f29e81] [cursor=pointer]
+          - tab "🔢 Cycle Counts (0 open)" [ref=f29e82] [cursor=pointer]
+        - generic [ref=f29e83]:
+          - generic [ref=f29e84]:
+            - generic [ref=f29e85]:
+              - generic [ref=f29e86]: Transaction Type
+              - combobox "Transaction Type" [ref=f29e87]:
+                - option "All Movement Types" [selected]
+                - option "Customer Sales (Out)"
+                - option "Customer Returns (In)"
+                - option "Supplier Receipts (In)"
+                - option "Manual Adjustments"
+                - option "Transfer In"
+                - option "Transfer Out"
+              - generic [ref=f29e88]: Warehouse
+              - combobox "Warehouse" [ref=f29e89]:
+                - option "All Warehouses" [selected]
+                - option "GVA-ATELIER"
+                - option "ZRH-CENTRAL"
+                - option "PAR-VAULT"
+                - option "NYC-VAULT"
+            - generic [ref=f29e90]: Immutable audit ledger · 25 entries recorded
+          - table [ref=f29e92]:
+            - rowgroup [ref=f29e93]:
+              - row [ref=f29e94]:
+                - columnheader "Timestamp" [ref=f29e95]
+                - columnheader "Product / SKU" [ref=f29e96]
+                - columnheader "Warehouse" [ref=f29e97]
+                - columnheader "Type" [ref=f29e98]
+                - columnheader "Delta" [ref=f29e99]
+                - columnheader "Before → After" [ref=f29e100]
+                - columnheader "Reason / Notes" [ref=f29e101]
+                - columnheader "Authorized By" [ref=f29e102]
+            - rowgroup [ref=f29e103]:
+              - row [ref=f29e104]:
+                - cell "2026-09-14 15:59" [ref=f29e105]
+                - cell "Aldgate Instrument Bag aur-406" [ref=f29e106]:
+                  - generic [ref=f29e107]: Aldgate Instrument Bag
+                  - text: aur-406
+                - cell "—" [ref=f29e108]
+                - cell "ADJUSTMENT_IN" [ref=f29e109]
+                - cell "+3" [ref=f29e111]
+                - cell "0 → 3" [ref=f29e112]
+                - 'cell "cycle_count: Cycle count CC-2026-28129: expected 0, counted 3" [ref=f29e113]'
+                - cell "admin@aurelis.local" [ref=f29e115]
+              - row [ref=f29e116]:
+                - cell "2026-09-14 15:25" [ref=f29e117]
+                - cell "Solstice Signet aur-101" [ref=f29e118]:
+                  - generic [ref=f29e119]: Solstice Signet
+                  - text: aur-101
+                - cell "—" [ref=f29e120]
+                - cell "PURCHASE_RECEIPT" [ref=f29e121]
+                - cell "+25" [ref=f29e123]
+                - cell "0 → 25" [ref=f29e124]
+                - cell "Goods received from PO" [ref=f29e125]
+                - cell "admin@aurelis.local" [ref=f29e127]
+              - row [ref=f29e128]:
+                - cell "2026-09-11 21:45" [ref=f29e129]
+                - cell "Cendre Bleue aur-309" [ref=f29e130]:
+                  - generic [ref=f29e131]: Cendre Bleue
+                  - text: aur-309
+                - cell "—" [ref=f29e132]
+                - cell "ORDER_CONFIRMED" [ref=f29e133]
+                - cell "-1" [ref=f29e135]
+                - cell "34 → 33" [ref=f29e136]
+                - cell "Sold" [ref=f29e137]
+                - cell "System" [ref=f29e139]
+              - row [ref=f29e140]:
+                - cell "2026-09-11 13:06" [ref=f29e141]
+                - cell "Iris de Ravenne aur-308" [ref=f29e142]:
+                  - generic [ref=f29e143]: Iris de Ravenne
+                  - text: aur-308
+                - cell "—" [ref=f29e144]
+                - cell "ORDER_CONFIRMED" [ref=f29e145]
+                - cell "-1" [ref=f29e147]
+                - cell "11 → 10" [ref=f29e148]
+                - cell "Sold" [ref=f29e149]
+                - cell "System" [ref=f29e151]
+              - row [ref=f29e152]:
+                - cell "2026-09-11 13:06" [ref=f29e153]
+                - cell "Soliflore Vase aur-517" [ref=f29e154]:
+                  - generic [ref=f29e155]: Soliflore Vase
+                  - text: aur-517
+                - cell "—" [ref=f29e156]
+                - cell "ORDER_CONFIRMED" [ref=f29e157]
+                - cell "-1" [ref=f29e159]
+                - cell "34 → 33" [ref=f29e160]
+                - cell "Sold" [ref=f29e161]
+                - cell "System" [ref=f29e163]
+              - row [ref=f29e164]:
+                - cell "2026-09-11 13:06" [ref=f29e165]
+                - cell "Varenne Paperweight aur-507" [ref=f29e166]:
+                  - generic [ref=f29e167]: Varenne Paperweight
+                  - text: aur-507
+                - cell "—" [ref=f29e168]
+                - cell "ORDER_CONFIRMED" [ref=f29e169]
+                - cell "-1" [ref=f29e171]
+                - cell "24 → 23" [ref=f29e172]
+                - cell "Sold" [ref=f29e173]
+                - cell "System" [ref=f29e175]
+              - row [ref=f29e176]:
+                - cell "2026-09-11 11:24" [ref=f29e177]
+                - cell "Coffret Aquilee aur-321" [ref=f29e178]:
+                  - generic [ref=f29e179]: Coffret Aquilee
+                  - text: aur-321
+                - cell "—" [ref=f29e180]
+                - cell "ORDER_CONFIRMED" [ref=f29e181]
+                - cell "-2" [ref=f29e183]
+                - cell "14 → 12" [ref=f29e184]
+                - cell "Sold" [ref=f29e185]
+                - cell "System" [ref=f29e187]
+              - row [ref=f29e188]:
+                - cell "2026-09-11 11:24" [ref=f29e189]
+                - cell "Brocanteur Optical aur-709" [ref=f29e190]:
+                  - generic [ref=f29e191]: Brocanteur Optical
+                  - text: aur-709
+                - cell "—" [ref=f29e192]
+                - cell "ORDER_CONFIRMED" [ref=f29e193]
+                - cell "-1" [ref=f29e195]
+                - cell "12 → 11" [ref=f29e196]
+                - cell "Sold" [ref=f29e197]
+                - cell "System" [ref=f29e199]
+              - row [ref=f29e200]:
+                - cell "2026-09-11 11:24" [ref=f29e201]
+                - cell "Terre d&rsquo;Ombre aur-314" [ref=f29e202]:
+                  - generic [ref=f29e203]: Terre d&rsquo;Ombre
+                  - text: aur-314
+                - cell "—" [ref=f29e204]
+                - cell "ORDER_CONFIRMED" [ref=f29e205]
+                - cell "-1" [ref=f29e207]
+                - cell "27 → 26" [ref=f29e208]
+                - cell "Sold" [ref=f29e209]
+                - cell "System" [ref=f29e211]
+              - row [ref=f29e212]:
+                - cell "2026-09-10 19:15" [ref=f29e213]
+                - cell "Kerman Pateh aur-616" [ref=f29e214]:
+                  - generic [ref=f29e215]: Kerman Pateh
+                  - text: aur-616
+                - cell "—" [ref=f29e216]
+                - cell "ORDER_CONFIRMED" [ref=f29e217]
+                - cell "-2" [ref=f29e219]
+                - cell "28 → 26" [ref=f29e220]
+                - cell "Sold" [ref=f29e221]
+                - cell "System" [ref=f29e223]
+              - row [ref=f29e224]:
+                - cell "2026-09-10 16:43" [ref=f29e225]
+                - cell "Soliflore Vase aur-517" [ref=f29e226]:
+                  - generic [ref=f29e227]: Soliflore Vase
+                  - text: aur-517
+                - cell "—" [ref=f29e228]
+                - cell "ORDER_CONFIRMED" [ref=f29e229]
+                - cell "-1" [ref=f29e231]
+                - cell "33 → 32" [ref=f29e232]
+                - cell "Sold" [ref=f29e233]
+                - cell "System" [ref=f29e235]
+              - row [ref=f29e236]:
+                - cell "2026-09-09 20:27" [ref=f29e237]
+                - cell "Souffle Court aur-315" [ref=f29e238]:
+                  - generic [ref=f29e239]: Souffle Court
+                  - text: aur-315
+                - cell "—" [ref=f29e240]
+                - cell "ORDER_CONFIRMED" [ref=f29e241]
+                - cell "-1" [ref=f29e243]
+                - cell "9 → 8" [ref=f29e244]
+                - cell "Sold" [ref=f29e245]
+                - cell "System" [ref=f29e247]
+              - row [ref=f29e248]:
+                - cell "2026-09-09 20:27" [ref=f29e249]
+                - cell "Sidewinder Onze aur-210" [ref=f29e250]:
+                  - generic [ref=f29e251]: Sidewinder Onze
+                  - text: aur-210
+                - cell "—" [ref=f29e252]
+                - cell "ORDER_CONFIRMED" [ref=f29e253]
+                - cell "-2" [ref=f29e255]
+                - cell "14 → 12" [ref=f29e256]
+                - cell "Sold" [ref=f29e257]
+                - cell "System" [ref=f29e259]
+              - row [ref=f29e260]:
+                - cell "2026-09-09 13:51" [ref=f29e261]
+                - cell "Pinang Canteen aur-420" [ref=f29e262]:
+                  - generic [ref=f29e263]: Pinang Canteen
+                  - text: aur-420
+                - cell "—" [ref=f29e264]
+                - cell "ORDER_CONFIRMED" [ref=f29e265]
+                - cell "-2" [ref=f29e267]
+                - cell "12 → 10" [ref=f29e268]
+                - cell "Sold" [ref=f29e269]
+                - cell "System" [ref=f29e271]
+              - row [ref=f29e272]:
+                - cell "2026-09-09 13:51" [ref=f29e273]
+                - cell "Cendre Bleue aur-309" [ref=f29e274]:
+                  - generic [ref=f29e275]: Cendre Bleue
+                  - text: aur-309
+                - cell "—" [ref=f29e276]
+                - cell "ORDER_CONFIRMED" [ref=f29e277]
+                - cell "-1" [ref=f29e279]
+                - cell "33 → 32" [ref=f29e280]
+                - cell "Sold" [ref=f29e281]
+                - cell "System" [ref=f29e283]
+              - row [ref=f29e284]:
+                - cell "2026-09-08 20:51" [ref=f29e285]
+                - cell "Souffle Court aur-315" [ref=f29e286]:
+                  - generic [ref=f29e287]: Souffle Court
+                  - text: aur-315
+                - cell "—" [ref=f29e288]
+                - cell "ORDER_CONFIRMED" [ref=f29e289]
+                - cell "-1" [ref=f29e291]
+                - cell "8 → 7" [ref=f29e292]
+                - cell "Sold" [ref=f29e293]
+                - cell "System" [ref=f29e295]
+              - row [ref=f29e296]:
+                - cell "2026-09-07 16:16" [ref=f29e297]
+                - cell "Quadrant Shoulder Bag aur-418" [ref=f29e298]:
+                  - generic [ref=f29e299]: Quadrant Shoulder Bag
+                  - text: aur-418
+                - cell "—" [ref=f29e300]
+                - cell "ORDER_CONFIRMED" [ref=f29e301]
+                - cell "-1" [ref=f29e303]
+                - cell "26 → 25" [ref=f29e304]
+                - cell "Sold" [ref=f29e305]
+                - cell "System" [ref=f29e307]
+              - row [ref=f29e308]:
+                - cell "2026-09-07 16:16" [ref=f29e309]
+                - cell "Legionary Seal aur-117" [ref=f29e310]:
+                  - generic [ref=f29e311]: Legionary Seal
+                  - text: aur-117
+                - cell "—" [ref=f29e312]
+                - cell "ORDER_CONFIRMED" [ref=f29e313]
+                - cell "-1" [ref=f29e315]
+                - cell "9 → 8" [ref=f29e316]
+                - cell "Sold" [ref=f29e317]
+                - cell "System" [ref=f29e319]
+              - row [ref=f29e320]:
+                - cell "2026-09-06 17:47" [ref=f29e321]
+                - cell "Garnet Oath aur-107" [ref=f29e322]:
+                  - generic [ref=f29e323]: Garnet Oath
+                  - text: aur-107
+                - cell "—" [ref=f29e324]
+                - cell "ORDER_CONFIRMED" [ref=f29e325]
+                - cell "-1" [ref=f29e327]
+                - cell "11 → 10" [ref=f29e328]
+                - cell "Sold" [ref=f29e329]
+                - cell "System" [ref=f29e331]
+              - row [ref=f29e332]:
+                - cell "2026-09-06 17:43" [ref=f29e333]
+                - cell "Encrier No.4 aur-514" [ref=f29e334]:
+                  - generic [ref=f29e335]: Encrier No.4
+                  - text: aur-514
+                - cell "—" [ref=f29e336]
+                - cell "ORDER_CONFIRMED" [ref=f29e337]
+                - cell "-2" [ref=f29e339]
+                - cell "26 → 24" [ref=f29e340]
+                - cell "Sold" [ref=f29e341]
+                - cell "System" [ref=f29e343]
+              - row [ref=f29e344]:
+                - cell "2026-09-05 11:39" [ref=f29e345]
+                - cell "Twin Rib Band aur-111" [ref=f29e346]:
+                  - generic [ref=f29e347]: Twin Rib Band
+                  - text: aur-111
+                - cell "—" [ref=f29e348]
+                - cell "ORDER_CONFIRMED" [ref=f29e349]
+                - cell "-1" [ref=f29e351]
+                - cell "27 → 26" [ref=f29e352]
+                - cell "Sold" [ref=f29e353]
+                - cell "System" [ref=f29e355]
+              - row [ref=f29e356]:
+                - cell "2026-09-05 11:39" [ref=f29e357]
+                - cell "Repertoire Card Index aur-512" [ref=f29e358]:
+                  - generic [ref=f29e359]: Repertoire Card Index
+                  - text: aur-512
+                - cell "—" [ref=f29e360]
+                - cell "ORDER_CONFIRMED" [ref=f29e361]
+                - cell "-2" [ref=f29e363]
+                - cell "18 → 16" [ref=f29e364]
+                - cell "Sold" [ref=f29e365]
+                - cell "System" [ref=f29e367]
+              - row [ref=f29e368]:
+                - cell "2026-09-05 11:39" [ref=f29e369]
+                - cell "Chutes Swatch Coffret aur-410" [ref=f29e370]:
+                  - generic [ref=f29e371]: Chutes Swatch Coffret
+                  - text: aur-410
+                - cell "—" [ref=f29e372]
+                - cell "ORDER_CONFIRMED" [ref=f29e373]
+                - cell "-1" [ref=f29e375]
+                - cell "22 → 21" [ref=f29e376]
+                - cell "Sold" [ref=f29e377]
+                - cell "System" [ref=f29e379]
+              - row [ref=f29e380]:
+                - cell "2026-09-04 19:06" [ref=f29e381]
+                - cell "Bascule 18 aur-209" [ref=f29e382]:
+                  - generic [ref=f29e383]: Bascule 18
+                  - text: aur-209
+                - cell "—" [ref=f29e384]
+                - cell "ORDER_CONFIRMED" [ref=f29e385]
+                - cell "-1" [ref=f29e387]
+                - cell "9 → 8" [ref=f29e388]
+                - cell "Sold" [ref=f29e389]
+                - cell "System" [ref=f29e391]
+              - row [ref=f29e392]:
+                - cell "2026-09-04 19:06" [ref=f29e393]
+                - cell "Cendre Bleue aur-309" [ref=f29e394]:
+                  - generic [ref=f29e395]: Cendre Bleue
+                  - text: aur-309
+                - cell "—" [ref=f29e396]
+                - cell "ORDER_CONFIRMED" [ref=f29e397]
+                - cell "-1" [ref=f29e399]
+                - cell "32 → 31" [ref=f29e400]
+                - cell "Sold" [ref=f29e401]
+                - cell "System" [ref=f29e403]
+  - button "Open AI assistant" [ref=f29e405] [cursor=pointer]: Ask AI

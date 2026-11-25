@@ -1,0 +1,22 @@
+- generic [active] [ref=f87e1]:
+  - generic [ref=f87e2]: "AURELIS — Sequence Diagram: Cancel Order (with Guaranteed Restock)"
+  - generic [ref=f87e3]: Illustrates the atomic status-change + restock transaction, and its own audit entry
+  - generic [ref=f87e4]:
+    - generic [ref=f87e5]: Staff (Browser)
+    - generic [ref=f87e6]: Order Detail UI
+    - generic [ref=f87e7]: POST /orders/:id/cancel
+    - generic [ref=f87e8]: Inventory Service(restore)
+    - generic [ref=f87e9]: SQLite / Audit Log
+    - generic [ref=f87e18]: select "Cancelled" + reason
+    - generic [ref=f87e19]: "POST /orders/:id/cancel {reason}"
+    - generic [ref=f87e20]: require_('orders.cancel')
+    - generic [ref=f87e21]: assert not already cancelled
+    - generic [ref=f87e22]: BEGIN transaction (tx)
+    - generic [ref=f87e23]: UPDATE orders SET status='Cancelled'
+    - generic [ref=f87e24]: restore(orderId, reason) — per line item
+    - generic [ref=f87e25]: adjustStock(delta = +qty)
+    - generic [ref=f87e26]: write ledger row, update warehouse_stock
+    - generic [ref=f87e27]: COMMIT tx
+    - generic [ref=f87e28]: "audit({action:'cancelled', before, after})"
+    - generic [ref=f87e29]: "200 {order, restocked:true}"
+    - generic [ref=f87e30]: flash "Moved to Cancelled"

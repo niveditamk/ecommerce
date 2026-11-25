@@ -1,7 +1,7 @@
 /* =============================================================
-   AURELIS MAISON — CATEGORY / COLLECTION LISTING PAGE
-   Editorial collection vitrine with real-time URL-backed
-   sub-category filters, sort controls, badge filters, and pagination.
+   AURELIS MAISON // EDITORIAL COLLECTION PAGE
+   Collection vitrine with real-time sub-category filters,
+   sort controls, badge filters, and pagination.
    ============================================================= */
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
@@ -13,7 +13,7 @@ import api from '../lib/api';
 import { dx, money } from '../lib/format';
 
 const SORTS = [
-  { value: 'featured', label: 'Featured / Considered' },
+  { value: 'featured', label: 'Featured / Recommended' },
   { value: 'newest', label: 'Newest Arrivals' },
   { value: 'price-asc', label: 'Price: Low to High' },
   { value: 'price-desc', label: 'Price: High to Low' },
@@ -96,79 +96,79 @@ export default function Category() {
     <div className="shell">
       <Breadcrumbs
         trail={[
-          { label: 'SYS.ROOT', to: '/' },
-          { label: 'DISCIPLINES', to: '/categories' },
-          { label: meta ? dx(meta.name).toUpperCase() : '...' }
+          { label: 'Home', to: '/' },
+          { label: 'Collections', to: '/categories' },
+          { label: meta ? dx(meta.name) : '...' }
         ]}
       />
 
       <PageHead
-        kicker={meta ? `// DISCIPLINE CODE: ${slug.toUpperCase()} · ${dx(meta.tag || 'FACILITY')}` : ''}
-        title={meta ? dx(meta.name).toUpperCase() : 'COLLECTION'}
+        kicker={meta ? `Maison Collection · ${dx(meta.tag || 'Handcrafted')}` : ''}
+        title={meta ? dx(meta.name) : 'Collection'}
         lede={meta ? dx(meta.blurb) : ''}
         aside={
-          <div className="badge badge--green" style={{ padding: '8px 14px', fontSize: '0.72rem' }}>
-            [ {total} {total === 1 ? 'SPECIMEN AVAILABLE' : 'SPECIMENS AVAILABLE'} ]
+          <div className="badge badge--green" style={{ padding: '8px 16px', fontSize: '0.78rem' }}>
+            {total} {total === 1 ? 'Piece Available' : 'Pieces Available'}
           </div>
         }
       />
 
       {/* Sub-categories & Filter Bar */}
-      <div className="filter-bar" style={{ background: 'var(--color-paper-light)', border: '1px solid var(--line)', borderRadius: 'var(--r-xs)', padding: '10px 16px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', padding: '16px 20px', background: '#FFFFFF', border: '1px solid var(--line)', borderRadius: 'var(--r-sm)', marginBottom: '24px' }}>
         {/* Left: Subcategory chips */}
-        <div className="filter-bar__left" style={{ alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <button
             type="button"
-            className={`chip${!sub ? ' is-active' : ''}`}
+            className={`btn btn--sm ${!sub ? 'btn--primary' : 'btn--outline'}`}
             onClick={() => setParam('sub', '')}
-            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}
+            style={{ borderRadius: 'var(--r-pill)', fontSize: '0.76rem' }}
           >
-            [ ALL SPECIMENS ]
+            All Creations
           </button>
           {subCategories.map((s) => (
             <button
               key={s}
               type="button"
-              className={`chip${sub === s ? ' is-active' : ''}`}
+              className={`btn btn--sm ${sub === s ? 'btn--primary' : 'btn--outline'}`}
               onClick={() => setParam('sub', sub === s ? '' : s)}
-              style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem' }}
+              style={{ borderRadius: 'var(--r-pill)', fontSize: '0.76rem' }}
             >
-              [ {dx(s).toUpperCase()} ]
+              {dx(s)}
             </button>
           ))}
 
           {/* Badges Filters */}
-          <div style={{ display: 'inline-flex', gap: '6px', marginLeft: '8px' }}>
+          <div style={{ display: 'inline-flex', gap: '6px', marginLeft: '6px' }}>
             {BADGES.map((b) => (
               <button
                 key={b}
                 type="button"
-                className={`chip${activeBadges.includes(b) ? ' is-active' : ''}`}
+                className={`btn btn--sm ${activeBadges.includes(b) ? 'btn--gold' : 'btn--ghost'}`}
                 onClick={() => toggleBadge(b)}
-                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem' }}
+                style={{ borderRadius: 'var(--r-pill)', fontSize: '0.74rem' }}
               >
-                {b.toUpperCase()}
+                {b}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Right: Sort selector */}
-        <div className="center" style={{ gap: '10px' }}>
-          <label htmlFor="sort-select" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--pearl-3)' }}>
-            SORT_ORDER:
+        {/* Right: Sort Selector */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <label htmlFor="sort-select" style={{ fontSize: '0.78rem', color: 'var(--pearl-3)' }}>
+            Sort by:
           </label>
           <select
             id="sort-select"
             value={sort}
             onChange={(e) => setParam('sort', e.target.value)}
             style={{
-              padding: '6px 12px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
-              border: '1px solid var(--line-dark)',
-              borderRadius: 'var(--r-xs)',
-              background: 'var(--color-paper)',
+              padding: '8px 14px',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.82rem',
+              border: '1px solid var(--line-control)',
+              borderRadius: 'var(--r-pill)',
+              background: '#FFFFFF',
               color: 'var(--pearl)',
               cursor: 'pointer'
             }}
@@ -184,71 +184,68 @@ export default function Category() {
 
       {/* Applied filter tags */}
       {applied.length > 0 && (
-        <div className="filter-tags" style={{ marginBottom: '24px' }}>
-          <span className="tiny" style={{ color: 'var(--pearl-3)' }}>Active Filters:</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '24px' }}>
+          <span style={{ fontSize: '0.78rem', color: 'var(--pearl-3)' }}>Active Filters:</span>
           {applied.map((a) => (
-            <span key={a.key} className="filter-tag">
+            <span key={a.key} className="badge badge--gold" style={{ padding: '4px 10px', fontSize: '0.72rem' }}>
               <span>{a.label}</span>
-              <button type="button" onClick={() => clearApplied(a.key)} aria-label={`Remove filter ${a.label}`}>
+              <button
+                type="button"
+                onClick={() => clearApplied(a.key)}
+                aria-label={`Remove filter ${a.label}`}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', marginLeft: '4px', color: 'inherit' }}
+              >
                 &times;
               </button>
             </span>
           ))}
           <button
             type="button"
-            className="tiny"
             onClick={clearAll}
-            style={{ textDecoration: 'underline', color: 'var(--pearl-3)', marginLeft: '8px' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.78rem', color: 'var(--alert)', marginLeft: '8px' }}
           >
-            Clear all
+            Clear All
           </button>
         </div>
       )}
 
-      {/* Products Grid */}
-      <section className="section" style={{ paddingTop: 0 }}>
-        {listing.loading ? (
-          <div className="card-grid">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div className="card" key={i}>
-                <div style={{ aspectRatio: '3/4', background: 'var(--color-bone)' }} />
-              </div>
-            ))}
-          </div>
-        ) : items.length === 0 ? (
-          <div style={{ padding: '64px 20px', textAlign: 'center' }}>
-            <h3 className="h3">No pieces match these criteria</h3>
-            <p className="muted" style={{ marginTop: '8px', marginBottom: '20px' }}>
-              Try removing some filters or explore all items in {meta ? dx(meta.name) : 'the collection'}.
-            </p>
-            <button type="button" className="btn btn--sm btn--gold" onClick={clearAll}>
-              Reset Filters
-            </button>
-          </div>
-        ) : (
+      {/* Product Grid */}
+      {listing.loading && items.length === 0 ? (
+        <Loading label="Curating the atelier collection" />
+      ) : items.length === 0 ? (
+        <Empty
+          icon="bag"
+          title="No Pieces Match Your Selection"
+          body="Try clearing your active filters to view all creations in this collection."
+          cta={{ onClick: clearAll, label: 'Reset All Filters' }}
+        />
+      ) : (
+        <>
           <ProductGrid items={items} />
-        )}
 
-        {/* Pagination */}
-        {pages > 1 && (
-          <nav className="center" style={{ justifyContent: 'center', gap: '8px', marginTop: '64px' }} aria-label="Pagination">
-            {Array.from({ length: pages }).map((_, i) => {
-              const p = i + 1;
-              return (
-                <button
-                  key={p}
-                  type="button"
-                  className={`btn btn--sm${p === page ? ' btn--gold' : ' btn--outline'}`}
-                  onClick={() => setParam('page', String(p))}
-                  aria-current={p === page ? 'page' : undefined}
-                >
-                  {p}
-                </button>
-              );
-            })}
-          </nav>
-        )}
-      </section>
+          {/* Pagination */}
+          {pages > 1 && (
+            <nav className="pagination" style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '56px' }} aria-label="Pagination">
+              {Array.from({ length: pages }).map((_, i) => {
+                const p = i + 1;
+                const isCurrent = p === page;
+                return (
+                  <button
+                    key={p}
+                    type="button"
+                    className={`btn btn--sm ${isCurrent ? 'btn--primary' : 'btn--outline'}`}
+                    onClick={() => setParam('page', String(p))}
+                    aria-current={isCurrent ? 'page' : undefined}
+                    style={{ minWidth: '40px', borderRadius: 'var(--r-pill)' }}
+                  >
+                    {p}
+                  </button>
+                );
+              })}
+            </nav>
+          )}
+        </>
+      )}
     </div>
   );
 }

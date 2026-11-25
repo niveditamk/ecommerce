@@ -1,0 +1,172 @@
+- generic [ref=f48e3]:
+  - complementary "Admin navigation" [ref=f48e4]:
+    - generic [ref=f48e5]:
+      - generic [ref=f48e6]: AURELIS
+      - generic [ref=f48e7]: Executive · AI Admin
+    - navigation [ref=f48e8]:
+      - generic [ref=f48e9]:
+        - heading "Executive Command" [level=2] [ref=f48e10]
+        - link "Command Center" [ref=f48e11] [cursor=pointer]:
+          - /url: /admin
+        - link "AI Intelligence" [ref=f48e12] [cursor=pointer]:
+          - /url: /admin/ai
+      - generic [ref=f48e13]:
+        - heading "Inventory & Vaults" [level=2] [ref=f48e14]
+        - link "Inventory Management" [ref=f48e15] [cursor=pointer]:
+          - /url: /admin/inventory
+        - link "Warehouses & Heatmaps" [ref=f48e16] [cursor=pointer]:
+          - /url: /admin/warehouses
+        - link "Procurement & POs" [ref=f48e17] [cursor=pointer]:
+          - /url: /admin/procurement
+      - generic [ref=f48e18]:
+        - heading "Intelligence & Reports" [level=2] [ref=f48e19]
+        - link "Sales & BI Analytics" [ref=f48e20] [cursor=pointer]:
+          - /url: /admin/analytics
+        - link "Reports & Exports" [ref=f48e21] [cursor=pointer]:
+          - /url: /admin/reports
+      - generic [ref=f48e22]:
+        - heading "Catalog & Orders" [level=2] [ref=f48e23]
+        - link "Products" [ref=f48e24] [cursor=pointer]:
+          - /url: /admin/products
+        - link "Categories" [ref=f48e25] [cursor=pointer]:
+          - /url: /admin/categories
+        - link "Orders" [ref=f48e26] [cursor=pointer]:
+          - /url: /admin/orders
+        - link "Customers" [ref=f48e27] [cursor=pointer]:
+          - /url: /admin/customers
+      - generic [ref=f48e28]:
+        - heading "System & Governance" [level=2] [ref=f48e29]
+        - link "Staff Management" [ref=f48e30] [cursor=pointer]:
+          - /url: /admin/staff
+        - link "Roles & RBAC" [ref=f48e31] [cursor=pointer]:
+          - /url: /admin/roles
+        - link "Audit Trail" [ref=f48e32] [cursor=pointer]:
+          - /url: /admin/audit
+        - link "ML Operations" [ref=f48e33] [cursor=pointer]:
+          - /url: /admin/ml
+        - link "Commerce Engine" [ref=f48e34] [cursor=pointer]:
+          - /url: /admin/medusa
+    - generic [ref=f48e35]:
+      - generic [ref=f48e36]: Hélène Marchand
+      - generic [ref=f48e37]: Administrator
+      - button "Sign out" [ref=f48e38] [cursor=pointer]
+  - generic [ref=f48e39]:
+    - banner [ref=f48e40]:
+      - generic [ref=f48e42]:
+        - generic [ref=f48e43]: Facility Filter
+        - combobox "Filter by facility" [ref=f48e44] [cursor=pointer]:
+          - option "Global (All Facilities)" [selected]
+          - option "Geneva Atelier (GVA)"
+          - option "Zurich Hub (ZRH)"
+          - option "Paris Vault (PAR)"
+          - option "New York Vault (NYC)"
+        - generic [ref=f48e45]: Period Filter
+        - combobox "Filter by time period" [ref=f48e46] [cursor=pointer]:
+          - option "Today"
+          - option "Last 7 Days"
+          - option "Last 30 Days" [selected]
+          - option "Quarter (90d)"
+          - option "Fiscal Year"
+      - generic [ref=f48e47]:
+        - link "5 Alerts" [ref=f48e48] [cursor=pointer]:
+          - /url: /admin/ai
+        - link "View storefront ↗" [ref=f48e51] [cursor=pointer]:
+          - /url: /
+    - main [ref=f48e52]:
+      - generic [ref=f48e62]:
+        - generic [ref=f48e63]:
+          - generic [ref=f48e64]: Catalog
+          - heading "Collections" [level=1] [ref=f48e65]
+          - paragraph [ref=f48e66]: 8 collections
+        - button "New collection" [ref=f48e159] [cursor=pointer]
+      - generic [ref=f48e160]: Created Test Collection.
+      - table [ref=f48e70]:
+        - rowgroup [ref=f48e71]:
+          - row [ref=f48e72]:
+            - columnheader "Collection" [ref=f48e73]
+            - columnheader "Label" [ref=f48e74]
+            - columnheader "Description" [ref=f48e75]
+            - columnheader "Products" [ref=f48e76]
+            - columnheader [ref=f48e77]
+        - rowgroup [ref=f48e78]:
+          - row [ref=f48e79]:
+            - cell "Fine Jewellery jewellery" [ref=f48e80]:
+              - text: Fine Jewellery
+              - generic [ref=f48e81]: jewellery
+            - cell "Stone & Setting" [ref=f48e82]
+            - cell "Hand-set stones in recycled 18k gold. Every piece bench-made in our Geneva atelier." [ref=f48e83]
+            - cell "21" [ref=f48e84]
+            - cell [ref=f48e85]:
+              - button "Edit" [ref=f48e86] [cursor=pointer]
+              - button "Delete" [ref=f48e87] [cursor=pointer]
+          - row [ref=f48e88]:
+            - cell "Horology horology" [ref=f48e89]:
+              - text: Horology
+              - generic [ref=f48e90]: horology
+            - cell "Movement" [ref=f48e91]
+            - cell "Mechanical calibres finished by hand, regulated in five positions over sixty days." [ref=f48e92]
+            - cell "20" [ref=f48e93]
+            - cell [ref=f48e94]:
+              - button "Edit" [ref=f48e95] [cursor=pointer]
+              - button "Delete" [ref=f48e96] [cursor=pointer]
+          - row [ref=f48e97]:
+            - cell "Parfums Rares parfums" [ref=f48e98]:
+              - text: Parfums Rares
+              - generic [ref=f48e99]: parfums
+            - cell "Extrait" [ref=f48e100]
+            - cell "Extrait concentrations from Grasse, aged in oak for a minimum of eleven months." [ref=f48e101]
+            - cell "21" [ref=f48e102]
+            - cell [ref=f48e103]:
+              - button "Edit" [ref=f48e104] [cursor=pointer]
+              - button "Delete" [ref=f48e105] [cursor=pointer]
+          - row [ref=f48e106]:
+            - cell "Leather Atelier leather" [ref=f48e107]:
+              - text: Leather Atelier
+              - generic [ref=f48e108]: leather
+            - cell "Saddle-Stitched" [ref=f48e109]
+            - cell "Full-grain hides, vegetable tanned for nine months, stitched by a single artisan." [ref=f48e110]
+            - cell "20" [ref=f48e111]
+            - cell [ref=f48e112]:
+              - button "Edit" [ref=f48e113] [cursor=pointer]
+              - button "Delete" [ref=f48e114] [cursor=pointer]
+          - row [ref=f48e115]:
+            - cell "Objets & Home objets" [ref=f48e116]:
+              - text: Objets & Home
+              - generic [ref=f48e117]: objets
+            - cell "Mouth-Blown" [ref=f48e118]
+            - cell "Crystal, cire and lacquer for the interior. Made in numbered runs, never repeated." [ref=f48e119]
+            - cell "20" [ref=f48e120]
+            - cell [ref=f48e121]:
+              - button "Edit" [ref=f48e122] [cursor=pointer]
+              - button "Delete" [ref=f48e123] [cursor=pointer]
+          - row [ref=f48e124]:
+            - cell "Silk & Cashmere silk" [ref=f48e125]:
+              - text: Silk & Cashmere
+              - generic [ref=f48e126]: silk
+            - cell "Woven in Como" [ref=f48e127]
+            - cell "Twill silk printed in forty-two screens; cashmere spun from Alashan winter fleece." [ref=f48e128]
+            - cell "19" [ref=f48e129]
+            - cell [ref=f48e130]:
+              - button "Edit" [ref=f48e131] [cursor=pointer]
+              - button "Delete" [ref=f48e132] [cursor=pointer]
+          - row [ref=f48e133]:
+            - cell "Eyewear eyewear" [ref=f48e134]:
+              - text: Eyewear
+              - generic [ref=f48e135]: eyewear
+            - cell "Acetate & Titanium" [ref=f48e136]
+            - cell "Italian acetate milled over eight weeks, paired with mineral glass lenses." [ref=f48e137]
+            - cell "19" [ref=f48e138]
+            - cell [ref=f48e139]:
+              - button "Edit" [ref=f48e140] [cursor=pointer]
+              - button "Delete" [ref=f48e141] [cursor=pointer]
+          - row [ref=f48e161]:
+            - cell "Test Collection test-collection" [ref=f48e162]:
+              - text: Test Collection
+              - generic [ref=f48e163]: test-collection
+            - cell [ref=f48e164]
+            - cell [ref=f48e165]
+            - cell "0" [ref=f48e166]
+            - cell [ref=f48e167]:
+              - button "Edit" [ref=f48e168] [cursor=pointer]
+              - button "Delete" [ref=f48e169] [cursor=pointer]
+  - button "Open AI assistant" [ref=f48e61] [cursor=pointer]: Ask AI
